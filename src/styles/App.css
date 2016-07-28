@@ -1,14 +1,14 @@
 /* Base Application Styles */
-body {
-  color: darkgrey;
+#body {
+  color: red;
   background: #222;
   text-align: center;
   padding-top: 20px;
 }
 
-header {
+#header {
   height: 200px;
-  color: black;
+  color: red;
   background: #555;
   text-align: center;
   padding-top: 20px;
