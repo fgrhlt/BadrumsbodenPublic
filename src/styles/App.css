@@ -1,0 +1,15 @@
+/* Base Application Styles */
+body {
+  color: darkgrey;
+  background: #222;
+  text-align: center;
+  padding-top: 20px;
+}
+
+header {
+  height: 200px;
+  color: black;
+  background: #555;
+  text-align: center;
+  padding-top: 20px;
+}
