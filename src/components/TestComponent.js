@@ -9,6 +9,7 @@ class TestComponent extends React.Component {
     return (
       <div className="test-component">
         Please edit src/components///TestComponent.js to update this component!
+        Hej hej det är simpa
       </div>
     );
   }
