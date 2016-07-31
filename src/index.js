@@ -2,7 +2,6 @@ import 'core-js/fn/object/assign';
 import React from 'react';
 import ReactDOM from 'react-dom';
 //import App from './components/Main';
-import Gallery from './components/Gallery';
-
+import Main from './components/webshopPage/Main';
 // Render the main component into the dom
-ReactDOM.render(<Gallery />, document.getElementById('app'));
+ReactDOM.render(<Main />, document.getElementById('app'));
