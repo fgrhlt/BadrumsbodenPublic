@@ -1,13 +1,9 @@
 import React, { Component, PropTypes } from 'react'
-require('normalize.css/normalize.css')
-require('styles/DropdownMenu.css')
 
 export default class DropdownMenu extends Component {
-  //propTypes={}
 
   listItem() {
     return
-
   }
 
   render() {

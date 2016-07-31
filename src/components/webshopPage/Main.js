@@ -1,22 +1,20 @@
 import React, { Component, PropTypes } from 'react'
 import DropdownMenu from './DropdownMenu'
 
-require('normalize.css/normalize.css')
-require('styles/App.css')
+require('styles/_webshopPage/main.css')
 
-export default class AppComponent extends Component {
-  //propTypes={}
+export default class Main extends Component {
 
   render() {
     return (
       <div>
         <div className="header">
           <p>Tillbaka till portalen</p>
-          <img id="logo" src="images/logo.svg"></img>
+          <img id="logo" src="assets/logo/logo.svg"></img>
 
           <div className="searchBar">
             <input placeholder="Vad söker du efter?"></input>
-            <img id="searchBarImg" src="images/search_button.svg"></img>
+            <img id="searchBarImg" src="assets/buttons/search_button.svg"></img>
           </div>
         </div>
 
@@ -24,7 +22,7 @@ export default class AppComponent extends Component {
 
         <div className="campaign">
           <h1>Hej detta är kampanj jao</h1>
-          <img id="campaign" src="images/campaign.jpg"></img>
+          <img id="campaign" src="assets/images/campaign.jpg"></img>
         </div>
 
         <div className="topSales"></div>
