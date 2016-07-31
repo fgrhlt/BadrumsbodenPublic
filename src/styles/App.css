@@ -49,4 +49,5 @@ p {
 .topSales {
   height: 350px;
   border: dotted;
+  font-size: responsive;
 }

@@ -70,6 +70,7 @@
   "dependencies": {
     "autoprefixer": "^6.3.7",
     "core-js": "^2.0.0",
+    "lost": "^7.0.3",
     "normalize.css": "^4.0.0",
     "postcss": "^5.1.1",
     "postcss-cli": "^2.5.2",
