@@ -38,5 +38,15 @@ module.exports = {
       config: `${defaultSettings.srcPath}/config/` + process.env.REACT_WEBPACK_ENV
     }
   },
-  module: {}
+  module: {
+        loaders: [
+            {
+                test:   /\.src\.styles\.css$/,
+                loader: "style-loader!css-loader!postcss-loader"
+            }
+        ]
+    },
+  postcss: function () {
+      return [require('autoprefixer'), require('lost')];
+  }
 };

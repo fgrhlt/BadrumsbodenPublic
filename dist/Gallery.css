@@ -52,19 +52,27 @@
   width:170px;
   margin-top:10%;
 }
-#text {
-  width:700px;
-  font-size: calc(12px + 9 * ((100vw - 420px) / 860));
-}
-@media screen and (min-width: 1280px) {
 
-  #text {
-    font-size: 21px;
-  }
+div {
+  background-color: #FF3;
+  width: calc(99.9% * 1/3 - (30px - 30px * 1/3));
 }
-@media screen and (max-width: 420px) {
 
-  #text {
-    font-size: 12px;
-  }
+div:nth-child(1n) {
+  float: left;
+  margin-right: 30px;
+  clear: none;
+}
+
+div:last-child {
+  margin-right: 0;
+}
+
+div:nth-child(3n) {
+  margin-right: 0;
+  float: right;
+}
+
+div:nth-child(3n + 1) {
+  clear: both;
 }
