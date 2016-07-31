@@ -8,6 +8,7 @@
   position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 
@@ -50,4 +51,20 @@
 #right > div .text {
   width:170px;
   margin-top:10%;
+}
+#text {
+  width:700px;
+  font-size: calc(12px + 9 * ((100vw - 420px) / 860));
+}
+@media screen and (min-width: 1280px) {
+
+  #text {
+    font-size: 21px;
+  }
+}
+@media screen and (max-width: 420px) {
+
+  #text {
+    font-size: 12px;
+  }
 }
