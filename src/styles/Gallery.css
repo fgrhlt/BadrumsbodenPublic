@@ -53,4 +53,10 @@
   margin-top:10%;
 }
 
-#hej {}
+#text {
+  font-size:responsive;
+
+  & #link {
+    color:#F45;
+  }
+}
