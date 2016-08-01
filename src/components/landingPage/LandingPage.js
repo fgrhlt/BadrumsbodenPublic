@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
+
 import { browserHistory } from 'react-router'
-require('styles/global.css')
 
 export default class LandingPage extends Component {
 
