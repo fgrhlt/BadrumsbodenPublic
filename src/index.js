@@ -11,7 +11,7 @@ const app = document.getElementById('app')
 
 ReactDOM.render(
   <Router history={hashHistory}>
-    <Route path="/" component={LandingPage}>
+    <Route path="/" component={Gallery}>
       <Route path="webshop" component={Webshop}></Route>
       <Route path="gallery" component={Gallery}></Route>
     </Route>

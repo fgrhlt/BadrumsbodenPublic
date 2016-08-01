@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-require('styles/global.css')
-
 export default class LandingPage extends Component {
   render() {
     return (
