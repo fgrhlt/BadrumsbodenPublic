@@ -1,10 +1,23 @@
 import React, { Component, PropTypes } from 'react'
 import DropdownMenu from './DropdownMenu'
+import Slider from 'react-slick'
 
 require('styles/_webshopPage/dropdownMenu.css')
 require('styles/global.css')
 
 export default class Webshop extends Component {
+
+componentWillMount() {
+  this.state = {
+      settings: {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    }
+  }
+}
 
   render() {
     return (
@@ -27,6 +40,10 @@ export default class Webshop extends Component {
         </div>
 
         <div className="topSales"></div>
+
+        <h2>Slider babyyy</h2>
+
+
 
       </div>
     )
