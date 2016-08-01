@@ -1,11 +1,21 @@
 @import '../../node_modules/normalize.css/normalize.css';
 
+/* Set the global colors for the Badrumsboden */
+:root {
+  --orange: #FD551F;
+  --lightBlue: #A9DDD6;
+  --lightGreen: #A7D49B;
+  --darkGreen: #019A3F;
+}
+
 body {
   margin:0;
   padding:0;
   font-size:12pt;
   color:#333;
+  lost-utility: edit;
 }
+
 h1, h2, h3, h4 {
   margin: 0 0 5% 0;
 }
