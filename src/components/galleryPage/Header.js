@@ -21,8 +21,10 @@ export default class Header extends Component {
               <div>
                 <img src="assets/icons/email_icon.svg" />
                 <h4>E-post</h4>
-                Klicka för att <br />
-                skicka epost
+                <p>
+                  Klicka för att <br />
+                  skicka epost
+                </p>
               </div>
 
               <div>

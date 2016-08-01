@@ -27,12 +27,16 @@
   float:right;
 
     & h4 {
-      margin: 5px;
+      margin: 10px 0 4px 0;
     }
 
     & > div {
       float:left;
       min-width: 250px;
+    }
+
+    & div:first-of-type p {
+      font-size: 10pt;
     }
 
     & img {
