@@ -1,23 +1,23 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
-
+import { browserHistory } from 'react-router'
 require('styles/global.css')
 
 export default class LandingPage extends Component {
 
-  handleClick(e) {
-      e.preventDefault();
-      console.log('er', this.context);
-    }
+onClickWebshop() {
+  browserHistory.push('/webshop')
+}
 
+onClickGallery() {
+  browserHistory.push('/gallery')
+}
 
   render() {
     return (
       <div>
-        <h3>Home</h3>
-        <button onClick={this.handleClick}>
-          Navigate outside of component to About page
-        </button>
+        <h3>LandingPage</h3>
+        <button onClick={this.onClickWebshop.bind(this)}>Klicka här för webshop</button>
+        <button onClick={this.onClickGallery.bind(this)}>Klicka här för galleri</button>
       </div>
     )
   }
