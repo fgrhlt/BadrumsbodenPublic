@@ -47,7 +47,8 @@ module.exports = {
         ]
     },
   postcss: function () {
-      return [require('autoprefixer'),
+      return [
+              require('autoprefixer'),
               require('lost'),
               require('rucksack-css'),
               require('postcss-cssnext')];
