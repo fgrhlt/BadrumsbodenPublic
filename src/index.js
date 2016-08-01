@@ -1,7 +1,19 @@
 import 'core-js/fn/object/assign';
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import App from './components/Main';
-import Main from './components/webshopPage/Main';
-// Render the main component into the dom
-ReactDOM.render(<Main />, document.getElementById('app'));
+import { Router, Route, /*IndexRoute,*/ hashHistory } from 'react-router';
+
+import LandingPage from './components/LandingPage/LandingPage';
+import Webshop from './components/WebshopPage/Webshop';
+import Gallery from './components/galleryPage/Gallery';
+
+const app = document.getElementById('app')
+
+ReactDOM.render(
+  <Router history={hashHistory}>
+    <Route path="/" component={LandingPage}>
+      <Route path="webshop" component={Webshop}></Route>
+      <Route path="gallery" component={Gallery}></Route>
+    </Route>
+  </Router>,
+  app);
