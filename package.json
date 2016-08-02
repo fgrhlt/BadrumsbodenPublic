@@ -80,6 +80,8 @@
     "react-dom": "^15.0.0",
     "react-images": "^0.4.9",
     "react-router": "^2.6.1",
-    "rucksack-css": "^0.8.6"
+    "react-slick": "^0.12.2",
+    "rucksack-css": "^0.8.6",
+    "slick-carousel": "^1.6.0"
   }
 }

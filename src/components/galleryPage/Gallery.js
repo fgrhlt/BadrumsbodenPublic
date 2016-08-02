@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+
 import LightboxGallery from './LightboxGallery'
 import Lightbox from 'react-images';
+
 import Header from './Header.js'
 
 require('styles/_galleryPage/gallery.css')
@@ -48,6 +50,26 @@ export default class Gallery extends Component {
                 <div>Det här här information om katten som ni ser här hallåå lalalal</div>
               </figure>
 
+            <div>
+              <figure><img src="http://placekitten.com/404/353" /></figure>
+              <figure><img src="http://placekitten.com/404/210" /></figure>
+              <figure><img src="http://placekitten.com/201/303" /></figure>
+            </div>
+
+            <div>
+              <figure><img src="http://placekitten.com/100/303" /></figure>
+              <figure><img src="http://placekitten.com/200/303" /></figure>
+              <figure><img src="http://placekitten.com/540/303" /></figure>
+            </div>
+          </section>
+        </div>
+
+        <div className="container">
+          <h3>Kök</h3>
+
+          <section>
+            <div>
+              <figure><img src="http://placekitten.com/404/303" /></figure>
               <figure><img src="http://placekitten.com/405/213" /></figure>
               <figure><img src="http://placekitten.com/404/210" /></figure>
             </div>

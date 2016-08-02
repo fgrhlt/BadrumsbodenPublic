@@ -1,14 +1,25 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
+
+
+import { browserHistory } from 'react-router'
 
 export default class LandingPage extends Component {
+
+onClickWebshop() {
+  browserHistory.push('/webshop')
+}
+
+onClickGallery() {
+  browserHistory.push('/gallery')
+}
+
   render() {
     return (
-        <div>
-          <h1>Hej!</h1>
-          {this.props.children}
-          <Link to="gallery">To gallery</Link>
-        </div>
+      <div>
+        <h3>LandingPage</h3>
+        <button onClick={this.onClickWebshop.bind(this)}>Klicka här för webshop</button>
+        <button onClick={this.onClickGallery.bind(this)}>Klicka här för galleri</button>
+      </div>
     )
   }
 }
