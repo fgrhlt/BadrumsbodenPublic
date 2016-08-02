@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-require('styles/_galleryPage/header.css')
+require('styles/_header/header.css')
 
 export default class Header extends Component {
   render() {
@@ -10,8 +10,7 @@ export default class Header extends Component {
         <div id="header">
             <div id="left">
               <span>
-                <img src="assets/arrows/small_backarrow.svg" />
-                Tillbaka till portalen
+                <img src="assets/arrows/small_backarrow.svg" /> Tillbaka till portalen
               </span>
 
               <img id="logo" src="assets/logo/logo.svg" />
@@ -19,21 +18,24 @@ export default class Header extends Component {
 
             <div id="right">
               <div>
-                <img src="assets/icons/email_icon.svg" />
-                <h4>E-post</h4>
-                <p>
-                  Klicka för att <br />
-                  skicka epost
-                </p>
+                <img id="email_icon" src="assets/icons/email_icon.svg" />
+                <div>
+                  <h4>E-post</h4>
+                  <p>
+                    Klicka för att <br />
+                    skicka epost
+                  </p>
+                </div>
               </div>
 
               <div>
-                <img src="assets/icons/phone_icon.svg" />
-                <div className="text">
+                <img id="phone_icon"  src="assets/icons/phone_icon.svg" />
+                <div>
                   070 57 43 373<br />
                   <span>Öppet 08-18</span>
                 </div>
               </div>
+
             </div>
         </div>
 

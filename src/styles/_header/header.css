@@ -1,0 +1,101 @@
+@import '../global.css';
+
+#header {
+  min-height: 105px;
+  margin: 25px 72px 0 72px;
+  clear: fix;
+}
+
+#left {
+  float:left;
+
+    & span, & #logo {
+      display: block;
+      cursor: pointer;
+    }
+
+    & span {
+      margin-bottom: 10px;
+    }
+
+    & span img{
+      margin-right:7px;
+    }
+
+    & #logo {
+      height:35px;
+    }
+}
+
+#right {
+  float:right;
+
+    & > div {
+      float:left;
+      width:230px;
+      height:76px;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    & #button {
+      width:130px;
+    }
+
+    & p {
+      font-size: 10pt;
+    }
+
+    & img {
+      margin:10% 10% 10% 0;
+      float:left;
+    }
+
+    & span {
+      color:var(--darkGreen);
+    }
+
+    & #email_icon {
+      height: 40px;
+    }
+
+    & #phone_icon {
+      height: 45px;
+    }
+
+    & #shoppingCart {
+      height: 50px;
+    }
+}
+
+@media (max-width: 700px) {
+
+  #right > div {
+    width:100%;
+  }
+  #button {
+    min-width:100%;
+  }
+}
+
+.greenButton {
+  width:120px;
+  height:40px;
+  border:none;
+  background-color:var(--darkGreen);
+  color:#fff;
+  font-weight:bold;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  outline:0;
+}
+
+.greenButton:hover {
+  background-color: #017F34;
+}
+
+.greenButton:active {
+  background-color: #016D2D;
+}
