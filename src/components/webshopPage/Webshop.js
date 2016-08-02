@@ -1,41 +1,21 @@
-import React, { Component, PropTypes } from 'react'
-import DropdownMenu from './DropdownMenu'
+import React, { Component } from 'react'
 
-require('styles/_webshopPage/dropdownMenu.css')
+import DropdownMenu from './DropdownMenu'
+import Header from './Header'
+import Features from './Features'
+
+require('styles/_webshopPage/webshop.css')
 
 export default class Webshop extends Component {
-
-  componentWillMount() {
-    this.setState({
-      autoplay: true,
-    })
-  }
 
   render() {
     return (
       <div>
-        <div className="header">
-          <p>Tillbaka till portalen</p>
-          <img id="logo" src="assets/logo/logo.svg"></img>
+        <Header></Header>
 
-          <div className="searchBar">
-            <input placeholder="Vad söker du efter?"></input>
-            <img id="searchBarImg" src="assets/buttons/search_button.svg"></img>
-          </div>
-        </div>
+        <DropdownMenu></DropdownMenu>
 
-        <DropdownMenu/>
-
-        <div className="confirmations">
-          <div className="iconContainer">
-            <div className="circle">
-              <img src="assets/icons/shipping.svg"></img>
-            </div>
-
-            <p>Garanti på alla varor</p>
-          </div>
-        </div>
-
+        <Features></Features>
       </div>
     )
   }

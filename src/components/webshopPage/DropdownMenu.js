@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 
 export default class DropdownMenu extends Component {
 
@@ -9,22 +9,10 @@ export default class DropdownMenu extends Component {
   render() {
     return (
       <ul>
-        <li className="dropdown">
-            <a href="#" className="dropbtn">Dropdown</a>
-            <div className="dropdown-content">
-             <div>
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
-             </div>
-             <div>
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
-             </div>
-            </div>
-        </li>
-
+        <li><a href="default.asp">Home</a></li>
+        <li><a href="news.asp">News</a></li>
+        <li><a href="contact.asp">Contact</a></li>
+        <li><a href="about.asp">About</a></li>
       </ul>
     )
   }
