@@ -73,6 +73,7 @@
     "history": "^3.0.0",
     "lost": "^7.0.3",
     "normalize.css": "^4.0.0",
+    "nuka-carousel": "^2.0.2",
     "postcss": "^5.1.1",
     "postcss-cli": "^2.5.2",
     "postcss-cssnext": "^2.7.0",
@@ -80,7 +81,6 @@
     "react-dom": "^15.0.0",
     "react-router": "^2.6.1",
     "react-slick": "^0.12.2",
-    "rucksack-css": "^0.8.6",
-    "slick-carousel": "^1.6.0"
+    "rucksack-css": "^0.8.6"
   }
 }
