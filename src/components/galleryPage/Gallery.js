@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
-<<<<<<< f0833f7a5825b11308fb9602f3e06e04016ddbee
-
-=======
 import LightboxGallery from './LightboxGallery'
 import Lightbox from 'react-images';
->>>>>>> lightbox gallery half done not working yet
 import Header from './Header.js'
 
 require('styles/_galleryPage/gallery.css')
@@ -34,8 +30,6 @@ export default class Gallery extends Component {
           </div>
         </div>
 
-<<<<<<< f0833f7a5825b11308fb9602f3e06e04016ddbee
-=======
         <LightboxGallery
           images={[{ src: 'http://placekitten.com/404/303' },
                    { src: 'http://placekitten.com/444/343' }]}
@@ -45,7 +39,6 @@ export default class Gallery extends Component {
           onClose={this.closeLightbox}
         />
 
->>>>>>> lightbox gallery half done not working yet
         <div className="container">
           <h3>Badrum</h3>
 
@@ -55,7 +48,6 @@ export default class Gallery extends Component {
                 <div>Det här här information om katten som ni ser här hallåå lalalal</div>
               </figure>
 
-<<<<<<< f0833f7a5825b11308fb9602f3e06e04016ddbee
             <div>
               <figure><img src="http://placekitten.com/404/353" /></figure>
               <figure><img src="http://placekitten.com/404/210" /></figure>
@@ -76,8 +68,6 @@ export default class Gallery extends Component {
           <section>
             <div>
               <figure><img src="http://placekitten.com/404/303" /></figure>
-=======
->>>>>>> lightbox gallery half done not working yet
               <figure><img src="http://placekitten.com/405/213" /></figure>
               <figure><img src="http://placekitten.com/404/210" /></figure>
             </div>
