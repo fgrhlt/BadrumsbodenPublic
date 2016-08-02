@@ -1,22 +1,15 @@
 import React, { Component, PropTypes } from 'react'
 import DropdownMenu from './DropdownMenu'
-import Slider from 'react-slick'
 
 require('styles/_webshopPage/dropdownMenu.css')
 
 export default class Webshop extends Component {
 
-componentWillMount() {
-  this.state = {
-      settings: {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
-    }
+  componentWillMount() {
+    this.setState({
+      autoplay: true,
+    })
   }
-}
 
   render() {
     return (
@@ -33,16 +26,15 @@ componentWillMount() {
 
         <DropdownMenu/>
 
-        <div className="campaign">
-          <h1>Hej detta är kampanj jao</h1>
-          <img id="campaign" src="assets/images/campaign.jpg"></img>
+        <div className="confirmations">
+          <div className="iconContainer">
+            <div className="circle">
+              <img src="assets/icons/shipping.svg"></img>
+            </div>
+
+            <p>Garanti på alla varor</p>
+          </div>
         </div>
-
-        <div className="topSales"></div>
-
-        <h2>Slider babyyy</h2>
-
-
 
       </div>
     )

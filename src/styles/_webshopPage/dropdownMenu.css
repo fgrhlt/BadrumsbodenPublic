@@ -1,5 +1,9 @@
 @import '../global.css';
 
+* {
+  //lost-utility: edit;
+}
+
 .header {
   height: 200px;
   margin: 20px 70px 0px 70px;
@@ -35,19 +39,30 @@ p {
   height: 30px;
 }
 
-.campaign {
- height: 400px;
- position: relative;
-}
-
-.campaign img {
-  position: absolute;
-  height: 400px;
-  width: auto;
-  z-index: -1;
-}
-
-.topSales {
+.confirmations {
+  margin: 0 auto;
+  background-color: #EEEEEE;
   height: 350px;
-  border: dotted;
+}
+
+.iconContainer {
+  width: 200px;
+  height: 200px;
+  background-color: lightgrey;
+}
+
+.circle {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 110px;
+  height: 110px;
+  background-color: #7ba6ad;
+}
+
+.confirmations img {
+  height: 50px;
+
 }
