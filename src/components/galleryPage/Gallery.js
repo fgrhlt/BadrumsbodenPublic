@@ -9,7 +9,6 @@ export default class Gallery extends Component {
     return (
       <div>
         <Header></Header>
-
         <div id="info">
           <div>
             <h2>Galleri</h2>
@@ -97,5 +96,3 @@ export default class Gallery extends Component {
     )
   }
 }
-
-Gallery.defaultProps = {}
