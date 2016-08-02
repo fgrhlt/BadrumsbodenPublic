@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react'
 import DropdownMenu from './DropdownMenu'
 
 require('styles/_webshopPage/dropdownMenu.css')
-require('styles/global.css')
 
 export default class Webshop extends Component {
 
