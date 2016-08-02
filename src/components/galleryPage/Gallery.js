@@ -1,14 +1,27 @@
 import React, { Component } from 'react'
+<<<<<<< f0833f7a5825b11308fb9602f3e06e04016ddbee
 
+=======
+import LightboxGallery from './LightboxGallery'
+import Lightbox from 'react-images';
+>>>>>>> lightbox gallery half done not working yet
 import Header from './Header.js'
 
 require('styles/_galleryPage/gallery.css')
 
 export default class Gallery extends Component {
+
+  componentWillMount() {
+    this.setState ({
+      lightboxIsOpen:true
+    })
+  }
+
   render() {
     return (
       <div>
         <Header></Header>
+
         <div id="info">
           <div>
             <h2>Galleri</h2>
@@ -21,12 +34,50 @@ export default class Gallery extends Component {
           </div>
         </div>
 
+<<<<<<< f0833f7a5825b11308fb9602f3e06e04016ddbee
+=======
+        <LightboxGallery
+          images={[{ src: 'http://placekitten.com/404/303' },
+                   { src: 'http://placekitten.com/444/343' }]}
+          isOpen={this.state.lightboxIsOpen}
+          onClickPrev={this.gotoPrevious}
+          onClickNext={this.gotoNext}
+          onClose={this.closeLightbox}
+        />
+
+>>>>>>> lightbox gallery half done not working yet
         <div className="container">
           <h3>Badrum</h3>
 
           <section>
             <div>
+              <figure><img src="http://placekitten.com/404/303" />
+                <div>Det här här information om katten som ni ser här hallåå lalalal</div>
+              </figure>
+
+<<<<<<< f0833f7a5825b11308fb9602f3e06e04016ddbee
+            <div>
+              <figure><img src="http://placekitten.com/404/353" /></figure>
+              <figure><img src="http://placekitten.com/404/210" /></figure>
+              <figure><img src="http://placekitten.com/201/303" /></figure>
+            </div>
+
+            <div>
+              <figure><img src="http://placekitten.com/100/303" /></figure>
+              <figure><img src="http://placekitten.com/200/303" /></figure>
+              <figure><img src="http://placekitten.com/540/303" /></figure>
+            </div>
+          </section>
+        </div>
+
+        <div className="container">
+          <h3>Kök</h3>
+
+          <section>
+            <div>
               <figure><img src="http://placekitten.com/404/303" /></figure>
+=======
+>>>>>>> lightbox gallery half done not working yet
               <figure><img src="http://placekitten.com/405/213" /></figure>
               <figure><img src="http://placekitten.com/404/210" /></figure>
             </div>
@@ -69,29 +120,6 @@ export default class Gallery extends Component {
           </section>
         </div>
 
-        <div className="container">
-          <h3>Kök</h3>
-
-          <section>
-            <div>
-              <figure><img src="http://placekitten.com/404/303" /></figure>
-              <figure><img src="http://placekitten.com/405/213" /></figure>
-              <figure><img src="http://placekitten.com/404/210" /></figure>
-            </div>
-
-            <div>
-              <figure><img src="http://placekitten.com/404/353" /></figure>
-              <figure><img src="http://placekitten.com/404/210" /></figure>
-              <figure><img src="http://placekitten.com/201/303" /></figure>
-            </div>
-
-            <div>
-              <figure><img src="http://placekitten.com/100/303" /></figure>
-              <figure><img src="http://placekitten.com/200/303" /></figure>
-              <figure><img src="http://placekitten.com/540/303" /></figure>
-            </div>
-          </section>
-        </div>
       </div>
     )
   }
