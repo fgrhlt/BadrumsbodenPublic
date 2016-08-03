@@ -3,6 +3,7 @@
   //lost-utility:edit;
 }
 .features {
+    background:white;
 
     & h2 {
       font-style:normal;

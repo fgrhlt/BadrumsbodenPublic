@@ -1,0 +1,33 @@
+@import '../global.css';
+
+#campaign {
+  position:relative;
+  z-index:-999;
+
+  /* Background image */
+  & > div {
+    background-repeat:no-repeat;
+    background-size: cover;
+    width:100%;
+    min-height:400px;
+    box-sizing:border-box;
+    padding-left: 5.5%;
+    display:flex;
+    align-items:center;
+
+      /* Text */
+      & section {
+        width:400px;
+      }
+
+      & h1 {
+        margin-bottom:20pt;
+      }
+  }
+
+  & button {
+    position: absolute;
+    right: 5.5%;
+    bottom: 50px;
+  }
+}
