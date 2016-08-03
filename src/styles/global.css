@@ -45,13 +45,12 @@ p {
 }
 
 .greenButton {
-  padding:8% 15%;
+  padding:12px 28px;
   border:none;
   background-color:var(--darkGreen);
   color:#fff;
   font-weight:bold;
   text-decoration: none;
-  display: inline-block;
   cursor: pointer;
   outline:0;
 }

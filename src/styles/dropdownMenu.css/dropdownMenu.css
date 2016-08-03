@@ -1,8 +1,0 @@
-#menu {
-  lost-utility:clearfix;
-  font-size:responsive;
-
-    & > div {
-      font-size:40pt;
-    }
-}

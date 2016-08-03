@@ -1,11 +1,11 @@
 @import '../global.css';
 
 #menu {
-  height:50px;
   color:white;
   lost-utility:clearfix;
   text-align: center;
   cursor:pointer;
+  background-color:var(--orange);
 
     /* the menu items */
     & > div {
@@ -13,9 +13,9 @@
       height:50px;
       padding-top: 15px;
       box-sizing:border-box;
-      background-color:var(--orange);
       lost-column:1/6 0 0;
       user-select:none;
+      background-color:var(--orange);
     }
 
     & > div:hover {
@@ -61,6 +61,15 @@
   #menu section > div {
     lost-column: 1 0 0;
   }
+  #menu > div:nth-child(3) section {
+    right:0;
+  }
+  #menu > div:nth-child(5) section {
+    left:33.333%;
+  }
+  #menu > div:last-child section {
+    right:0;
+  }
 }
 
 @media (max-width: 435px) {
@@ -70,5 +79,11 @@
 
   #menu section > div {
     lost-column: 1 0 0;
+  }
+  #menu div:nth-child(5) section {
+    left:0;
+  }
+  #menu div:nth-child(2n) section {
+    right:0;
   }
 }
