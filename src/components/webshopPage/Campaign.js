@@ -26,7 +26,7 @@ export default class Campaign extends Component {
             </p>
           </section>
 
-          <div><button className="greenButton">Till erbjudande</button></div>
+          <button className="greenButton">Till erbjudande</button>
         </div>
 
       </div>
