@@ -22,6 +22,14 @@ body {
   color:#4D4D4D;
 }
 
+a {
+  text-decoration: none;
+  color:#111111;
+}
+a:hover {
+  color:#666;
+}
+
 figure {
   margin:0;
 }
