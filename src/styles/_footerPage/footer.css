@@ -1,0 +1,76 @@
+@import '../global.css';
+
+#footer {
+  min-height:400px;
+  box-sizing:border-box;
+  background:#e6e6e6;
+  padding:80px 0 0 0;
+
+    /* Lost container */
+    & section {
+      lost-utility:clearfix;
+      lost-center:1200px;
+      box-sizing:border-box;
+
+      /* Lost items */
+      & div {
+        lost-column:1/4 0 60px;
+        min-width:200px;
+        box-sizing:border-box;
+        margin-bottom:60px;
+
+          /* Logo */
+          & figure {
+            background: url("../../assets/logo/logo.svg") no-repeat;
+            width:170px;
+            height:30px;
+          }
+
+          & span {
+            margin-top:15px;
+            display:block;
+            font-size:12pt;
+            max-width:150px;
+          }
+
+          & p {
+            line-height:2;
+            font-size:14pt;
+          }
+
+          & h3 {
+            font-style:italic;
+          }
+      }
+    }
+}
+
+/* responsive */
+@media (width >= 500px) and (width <= 1024px) {
+  #footer section {
+    lost-center:500px;
+  }
+
+  #footer section > div {
+    lost-column:1/2 2 60px;
+  }
+}
+
+@media (max-width: 500px) {
+  #footer section {
+    lost-center:200px;
+    text-align:center;
+  }
+
+  #footer section > div {
+    lost-column:1;
+  }
+
+  #footer figure {
+    margin:auto;
+  }
+
+  #footer span {
+    min-width:200px;
+  }
+}
