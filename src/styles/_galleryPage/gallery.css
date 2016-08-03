@@ -61,11 +61,3 @@ section {
     lost-column:1/2 2 10px;
   }
 }
-
-#text {
-  font-size:responsive;
-
-  & span {
-    color:#F45;
-  }
-}
