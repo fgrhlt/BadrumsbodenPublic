@@ -20,7 +20,7 @@ export default class Header extends Component {
 
             <div id="right">
               <div>
-                <img id="email_icon" src="assets/icons/email_icon.svg" />
+                <img id="email_icon" src="assets/icons/header/email_icon.svg" />
                 <div>
                   <h4>E-post</h4>
                   <p>
@@ -31,7 +31,7 @@ export default class Header extends Component {
               </div>
 
               <div>
-                <img id="phone_icon"  src="assets/icons/phone_icon.svg" />
+                <img id="phone_icon"  src="assets/icons/header/phone_icon.svg" />
                 <div>
                   070 57 43 373<br />
                   <span>Öppet 08-18</span>
@@ -39,7 +39,7 @@ export default class Header extends Component {
               </div>
 
               <div>
-                <img id="shoppingCart" src="assets/icons/shoppingCart.svg" />
+                <img id="shoppingCart" src="assets/icons/header/shoppingCart.svg" />
                 <div>
                   Varukorg<br />
                   <p>1337:-</p>
