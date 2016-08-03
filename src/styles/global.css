@@ -6,6 +6,7 @@
   --lightBlue: #A9DDD6;
   --lightGreen: #A7D49B;
   --darkGreen: #019A3F;
+  --darkRed: #D6211D;
 }
 
 @font-face {
@@ -19,6 +20,10 @@ body {
   font-size:12pt;
   font-family: Open Sans Light;
   color:#4D4D4D;
+}
+
+figure {
+  margin:0;
 }
 
 h1, h2, h3, h4 {

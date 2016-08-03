@@ -6,7 +6,7 @@ export default class Features extends Component {
 
   render() {
     return (
-      <div className="features">
+      <div id="features">
 
         <h2>Trygg handel hos oss</h2>
 
