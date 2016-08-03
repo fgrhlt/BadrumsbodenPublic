@@ -4,6 +4,7 @@ import Header from './Header'
 import DropdownMenu from './DropdownMenu'
 import Campaign from './Campaign'
 import TopSellers from './TopSellers'
+import Banner from './Banner'
 import Features from './Features'
 
 require('styles/_webshopPage/webshop.css')
@@ -19,6 +20,9 @@ export default class Webshop extends Component {
         <Campaign></Campaign>
 
         <TopSellers></TopSellers>
+
+        <Banner></Banner>
+
         <Features></Features>
       </div>
     )
