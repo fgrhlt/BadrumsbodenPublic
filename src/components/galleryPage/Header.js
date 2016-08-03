@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-require('styles/_header/header.css')
+require('styles/_headerPage/header.css')
 
 export default class Header extends Component {
   render() {

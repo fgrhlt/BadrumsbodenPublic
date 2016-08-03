@@ -4,10 +4,9 @@
   //lost-utility: edit;
 }
 
-
-
 .searchBar {
   height: 50px;
+  margin: 15px 0 25px 0;
   display: flex;
   justify-content: center;
 
