@@ -37,7 +37,6 @@ export default class Features extends Component {
                 Åtgärdas under dagen. Kontakta oss för vidare information.
               </p>
             </div>
-
           </section>
       </div>
     )

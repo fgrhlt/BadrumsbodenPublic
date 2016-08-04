@@ -1,7 +1,5 @@
 @import '../global.css';
-* {
-  //lost-utility:edit;
-}
+
 #features {
     text-align:center;
 
@@ -11,9 +9,11 @@
       margin:0;
     }
 
+    /* The elements */
     & section  {
       lost-utility:clearfix;
-      padding:40px 0 20px 0;
+      min-height:300px;
+      padding:60px 0 20px 0;
       box-sizing:border-box;
 
         & > div {
@@ -25,6 +25,7 @@
         }
 
         & h3 {
+          margin-top:10px;
           font-style:italic;
         }
 
@@ -32,6 +33,17 @@
           font-size:14pt;
           padding:0 50px;
         }
+    }
+
+    & .circle {
+      margin: 0 auto 15px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      width: 110px;
+      height: 110px;
+      background-color: #7ba6ad;
     }
 }
 
@@ -54,24 +66,10 @@
     margin-bottom:15px;
   }
 
-  & .tag {
-    height:55px;
-  }
-
   & .gauge {
     height:45px;
+    margin-bottom:20px;
   }
-}
-
-.circle {
-  margin: 0 auto 15px auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  width: 110px;
-  height: 110px;
-  background-color: #7ba6ad;
 }
 
 /* responsive */
@@ -80,8 +78,17 @@
   #features section > div {
     lost-column:1/2 2;
   }
+
+  #features #three > div {
+    lost-column:1/3 0;
+  }
 }
 
+@media (max-width: 650px) {
+  #features #three > div {
+    lost-column:1;
+  }
+}
 @media (max-width: 435px) {
   #features section > div {
     lost-column:1;

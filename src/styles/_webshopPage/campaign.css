@@ -7,8 +7,7 @@
   & > div {
     background-repeat:no-repeat;
     background-size: cover;
-    width:100%;
-    min-height:400px;
+    height:600px;
     box-sizing:border-box;
     padding-left: 5%;
     display:flex;
@@ -28,5 +27,18 @@
     position: absolute;
     right: 5%;
     bottom: 50px;
+  }
+}
+
+/* responsive */
+@media (width <= 1280px) {
+  #campaign > div {
+    height:400px;
+  }
+}
+
+@media (max-width: 435px) {
+  #topSellers #products > div {
+    lost-column:1;
   }
 }
