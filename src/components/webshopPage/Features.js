@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-require('styles/_webshopPage/features.css')
+require('styles/_features/features.css')
 
 export default class Features extends Component {
 
@@ -10,7 +10,7 @@ export default class Features extends Component {
 
         <h2>Trygg handel hos oss</h2>
 
-          <section>
+          <section id="four">
             <div>
               <div className="circle">
                 <img src="assets/icons/webshop/shipping.svg" />
