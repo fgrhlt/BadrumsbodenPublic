@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
 import Header from './Header'
+import ServiceSelector from './ServiceSelector'
+import PriceCalc from './PriceCalc'
 import Features from './Features'
 import Footer from './Footer'
 
@@ -11,11 +13,11 @@ export default class Services extends Component {
   render() {
     return (
       <div>
-        <Header></Header>
-
-        <Features></Features>
-
-        <Footer></Footer>
+        <Header />
+        <ServiceSelector />
+        <Features />
+        <PriceCalc />
+        <Footer />
       </div>
     )
   }

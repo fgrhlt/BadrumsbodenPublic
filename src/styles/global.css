@@ -22,18 +22,6 @@ body {
   color:#4D4D4D;
 }
 
-a {
-  text-decoration: none;
-  color:#111111;
-}
-a:hover {
-  color:#666;
-}
-
-figure {
-  margin:0;
-}
-
 h1, h2, h3, h4 {
   font-weight: normal;
   margin: 0 0 2% 0;
@@ -55,6 +43,24 @@ h4 {
 p {
   margin:0;
   font-size:16pt;
+}
+
+a {
+  text-decoration: none;
+  color:#111111;
+}
+a:hover {
+  color:#666;
+}
+
+figure {
+  margin:0;
+}
+
+input {
+  outline:0;
+  border:0;
+  background-color: rgba(255,255,255, 0.8);
 }
 
 .greenButton {

@@ -2,7 +2,7 @@
 
 #banner {
   background:url("../../assets/bg/diagonal_bg_shop.svg") left center no-repeat #E6E6E6;
-  height:150px;
+  min-height:150px;
   color:#808080;
   text-align:center;
   display:flex;

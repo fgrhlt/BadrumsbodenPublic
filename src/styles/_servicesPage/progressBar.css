@@ -1,0 +1,41 @@
+@import '../global.css';
+
+#progressBar {
+  lost-utility:clearfix;
+  box-sizing:border-box;
+  width:40%;
+  margin:auto;
+
+  & > div {
+    lost-column:1/5 5;
+    height:60px;
+
+      & p {
+        margin-top:10px;
+        font-size:14pt;
+      }
+
+      /* The white circles */
+      & > div {
+        border-radius: 50%;
+        user-select:none;
+        cursor:default;
+        padding:5px;
+        box-sizing:border-box;
+        width: 25px;
+        height: 25px;
+        margin-left:15px;
+        background-color: white;
+
+          /* The orange circles */
+          & figure {
+            border-radius: 50%;
+            user-select:none;
+            cursor:default;
+            width: 15px;
+            height: 15px;
+            background-color: #FC8060;
+          }
+      }
+  }
+}
