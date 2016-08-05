@@ -9,11 +9,11 @@ export default class PriceCalc extends Component {
 
     var styleVar = {
       backgroundImage: 'url(assets/images/services/pricecalc_blue_bg.svg)',
-      backgroundPosition: 'right'
+      backgroundPosition: 'right center'
     }
 
     return (
-      <div id="priceCalc" style={styleVar}>
+      <div className="service-form" id="priceCalc" style={styleVar}>
 
         <section>
           <div className="circle">Svar <br />inom 24h!</div>

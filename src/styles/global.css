@@ -57,27 +57,29 @@ figure {
   margin:0;
 }
 
-input {
+input, textarea  {
   outline:0;
   border:0;
   background-color: rgba(255,255,255, 0.8);
 }
 
-.greenButton {
+.btn {
   padding:12px 28px;
   border:none;
-  background-color:var(--darkGreen);
   color:#fff;
   font-weight:bold;
-  text-decoration: none;
   cursor: pointer;
   outline:0;
+  text-decoration: none;
+}
+#greenButton {
+  background-color:var(--darkGreen);
 }
 
-.greenButton:hover {
+#greenButton:hover {
   background-color: #017F34;
 }
 
-.greenButton:active {
+#greenButton:active {
   background-color: #016D2D;
 }
