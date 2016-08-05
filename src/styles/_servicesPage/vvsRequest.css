@@ -1,0 +1,93 @@
+@import '../global.css';
+
+#vvsRequest {
+  min-height:600px;
+  background-repeat: no-repeat;
+  padding-top:100px;
+  box-sizing: border-box;
+
+    & section {
+      lost-utility:clearfix;
+      lost-center:90%;
+
+        /* First lost item */
+        & > div:first-of-type {
+          lost-column:2/9 0;
+        }
+
+        /* Middle lost item */
+        & > div {
+          lost-column:3/9 0;
+          margin-bottom:40px;
+        }
+
+        /* Last lost item */
+        & > div:last-of-type {
+          lost-column:4/9;
+          position:relative;
+        }
+
+        & p {
+          margin-top:20px;
+        }
+
+        & .circle {
+          position: absolute 0 0 1 1;
+          transform: rotate(10deg);
+        }
+
+        & textarea {
+          min-width:100%;
+          max-width:100%;
+          min-height:300px;
+          padding:15px;
+          box-sizing: border-box;
+          font-size: 14pt;
+        }
+
+        & #send {
+          background:url(../../assets/icons/services/orange_btn_arrow.svg)
+                     no-repeat right color(#FD551F alpha(80%));
+          background-size: auto 100%;
+          font-size:20pt;
+          padding-right:95px;
+          float:right;
+          margin-top:40px;
+          min-width:320px;
+        }
+
+        & #send:hover {
+          background:url(../../assets/icons/services/orange_btn_arrow_h.svg)
+                     no-repeat right color(#FD551F alpha(80%) shade(10%));
+          background-size: auto 100%;
+        }
+
+        & #send:active {
+          background:url(../../assets/icons/services/orange_btn_arrow_a.svg)
+                     no-repeat right color(#FD551F alpha(80%) shade(20%));
+          background-size: auto 100%;
+        }
+    }
+}
+
+/* Responsive */
+@media (width <= 1000px) {
+  #vvsRequest section > div:first-of-type {
+    lost-column:1 0;
+    text-align:center;
+  }
+
+  #vvsRequest section > div {
+    lost-column:1/2 0;
+  }
+}
+
+@media (width <= 600px) {
+  #vvsRequest section > div {
+    lost-column:1;
+  }
+
+  #vvsRequest section > div:last-of-type {
+    lost-column:1;
+  }
+}
