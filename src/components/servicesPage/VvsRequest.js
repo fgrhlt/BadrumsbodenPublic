@@ -11,7 +11,9 @@ export default class VvsRequest extends Component {
     }
 
     return (
+      
       <div className="service-form" id="vvsRequest" style={styleVar}>
+
         <section>
           <div>
             <h2>Kontakta oss för VVS och värmejobb!</h2>
@@ -39,10 +41,12 @@ export default class VvsRequest extends Component {
             <div className="circle">Svar<br /> inom 24h!</div>
             <h3>Meddelande*</h3>
               <textarea />
-              <button className="btn" id="send">Skicka förfrågan</button>
+              <button className="btn" id="send" name="send">Skicka förfrågan</button>
           </div>
         </section>
       </div>
+
+
     )
   }
 }

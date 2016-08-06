@@ -3,15 +3,21 @@ import React, { Component } from 'react'
 require('styles/_servicesPage/serviceSelector.css')
 
 export default class ServiceSelector extends Component {
-  render() {
 
+  /* Change the parents state with the div that was clicked */
+  handleClick(e) {
+    const userChoice = e.target.className
+    this.props.changeUserChoice(userChoice)
+  }
+
+  render() {
     var styleVar = {
       backgroundImage: 'url(assets/images/services/service_bg.jpg)',
     }
 
     return (
       <div id="serviceSelector" style={styleVar}>
-        <div className="left">
+        <div className="left" onClick={this.handleClick.bind(this)}>
           <div>
             <figure />
             <h2>Badrumsrenovering</h2>
@@ -22,7 +28,7 @@ export default class ServiceSelector extends Component {
           </div>
         </div>
 
-        <div className="right">
+        <div className="right" onClick={this.handleClick.bind(this)}>
           <div>
             <figure />
             <h2>VVS</h2>
