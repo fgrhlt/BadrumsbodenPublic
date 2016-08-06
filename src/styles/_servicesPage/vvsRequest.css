@@ -5,6 +5,8 @@
   background-repeat: no-repeat;
   padding-top:100px;
   box-sizing: border-box;
+  animation-name: vvs;
+  animation-duration: 5s;
 
     & section {
       lost-utility:clearfix;
@@ -34,15 +36,6 @@
         & .circle {
           position: absolute 0 0 1 1;
           transform: rotate(10deg);
-        }
-
-        & textarea {
-          min-width:100%;
-          max-width:100%;
-          min-height:300px;
-          padding:15px;
-          box-sizing: border-box;
-          font-size: 14pt;
         }
 
         & #send {

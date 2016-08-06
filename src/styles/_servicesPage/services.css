@@ -1,5 +1,32 @@
 @import '../global.css';
 
+.slideDown{
+	animation-name: slideDown;
+	animation-duration: 5s;
+	animation-timing-function: ease;
+	visibility: visible !important;
+}
+
+@keyframes slideDown {
+	0% {
+		transform: translateY(-200%);
+	}
+	100% {
+		transform: translateY(0%);
+	}
+}
+
+.serviceTransition {
+  visibility: hidden;
+}
+.serviceTransition-appear {
+  animation-name: slideDown;
+	animation-duration: 5000ms;
+	animation-timing-function: ease;
+	visibility: visible !important;
+}
+
+
 .service-form {
   min-height: 600px;
   box-sizing:border-box;
@@ -12,6 +39,15 @@
       box-sizing:border-box;
       font-size:16pt;
       margin-bottom:30px;
+    }
+
+    & textarea {
+      min-width:100%;
+      max-width:100%;
+      min-height:300px;
+      padding:15px;
+      box-sizing: border-box;
+      font-size: 14pt;
     }
 
     & h3 {
