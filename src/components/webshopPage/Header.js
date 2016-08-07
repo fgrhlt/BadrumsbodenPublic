@@ -47,7 +47,7 @@ export default class Header extends Component {
               </div>
 
               <div id="button">
-                <button className="btn" id="greenButton">Till kassan</button>
+                <button className="btn greenButton">Till kassan</button>
               </div>
             </div>
         </div>

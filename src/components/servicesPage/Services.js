@@ -41,7 +41,7 @@ export default class Services extends Component {
                transitionEnter = {true}  transitionEnterTimeout = {5000}
                transitionLeave = {false}>
 
-                   {/* <PriceCalc /> */}
+                   <PriceCalc />
 
                    <Features />
                    <VvsRequest />

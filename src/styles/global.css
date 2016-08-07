@@ -73,7 +73,7 @@ input, textarea  {
   outline:0;
   text-decoration: none;
 }
-#greenButton {
+.greenButton {
   background-color:var(--darkGreen);
 }
 
