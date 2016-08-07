@@ -1,7 +1,7 @@
 @import '../global.css';
 
 #galleryPreview {
-  padding:40px 0;
+  padding:80px 0;
   lost-utility:clearfix;
 
   & #lostGrid {

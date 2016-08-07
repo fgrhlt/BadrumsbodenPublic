@@ -1,9 +1,9 @@
 @import '../global.css';
-
+@lost gutter 50px;
 #vvsRequest {
   min-height:600px;
   background-repeat: no-repeat;
-  padding-top:100px;
+  padding:120px 0;
   box-sizing: border-box;
   animation-name: vvs;
   animation-duration: 5s;
@@ -20,7 +20,6 @@
         /* Middle lost item */
         & > div {
           lost-column:3/9 0;
-          margin-bottom:40px;
         }
 
         /* Last lost item */
@@ -68,6 +67,9 @@
   #vvsRequest section > div:first-of-type {
     lost-column:1 0;
     text-align:center;
+      & p {
+        margin-bottom:50px;
+      }
   }
 
   #vvsRequest section > div {

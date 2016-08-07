@@ -4,13 +4,12 @@
   min-height:400px;
   box-sizing:border-box;
   background:#e6e6e6;
-  padding:80px 0 0 0;
+  padding:100px 0;
 
     /* Lost container */
     & section {
       lost-utility:clearfix;
       lost-center:1200px;
-      box-sizing:border-box;
 
       /* Lost items */
       & div {
