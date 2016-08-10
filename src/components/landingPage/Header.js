@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-import SearchBar from './SearchBar'
-
 require('styles/_headerPage/header.css')
 
 export default class Header extends Component {
@@ -11,9 +9,6 @@ export default class Header extends Component {
       <div>
         <div id="header">
             <div id="left">
-              <span>
-                <img src="assets/arrows/small_backarrow.svg" /> Tillbaka till portalen
-              </span>
 
               <img id="logo" src="assets/logo/logo.svg" />
             </div>
@@ -37,22 +32,8 @@ export default class Header extends Component {
                   <span>Öppet 08-18</span>
                 </div>
               </div>
-
-              <div>
-                <img id="shoppingCart" src="assets/icons/header/shoppingCart.svg" />
-                <div>
-                  Varukorg<br />
-                  <p>1337:-</p>
-                </div>
-              </div>
-
-              <div id="button">
-                <button className="btn greenButton">Till kassan</button>
-              </div>
             </div>
         </div>
-
-        <SearchBar></SearchBar>
       </div>
     )
   }
