@@ -4,10 +4,10 @@
 
     /* Top section */
     & section:first-of-type {
-      padding:50px 5%;
+      padding:80px 5% 50px 5%;
 
         & > div:nth-of-type(2) {
-          margin-top:30px;
+          margin:30px 100px 0 0;
           float:right;
         }
     }
@@ -17,6 +17,7 @@
       lost-utility:clearfix;
       box-sizing:border-box;
       lost-center:90%;
+      padding-bottom:100px;
 
         /* First three lost-items are 9/10 */
         & > div:not(last-of-type) {
@@ -81,6 +82,7 @@
 @media (max-width: 435px) {
   #progressBar {
     width:100%;
+    margin:0;
   }
   #priceCalc section:first-of-type {
     padding-bottom:0;

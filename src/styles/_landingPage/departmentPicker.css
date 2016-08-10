@@ -1,0 +1,125 @@
+@import '../global.css';
+
+#departmentPicker {
+  min-height:400px;
+  background:pink;
+  lost-utility:clearfix;
+  lost-center:70%;
+  color:#fff;
+
+    /* Lost items */
+    & > div {
+      lost-column:1/2;
+      cursor:pointer;
+      min-width:300px;
+      max-width:450px;
+      height:80px;
+      text-align: center;
+      position: relative;
+
+        & h1 {
+          font-size:40pt;
+          margin:5px 20% 0 0;
+        }
+
+        /* The button w. arrow */
+        & > div {
+          width:100px;
+          height:80px;
+          box-sizing: border-box;
+          padding:18px 35px;
+          position: absolute;
+          top:0;
+          right:0;
+
+            /* The arrow */
+            & figure {
+              width:37px;
+              height:44px;
+            }
+        }
+    }
+
+    /* Webshop button */
+    & > div:first-of-type {
+      background:var(--lightYellow);
+
+        & figure {
+          background:url(../../assets/arrows/yellow_btn_arrow.svg) no-repeat;
+        }
+
+        & > div {
+          background: color(#EAD168 alpha(80%) shade(10%));
+        }
+    }
+
+    & > div:first-of-type:hover {
+      background:color(#EAD168 alpha(80%) shade(10%));
+
+        & > div {
+          background: color(#EAD168 alpha(80%) shade(20%));
+        }
+    }
+
+    /* Services button */
+    & > div:nth-of-type(2) {
+      background:var(--lightGreen);
+
+        & figure {
+          background:url(../../assets/arrows/green_btn_arrow.svg) no-repeat;
+        }
+    }
+
+    & > div:nth-of-type(2):hover {
+      background:color(#EAD168 alpha(80%) shade(10%));
+
+        & > div {
+          background: color(#EAD168 alpha(80%) shade(20%));
+        }
+    }
+}
+
+/* Responsive */
+@media (width > 1400px) {
+  #departmentPicker {
+    lost-center:60%;
+  }
+}
+
+@media (width <= 1100px) {
+  #departmentPicker {
+    lost-center:90%;
+
+      & > div {
+        min-width:250px;
+
+        & h1 {
+          font-size:28pt;
+          margin-top:17px;
+        }
+      }
+  }
+}
+
+@media (width <= 700px) {
+  #departmentPicker {
+    lost-center:90%;
+
+      & > div {
+        min-width:100%;
+        lost-column:1;
+      }
+  }
+}
+
+@media (width <= 400px) {
+  #departmentPicker {
+
+      & > div {
+        & h1 {
+          font-size:20pt;
+          margin:25px 30% 0 0;
+        }
+      }
+  }
+}
