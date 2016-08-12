@@ -1,0 +1,8 @@
+#infoBank {
+  lost-center:60%;
+  margin:120px auto 20px auto;
+
+    & > div {
+      margin-bottom:100px;
+    }
+}
