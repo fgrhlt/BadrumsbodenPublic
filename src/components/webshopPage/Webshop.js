@@ -4,6 +4,7 @@ import Header from './Header'
 import DropdownMenu from './DropdownMenu'
 import Campaign from './Campaign'
 import TopSellers from './TopSellers'
+import InfoBank from './InfoBank'
 import Banner from './Banner'
 import Features from './Features'
 import Footer from './Footer'
@@ -18,10 +19,9 @@ export default class Webshop extends Component {
         <Header></Header>
         <DropdownMenu></DropdownMenu>
 
-        <Campaign></Campaign>
-
-        <TopSellers></TopSellers>
-
+        {/* <Campaign></Campaign> */}
+        { /* <TopSellers></TopSellers> */ }
+        <InfoBank></InfoBank>
         <Banner></Banner>
 
         <Features></Features>
