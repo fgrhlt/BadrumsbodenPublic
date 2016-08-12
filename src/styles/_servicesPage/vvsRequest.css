@@ -1,5 +1,6 @@
 @import '../global.css';
 @lost gutter 50px;
+
 #vvsRequest {
   min-height:600px;
   background-repeat: no-repeat;
