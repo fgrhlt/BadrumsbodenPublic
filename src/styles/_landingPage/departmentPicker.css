@@ -2,9 +2,9 @@
 
 #departmentPicker {
   min-height:400px;
-  background:pink;
   lost-utility:clearfix;
-  lost-center:70%;
+  padding-top:130px;
+  box-sizing: border-box;
   color:#fff;
 
     /* Lost items */
@@ -16,21 +16,20 @@
       height:80px;
       text-align: center;
       position: relative;
+      user-select:none;
 
         & h1 {
           font-size:40pt;
           margin:5px 20% 0 0;
         }
 
-        /* The button w. arrow */
+        /* The box area containing the arrow */
         & > div {
           width:100px;
           height:80px;
           box-sizing: border-box;
           padding:18px 35px;
-          position: absolute;
-          top:0;
-          right:0;
+          position: absolute 0 0 auto auto;
 
             /* The arrow */
             & figure {
@@ -44,39 +43,61 @@
     & > div:first-of-type {
       background:var(--lightYellow);
 
-        & figure {
-          background:url(../../assets/arrows/yellow_btn_arrow.svg) no-repeat;
-        }
-
+        /* The background of the arrow */
         & > div {
           background: color(#EAD168 alpha(80%) shade(10%));
         }
-    }
-
-    & > div:first-of-type:hover {
-      background:color(#EAD168 alpha(80%) shade(10%));
-
-        & > div {
-          background: color(#EAD168 alpha(80%) shade(20%));
+        /* The arrow */
+        & figure {
+          background:url(../../assets/arrows/yellow_btn_arrow.svg) no-repeat;
         }
     }
 
+        & > div:first-of-type:hover {
+          background:color(#EAD168 alpha(80%) shade(5%));
+
+            & > div {
+              background: color(#EAD168 alpha(80%) shade(15%));
+            }
+        }
+
+        & > div:first-of-type:active {
+          background:color(#EAD168 alpha(80%) shade(10%));
+
+            & > div {
+              background: color(#EAD168 alpha(80%) shade(20%));
+            }
+        }
+
     /* Services button */
     & > div:nth-of-type(2) {
-      background:var(--lightGreen);
+      background:url(../../assets/buttons/service_btn_bg.svg) no-repeat #A7D49B;
 
         & figure {
           background:url(../../assets/arrows/green_btn_arrow.svg) no-repeat;
         }
-    }
 
-    & > div:nth-of-type(2):hover {
-      background:color(#EAD168 alpha(80%) shade(10%));
-
+        /* The background of the arrow */
         & > div {
-          background: color(#EAD168 alpha(80%) shade(20%));
+          background: color(#A7D49B alpha(80%) shade(10%));
         }
     }
+
+        & > div:nth-of-type(2):hover {
+          background:url(../../assets/buttons/service_btn_bg_h.svg) no-repeat #9AC18F;
+
+            & > div {
+              background: color(#A7D49B alpha(80%) shade(15%));
+            }
+        }
+
+        & > div:nth-of-type(2):active {
+          background:url(../../assets/buttons/service_btn_bg_a.svg) no-repeat #91B286;
+
+            & > div {
+              background: color(#A7D49B alpha(80%) shade(20%));
+            }
+        }
 }
 
 /* Responsive */

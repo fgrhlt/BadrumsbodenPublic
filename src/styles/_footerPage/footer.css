@@ -9,12 +9,11 @@
     /* Lost container */
     & section {
       lost-utility:clearfix;
-      lost-center:1200px;
+      lost-center:80%;
 
       /* Lost items */
-      & div {
-        lost-column:1/4 0 60px;
-        min-width:200px;
+      & > div {
+        lost-column:1/4;
         box-sizing:border-box;
         margin-bottom:60px;
 
@@ -35,6 +34,12 @@
           & p {
             line-height:2;
             font-size:14pt;
+            margin-bottom:50px;
+          }
+
+          & .info {
+            margin-top:20px;
+            line-height:1;
           }
 
           & h3 {
@@ -42,27 +47,72 @@
           }
       }
     }
+
+    & #landingPage {
+
+        & > div {
+          lost-column:1/4 0;
+        }
+        & > div:last-of-type {
+          lost-column:2/4 0;
+
+          /* Two rows */
+          & > div {
+            lost-row:1/2;
+
+            /* The images is columns */
+            & > div {
+              lost-column:1/2;
+
+              & .about {
+                width:90px;
+                height:110px;
+                background-size:contain;
+                float:left;
+                margin-right:20px;
+              }
+
+              & p {
+                margin-top:35px;
+                display:block;
+                float:left;
+              }
+            }
+          }
+        }
+    }
 }
+
 
 /* responsive */
 @media (width >= 500px) and (width <= 1024px) {
-  #footer section {
-    lost-center:500px;
-  }
 
   #footer section > div {
     lost-column:1/2 2 60px;
+  }
+
+  #footer #landingPage {
+     & > div {
+       lost-column:1/2 2;
+     }
+
+     & > div:last-of-type {
+       lost-column:1;
+     }
   }
 }
 
 @media (max-width: 500px) {
   #footer section {
-    lost-center:200px;
     text-align:center;
   }
 
   #footer section > div {
     lost-column:1;
+
+      & span {
+        margin:20px auto 0 auto;
+      }
   }
 
   #footer figure {
@@ -71,5 +121,15 @@
 
   #footer span {
     min-width:200px;
+  }
+
+  #footer #landingPage {
+    & > div {
+      lost-column:1;
+    }
+
+    & > div:last-of-type {
+      lost-column:1;
+    }
   }
 }
