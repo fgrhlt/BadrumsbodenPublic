@@ -46,7 +46,7 @@ export default class Features extends Component {
             <option value="audi">Audi</option>
           </select>
 
-          <div className="buy">
+          <div className="buy-btn">
               <span>350:-</span>
               <span><figure /></span>
           </div>

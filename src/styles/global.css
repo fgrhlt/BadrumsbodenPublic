@@ -77,11 +77,9 @@ input, textarea, select  {
 .greenButton {
   background-color:var(--darkGreen);
 }
-
 #greenButton:hover {
   background-color: #017F34;
 }
-
 #greenButton:active {
   background-color: #016D2D;
 }
