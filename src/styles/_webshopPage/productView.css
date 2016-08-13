@@ -1,3 +1,5 @@
+@import '../global.css';
+
 #productView {
   lost-center:90%;
   lost-utility:clearfix;
@@ -72,45 +74,6 @@
           padding-left:20px;
           margin:10px 0;
         }
-
-        /* The buy button */
-        & > .buy {
-          background:#C6E3E5;
-          width:100%;
-          height:60px;
-          margin:20px 50px 0 0;
-          cursor:pointer;
-          position:relative;
-          user-select:none;
-
-            /* Each span is a column */
-            & span {
-              background:#C6E3E5;
-              lost-column:1/2 0 0;
-              font-size:30pt;
-              height:100%;
-              text-align:center;
-              padding:7px 0 9px 0;
-            }
-
-            & span:nth-of-type(2) {
-              background:#235177;
-
-                & figure {
-                  background:url(../../assets/icons/webshop/cart.svg);
-                  width:45px;
-                  height:41px;
-                  margin:0 auto;
-                }
-            }
-        }
-
-        & .buy:hover {
-            & span {
-              background:color(#235177 alpha(20%));
-              color:white;
-            }
-        }
     }
 }
 
@@ -144,13 +107,6 @@
         }
         & > section:nth-of-type(3) {
           lost-column:1;
-
-            & .buy {
-                & span:first-of-type {
-                  margin-top:5px;
-                  font-size:20pt;
-                }
-            }
         }
     }
 }
