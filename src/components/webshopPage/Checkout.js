@@ -27,7 +27,9 @@ export default class Checkout extends Component {
 
           <div id="cart">
             <div className="item">
-              <div className="image"><figure /></div>
+              <div className="image">
+                <figure style={{backgroundImage:'url(http://placekitten.com/200/300)'}} />
+              </div>
 
               <div className="info">
                 <h4>IFÖ</h4>
@@ -47,7 +49,9 @@ export default class Checkout extends Component {
             </div>
 
             <div className="item">
-              <div className="image"><figure /></div>
+              <div className="image">
+                <figure style={{backgroundImage:'url(http://placekitten.com/340/340)'}} />
+              </div>
 
               <div className="info">
                 <h4>IFÖ</h4>
@@ -67,7 +71,9 @@ export default class Checkout extends Component {
             </div>
 
             <div className="item">
-              <div className="image"><figure /></div>
+              <div className="image">
+                <figure style={{backgroundImage:'url(http://placekitten.com/400/300)'}} />
+              </div>
 
               <div className="info">
                 <h4>IFÖ</h4>
@@ -87,7 +93,9 @@ export default class Checkout extends Component {
             </div>
 
             <div className="item">
-              <div className="image"><figure /></div>
+              <div className="image">
+                <figure style={{backgroundImage:'url(http://placekitten.com/400/600)'}} />
+              </div>
 
               <div className="info">
                 <h4>IFÖ</h4>
@@ -127,7 +135,7 @@ export default class Checkout extends Component {
           <div id="klarna">
             <img src="../assets/images/webshop/klarna_test.png" />
           </div>
-          
+
         </section>
       </div>
     )
