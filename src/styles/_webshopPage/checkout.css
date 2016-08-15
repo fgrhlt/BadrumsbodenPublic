@@ -1,0 +1,155 @@
+@import '../global.css';
+@lost gutter 6%;
+
+#checkout {
+  lost-utility:clearfix;
+  lost-utility:edit;
+  lost-center:90%;
+  padding:60px 0;
+  box-sizing: border-box;
+
+    /* Two columns as lost items */
+    & > section {
+    }
+      /* First column contains some info text */
+      & > section:nth-of-type(1) {
+        lost-column:1/4;
+
+          & p {
+            font-size:12pt;
+            margin-top:40px;
+          }
+      }
+
+      /* Second column contains the shopping cart and payment info */
+      & > section:nth-of-type(2) {
+        lost-column:3/4;
+
+          & h2 {
+            margin-bottom: 40px;
+          }
+
+          /* The items of the shopping cart, contains 4 lost columns */
+          & .item {
+            background:#F2F2F2;
+            lost-row:1 20px;
+
+              & .image {
+                lost-column:2/11 0 0;
+
+                  & figure {
+                    width:120px;
+                    height:120px;
+                    background: darkgrey;
+                    margin:0;
+                  }
+              }
+
+              & .info {
+                padding-top:18px;
+                lost-column:4/11;
+              }
+
+              & .quantity {
+                lost-column:3/11;
+                padding-top:28px;
+
+                  & p {
+                    text-indent: 5px;
+                  }
+                  /* The plus and minus boxes */
+                  & span {
+                    width:30px;
+                    height:30px;
+                    background:#4D4D4D;
+                    font-size:24pt;
+                    color:white;
+                    cursor:pointer;
+                    user-select:none;
+                    line-height: 0.9;
+                    float:left;
+                    text-align: center;
+                    margin-top:10px;
+                  }
+                  & span:nth-of-type(2) {
+                    line-height: 0.8;
+                    margin-left:20px;
+                  }
+                  & span:hover {
+                    background:#333;
+                  }
+                  & span:active{
+                    background:#1A1A1A;
+                  }
+              }
+
+              & .price {
+                lost-column:2/11;
+                padding-top:45px;
+                text-align: center;
+                  & h3 {
+                    font-weight:bold;
+                  }
+              }
+          }
+
+      }
+}
+
+@media (width <= 1000px) {
+  #checkout {
+      & section:nth-of-type(2) {
+         & .item {
+            & .image {
+              lost-column:3/11;
+            }
+            & .info {
+              lost-column:3/11;
+            }
+         }
+      }
+  }
+}
+
+@media (width <= 700px) {
+  #checkout {
+      & section:nth-of-type(1) {
+        lost-waffle:1 0 40px;
+      }
+      & section:nth-of-type(2) {
+        lost-waffle:1 0 40px;
+
+         & .item {
+            & .image {
+              lost-column:3/11;
+            }
+            & .info {
+              lost-column:3/11;
+            }
+         }
+      }
+  }
+}
+
+@media (width <= 500px) {
+  #checkout {
+
+      & section:nth-of-type(2) {
+
+        & .item {
+            & .image {
+              lost-waffle:1/2;
+            }
+            & .info {
+              lost-waffle:1/2;
+            }
+            & .quantity {
+              lost-waffle:1/2;
+            }
+            & .price {
+              lost-waffle:1/2;
+            }
+        }
+      }
+  }
+}
