@@ -25,90 +25,109 @@ export default class Checkout extends Component {
         <section>
           <h2>Varukorg</h2>
 
-          <div className="item">
-            <div className="image"><figure /></div>
+          <div id="cart">
+            <div className="item">
+              <div className="image"><figure /></div>
 
-            <div className="info">
-              <h3>IFÖ</h3>
-              <p>Rostfritt stål</p>
-              <span>200 cm</span>
+              <div className="info">
+                <h4>IFÖ</h4>
+                <p>Rostfritt stål</p>
+                <span>200 cm</span>
+              </div>
+
+              <div className="quantity">
+                <p>Antal: 1</p>
+                <span>+</span>
+                <span>-</span>
+              </div>
+
+              <div className="price">
+                <h4>799:-</h4>
+              </div>
             </div>
 
-            <div className="quantity">
-              <p>Antal: 1</p>
-              <span>+</span>
-              <span>-</span>
+            <div className="item">
+              <div className="image"><figure /></div>
+
+              <div className="info">
+                <h4>IFÖ</h4>
+                <p>Rostfritt stål</p>
+                <span>200 cm</span>
+              </div>
+
+              <div className="quantity">
+                <p>Antal: 1</p>
+                <span>+</span>
+                <span>-</span>
+              </div>
+
+              <div className="price">
+                <h4>799:-</h4>
+              </div>
             </div>
 
-            <div className="price">
-              <h3>799:-</h3>
+            <div className="item">
+              <div className="image"><figure /></div>
+
+              <div className="info">
+                <h4>IFÖ</h4>
+                <p>Rostfritt stål</p>
+                <span>200 cm</span>
+              </div>
+
+              <div className="quantity">
+                <p>Antal: 1</p>
+                <span>+</span>
+                <span>-</span>
+              </div>
+
+              <div className="price">
+                <h4>799:-</h4>
+              </div>
+            </div>
+
+            <div className="item">
+              <div className="image"><figure /></div>
+
+              <div className="info">
+                <h4>IFÖ</h4>
+                <p>Rostfritt stål</p>
+                <span>200 cm</span>
+              </div>
+
+              <div className="quantity">
+                <p>Antal: 1</p>
+                <span>+</span>
+                <span>-</span>
+              </div>
+
+              <div className="price">
+                <h4>799:-</h4>
+              </div>
+            </div>
+
+            <h4 className="total">Totalt: 1499:-</h4>
+          </div>
+
+          <div id="delivery">
+            <h2>Leveranssätt</h2>
+
+            <div>
+              <input type="radio" />
+              <p>Hämta i butik</p>
+            </div>
+
+            <div>
+              <input type="radio" />
+              <p>Postpaket Schenker, 159:-</p>
             </div>
           </div>
 
-          <div className="item">
-            <div className="image"><figure /></div>
 
-            <div className="info">
-              <h3>IFÖ</h3>
-              <p>Rostfritt stål</p>
-              <span>200 cm</span>
-            </div>
-
-            <div className="quantity">
-              <p>Antal: 1</p>
-              <span>+</span>
-              <span>-</span>
-            </div>
-
-            <div className="price">
-              <h3>799:-</h3>
-            </div>
+          <div id="klarna">
+            <img src="../assets/images/webshop/klarna_test.png" />
           </div>
-
-          <div className="item">
-            <div className="image"><figure /></div>
-
-            <div className="info">
-              <h3>IFÖ</h3>
-              <p>Rostfritt stål</p>
-              <span>200 cm</span>
-            </div>
-
-            <div className="quantity">
-              <p>Antal: 1</p>
-              <span>+</span>
-              <span>-</span>
-            </div>
-
-            <div className="price">
-              <h3>799:-</h3>
-            </div>
-          </div>
-
-          <div className="item">
-            <div className="image"><figure /></div>
-
-            <div className="info">
-              <h3>IFÖ</h3>
-              <p>Rostfritt stål</p>
-              <span>200 cm</span>
-            </div>
-
-            <div className="quantity">
-              <p>Antal: 1</p>
-              <span>+</span>
-              <span>-</span>
-            </div>
-
-            <div className="price">
-              <h3>799:-</h3>
-            </div>
-          </div>
-
-          <div id="shipping-info">
-          <h2>Leveranssätt</h2>
-          </div>
-
+          
         </section>
       </div>
     )
