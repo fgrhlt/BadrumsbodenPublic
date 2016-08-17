@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 require('styles/_footerPage/footer.css')
 
-export default class Footer extends Component {
+export default class LandingPageFooter extends Component {
 
   render() {
     return (
@@ -47,12 +47,12 @@ export default class Footer extends Component {
 
               <div>
                 <div>
-                  <div className="about" style={{backgroundImage: 'url(assets/images/landingPage/mats.jpg)'}}></div>
+                  <div className="staffImg" style={{backgroundImage: 'url(assets/images/landingPage/mats.jpg)'}}></div>
                   <p>Mats Hammarberg</p>
                 </div>
 
                 <div>
-                  <div className="about" style={{backgroundImage: 'url(assets/images/landingPage/jonny.jpg)'}}></div>
+                  <div className="staffImg" style={{backgroundImage: 'url(assets/images/landingPage/jonny.jpg)'}}></div>
                   <p>Jonny Johansson</p>
                 </div>
               </div>

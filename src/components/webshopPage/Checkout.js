@@ -99,6 +99,7 @@ export default class Checkout extends Component {
             <h2>Leveranssätt</h2>
 
             <div>
+              <form>
               <input type="radio" />
               <p>Hämta i butik</p>
             </div>
@@ -106,6 +107,7 @@ export default class Checkout extends Component {
             <div>
               <input type="radio" />
               <p>Postpaket Schenker, 159:-</p>
+              </form>
             </div>
           </div>
 

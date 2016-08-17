@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 
 require('styles/_features/features.css')
 
-export default class Features extends Component {
+export default class LandingPageFeatures extends Component {
 
   render() {
     var styleVar = {
-      background: '#F7F7F7',
+      backgrund: '#F7F7F7',
       backgroundImage: 'url(assets/images/landingPage/welcome_bg_w.png)',
       backgroundPosition: 'bottom center',
       backgroundRepeat: 'no-repeat',

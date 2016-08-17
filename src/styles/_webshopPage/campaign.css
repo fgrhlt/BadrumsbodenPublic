@@ -2,43 +2,33 @@
 
 #campaign {
   position:relative;
+  background-repeat:no-repeat;
+  background-size: cover;
+  height:600px;
+  box-sizing:border-box;
+  padding-left: 5%;
+  display:flex;
+  align-items:center;
 
-  /* Background image */
-  & > div {
-    background-repeat:no-repeat;
-    background-size: cover;
-    height:600px;
-    box-sizing:border-box;
-    padding-left: 5%;
-    display:flex;
-    align-items:center;
+    /* Text */
+    & section {
+      width:400px;
+    }
 
-      /* Text */
-      & section {
-        width:400px;
-      }
+    & h1 {
+      margin-bottom:20pt;
+    }
 
-      & h1 {
-        margin-bottom:20pt;
-      }
-  }
-
-  & button {
-    position: absolute;
-    right: 5%;
-    bottom: 50px;
-  }
+    & button {
+      position: absolute;
+      right: 5%;
+      bottom: 50px;
+    }
 }
 
 /* responsive */
 @media (width <= 1280px) {
-  #campaign > div {
+  #campaign {
     height:400px;
-  }
-}
-
-@media (max-width: 435px) {
-  #topSellers #products > div {
-    lost-column:1;
   }
 }

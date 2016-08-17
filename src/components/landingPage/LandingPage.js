@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
 
-import Header from './Header'
+import LandingPageHeader from './LandingPageHeader'
 import WelcomeInfo from './WelcomeInfo'
 import DepartmentPicker from './DepartmentPicker'
-import Features from './Features'
-import Footer from './Footer'
+import LandingPageFeatures from './LandingPageFeatures'
+import LandingPageFooter from './LandingPageFooter'
 
 export default class LandingPage extends Component {
 
   render() {
     return (
       <div>
-        <Header></Header>
+        <LandingPageHeader></LandingPageHeader>
         <WelcomeInfo></WelcomeInfo>
-        <DepartmentPicker ></DepartmentPicker>
-        <Features ></Features>
-        <Footer></Footer>
+        <DepartmentPicker></DepartmentPicker>
+        <LandingPageFeatures></LandingPageFeatures>
+        <LandingPageFooter></LandingPageFooter>
       </div>
     )
   }

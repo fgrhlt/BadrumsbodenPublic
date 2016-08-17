@@ -4,7 +4,7 @@ import ProgressBar from './ProgressBar'
 
 require('styles/_servicesPage/priceCalc.css')
 
-export default class PriceCalc extends Component {
+export default class PriceCalculator extends Component {
   render() {
 
     var styleVar = {

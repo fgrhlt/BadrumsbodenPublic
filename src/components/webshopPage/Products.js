@@ -27,7 +27,7 @@ export default class Products extends Component {
 
             <div className="buy-btn">
                 <span>350:-</span>
-                <span><figure /></span>
+                <span>Mer info</span>
             </div>
           </div>
 
