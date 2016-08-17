@@ -25,8 +25,8 @@ export default class Webshop extends Component {
         {/* <Campaign></Campaign> */}
         { /* <TopSellers></TopSellers> */ }
         { /* <InfoBank></InfoBank>  */ }
-        { /* <ProductView></ProductView> */}
-        { /* <Products></Products> */}
+        <ProductView></ProductView>
+        <Products></Products>
         <Checkout></Checkout>
 
         <Banner></Banner>

@@ -23,7 +23,9 @@
     }
 
     & #logo {
-      height:35px;
+      background:url("../../assets/logo/logo.svg") no-repeat;
+      width:251px;
+      height:45px;
     }
 }
 

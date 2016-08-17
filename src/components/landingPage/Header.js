@@ -9,7 +9,7 @@ export default class Header extends Component {
         <div id="header">
             <div id="left">
 
-              <img id="logo" src="assets/logo/logo.svg" />
+              <figure id="logo" />
             </div>
 
             <div id="right">

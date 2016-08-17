@@ -6,6 +6,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 import Webshop from './components/WebshopPage/Webshop';
 import Gallery from './components/galleryPage/Gallery';
 import Services from './components/servicesPage/Services';
+import Animation from './components/Animation';
 
 
 const app = document.getElementById('app')
@@ -17,7 +18,8 @@ ReactDOM.render(
     <Route path="/" component={LandingPage}></Route>
     <Route path="/webshop" component={Webshop}></Route>
     <Route path="/gallery" component={Gallery}></Route>
-    <Route path="/Services" component={Services}></Route>
+    <Route path="/services" component={Services}></Route>
+    <Route path="/animation" component={Animation}></Route>
     <Route path="/*" component={NotFound}></Route>
   </Router>,
   app);
