@@ -39,8 +39,8 @@ export default class Checkout extends Component {
 
               <div className="quantity">
                 <p>Antal: 1</p>
-                <span>+</span>
                 <span>-</span>
+                <span>+</span>
               </div>
 
               <div className="price">
@@ -50,7 +50,7 @@ export default class Checkout extends Component {
 
             <div className="item">
               <div className="image">
-                <figure style={{backgroundImage:'url(http://placekitten.com/340/340)'}} />
+                <figure style={{backgroundImage:'url(http://placekitten.com/300/340)'}} />
               </div>
 
               <div className="info">
@@ -61,8 +61,8 @@ export default class Checkout extends Component {
 
               <div className="quantity">
                 <p>Antal: 1</p>
-                <span>+</span>
                 <span>-</span>
+                <span>+</span>
               </div>
 
               <div className="price">
@@ -72,7 +72,7 @@ export default class Checkout extends Component {
 
             <div className="item">
               <div className="image">
-                <figure style={{backgroundImage:'url(http://placekitten.com/400/300)'}} />
+                <figure style={{backgroundImage:'url(http://placekitten.com/500/300)'}} />
               </div>
 
               <div className="info">
@@ -83,30 +83,8 @@ export default class Checkout extends Component {
 
               <div className="quantity">
                 <p>Antal: 1</p>
-                <span>+</span>
                 <span>-</span>
-              </div>
-
-              <div className="price">
-                <h4>799:-</h4>
-              </div>
-            </div>
-
-            <div className="item">
-              <div className="image">
-                <figure style={{backgroundImage:'url(http://placekitten.com/400/600)'}} />
-              </div>
-
-              <div className="info">
-                <h4>IFÖ</h4>
-                <p>Rostfritt stål</p>
-                <span>200 cm</span>
-              </div>
-
-              <div className="quantity">
-                <p>Antal: 1</p>
                 <span>+</span>
-                <span>-</span>
               </div>
 
               <div className="price">
