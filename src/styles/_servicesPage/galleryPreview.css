@@ -104,8 +104,6 @@
     }
 }
 
-
-
 /* Responsive under 1000px have one column which contains more columns
    and 200px tall images */
 @media (width <= 1000px) {

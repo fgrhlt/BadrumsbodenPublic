@@ -11,25 +11,23 @@ export default class Campaign extends Component {
     }
 
     return (
-      <div id="campaign">
-        <div style={styleVar}>
+      <div id="campaign" style={styleVar}>
 
-          <section>
-            <h1>Kampanj</h1>
-            <p>
-              Köp en toalettstol idag och få 200:- rabatt.
-              Du kommer tjäna massor med pengar på detta
-              erbjudande! <br /><br />
+        <section>
+          <h1>Kampanj</h1>
+          <p>
+            Köp en toalettstol idag och få 200:- rabatt.
+            Du kommer tjäna massor med pengar på detta
+            erbjudande! <br /><br />
 
-              Först till kvarn gäller och allt är bra.
-              Vi finns på Kabelvägen 8. Öppet 8-16
-            </p>
-          </section>
+            Först till kvarn gäller och allt är bra.
+            Vi finns på Kabelvägen 8. Öppet 8-16
+          </p>
+        </section>
 
-          <button className="btn greenButton">Till erbjudande</button>
-        </div>
-
+        <button className="btn greenButton">Till erbjudande</button>
       </div>
+
     )
   }
 }

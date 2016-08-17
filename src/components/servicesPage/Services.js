@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 
 import Header from './Header'
 import ServiceSelector from './ServiceSelector'
-import PriceCalc from './PriceCalc'
-import VvsRequest from './VvsRequest'
-import Features from './Features'
+import PriceCalculator from './PriceCalculator'
+import VVSRequest from './VVSRequest'
+import VVSFeatures from './VVSFeatures'
 import GalleryPreview from './GalleryPreview'
 import Footer from './Footer'
 
@@ -21,13 +21,10 @@ export default class Services extends Component {
       userChoice: null
     }
   }
-
   /* Update the users choice of service */
   changeUserChoice(userChoice) {
     this.setState({userChoice});
-    console.log(this.state)
   }
-
 
   render() {
     return (
@@ -41,10 +38,9 @@ export default class Services extends Component {
                transitionEnter = {true}  transitionEnterTimeout = {5000}
                transitionLeave = {false}>
 
-                   <PriceCalc />
-
-                   <Features />
-                   <VvsRequest />
+                   <PriceCalculator />
+                   <VVSFeatures />
+                   <VVSRequest />
         </ReactCSSTransitionGroup>
 
 
