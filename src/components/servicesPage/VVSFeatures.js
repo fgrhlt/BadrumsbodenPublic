@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 require('styles/_features/features.css')
 
-export default class Features extends Component {
+export default class VVSFeatures extends Component {
 
   render() {
     return (

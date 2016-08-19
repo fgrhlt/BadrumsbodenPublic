@@ -15,7 +15,7 @@ export default class Header extends Component {
                 <img src="assets/arrows/small_backarrow.svg" /> Tillbaka till portalen
               </span>
 
-              <img id="logo" src="assets/logo/logo.svg" />
+              <figure id="logo" />
             </div>
 
             <div id="right">

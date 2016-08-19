@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 require('styles/_servicesPage/vvsRequest.css')
 
-export default class VvsRequest extends Component {
+export default class VVSRequest extends Component {
   render() {
 
     var styleVar = {
@@ -11,7 +11,7 @@ export default class VvsRequest extends Component {
     }
 
     return (
-      
+
       <div className="service-form" id="vvsRequest" style={styleVar}>
 
         <section>

@@ -2,15 +2,13 @@ import React, { Component } from 'react'
 
 require('styles/_headerPage/header.css')
 
-export default class Header extends Component {
+export default class LandingPageHeader extends Component {
 
   render() {
     return (
-      <div>
         <div id="header">
             <div id="left">
-
-              <img id="logo" src="assets/logo/logo.svg" />
+              <figure id="logo" />
             </div>
 
             <div id="right">
@@ -26,7 +24,7 @@ export default class Header extends Component {
               </div>
 
               <div>
-                <img id="phone_icon"  src="assets/icons/header/phone_icon.svg" />
+                <img id="phone_icon" src="assets/icons/header/phone_icon.svg" />
                 <div>
                   070 57 43 373<br />
                   <span>Öppet 08-18</span>
@@ -34,7 +32,6 @@ export default class Header extends Component {
               </div>
             </div>
         </div>
-      </div>
     )
   }
 }
