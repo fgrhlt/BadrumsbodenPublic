@@ -7,71 +7,45 @@ require('firebase/database')
 
 require('styles/_galleryPage/gallery.css')
 
+var counter = 0;
 export default class Admin extends Component {
 
   componentWillMount() {
     var config = {
-      apiKey: 'AIzaSyBeGWRwqSxQ3gyK48cgfStz1xJuPoN7YZE',
-      authDomain: 'badrumsboden.firebaseapp.com',
-      databaseURL: 'https://badrumsboden.firebaseio.com',
-      storageBucket: 'badrumsboden.appspot.com'
+      apiKey: "AIzaSyBQnvDISWtShRbrtheOm2uvAP_iGie6sGM",
+      authDomain: "badrumsboden-c7b46.firebaseapp.com",
+      databaseURL: "https://badrumsboden-c7b46.firebaseio.com",
+      storageBucket: "badrumsboden-c7b46.appspot.com",
     }
 
     this.state = {
-      items: []
+      galleryItems: [],
+      campaignItems: []
     }
 
     firebase.initializeApp(config)
-    this.loadFromDB()
+    var database = firebase.database()
+    this.loadFromDBGallery( 'gallery',  'imageURLs')
+    this.loadFromDBCampaign('campaign', 'imageURLs')
+
   }
 
   componentDidMount() {
-    this.uploadtoStorage()
+    this.uploadFiles('fileButtonGallery', 'gallery/images', 'gallery/imageURLs')
+    this.uploadFiles('fileButtonCampaign', 'campaign/images', 'campaign/imageURLs')
+    // this.uploadFiles('fileButtonTopSellers', 'topSellers/images', 'topSellers/imageURLs')
+    // this.uploadFiles('fileButtonAssortment', 'assortment/images', 'assortment/imageURLs')
   }
 
   // componentWillUnmount() {
   //     this.firebaseRef.off()
   //   }
 
-  uploadtoStorage() {
-    var fileButton = document.getElementById('fileButton')
-    //Listen for selection
-    fileButton.addEventListener('change', (e) => {
-      var file = e.target.files[0]
+  loadFromDBGallery(databaseFolderRoot, databaseFolderChild) {
+    var ref = firebase.database()
+      .ref(databaseFolderRoot)
+      .child(databaseFolderChild)
 
-      // Create a root reference
-      var storageRef = firebase.storage().ref()
-
-      //Point to child folder of root and its filename
-      var uploadTask = storageRef.child('images/' + file.name)
-      //Upload file (and metadata)
-      var task = uploadTask.put(file)
-
-      console.log('Uploading file', file.name )
-
-      task.on('state_changed', (snapshot) => {
-        // Observe state change events such as progress, pause, and resume
-        // See below for more detail
-      }, (error) => {
-        // Handle unsuccessful uploads
-      }, () => {
-        // Handle successful uploads on complete
-        console.log('Upload successful!')
-
-        //Push URL to database
-        console.log('Uploading imageURLs to DB', file.name )
-
-        firebase.database().ref().child('imageURLs')
-          .push({
-            url: task.snapshot.downloadURL,
-            name: file.name
-          })
-      })
-    })
-  }
-
-  loadFromDB() {
-    var ref = firebase.database().ref('imageURLs')
       ref.on('value', (snapshot) => {
         var items = []
 
@@ -90,9 +64,78 @@ export default class Admin extends Component {
           })
 
           this.setState({
-            items: items
+            galleryItems: items
           })
+
         })
+    }
+
+  loadFromDBCampaign(databaseFolderRoot, databaseFolderChild) {
+    var ref = firebase.database()
+      .ref(databaseFolderRoot)
+      .child(databaseFolderChild)
+
+      ref.on('value', (snapshot) => {
+        var items = []
+
+        // Loop through imageURLs/{objects} in order
+        snapshot.forEach( (childSnapshot) => {
+
+          //The object
+          var item = childSnapshot.val()
+
+          //Get the key of object and push into object
+          item['key'] = childSnapshot.key
+
+          //Push object to array with items
+          items.push(item)
+
+          })
+
+          this.setState({
+            campaignItems: items
+          })
+
+        })
+    }
+
+  uploadFiles(buttonID, storageFolderPath, databaseFolderPath) {
+      var fileButton = document.getElementById(buttonID)
+      //Listen for selection
+      fileButton.addEventListener('change', (e) => {
+        var file = e.target.files[0]
+
+        // Create a root reference
+        var storageRef = firebase.storage().ref()
+        counter ++
+        var filename = file.name+counter
+        //Point to child folder of root and its filename
+        var uploadTask = storageRef.child(storageFolderPath + filename)
+        //Upload file (and metadata)
+        var task = uploadTask.put(file)
+
+        console.log('Uploading file', file.name, 'to', storageFolderPath)
+
+        task.on('state_changed', (snapshot) => {
+          // Observe state change events such as progress, pause, and resume
+          // See below for more detail
+        }, (error) => {
+          // Handle unsuccessful uploads
+        }, () => {
+          // Handle successful uploads on complete
+          console.log('Upload successful!')
+
+          //Push URL to database
+          console.log('Uploading imageURL', file.name, 'to', databaseFolderPath )
+          console.log('--------------------')
+          firebase.database().ref().child(databaseFolderPath)
+            .push({
+              url: task.snapshot.downloadURL,
+              name: file.name,
+              description: ''
+            })
+        })
+      })
     }
 
   deleteElement(entry, entries, i) {
@@ -150,15 +193,22 @@ export default class Admin extends Component {
 
   }
 
-
   render() {
+
     return (
       <div>
-        <div>
-          <input value="" style={{backgroundColor: 'lightgrey'}} type="file" id="fileButton"></input>
+
+        <div style={{border: 'dotted'}} className="galleryDiv">
+          <h1>Gallery</h1>
+          <input value="" style={{backgroundColor: 'lightgrey'}} type="file" id="fileButtonGallery"></input>
+          <GalleryElements items={this.state.galleryItems}/>
         </div>
 
-        <GalleryElements items={this.state.items}/>
+        <div style={{border: 'dotted'}} className="galleryDiv">
+          <h1>Campaign</h1>
+          <input value="" style={{backgroundColor: 'lightgrey'}} type="file" id="fileButtonCampaign"></input>
+          <GalleryElements items={this.state.campaignItems}/>
+        </div>
 
       </div>
     )

@@ -19,6 +19,7 @@ onClickGallery() {
 
 onClickServices() {
   browserHistory.push('/services')
+}
 
 onClickAdmin() {
   browserHistory.push('/admin')

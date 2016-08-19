@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import SearchBar from './SearchBar'
-
+import ShoppingCart from './ShoppingCart'
 require('styles/_headerPage/header.css')
 
 export default class Header extends Component {
@@ -44,6 +44,7 @@ export default class Header extends Component {
                   Varukorg<br />
                   <p>1337:-</p>
                 </div>
+                <ShoppingCart/>
               </div>
 
               <div id="button">
