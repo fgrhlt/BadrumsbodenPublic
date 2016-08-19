@@ -8,13 +8,36 @@
   align-items: center;
   justify-content: center;
 
-  & div {
-    width:500px;
-  }
+    & div {
+      width:500px;
+    }
+
+    & section {
+        lost-utility: clearfix;
+
+        & > div {
+          overflow: hidden;
+          lost-column:1/3 3 10px;
+        }
+
+        & img {
+          min-width: 100%;
+        }
+
+        & figure {
+          margin:0;
+          max-height: 400px;
+          overflow:hidden;
+          margin-bottom:10px;
+        }
+
+        & figure div {
+          background: #ccc;
+          padding: 5% 2%;
+        }
+    }
 }
-* {
-  //lost-utility:edit;
-}
+
 .container {
   margin-top:5%;
   padding:0 5%;
@@ -25,67 +48,6 @@
   padding: 5%;
 }
 
-section {
-  lost-utility: clearfix;
-
-    & > div {
-      overflow: hidden;
-      lost-column:1/3 3 10px;
-    }
-
-    & img {
-      min-width: 100%;
-    }
-
-    & figure {
-      margin:0;
-      max-height: 400px;
-      overflow:hidden;
-      margin-bottom:10px;
-    }
-
-    & figure div {
-      background: #ccc;
-      padding: 5% 2%;
-    }
-}
-
 @media (max-width: 435px) {
-  section > div {
-    lost-column:1;
-  }
-}
 
-@media (width >= 435px) and (width <= 1024px) {
-  section > div {
-    lost-column:1/2 2 10px;
-  }
 }
-/*<<<<<<< 1f86b16c806ab08638046ac5aa9956c1aae0e0a0
-=======
-
-#text {
-  font-size:responsive;
-
-  & span {
-    color:#F45;
-  }
-}
-
-.ModalClass {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-  right: 40px;
-  bottom: 40px;
-  background-color: lightgrey;
-}
-
-.OverlayClass {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
->>>>>>> Massa grejer gjort nu*/

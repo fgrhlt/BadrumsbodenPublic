@@ -1,13 +1,12 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'react-redux'
+import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
 
-import LandingPage from './components/landingPage/LandingPage';
+import LandingPage from './components/LandingPage/LandingPage';
 import Webshop from './components/WebshopPage/Webshop';
 import Gallery from './components/galleryPage/Gallery';
 import Services from './components/servicesPage/Services';
-import Admin from './components/adminPage/Admin';
+import Animation from './components/Animation';
 
 import store from './store/store'
 
@@ -22,6 +21,7 @@ const router = (
         <Route path="/webshop" component={Webshop}></Route>
         <Route path="/gallery" component={Gallery}></Route>
         <Route path="/services" component={Services}></Route>
+        <Route path="/animation" component={Animation}></Route>
         <Route path="/admin" component={Admin}></Route>
         <Route path="/*" component={NotFound}></Route>
       </Router>

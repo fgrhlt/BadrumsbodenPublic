@@ -1,42 +1,21 @@
 import React, { Component } from 'react'
 
-import { browserHistory } from 'react-router'
-import Header from './Header'
+import LandingPageHeader from './LandingPageHeader'
 import WelcomeInfo from './WelcomeInfo'
 import DepartmentPicker from './DepartmentPicker'
-
-
+import LandingPageFeatures from './LandingPageFeatures'
+import LandingPageFooter from './LandingPageFooter'
 
 export default class LandingPage extends Component {
-
-onClickWebshop() {
-  browserHistory.push('/webshop')
-}
-
-onClickGallery() {
-  browserHistory.push('/gallery')
-}
-
-onClickServices() {
-  browserHistory.push('/services')
-}
-
-onClickAdmin() {
-  browserHistory.push('/admin')
-}
 
   render() {
     return (
       <div>
-        <Header></Header>
+        <LandingPageHeader></LandingPageHeader>
         <WelcomeInfo></WelcomeInfo>
         <DepartmentPicker></DepartmentPicker>
-
-
-        <button onClick={this.onClickWebshop.bind(this)}>Klicka här för webshop</button>
-        <button onClick={this.onClickGallery.bind(this)}>Klicka här för galleri</button>
-        <button onClick={this.onClickServices.bind(this)}>Klicka här för tjänster</button>
-        <button onClick={this.onClickAdmin.bind(this)}>Klicka här för admin</button>
+        <LandingPageFeatures></LandingPageFeatures>
+        <LandingPageFooter></LandingPageFooter>
       </div>
     )
   }

@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
+import { browserHistory } from 'react-router'
 
 require('styles/_servicesPage/galleryPreview.css')
 
 export default class PriceCalc extends Component {
-  render() {
 
+  onClickGallery() {
+    browserHistory.push('/gallery')
+  }
+
+  render() {
     return (
       <div id="galleryPreview">
         <div id="lostGrid">
@@ -38,7 +43,7 @@ export default class PriceCalc extends Component {
           </section>
         </div>
 
-        <a href="">Till galleriet <figure /></a>
+        <a onClick={this.onClickGallery.bind(this)}>Till galleriet <figure /></a>
       </div>
     )
   }
