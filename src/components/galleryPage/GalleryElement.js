@@ -5,13 +5,9 @@ export default class GalleryElement extends Component {
   render() {
 
     return (
-      <div>
-        <li>{this.props.item.name}</li>
-        <br/>
+      <figure>
         <img src={this.props.item.url} alt="" />
-        <br/>
-        <button type="button">Delete</button>
-      </div>
+      </figure>
     )
   }
 }

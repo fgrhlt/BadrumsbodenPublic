@@ -1,17 +1,13 @@
-import { createStore, compse } from 'redux'
-import { syncHistoryWithStore} from 'react-router-redux'
-import { browserHistory } from 'react-router'
+import { createStore /*, compose */ } from 'redux'
 
-//Import route reducer
-import rootReducer from '../reducers/index'
+import rootReducer from '../reducers/index.js'
 
-//Create an object for the default data
-const defaultState = {
-  toggleClicked: false
-}
+//Loading initialState from server
+// const defaultState = {
+//   toggleClicked: false
+// }
+// (rootReducer, defaultState) when to use
 
-const store = createStore(rootReducer, defaultState)
-
-export const history = syncHistoryWithStore(browserHistory, store)
+const store = createStore(rootReducer)
 
 export default store

@@ -88,6 +88,7 @@
     "react-router-redux": "^4.0.5",
     "react-slick": "^0.12.2",
     "redux": "^3.5.2",
-    "rucksack-css": "^0.8.6"
+    "rucksack-css": "^0.8.6",
+    "seamless-immutable": "^6.1.1"
   }
 }

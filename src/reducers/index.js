@@ -1,9 +1,6 @@
 import { combineReducers } from 'redux'
-import { routerReducer } from 'react-router-redux'
+import shoppingcartReducer from './shoppingcartReducer.js'
 
-//import gallery from './gallery'
-const gallery = {hej: 'hejhej'}
-
-const rootReducer = combineReducers({ gallery, routing: routerReducer })
+const rootReducer = combineReducers({ shoppingcartReducer })
 
 export default rootReducer
