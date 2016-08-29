@@ -1,0 +1,14 @@
+@import '../global.css';
+
+#componentTitle {
+  lost-center:90%;
+  lost-utility:clearfix;
+
+    & > div {
+      lost-column:1/2 0 0;
+    }
+
+    & > div:nth-of-type(2) {
+      text-align: right;
+    }
+}
