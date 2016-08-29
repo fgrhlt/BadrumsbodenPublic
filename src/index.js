@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
 
-import LandingPage from './components/LandingPage/LandingPage';
-import Webshop from './components/WebshopPage/Webshop';
+import LandingPage from './components/landingPage/LandingPage';
+import Webshop from './components/webshopPage/Webshop';
 import Gallery from './components/galleryPage/Gallery';
 import Services from './components/servicesPage/Services';
 import Animation from './components/Animation';
+import Admin from './components/adminSimon/Admin';
 
 
 const app = document.getElementById('app')
@@ -17,6 +18,7 @@ ReactDOM.render(
   <Router history={browserHistory}>
     <Route path="/" component={LandingPage}></Route>
     <Route path="/webshop" component={Webshop}></Route>
+    <Route path="/admin" component={Admin}></Route>
     <Route path="/gallery" component={Gallery}></Route>
     <Route path="/services" component={Services}></Route>
     <Route path="/animation" component={Animation}></Route>

@@ -23,11 +23,11 @@ export default class Webshop extends Component {
         <DropdownMenu></DropdownMenu>
 
         <Campaign></Campaign>
-        <TopSellers></TopSellers>
-        <InfoBank></InfoBank>
-        <ProductView></ProductView>
+        {/* }<TopSellers></TopSellers> {*/}
+        {/* }<InfoBank></InfoBank>{*/}
+        {/* }<ProductView></ProductView>{*/}
         <Products></Products>
-        <Checkout></Checkout>
+        {/* }<Checkout></Checkout>{*/}
 
         <Banner></Banner>
 
