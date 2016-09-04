@@ -1,1 +1,25 @@
 @import '../../global.css';
+
+#productTable {
+  & .btn {
+    width:180px;
+    text-align: center;
+    font-size:16pt;
+    margin:0 auto 20px auto;
+  }
+
+  & figure {
+    width:20px;
+    height:20px;
+    float:left;
+    margin-left:15px;
+    cursor:pointer;
+  }
+  & .pencil {
+    background: url('../../../assets/icons/admin/pencil.svg');
+  }
+  & .trash {
+    background: url('../../../assets/icons/admin/trash.svg');
+    width:18px;
+  }
+}

@@ -18,6 +18,17 @@
         margin:0;
         height:0;
         transition: height 1s ease;
+
+          & a:nth-of-type(odd) {
+            & li {
+              background:#fff;
+            }
+          }
+          & a:nth-of-type(even) {
+            & li {
+              background:#f6f7f8;
+            }
+          }
       }
 
       & li {
@@ -26,6 +37,7 @@
       & li:hover {
         background: #999;
       }
+
     }
 
     & > div:active {
@@ -34,15 +46,21 @@
       }
     }
 
-    /* The background of the h4's */
+    /* The blue background of the h4's */
     & > div:nth-of-type(odd) {
       & h4 {
         background:#56696D;
+      }
+      & h4:hover {
+        background:#475759;
       }
     }
     & > div:nth-of-type(even) {
       & h4 {
         background:#677F89;
+      }
+      & h4:hover {
+        background:#53666D;
       }
     }
 
