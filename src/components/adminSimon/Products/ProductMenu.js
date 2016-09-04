@@ -31,6 +31,16 @@ export default class ProductMenu extends Component {
           </ul>
         </div>
 
+        <div>
+          <a href="#"><h4>Annat</h4></a>
+          <ul>
+            <a href="#"><li>Badrumsmöbler</li></a>
+            <a href="#"><li>Badrumsmöbler</li></a>
+            <a href="#"><li>Badrumsmöbler</li></a>
+            <a href="#"><li>Badrumsmöbler</li></a>
+          </ul>
+        </div>
+
         <div id="yellow">
           <a href="#"><h4>Se alla toppsäljare</h4></a>
         </div>
