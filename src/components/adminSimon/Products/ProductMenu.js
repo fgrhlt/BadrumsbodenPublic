@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-require('styles/_adminSimon/products/productMenu.css')
+require('styles/_adminSimon/_products/productMenu.css')
 
 export default class ProductMenu extends Component {
   toggleMenu() {

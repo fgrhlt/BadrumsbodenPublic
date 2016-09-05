@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import {Table, Column, Cell} from 'fixed-data-table';
 import FittedTable from './ResponsiveFittedTable';
+import AddProduct from './AddProduct';
 
-require('styles/_adminSimon/products/productTable.css')
+
+require('styles/_adminSimon/_products/productTable.css')
 require('styles/_fixedDataTable/fixed-data-table.css')
 
 // Table data as a list of array.
@@ -77,7 +79,7 @@ export default class ProductTable extends Component {
            />
         </FittedTable>
 
-        <div className="greenButton btn">Lägg till produkt</div>
+        <AddProduct />
       </div>
     )
   }
