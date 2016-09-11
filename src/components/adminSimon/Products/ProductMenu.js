@@ -2,15 +2,41 @@ import React, { Component } from 'react'
 
 require('styles/_adminSimon/_products/productMenu.css')
 
-class ListItems extends Component {
+class CategoryItem extends Component {
+  componentWillMount() {
+    this.state = {
+      clicked: false,
+    }
+  }
+
+  handleClick() {
+    this.setState({clicked:!this.state.clicked})
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="listHead">
+          <div onClick={this.handleClick.bind(this)}>
+            {this.props.heading}
+          </div>
+          <figure />
+        </div>
+        {this.state.clicked ? <SubListItems /> : null}
+      </div>
+    );
+  }
+}
+
+class SubListItems extends Component {
   render() {
     return (
       <div>
         <ul>
-          <a href="#"><li>Badrumsmöbler</li></a>
-          <a href="#"><li>Badrumsmöbler</li></a>
-          <a href="#"><li>Badrumsmöbler</li></a>
-          <a href="#"><li>Badrumsmöbler</li></a>
+          <li>Badrumsmöbler</li>
+          <li>Badrumsmöbler</li>
+          <li>Badrumsmöbler</li>
+          <li>Badrumsmöbler</li>
         </ul>
       </div>
     );
@@ -20,34 +46,33 @@ class ListItems extends Component {
 export default class ProductMenu extends Component {
   componentWillMount() {
     this.state = {
-      clicked: false
+      categories: [
+        'Badrumsinredning',
+        'Dusch & badkar',
+        'Annat'
+      ]
     }
-  }
-  handleClick() {
-    this.setState({clicked:!this.state.clicked})
   }
 
   render() {
     return (
       <div id="productMenu">
 
-        <div onClick={this.handleClick.bind(this)}>
-          <h4>Badrumsinredning</h4>
-          {this.state.clicked ? <ListItems /> : null}
-        </div>
-
-        <div onClick={this.handleClick.bind(this)}>
-          <h4>Dusch & badkar</h4>
-          {this.state.clicked ? <ListItems /> : null}
-        </div>
-
-        <div onClick={this.handleClick.bind(this)}>
-          <h4>Annat</h4>
-          {this.state.clicked ? <ListItems /> : null}
-        </div>
+        {
+          this.state.categories.map(function(category, i) {
+            return (
+              <CategoryItem
+                key={i}
+                heading={category}
+               />
+            )
+          })
+        }
 
         <div id="yellow">
-          <h4>Se alla toppsäljare</h4>
+          <div>
+            <h4>Se alla toppsäljare</h4>
+          </div>
         </div>
 
       </div>

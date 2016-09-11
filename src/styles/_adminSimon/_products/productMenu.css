@@ -3,68 +3,89 @@
 #productMenu {
     line-height: 1.5;
 
+    /* The menu items */
     & > div {
       cursor:pointer;
-      
-      & h4 {
-        font-size:16pt;
-        color:#fff;
-        padding:7px 20px;
-        margin:0;
+
+      /* The list head with blue color */
+      & .listHead {
+        lost-utility:clearfix;
+
+        /* The clickable div with the text */
+        & > div {
+          lost-column:5/6 0 0;
+          font-size:16pt;
+          color:#fff;
+          padding:7px 20px;
+          box-sizing: border-box;
+        }
+        /* The div holding the edit icon */
+        & figure {
+          lost-column:1/6 0 0;
+          background: url('../../../assets/icons/admin/pencil_w.svg') #435254 no-repeat;
+          background-size:20px 20px;
+          height:45px;
+          background-position:center;
+          cursor:pointer;
+        }
+        & figure:hover {
+          background-color:#323E3F;
+        }
       }
 
+      /* The list with the sub-categories */
       & ul {
         line-height: 30px;
         list-style-type: none;
         overflow: hidden;
         margin:0;
-
-          & a:nth-of-type(odd) {
-            & li {
-              background:#fff;
-            }
+          & li {
+            padding:6px 25px;
           }
-          & a:nth-of-type(even) {
-            & li {
-              background:#f6f7f8;
-            }
+          & li:nth-of-type(odd) {
+            background:#fff;
           }
-      }
-
-      & li {
-        padding:6px 25px;
-      }
-      & li:hover {
-        background: #999;
+          & li:nth-of-type(even) {
+            background:#f6f7f8;
+          }
+          & li:hover {
+            background: #ccc;
+          }
       }
     }
 
-    /* The blue background of the h4's */
-    & > div:nth-of-type(odd) {
-      & h4 {
+    /* The odd's and even's of the .listHead */
+    & > div:nth-of-type(odd) > div {
+      /* Have a blue background */
+      & > div {
         background:#56696D;
       }
-      & h4:hover {
-        background:#475759;
+      /* And when you hover only the text, it changes */
+      & > div:hover {
+        background:#435254;
       }
     }
-    & > div:nth-of-type(even) {
-      & h4 {
+    & > div:nth-of-type(even) > div {
+      & > div {
         background:#677F89;
       }
-      & h4:hover {
-        background:#53666D;
+      & > div:hover {
+        background:#435254
       }
     }
 
-    /* The top sellers menu item */
+    /* The yellow top sellers menu item */
     & #yellow {
-      & h4 {
+      & > div:first-of-type {
         background:#EAD168;
         color:#666;
-        margin-top:80px;
+        margin:80px 0 40px 0;
+        padding:7px 20px;
+        & h4 {
+          margin:0;
+        }
       }
-      & h4:hover {
+      & > div:first-of-type:hover {
         background:#CEB85D;
       }
     }
