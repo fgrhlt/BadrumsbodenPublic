@@ -9,7 +9,7 @@ export default class AdminHeader extends Component {
       <div id="adminHeader">
         <section id="lostItems">
           <div>
-            {/* }<figure id="logo" />{*/}
+            <figure id="logo" />
           </div>
 
           <div>

@@ -14,7 +14,7 @@ export default class Admin extends Component {
         <AdminHeader />
         <AdminWebshopMenu />
         <Products />
-        <Categories />
+        {/*}<Categories />{*/}
 
       </div>
     )

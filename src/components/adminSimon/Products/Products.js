@@ -12,18 +12,13 @@ export default class Products extends Component {
       <div id="products">
         <ComponentTitle
           title={"Produkter"}
-          text={"Ändra, lägg till och ta bort produkter i webbshopen. " + 
+          text={"Ändra, lägg till och ta bort produkter i webbshopen. " +
                 "Du kan även välja vilka produkter som ska vara toppsäljare."}
         />
 
         <div id="container">
-          <div>
-            <ProductMenu />
-          </div>
-
-          <div>
-            <ProductTable />
-          </div>
+          <ProductMenu />
+          <ProductTable />
         </div>
       </div>
     )
