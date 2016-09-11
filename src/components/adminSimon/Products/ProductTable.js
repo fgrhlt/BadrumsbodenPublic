@@ -33,7 +33,7 @@ export default class ProductTable extends Component {
            <Column
              header={<Cell>Artikelnr.</Cell>}
              cell={<Cell>Column 1 static content</Cell>}
-             flexGrow={3}
+             flexGrow={1}
              width={50}
            />
            <Column
@@ -71,11 +71,12 @@ export default class ProductTable extends Component {
            <Column
              cell={
                <Cell>
+                <figure className="star" />
                 <figure className="pencil" />
                 <figure className="trash" />
                </Cell>}
              flexGrow={1}
-             width={20}
+             width={60}
            />
         </FittedTable>
 

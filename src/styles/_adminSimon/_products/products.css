@@ -1,0 +1,26 @@
+@import '../../global.css';
+
+#products {
+  lost-utility:clearfix;
+  lost-center:100%;
+  margin-top:50px;
+
+   & #container {
+     background: #E6E6E6;
+     margin-top:20px;
+     lost-utility:clearfix;
+
+      /* The left menu */
+      & > div:nth-of-type(1) {
+        lost-column:1/5 0 0;
+      }
+
+      /* All the products to the right */
+      & > div:nth-of-type(2) {
+        lost-column:4/5 0 0;
+        background:#F2F2F2;
+        padding:20px;
+        box-sizing: border-box;
+      }
+   }
+}
