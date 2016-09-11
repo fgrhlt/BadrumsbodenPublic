@@ -2,47 +2,52 @@ import React, { Component } from 'react'
 
 require('styles/_adminSimon/_products/productMenu.css')
 
-export default class ProductMenu extends Component {
-  toggleMenu() {
+class ListItems extends Component {
+  render() {
+    return (
+      <div>
+        <ul>
+          <a href="#"><li>Badrumsmöbler</li></a>
+          <a href="#"><li>Badrumsmöbler</li></a>
+          <a href="#"><li>Badrumsmöbler</li></a>
+          <a href="#"><li>Badrumsmöbler</li></a>
+        </ul>
+      </div>
+    );
+  }
+}
 
+export default class ProductMenu extends Component {
+  componentWillMount() {
+    this.state = {
+      clicked: false
+    }
+  }
+  handleClick() {
+    this.setState({clicked:!this.state.clicked})
   }
 
   render() {
     return (
       <div id="productMenu">
 
-        <div onClick={this.toggleMenu.bind(this)}>
-          <a href="#"><h4>Badrumsinredning</h4></a>
-          <ul>
-            <a href="#"><li>Badrumsmöbler</li></a>
-            <a href="#"><li>Badrumsmöbler</li></a>
-            <a href="#"><li>Badrumsmöbler</li></a>
-            <a href="#"><li>Badrumsmöbler</li></a>
-          </ul>
+        <div onClick={this.handleClick.bind(this)}>
+          <h4>Badrumsinredning</h4>
+          {this.state.clicked ? <ListItems /> : null}
         </div>
 
-        <div>
-          <a href="#"><h4>Dusch & badkar</h4></a>
-          <ul>
-            <a href="#"><li>Badrumsmöbler</li></a>
-            <a href="#"><li>Badrumsmöbler</li></a>
-            <a href="#"><li>Badrumsmöbler</li></a>
-            <a href="#"><li>Badrumsmöbler</li></a>
-          </ul>
+        <div onClick={this.handleClick.bind(this)}>
+          <h4>Dusch & badkar</h4>
+          {this.state.clicked ? <ListItems /> : null}
         </div>
 
-        <div>
-          <a href="#"><h4>Annat</h4></a>
-          <ul>
-            <a href="#"><li>Badrumsmöbler</li></a>
-            <a href="#"><li>Badrumsmöbler</li></a>
-            <a href="#"><li>Badrumsmöbler</li></a>
-            <a href="#"><li>Badrumsmöbler</li></a>
-          </ul>
+        <div onClick={this.handleClick.bind(this)}>
+          <h4>Annat</h4>
+          {this.state.clicked ? <ListItems /> : null}
         </div>
 
         <div id="yellow">
-          <a href="#"><h4>Se alla toppsäljare</h4></a>
+          <h4>Se alla toppsäljare</h4>
         </div>
 
       </div>

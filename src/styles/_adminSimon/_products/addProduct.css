@@ -1,0 +1,43 @@
+@import '../../global.css';
+
+#addProduct {
+  & .btn {
+    width:180px;
+    text-align: center;
+    font-size:16pt;
+    margin:20px auto;
+  }
+
+  /* The add product fields, where you add new products */
+  & .addProductField {
+    background:#666;
+    color:white;
+    lost-utility:clearfix;
+    padding:15px;
+    box-sizing: border-box;
+    margin-bottom:10px;
+
+      /* The fields consists of two columns, the sections */
+      & section {
+        lost-column:1/2 2 15px;
+
+        & p {
+          font-size:14pt;
+        }
+        & textarea {
+          width:99%;
+          min-height:114px;
+        }
+        /* The first section contains 4 divs in a waffle grid */
+        & > div {
+          lost-waffle:1/2 2 15px;
+
+          & input {
+            font-size:14pt;
+            padding:10px;
+            width:95%;
+          }
+        }
+      }
+  }
+}
