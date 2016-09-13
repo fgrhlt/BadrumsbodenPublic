@@ -1,13 +1,22 @@
 @import '../../node_modules/normalize.css/normalize.css';
 
 /* Set the global colors for the Badrumsboden */
-:root {
+:global :root {
   --orange: #FD551F;
   --lightBlue: #A9DDD6;
   --lightGreen: #A7D49B;
   --lightYellow: #EAD168;
+  --lightGray:#F2F2F2;
+  --mediumGray:#E6E6E6;
   --darkGreen: #019A3F;
   --darkRed: #D6211D;
+  --darkBlue: #106189;
+  --adminListLightGray: #f6f7f8;
+  --adminMenuBlueOdd: #56696D;
+  --adminMenuBlueEven: #677F89;
+  --adminMenuBlueHover: #435254;
+  --adminMenuDarkBlue: #435254;
+  --adminMenuDarkBlueHover:#323E3F;
 }
 
 @font-face {
@@ -83,4 +92,16 @@ input, textarea, select  {
 }
 .greenButton:active {
   background-color: #016D2D;
+}
+.blueButton {
+  background-color:var(--darkBlue);
+}
+.blueButton:hover {
+  background-color: #0E5470;
+}
+.blueButton:active {
+  background-color: #0B455B;
+}
+button {
+  display:block;
 }
