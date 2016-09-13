@@ -2,20 +2,19 @@
 
 #addProduct {
   & .btn {
-    width:180px;
     text-align: center;
     font-size:16pt;
-    margin:20px auto;
+    margin:20px 10px;
+    float:left;
   }
 
   /* The add product fields, where you add new products */
   & .addProductField {
-    background:#666;
+    background:#888;
     color:white;
     lost-utility:clearfix;
-    padding:15px;
+    padding:30px 20px;
     box-sizing: border-box;
-    margin-bottom:10px;
 
       /* The fields consists of two columns, the sections */
       & section {
@@ -23,10 +22,11 @@
 
         & p {
           font-size:14pt;
+          margin-bottom:5px;
         }
         & textarea {
           width:99%;
-          min-height:114px;
+          min-height:120px;
         }
         /* The first section contains 4 divs in a waffle grid */
         & > div {
@@ -39,5 +39,9 @@
           }
         }
       }
+  }
+
+  & > div:nth-of-type(even) {
+    background:#666;
   }
 }

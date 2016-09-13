@@ -22,14 +22,15 @@
         /* The div holding the edit icon */
         & figure {
           lost-column:1/9 0 0;
-          background: url('../../../assets/icons/admin/pencil_w.svg') #435254 no-repeat;
+          background: url('../../../assets/icons/admin/pencil_w.svg') no-repeat;
+          background-color:var(--adminMenuDarkBlue);
           background-size:12px 12px;
           height:45px;
           background-position:center;
           cursor:pointer;
         }
         & figure:hover {
-          background-color:#323E3F;
+          background-color:var(--adminMenuDarkBlueHover);
         }
       }
 
@@ -46,7 +47,7 @@
             background:#fff;
           }
           & li:nth-of-type(even) {
-            background:#f6f7f8;
+            background:var(--adminListLightGrey);
           }
           & li:hover {
             background: #ccc;
@@ -58,19 +59,19 @@
     & > div:nth-of-type(odd) > div {
       /* Have a blue background */
       & > div {
-        background:#56696D;
+        background:var(--adminMenuBlueOdd);
       }
       /* And when you hover only the text, it changes */
       & > div:hover {
-        background:#435254;
+        background:var(--adminMenuBlueHover);
       }
     }
     & > div:nth-of-type(even) > div {
       & > div {
-        background:#677F89;
+        background:var(--adminMenuBlueEven);
       }
       & > div:hover {
-        background:#435254
+        background:var(--adminMenuBlueHover);
       }
     }
 

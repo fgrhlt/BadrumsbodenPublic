@@ -36,13 +36,15 @@ export default class ProductTable extends Component {
              flexGrow={1}
              width={50}
            />
+
            <Column
           header={<Cell>Leverantör</Cell>}
           cell={<Cell>Column 1 static content</Cell>}
           flexGrow={1}
           width={150}
-        />
-           <Column
+          />
+
+          <Column
              header={<Cell>Namn</Cell>}
              cell={<Cell>Column 2 static content</Cell>}
              flexGrow={1}
@@ -58,6 +60,7 @@ export default class ProductTable extends Component {
              flexGrow={1}
              width={300}
            />
+
            <Column
              header={<Cell>Bild</Cell>}
              cell={({rowIndex, ...props}) => (

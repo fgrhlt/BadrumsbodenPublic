@@ -37,21 +37,47 @@ class ProductField extends Component {
   }
 }
 
+class SaveButton extends Component {
+  render() {
+    return (
+      <button className="btn greenButton">Spara produkter</button>
+    );
+  }
+}
+
 export default class AddProduct extends Component {
   componentWillMount() {
     this.state = {
-      clicked: 0
+      productFields: ['1'],
+      clicked: false,
     }
   }
-  handleClick = () => {
-    this.setState({clicked: this.state.clicked + 1})
+  handleClick() {
+    this.setState({
+      // Should the state list be the article id?
+      productFields: this.state.productFields.concat(['1']),
+      clicked:true,
+    })
   }
 
   render() {
     return (
       <div id="addProduct">
-        {this.state.clicked > 0 ? <ProductField /> : null}
-        <div className="greenButton btn" onClick={this.handleClick}>Lägg till produkt</div>
+
+        <h3>Lägg till produkter</h3>
+        {
+          this.state.productFields.map(function(field, i) {
+            return (
+              <ProductField key={i} />
+            )
+          })
+        }
+
+        <button className="blueButton btn" onClick={this.handleClick.bind(this)}>
+          +
+        </button>
+        {this.state.clicked ? <SaveButton /> : null}
+
 
       </div>
     )
