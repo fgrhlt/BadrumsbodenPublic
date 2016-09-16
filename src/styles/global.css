@@ -102,6 +102,15 @@ input, textarea, select  {
 .blueButton:active {
   background-color: #0B455B;
 }
+.redButton {
+  background-color:var(--darkRed);
+}
+.redButton:hover {
+  background-color: #B21919;
+}
+.redButton:active {
+  background-color: #7C1212;
+}
 button {
   display:block;
 }
