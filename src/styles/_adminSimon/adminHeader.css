@@ -6,7 +6,7 @@
     & #lostItems {
       lost-utility:clearfix;
 
-        /* All three lost items, the logo and the buttons */
+        /* All three lost items, the logo and the two buttons */
         & > div {
           lost-column:1/4 0 0;
           box-sizing:border-box;
@@ -19,7 +19,7 @@
             }
         }
 
-        /* First lost item */
+        /* First lost item, the badrumsboden-logo */
         & > div:nth-of-type(1) {
           lost-column:2/4 0 0;
           padding:45px 0 0 8%;
@@ -34,19 +34,33 @@
         /* The two other lost items, the buttons */
         & > div:not(:first-of-type) {
           cursor:pointer;
+          user-select:none;
         }
-        & > div:not(:first-of-type):hover {
+
+        /* When the buttons are clicked they get custom backgrounds */
+        & .yellow {
+          background:var(--lightYellow);
+        }
+        & .yellow:hover {
+          background:#CCB65C;
+        }
+        & .yellow:active {
+          background:#B2A052;
+        }
+        & .bluegreen {
+          background: url(../../assets/icons/admin/bluegreen.svg) no-repeat;
+          background-size: cover;
+        }
+        & .bluegreen:hover {
+          background: url(../../assets/icons/admin/bluegreen_h.svg) no-repeat;
+          background-size: cover;
+        }
+        & .bluegreen:active {
+          background: url(../../assets/icons/admin/bluegreen_a.svg) no-repeat;
+          background-size: cover;
+        }
+        & .passive:hover {
           background:#333;
-        }
-
-        /* Second lost item */
-        & > div:nth-of-type(2) {
-
-        }
-
-
-        /* Third lost item */
-        & > div:nth-of-type(3) {
         }
     }
 }

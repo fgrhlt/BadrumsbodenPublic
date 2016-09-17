@@ -19,6 +19,8 @@ ReactDOM.render(
     <Route path="/" component={LandingPage}></Route>
     <Route path="/webshop" component={Webshop}></Route>
     <Route path="/admin" component={Admin}></Route>
+    <Route path="/admin/:site" component={Admin}></Route>
+    <Route path="/admin/:site/:section" component={Admin}></Route>
     <Route path="/gallery" component={Gallery}></Route>
     <Route path="/services" component={Services}></Route>
     <Route path="/animation" component={Animation}></Route>

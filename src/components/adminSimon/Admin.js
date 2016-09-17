@@ -7,15 +7,16 @@ import Categories from './Categories/Categories'
 
 
 export default class Admin extends Component {
-
   render() {
+    let site = this.props.params.site
+    let section = this.props.params.section
     return (
       <div>
-        <AdminHeader />
-        <AdminWebshopMenu />
-        <Products />
-        {/*}<Categories />{*/}
+        <AdminHeader param={site} />
+        {site=='webshop' ? <AdminWebshopMenu param={section} /> : ''}
+        {site=='webshop' && section=='produkter' ? <Products /> : ''}
 
+        {/*}<Categories />{*/}
       </div>
     )
   }

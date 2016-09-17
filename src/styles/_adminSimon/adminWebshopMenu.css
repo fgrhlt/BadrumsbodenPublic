@@ -11,9 +11,12 @@
       text-align: center;
       color:white;
       cursor:pointer;
+      user-select:none;
     }
-
     & > div:hover {
       background:#999;
+    }
+    & .active {
+      background:#666;
     }
 }
