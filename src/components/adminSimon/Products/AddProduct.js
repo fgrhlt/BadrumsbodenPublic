@@ -93,8 +93,6 @@ export default class AddProduct extends Component {
           +
         </button>
         {this.state.clicked ? <SaveButton /> : null}
-
-        {console.log(this.state.productFields)}
       </div>
     )
   }
