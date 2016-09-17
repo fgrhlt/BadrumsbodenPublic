@@ -10,6 +10,8 @@ export default class Admin extends Component {
   render() {
     let site = this.props.params.site
     let section = this.props.params.section
+    
+    /* Render different components depending on the URL */
     return (
       <div>
         <AdminHeader param={site} />

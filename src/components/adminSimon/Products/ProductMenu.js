@@ -2,17 +2,16 @@ import React, { Component } from 'react'
 
 require('styles/_adminSimon/_products/productMenu.css')
 
+/* CategoryItem is the main category, which contains sub categories in it */
 class CategoryItem extends Component {
   componentWillMount() {
-    this.state = {
-      clicked: false,
-    }
+    this.state = {clicked: false}
   }
-
   handleClick() {
     this.setState({clicked:!this.state.clicked})
   }
 
+  /* This class contains a heading, a edit-figure and all the sub-menu-items */
   render() {
     return (
       <div>
@@ -28,6 +27,7 @@ class CategoryItem extends Component {
   }
 }
 
+/* SubListItem is the sub-categories, replace with real database code later. */
 class SubListItems extends Component {
   render() {
     return (
@@ -45,6 +45,7 @@ class SubListItems extends Component {
 
 export default class ProductMenu extends Component {
   componentWillMount() {
+    /* Contains all the product menu items from the db */
     this.state = {
       categories: [
         'Badrumsinredning',
@@ -55,9 +56,9 @@ export default class ProductMenu extends Component {
   }
 
   render() {
+    /* Spits out all the product menu's and then a yellow menu item with the top-sellers */
     return (
       <div id="productMenu">
-
         {
           this.state.categories.map(function(category, i) {
             return (

@@ -4,6 +4,7 @@ var React = require('react');
 var {Table} = require('fixed-data-table');
 var _ = require('lodash');
 
+/* Don't change anything here, unless some code needs to be rewritten to newer react language! */
 var FittedTable = React.createClass({
   getInitialState() {
     return {

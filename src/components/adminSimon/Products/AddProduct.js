@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 
 require('styles/_adminSimon/_products/addProduct.css')
 
+/* Here is the field where you type in each product. This component get's rendered
+ * multiple times. It has a close button */
 class ProductField extends Component {
   render() {
     return (
       <div className="addProductField">
-
-        <figure onClick={this.props.onClick}/>
-
+        <figure name="close" onClick={this.props.onClick}/>
         <div id="lostContainer">
           <section>
             <div>
@@ -50,6 +50,9 @@ class SaveButton extends Component {
   }
 }
 
+/* The state contains an array with each AddProduct-item. TODO: The state should
+ * be changed to something other than 'a'. Maybe the article-id for instance
+ */
 export default class AddProduct extends Component {
   componentWillMount() {
     this.state = {
@@ -61,13 +64,13 @@ export default class AddProduct extends Component {
   // Adds a new field to the state array by concatinating
   newField() {
     this.setState({
-      // Should the state list be the article id?
+      // TODO: Should the state list be the article id?
       productFields: this.state.productFields.concat(["a"]),
       clicked:true,
     })
   }
 
-  // Remove one field by copying the state array and then splicing
+  // Remove one field by copying the state array and then splicing, i.e removing
   removeField(index) {
     var arr = this.state.productFields.slice()
     arr.splice(index, 1)
@@ -75,19 +78,21 @@ export default class AddProduct extends Component {
       productFields: arr
     })
   }
+
+  /* Spits out fields where you can add products. Then there is a + button and
+   * a save button. TODO: The fields gets destroyed when you remove them.
+   */
   render() {
     return (
       <div id="addProduct">
-
         <h3>Lägg till produkter</h3>
-        {
-          this.state.productFields.map(function(field, i) {
+
+        {this.state.productFields.map(function(field, i) {
             var removeField = this.removeField.bind(this, i)
             return (
               <ProductField key={i} index={i} onClick={removeField} />
             )
-          }, this)
-        }
+          }, this)}
 
         <button className="blueButton btn" onClick={this.newField.bind(this)}>
           +

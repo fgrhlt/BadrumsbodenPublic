@@ -1,6 +1,9 @@
 @import '../../global.css';
 
 #addProduct {
+  & h3 {
+    margin-bottom:15px;
+  }
     /* The add product fields, where you add new products */
   & .addProductField {
     background:#888;

@@ -3,11 +3,10 @@ import {Table, Column, Cell} from 'fixed-data-table';
 import FittedTable from './ResponsiveFittedTable';
 import AddProduct from './AddProduct';
 
-
 require('styles/_adminSimon/_products/productTable.css')
 require('styles/_fixedDataTable/fixed-data-table.css')
 
-// Table data as a list of array.
+/* This is the data table, which should be data from firebase later on */
 const rows = [
   ['a1', 'b1', 'c1'],
   ['a2', 'b2', 'c2'],
@@ -19,8 +18,11 @@ const rows = [
   // .... and more
 ];
 
+/* The ProductTable contains a FittedTable which comes from Facebook's
+ * fixed-data-table, and it's responsive. In the table there is six columns
+ * with data from the database. Then comes the AddProduct component 
+ */
 export default class ProductTable extends Component {
-
   render() {
     return (
       <div id="productTable">

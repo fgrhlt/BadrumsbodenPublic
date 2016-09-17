@@ -4,11 +4,15 @@ import { browserHistory } from 'react-router'
 require('styles/_adminSimon/adminHeader.css')
 
 export default class AdminHeader extends Component {
+
+  /* Get the text that's in the div being clicked. Push it to the router */
   handleClick(e) {
     var name = e.target.textContent.toLowerCase()
     browserHistory.push('/admin/' + name)
   }
+
   render() {
+    /* The header of the admin page. The two buttons get different background color depending on the URL */
     return (
       <div id="adminHeader">
         <section id="lostItems">
@@ -24,7 +28,6 @@ export default class AdminHeader extends Component {
             <h2>Hemsida</h2>
           </div>
         </section>
-        {console.log(this.props.param)}
       </div>
     )
   }

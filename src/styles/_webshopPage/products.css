@@ -60,7 +60,7 @@
               font-size:12pt;
               overflow:hidden;
             }
-            & > figure {
+            & figure {
               width:100%;
               height:200px;
               background-size:contain;
