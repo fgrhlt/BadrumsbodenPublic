@@ -7,7 +7,7 @@ export default class WelcomeInfo extends Component {
     /* Data from database */
     var styleVar = {
       backgroundImage: 'url(assets/images/landingPage/welcome_bg.png)',
-      color: '#fff',
+      color: '#fff'
     }
 
     return (

@@ -16,10 +16,12 @@ export default class LandingPageHeader extends Component {
                 <img id="email_icon" src="assets/icons/header/email_icon.svg" />
                 <div>
                   <h4>E-post</h4>
-                  <p>
-                    Klicka för att <br />
-                    skicka epost
-                  </p>
+                  <a href="mailto:webmaster@example.com">
+                    <p>
+                      Klicka för att <br />
+                      skicka epost
+                    </p>
+                  </a>
                 </div>
               </div>
 

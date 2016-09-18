@@ -1,13 +1,8 @@
-import { createStore /*, compose */ } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk'
 
 import rootReducer from '../reducers/index.js'
 
-//Loading initialState from server
-// const defaultState = {
-//   toggleClicked: false
-// }
-// (rootReducer, defaultState) when to use
-
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 export default store

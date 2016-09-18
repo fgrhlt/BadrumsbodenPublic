@@ -1,14 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Router, Route, browserHistory } from 'react-router';
+import React from 'react'
 
-import LandingPage from './components/LandingPage/LandingPage';
-import Webshop from './components/WebshopPage/Webshop';
-import Gallery from './components/galleryPage/Gallery';
-import Services from './components/servicesPage/Services';
-import Animation from './components/Animation';
+import firebase from 'firebase/app'
+
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { Router, Route, browserHistory, IndexRoute } from 'react-router'
+
+import LandingPage from './compositions/landingPage/LandingPage'
+import Webshop from './compositions/webshopPage/Webshop'
+import Gallery from './compositions/galleryPage/Gallery'
+import Services from './compositions/servicesPage/Services'
+import Animation from './components/Animation'
+import Admin from './compositions/adminPage/Admin'
+import Checkouts from './compositions/WebshopPage/Checkouts'
+import Faq from './compositions/faq/Faq'
+import Products from './components/webshop/Products'
+import WebshopHome from './compositions/webshopPage/WebshopHome'
+
+require('styles/styles.css')
 
 import store from './store/store'
+
+//Initialize firebase
+var config = {
+  apiKey: 'AIzaSyBQnvDISWtShRbrtheOm2uvAP_iGie6sGM',
+  authDomain: 'badrumsboden-c7b46.firebaseapp.com',
+  databaseURL: 'https://badrumsboden-c7b46.firebaseio.com',
+  storageBucket: 'badrumsboden-c7b46.appspot.com'
+}
+firebase.initializeApp(config)
 
 const app = document.getElementById('app')
 const NotFound = () => (
@@ -18,12 +38,20 @@ const router = (
     <Provider store={store}>
       <Router history={browserHistory}>
         <Route path="/" component={LandingPage}></Route>
-        <Route path="/webshop" component={Webshop}></Route>
-        <Route path="/gallery" component={Gallery}></Route>
-        <Route path="/services" component={Services}></Route>
-        <Route path="/animation" component={Animation}></Route>
-        <Route path="/admin" component={Admin}></Route>
-        <Route path="/*" component={NotFound}></Route>
+
+        <Route path="webshop" component={Webshop}>
+          <IndexRoute component={WebshopHome}></IndexRoute>
+          <Route path="/webshop/:category" component={Products}></Route>
+          <Route path="/webshop/:category/:product" component={Products}></Route>
+        </Route>
+
+        <Route path="gallery" component={Gallery}></Route>
+        <Route path="services" component={Services}></Route>
+        <Route path="admin" component={Admin}></Route>
+        <Route path="checkout" component={Checkouts}></Route>
+        <Route path="faq" component={Faq}></Route>
+        <Route path="animation" component={Animation}></Route>
+        <Route path="*" component={NotFound}></Route>
       </Router>
     </Provider>
 )

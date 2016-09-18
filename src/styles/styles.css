@@ -1,0 +1,28 @@
+@import './_features/features.css';
+
+@import './_footerPage/footer.css';
+
+@import './_galleryPage/gallery.css';
+
+@import './_headerPage/header.css';
+
+@import './_landingPage/departmentPicker.css';
+@import './_landingPage/welcomeInfo.css';
+
+@import './_servicesPage/galleryPreview.css';
+@import './_servicesPage/priceCalc.css';
+@import './_servicesPage/progressBar.css';
+@import './_servicesPage/services.css';
+@import './_servicesPage/serviceSelector.css';
+@import './_servicesPage/vvsRequest.css';
+
+@import './_webshopPage/banner.css';
+@import './_webshopPage/campaign.css';
+@import './_webshopPage/checkout.css';
+@import './_webshopPage/dropdownMenu.css';
+@import './_webshopPage/infoBank.css';
+@import './_webshopPage/products.css';
+@import './_webshopPage/productView.css';
+@import './_webshopPage/shoppingCart.css';
+@import './_webshopPage/topSellers.css';
+@import './_webshopPage/webshop.css';
