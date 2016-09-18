@@ -44,7 +44,7 @@ export default class LandingPageFeatures extends Component {
               <img src="assets/icons/landing_page/stars_orange.svg" />
             </div>
 
-              <h3>Proffisionella hantverkare</h3>
+              <h3>Professionella hantverkare</h3>
               <p>
                 Utbildade i branschens <br />
                 regler och rekommendationer
