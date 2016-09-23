@@ -2,102 +2,80 @@ import React, { Component } from 'react'
 
 require('styles/_adminSimon/_products/addProduct.css')
 
-/* Here is the field where you type in each product. This component get's rendered
- * multiple times. It has a close button */
-class ProductField extends Component {
-  render() {
-    return (
-      <div className="addProductField">
-        <figure name="close" onClick={this.props.onClick}/>
-        <div id="lostContainer">
-          <section>
-            <div>
-              <p>Artikelnr.</p>
-              <input />
-            </div>
-
-            <div>
-              <p>Leverantör</p>
-              <input />
-            </div>
-
-            <div>
-              <p>Produktnamn</p>
-              <input />
-            </div>
-
-            <div>
-              <p>Bild</p>
-              <input />
-            </div>
-          </section>
-
-          <section>
-            <p>Beskrivning</p>
-            <textarea />
-          </section>
-        </div>
-      </div>
-    );
-  }
-}
-
-class SaveButton extends Component {
-  render() {
-    return (
-      <button className="btn greenButton">Spara produkter</button>
-    );
-  }
-}
-
-/* The state contains an array with each AddProduct-item. TODO: The state should
- * be changed to something other than 'a'. Maybe the article-id for instance
- */
 export default class AddProduct extends Component {
   componentWillMount() {
     this.state = {
-      productFields: ["a"],
-      clicked: false,
+      newProducts: []
     }
   }
 
-  // Adds a new field to the state array by concatinating
-  newField() {
-    this.setState({
-      // TODO: Should the state list be the article id?
-      productFields: this.state.productFields.concat(["a"]),
-      clicked:true,
-    })
+  /* Takes the values from the form and puts in the state when submitted */
+  submitForm(e) {
+    e.preventDefault()
+    let artikelnr = this.refs.artikelnr.value;
+    let leverantor = this.refs.leverantor.value;
+    let produktnamn = this.refs.produktnamn.value;
+    let bild = this.refs.bild.value;
+    let beskrivning = this.refs.beskrivning.value;
+
+    /* Check if any form fields are empty */
+    if(artikelnr=='' || leverantor=='' || produktnamn=='' || bild=='' || beskrivning=='') {
+      alert('Alla fält måste innehålla ett värde')
+    }
+    else {
+      this.setState({
+        newProducts: this.state.newProducts.concat({
+          artikelnr, leverantor, produktnamn, bild, beskrivning})
+      })
+    }
   }
 
-  // Remove one field by copying the state array and then splicing, i.e removing
-  removeField(index) {
-    var arr = this.state.productFields.slice()
-    arr.splice(index, 1)
-    this.setState({
-      productFields: arr
-    })
+  /* Finds the filename of the uploaded file and shows it to the user */
+  findFileName(e) {
+    let fileName = e.target.files[0].name
+    this.refs.fileHolder.value = fileName
   }
 
-  /* Spits out fields where you can add products. Then there is a + button and
-   * a save button. TODO: The fields gets destroyed when you remove them.
-   */
   render() {
     return (
       <div id="addProduct">
         <h3>Lägg till produkter</h3>
 
-        {this.state.productFields.map(function(field, i) {
-            var removeField = this.removeField.bind(this, i)
-            return (
-              <ProductField key={i} index={i} onClick={removeField} />
-            )
-          }, this)}
+        <form onSubmit={this.submitForm.bind(this)}>
+          <div className="addProductField">
+            <div id="lostContainer">
+                <section>
+                  <div>
+                    <p>Artikelnr.</p>
+                    <input type="text" ref="artikelnr" />
+                  </div>
 
-        <button className="blueButton btn" onClick={this.newField.bind(this)}>
-          +
-        </button>
-        {this.state.clicked ? <SaveButton /> : null}
+                  <div>
+                    <p>Leverantör</p>
+                    <input type="text" ref="leverantor"/>
+                  </div>
+
+                  <div>
+                    <p>Produktnamn</p>
+                    <input type="text" ref="produktnamn"/>
+                  </div>
+
+                  <div>
+                    <p>Bild</p>
+                    <input disabled="disabled" ref="fileHolder" id="fileHolder" />
+                    <input type="file" ref="bild" id="picUpload" onChange={this.findFileName.bind(this)} />
+                    <label htmlFor="picUpload">Välj bild</label>
+                  </div>
+                </section>
+
+                <section>
+                  <p>Beskrivning</p>
+                  <textarea type="text" ref="beskrivning" />
+                </section>
+            </div>
+          </div>
+          <input type="submit" className="btn greenButton" value="Spara produkter" />
+        </form>
       </div>
     )
   }

@@ -1,9 +1,8 @@
 @import '../../global.css';
 
-#products {
+#adminProducts {
   lost-utility:clearfix;
   lost-center:100%;
-  margin-top:50px;
 
    & #container {
      display:flex;
