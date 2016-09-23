@@ -1,0 +1,93 @@
+@import '../../global.css';
+
+#productMenu {
+    line-height: 1.5;
+
+    /* The menu items */
+    & > div {
+      cursor:pointer;
+
+      /* The list head with blue color */
+      & .listHead {
+        lost-utility:clearfix;
+
+        /* The clickable div with the text */
+        & > div {
+          lost-column:8/9 0 0;
+          font-size:16pt;
+          color:#fff;
+          padding:7px 20px;
+          box-sizing: border-box;
+        }
+        /* The div holding the edit icon */
+        & figure {
+          lost-column:1/9 0 0;
+          background: url('../../../assets/icons/admin/pencil_w.svg') no-repeat;
+          background-color:var(--adminMenuDarkBlue);
+          background-size:12px 12px;
+          height:45px;
+          background-position:center;
+          cursor:pointer;
+        }
+        & figure:hover {
+          background-color:var(--adminMenuDarkBlueHover);
+        }
+      }
+
+      /* The list with the sub-categories */
+      & ul {
+        line-height: 30px;
+        list-style-type: none;
+        overflow: hidden;
+        margin:0;
+          & li {
+            padding:6px 25px;
+          }
+          & li:nth-of-type(odd) {
+            background:#fff;
+          }
+          & li:nth-of-type(even) {
+            background:var(--adminListLightGrey);
+          }
+          & li:hover {
+            background: #ccc;
+          }
+      }
+    }
+
+    /* The odd's and even's of the .listHead */
+    & > div:nth-of-type(odd) > div {
+      /* Have a blue background */
+      & > div {
+        background:var(--adminMenuBlueOdd);
+      }
+      /* And when you hover only the text, it changes */
+      & > div:hover {
+        background:var(--adminMenuBlueHover);
+      }
+    }
+    & > div:nth-of-type(even) > div {
+      & > div {
+        background:var(--adminMenuBlueEven);
+      }
+      & > div:hover {
+        background:var(--adminMenuBlueHover);
+      }
+    }
+
+    /* The yellow top sellers menu item */
+    & #yellow {
+      & > div:first-of-type {
+        background:#EAD168;
+        color:#666;
+        margin:80px 0 40px 0;
+        padding:7px 20px;
+        & h4 {
+          margin:0;
+        }
+      }
+      & > div:first-of-type:hover {
+        background:#CEB85D;
+      }
+    }
+}

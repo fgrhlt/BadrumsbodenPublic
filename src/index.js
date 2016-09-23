@@ -15,7 +15,9 @@ import Admin from './compositions/adminPage/Admin'
 import Checkouts from './compositions/WebshopPage/Checkouts'
 import Faq from './compositions/faq/Faq'
 import Products from './components/webshop/Products'
+import Product from './components/webshop/Product'
 import WebshopHome from './compositions/webshopPage/WebshopHome'
+import NewAdmin from './components/admin/newAdmin/Admin'
 
 require('styles/styles.css')
 
@@ -42,12 +44,18 @@ const router = (
         <Route path="webshop" component={Webshop}>
           <IndexRoute component={WebshopHome}></IndexRoute>
           <Route path="/webshop/:category" component={Products}></Route>
-          <Route path="/webshop/:category/:product" component={Products}></Route>
+          <Route path="/webshop/:category/:subcategory" component={Products}></Route>
+          <Route path="/webshop/:category/:subcategory/:product" component={Product}></Route>
         </Route>
 
         <Route path="gallery" component={Gallery}></Route>
         <Route path="services" component={Services}></Route>
         <Route path="admin" component={Admin}></Route>
+
+        <Route path="newAdmin" component={NewAdmin}></Route>
+        <Route path="/newAdmin/:site" component={NewAdmin}></Route>
+        <Route path="/newAdmin/:site/:section" component={NewAdmin}></Route>
+
         <Route path="checkout" component={Checkouts}></Route>
         <Route path="faq" component={Faq}></Route>
         <Route path="animation" component={Animation}></Route>

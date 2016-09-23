@@ -70,3 +70,10 @@
       transform: rotate(-10deg);
     }
 }
+
+.minimizeBorder {
+	background-color: #8CB6B5;
+	text-align: center;
+	height: 50px;
+	color: white;
+}

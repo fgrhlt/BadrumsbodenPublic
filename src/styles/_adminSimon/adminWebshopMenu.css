@@ -1,0 +1,22 @@
+@import '../global.css';
+
+#adminWebshopMenu {
+  lost-utility:clearfix;
+  background:#B3B3B3;
+
+    & > div {
+      box-sizing: border-box;
+      padding:20px;
+      lost-column:1/2 0 0;
+      text-align: center;
+      color:white;
+      cursor:pointer;
+      user-select:none;
+    }
+    & > div:hover {
+      background:#999;
+    }
+    & .active {
+      background:#666;
+    }
+}
