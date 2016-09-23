@@ -17,7 +17,7 @@ import Faq from './compositions/faq/Faq'
 import Products from './components/webshop/Products'
 import Product from './components/webshop/Product'
 import WebshopHome from './compositions/webshopPage/WebshopHome'
-import NewAdmin from './components/admin/newAdmin/Admin'
+import NewAdmin from './components/adminSimon/Admin'
 
 require('styles/styles.css')
 
@@ -55,6 +55,7 @@ const router = (
         <Route path="newAdmin" component={NewAdmin}></Route>
         <Route path="/newAdmin/:site" component={NewAdmin}></Route>
         <Route path="/newAdmin/:site/:section" component={NewAdmin}></Route>
+        <Route path="/newAdmin/:site/:section/:category/:subcategory" component={NewAdmin}></Route>
 
         <Route path="checkout" component={Checkouts}></Route>
         <Route path="faq" component={Faq}></Route>
