@@ -1,15 +1,8 @@
 @import '../../global.css';
 
-<<<<<<< HEAD
-#products {
-  lost-utility:clearfix;
-  lost-center:100%;
-  margin-top:50px;
-=======
 #adminProducts {
   lost-utility:clearfix;
   lost-center:100%;
->>>>>>> origin/front-end-build
 
    & #container {
      display:flex;

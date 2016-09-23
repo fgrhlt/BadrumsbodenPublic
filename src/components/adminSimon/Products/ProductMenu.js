@@ -29,7 +29,7 @@ class CategoryItem extends Component {
 
 class SubListItems extends Component {
   handleClick(subcategory, category) {
-    browserHistory.push('/admin/webshop/produkter/' + category.toLowerCase() + '/' + subcategory.toLowerCase())
+    browserHistory.push('/newAdmin/webshop/produkter/' + category.toLowerCase() + '/' + subcategory.toLowerCase())
   }
 
   render() {

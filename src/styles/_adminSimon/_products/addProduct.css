@@ -50,18 +50,14 @@
           /* The first section contains 4 input fields in a waffle grid */
           & > div {
             lost-waffle:1/2 2 10px;
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/front-end-build
             & input {
               font-size:14pt;
               padding:7px;
               width:95%;
               float:none;
             }
-<<<<<<< HEAD
-=======
+
             /* Hide the file input */
             & #picUpload {
             	width: 0;
@@ -94,7 +90,6 @@
               lost-column:3/5 0 0;
               box-sizing: border-box;
             }
->>>>>>> origin/front-end-build
           }
         }
       }

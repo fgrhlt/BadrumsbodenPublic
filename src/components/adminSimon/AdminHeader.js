@@ -8,7 +8,7 @@ export default class AdminHeader extends Component {
   /* Get the text that's in the div being clicked. Push it to the router */
   handleClick(e) {
     var name = e.target.textContent.toLowerCase()
-    browserHistory.push('/admin/' + name)
+    browserHistory.push('/newAdmin/' + name)
   }
 
   render() {
