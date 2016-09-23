@@ -21,6 +21,7 @@ ReactDOM.render(
     <Route path="/admin" component={Admin}></Route>
     <Route path="/admin/:site" component={Admin}></Route>
     <Route path="/admin/:site/:section" component={Admin}></Route>
+    <Route path="/admin/:site/:section/:category/:subcategory" component={Admin}></Route>
     <Route path="/gallery" component={Gallery}></Route>
     <Route path="/services" component={Services}></Route>
     <Route path="/animation" component={Animation}></Route>
