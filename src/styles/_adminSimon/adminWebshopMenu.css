@@ -3,7 +3,12 @@
 #adminWebshopMenu {
   lost-utility:clearfix;
   background:#B3B3B3;
+<<<<<<< HEAD
 
+=======
+  margin-bottom:100px;
+  
+>>>>>>> origin/front-end-build
     & > div {
       box-sizing: border-box;
       padding:20px;

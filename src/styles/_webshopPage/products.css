@@ -44,8 +44,35 @@
       lost-column: 4/5 0;
 
         /* Products */
+<<<<<<< HEAD
         & #productlist1 {
           width:100%;
+=======
+        & > div {
+          lost-waffle:1/4 4;
+          box-sizing: border-box;
+          background:#F7F7F7;
+            & h4 {
+              margin:20px 10px 0 10px;
+              height:60px;
+              overflow: hidden;
+              cursor:pointer;
+            }
+            & p {
+              margin:0 10px;
+              height:70px;
+              font-size:12pt;
+              overflow:hidden;
+            }
+            & figure {
+              width:100%;
+              height:200px;
+              background-size:contain;
+              background-repeat:no-repeat;
+              background-position: center;
+              cursor:pointer;
+            }
+>>>>>>> origin/front-end-build
 
           & > div {
             lost-waffle:1/4;

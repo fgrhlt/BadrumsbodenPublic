@@ -1,0 +1,8 @@
+@import '../../global.css';
+
+#campaigns {
+
+    & #container {
+      background:var(--lightGray);
+    }
+}
