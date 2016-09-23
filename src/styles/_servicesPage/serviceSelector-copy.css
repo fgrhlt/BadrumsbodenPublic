@@ -1,0 +1,150 @@
+@import '../global.css';
+
+#serviceSelector {
+  lost-utility: edit;
+  min-height:600px;
+  background-repeat:no-repeat;
+  background-size: cover;
+  lost-utility:clearfix;
+  box-sizing:border-box;
+  text-align:center;
+  color:white;
+  overflow: hidden;
+
+    & > div {
+      lost-column: 1/2 0 0;
+      min-height:600px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      user-select:none;
+    }
+
+    & h3 {
+      padding:0 15%;
+    }
+
+    & #leftService {
+      background-color:rgba(#A9DDD6, 0.8);
+      transform: skew(-20deg);//Parallelogram
+      overflow: hidden;
+      position: relative;
+      //lost-column: 1/2 0 0;
+      transition: 1s;
+
+        & #expandArrowLeft {
+          display: none;
+          transform: skew(20deg);
+        }
+
+        & #innerContainerLeft {
+          position: absolute;
+          transform: skew(20deg);
+
+            & #figureLeft {
+              background:url(../../assets/icons/services/wrench.svg) no-repeat;
+              width:112px;
+              height:83px;
+              margin:0 auto 30px auto;
+            }
+        }
+
+        & #innerContainerLeft2 {
+          position: absolute;
+          transform: skew(20deg);
+          display: none;
+        }
+
+        & #borderLeft {
+          position: absolute;
+          background-color:rgba(#9FC5C1,0.8);
+          width: 40px;
+          height: 600px;
+          z-index: 10;
+          right: 0px;
+          transition: 1s;
+        }
+    }
+
+    & #rightService {
+      background-color:rgba(#A7D49B, 0.8);
+      transform: skew(-20deg);//Parallelogram
+      overflow: hidden;
+      position: relative;
+      //lost-column: 1/2 0 0;
+      transition: 1s;
+
+        & #expandArrowRight {
+          display: none;
+          transform: skew(20deg);
+        }
+
+        & #innerContainerRight {
+          position: absolute;
+          transform: skew(20deg);
+
+            & #figureRight {
+              background:url(../../assets/icons/services/tap.svg) no-repeat;
+              width:78px;
+              height:98px;
+              margin:0 auto 30px auto;
+            }
+          }
+
+         & #innerContainerRight2 {
+           position: absolute;
+           transform: skew(20deg);
+           display: none;
+        }
+
+         & #borderRight {
+           position: absolute;
+           background-color:rgba(#9FC198,0.8);
+           width: 40px;
+           height: 600px;
+           z-index: 10;
+           left: 0px;
+           transition: 1s;
+         }
+    }
+
+
+    & #leftService:hover {
+      background-color:color(#9FC5C1 alpha(-20%) shade(25%));
+    }
+    & #leftService:hover #borderLeft {
+      background-color:color(#9FC5C1 alpha(-20%) shade(25%));
+    }
+    & #borderLeft:hover {
+      background-color:color(#9FC5C1 alpha(-20%) shade(25%));
+    }
+
+    & #rightService:hover {
+      background-color:color(#9FC198 alpha(-20%) shade(25%));
+    }
+    & #rightService:hover #borderRight {
+      background-color:color(#9FC198 alpha(-20%) shade(25%));
+    }
+    & #borderRight:hover {
+      background-color:color(#9FC198 alpha(-20%) shade(25%));
+    }
+}
+
+
+/* responsive */
+@media (width <= 1280px) {
+  #serviceSelector {
+    min-height:400px;
+  }
+}
+
+@media (width <= 800px) {
+  #serviceSelector > div {
+    lost-column:1;
+  }
+}
+
+@media (max-width: 435px) {
+
+}

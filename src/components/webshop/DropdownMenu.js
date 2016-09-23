@@ -5,18 +5,23 @@ require('styles/_webshopPage/dropdownMenu.css')
 
 export default class DropdownMenu extends Component {
 
-  clickHandler() {
-    var category = 'aggregat'
-    browserHistory.push('/webshop/'+category)
+  clickHandler(e) {
+
+    if (e.target.id=='badrumsinredning') {
+      browserHistory.push('/webshop/'+'badrumsinredning/')
+    }
+    else if (e.target.id=='aggregat') {
+        browserHistory.push('/webshop/'+'badrumsinredning/'+'aggregat')
+      }
   }
 
   render() {
     return (
       <div>
-          <div id="menu">
-              <div>Badrumsinredning
+          <div id="menu" onClick={this.clickHandler.bind(this)}>
+              <div id="badrumsinredning">Badrumsinredning
                 <section>
-                  <div id="aggregat" onClick={this.clickHandler.bind(this)}>Aggregat</div>
+                  <div id="aggregat">Aggregat</div>
                   <div>Bastudörrar</div>
                   <div>Lampor</div>
                   <div>Batterier</div>

@@ -68,8 +68,6 @@ export default class Uploader extends Component {
       })
     }
 
-
-
   render() {
     var divStyle = { height: 200 }
     const { item } = this.props

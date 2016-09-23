@@ -1,0 +1,66 @@
+@import '../global.css';
+
+#adminHeader {
+  background:#4D4D4D;
+
+    & #lostItems {
+      lost-utility:clearfix;
+
+        /* All three lost items, the logo and the two buttons */
+        & > div {
+          lost-column:1/4 0 0;
+          box-sizing:border-box;
+          padding:30px;
+          text-align:center;
+
+            & h2 {
+              font-style:normal;
+              color:white;
+            }
+        }
+
+        /* First lost item, the badrumsboden-logo */
+        & > div:nth-of-type(1) {
+          lost-column:2/4 0 0;
+          padding:45px 0 0 8%;
+
+            & #logo {
+              background:url("../../assets/logo/logo.svg") no-repeat;
+              width:177px;
+              height:31px;
+            }
+        }
+
+        /* The two other lost items, the buttons */
+        & > div:not(:first-of-type) {
+          cursor:pointer;
+          user-select:none;
+        }
+
+        /* When the buttons are clicked they get custom backgrounds */
+        & .yellow {
+          background:var(--lightYellow);
+        }
+        & .yellow:hover {
+          background:#CCB65C;
+        }
+        & .yellow:active {
+          background:#B2A052;
+        }
+        & .bluegreen {
+          background: url(../../assets/icons/admin/bluegreen.svg) no-repeat;
+          background-size: cover;
+        }
+        & .bluegreen:hover {
+          background: url(../../assets/icons/admin/bluegreen_h.svg) no-repeat;
+          background-size: cover;
+        }
+        & .bluegreen:active {
+          background: url(../../assets/icons/admin/bluegreen_a.svg) no-repeat;
+          background-size: cover;
+        }
+        & .passive:hover {
+          background:#333;
+        }
+    }
+}

@@ -1,55 +1,281 @@
 @import '../global.css';
 
 #serviceSelector {
-  min-height:600px;
+  min-height:400px;
   background-repeat:no-repeat;
   background-size: cover;
   lost-utility:clearfix;
   box-sizing:border-box;
   text-align:center;
   color:white;
+  overflow: hidden;
 
     & > div {
-      lost-column: 1/2 0 0;
-      min-height:600px;
-      display:flex;
+      min-height:400px;
+      display: flex;
       align-items:center;
       justify-content:center;
       cursor:pointer;
       user-select:none;
+      padding-top: 50px;
+      box-sizing:border-box;
     }
 
     & h3 {
       padding:0 15%;
     }
 
-    & .left {
-      background-color:rgba(#A9DDD6,0.8);
+    & #leftService {
+      background-color:rgba(#A9DDD6, 0.8);
+      transform: skew(-20deg);//Parallelogram
+      overflow: hidden;
+      position: relative;
+      lost-column: 1/2 0 0;
+      transition: 500ms;
 
-        & figure {
-          background:url(../../assets/icons/services/wrench.svg) no-repeat;
-          width:112px;
-          height:83px;
-          margin:0 auto 30px auto;
+        & #expandArrowLeft {
+          display: none;
+          transform: skew(20deg);
+        }
+
+        & #innerContainerLeft {
+          position: absolute;
+          transform: skew(20deg);
+
+            & figure {
+              background:url(../../assets/icons/services/wrench.svg) no-repeat;
+              width:112px;
+              height:83px;
+              margin:0 auto 30px auto;
+            }
+        }
+
+        & #innerContainerLeft2 {
+          position: absolute;
+          transform: skew(20deg);
+          display: none;
+        }
+
+        & #borderLeft {
+          position: absolute;
+          background-color:rgba(#9FC5C1,0.8);
+          width: 40px;
+          height: 400px;
+          z-index: 10;
+          right: 0px;
+          transition: 500ms;
+          padding-bottom: 50px;
         }
     }
 
-    & .right {
-      background-color:rgba(#A7D49B,0.8);
+    & #leftServiceExpanded {
+      background-color:rgba(#A9DDD6, 0.8);
+      transform: skew(-20deg);//Parallelogram
+      overflow: hidden;
+      position: relative;
+      lost-column: 5/6 0 0;
+      transition: 500ms;
+      display: none;
 
-        & figure {
-          background:url(../../assets/icons/services/tap.svg) no-repeat;
-          width:78px;
-          height:98px;
-          margin:0 auto 30px auto;
+        & #expandArrowLeft {
+          display: none;
+          transform: skew(20deg);
+        }
+
+        & #innerContainerLeft {
+          position: absolute;
+          transform: skew(20deg);
+          lost-column: 1/2 0 0;
+
+            & figure {
+              background:url(../../assets/icons/services/wrench.svg) no-repeat;
+              width:112px;
+              height:83px;
+              margin:0 auto 30px auto;
+            }
+        }
+
+        & #innerContainerLeft2 {
+          position: absolute;
+          transform: skew(20deg);
+          display: none;
+          lost-column: 1/2 0 0;
+        }
+
+        & #borderLeft {
+          position: absolute;
+          background-color:rgba(#9FC5C1,0.8);
+          width: 40px;
+          height: 400px;
+          z-index: 10;
+          right: 0px;
+          transition: 500ms;
+          padding-bottom: 50px;
         }
     }
 
-    & .left:hover {
-      background-color:color(#A9DDD6 alpha(-20%) shade(25%));
+    & #leftServiceMinimized {
+      background-color:rgba(#A9DDD6, 0.8);
+      transform: skew(-20deg);//Parallelogram
+      overflow: hidden;
+      position: relative;
+      lost-column: 1/6 0 0;
+      transition: 500ms;
+      display: none;
+
+        & #expandArrowLeft {
+          transform: skew(20deg);
+        }
+
+        & #borderLeft {
+          position: absolute;
+          background-color:rgba(#9FC5C1,0.8);
+          width: 40px;
+          height: 400px;
+          z-index: 10;
+          right: 0px;
+          transition: 500ms;
+          padding-bottom: 50px;
+        }
     }
-    & .right:hover {
-      background-color:color(#A7D49B alpha(-20%) shade(25%));
+
+    & #leftService:hover {
+      background-color:color(#9FC5C1 alpha(-20%) shade(25%));
+    }
+    & #leftService:hover #borderLeft {
+      background-color:color(#9FC5C1 alpha(-20%) shade(25%));
+    }
+    & #leftServiceMinimized:hover {
+      background-color:color(#9FC5C1 alpha(-20%) shade(25%));
+    }
+    & #leftServiceMinimized:hover #borderLeft {
+      background-color:color(#9FC5C1 alpha(-20%) shade(25%));
+    }
+
+
+    & #rightService {
+      background-color:rgba(#A7D49B, 0.8);
+      transform: skew(-20deg);//Parallelogram
+      overflow: hidden;
+      position: relative;
+      lost-column: 1/2 0 0;
+      transition: 500ms;
+
+        & #expandArrowRight {
+          display: none;
+          transform: skew(20deg);
+        }
+
+        & #innerContainerRight {
+          position: absolute;
+          transform: skew(20deg);
+
+            & figure {
+              background:url(../../assets/icons/services/tap.svg) no-repeat;
+              width:78px;
+              height:98px;
+              margin:0 auto 30px auto;
+            }
+          }
+
+         & #innerContainerRight2 {
+           position: absolute;
+           transform: skew(20deg);
+           display: none;
+        }
+
+         & #borderRight {
+           position: absolute;
+           background-color:rgba(#9FC198,0.8);
+           width: 40px;
+           height: 400px;
+           z-index: 10;
+           left: 0px;
+           transition: 500ms;
+           padding-bottom: 50px;
+         }
+    }
+
+    & #rightServiceExpanded {
+      background-color:rgba(#A7D49B, 0.8);
+      transform: skew(-20deg);//Parallelogram
+      overflow: hidden;
+      position: relative;
+      lost-column: 5/6 0 0;
+      transition: 500ms;
+      display: none;
+
+        & #expandArrowRight {
+          display: none;
+          transform: skew(20deg);
+        }
+
+        & #innerContainerRight {
+          position: absolute;
+          transform: skew(20deg);
+
+            & figure {
+              background:url(../../assets/icons/services/tap.svg) no-repeat;
+              width:78px;
+              height:98px;
+              margin:0 auto 30px auto;
+            }
+          }
+
+         & #innerContainerRight2 {
+           position: absolute;
+           transform: skew(20deg);
+           display: none;
+        }
+
+         & #borderRight {
+           position: absolute;
+           background-color:rgba(#9FC198,0.8);
+           width: 40px;
+           height: 400px;
+           z-index: 10;
+           left: 0px;
+           transition: 500ms;
+           padding-bottom: 50px;
+         }
+    }
+
+    & #rightServiceMinimized {
+      background-color:rgba(#A7D49B, 0.8);
+      transform: skew(-20deg);//Parallelogram
+      overflow: hidden;
+      position: relative;
+      lost-column: 1/6 0 0;
+      transition: 500ms;
+      display: none;
+
+        & #expandArrowRight {
+          transform: skew(20deg);
+        }
+
+        & #borderRight {
+          position: absolute;
+          background-color:rgba(#9FC5C1,0.8);
+          width: 40px;
+          height: 400px;
+          z-index: 10;
+          right: 0px;
+          transition: 500ms;
+          padding-bottom: 50px;
+        }
+    }
+
+    & #rightService:hover {
+      background-color:color(#9FC198 alpha(-20%) shade(25%));
+    }
+    & #rightService:hover #borderRight {
+      background-color:color(#9FC198 alpha(-20%) shade(25%));
+    }
+    & #rightServiceMinimized:hover {
+      background-color:color(#9FC198 alpha(-20%) shade(25%));
+    }
+    & #rightServiceMinimized:hover #borderRight {
+      background-color:color(#9FC198 alpha(-20%) shade(25%));
     }
 }
 

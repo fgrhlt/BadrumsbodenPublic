@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ProductElements from './ProductElements'
-import ProductElement from './ProductElement'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -17,6 +16,7 @@ class Products extends Component {
     }
 
     let category = this.props.params.category
+    category = 'aggregat' //TEST
     this.props.fetchFirebaseData(category)
   }
 
@@ -30,19 +30,21 @@ class Products extends Component {
     const { params } = this.props
     const { category } = params
     let firebaseData = this.state.items.firebaseData
+    let category2 = 'aggregat' // TEST
 
     return (
       <div>
         <div id="products">
           <section>
             <ul>
-              <li>{this.props.params.category}</li>
+              <li>{category}</li>
             </ul>
           </section>
 
           <section>
-            {<ProductElements items={firebaseData ? firebaseData[category].items : []}/>}
+            {<ProductElements items={firebaseData ? firebaseData[category2].items : []}/>}
           </section>
+
         </div>
       </div>
     )
@@ -51,6 +53,7 @@ class Products extends Component {
 
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     firebaseData: state.firebaseReducer.firebaseData
   }
