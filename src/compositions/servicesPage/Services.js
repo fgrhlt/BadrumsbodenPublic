@@ -3,7 +3,7 @@ import { Motion, spring } from 'react-motion'
 
 import Header from '../../components/services/Header'
 import ServiceSelector from '../../components/services/ServiceSelector'
-import PriceCalculator from '../../components/services/PriceCalculator'
+import PriceCalculator from '../../components/services/PriceCalculator-copy'
 import VVSRequest from '../../components/services/VvsRequest'
 import VVSFeatures from '../../components/services/VVSFeatures'
 import GalleryPreview from '../../components/services/GalleryPreview'
@@ -21,32 +21,19 @@ export default class Services extends Component {
     }
   }
 
-  // handleClick(e) {
-  //   const userChoice = e.target.className
-  //   this.setState({ userChoice })
-  // }
-
-  toggleDiv(toggle) {
-    this.setState({showPriceCalculator: toggle})
-    console.log('eff',toggle);
-  }
-
   render() {
     var styleVar = {
       backgroundImage: 'url(assets/images/services/service_bg.jpg)'
     }
-    console.log(this.state.showPriceCalculator);
     return (
       <div>
         <Header />
-        <ServiceSelector toggleDiv={this.toggleDiv.bind(this)}/>
+        <ServiceSelector />
 
-        {this.state.showPriceCalculator ?
-          <div >
+          <div>
             <VVSFeatures/>
-            <PriceCalculator toggleDiv={this.toggleDiv.bind(this)}/>
-          </div> : null
-        }
+            <PriceCalculator/>
+          </div>
 
           {/*<VVSFeatures />
           <VVSRequest />*/}
