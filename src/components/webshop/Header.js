@@ -53,10 +53,6 @@ onClickLandingpage() {
 
               <div>
                 <img id="shoppingCart" src="assets/icons/header/shoppingCart.svg" />
-                <div>
-                  Varukorg<br />
-                  <p>1337:-</p>
-                </div>
                 <ShoppingCart/>
               </div>
 

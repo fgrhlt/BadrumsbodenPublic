@@ -6,8 +6,6 @@ require('styles/_webshopPage/products.css')
 export default class ProductElements extends Component {
 
   render() {
-
-    console.log('items',this.props.items);
     return (
       <div id="productlist1">
 

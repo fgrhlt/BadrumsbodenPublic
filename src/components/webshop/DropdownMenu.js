@@ -6,22 +6,23 @@ require('styles/_webshopPage/dropdownMenu.css')
 export default class DropdownMenu extends Component {
 
   clickHandler(e) {
+    let category = e.target.parentNode.id+'/'
 
-    if (e.target.id=='badrumsinredning') {
-      browserHistory.push('/webshop/'+'badrumsinredning/')
+    if (category=='menu/') {
+      browserHistory.push('/webshop/')
+    }else {
+      let subcategory = e.target.textContent.toLowerCase()
+      browserHistory.push('/webshop/'+category+subcategory)
     }
-    else if (e.target.id=='aggregat') {
-        browserHistory.push('/webshop/'+'badrumsinredning/'+'aggregat')
-      }
   }
 
   render() {
     return (
       <div>
           <div id="menu" onClick={this.clickHandler.bind(this)}>
-              <div id="badrumsinredning">Badrumsinredning
-                <section>
-                  <div id="aggregat">Aggregat</div>
+              <div>Badrumsinredning
+                <section id="badrumsinredning">
+                  <div>Aggregat</div>
                   <div>Bastudörrar</div>
                   <div>Lampor</div>
                   <div>Batterier</div>
@@ -30,7 +31,7 @@ export default class DropdownMenu extends Component {
 
 
               <div>Dusch och badkar
-                <section>
+                <section id="duschOchBadkar">
                   <div>Aggregat</div>
                   <div>Bastudörrar</div>
                   <div>Lampor</div>
@@ -40,7 +41,7 @@ export default class DropdownMenu extends Component {
 
 
               <div>Blandare
-                <section>
+                <section id="blandare">
                   <div>Aggregat</div>
                   <div>Bastudörrar</div>
                   <div>Lampor</div>
@@ -49,7 +50,7 @@ export default class DropdownMenu extends Component {
               </div>
 
               <div>Bastu
-                <section>
+                <section id="bastu">
                   <div>Aggregat</div>
                   <div>Bastudörrar</div>
                   <div>Lampor</div>
@@ -58,7 +59,7 @@ export default class DropdownMenu extends Component {
               </div>
 
               <div>VVS
-                <section>
+                <section id="VVS">
                   <div>Aggregat</div>
                   <div>Bastudörrar</div>
                   <div>Lampor</div>
@@ -67,7 +68,7 @@ export default class DropdownMenu extends Component {
               </div>
 
               <div>Värme och pumpar
-                <section>
+                <section id="varmeOchPumpar">
                   <div>Aggregat</div>
                   <div>Bastudörrar</div>
                   <div>Lampor</div>

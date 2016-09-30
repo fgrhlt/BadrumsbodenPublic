@@ -14,35 +14,50 @@ class Products extends Component {
     this.state = {
       items: []
     }
+    const { params } = this.props
+    const { category, subcategory } = params
 
-    let category = this.props.params.category
-    category = 'aggregat' //TEST
-    this.props.fetchFirebaseData(category)
+    this.props.fetchFirebaseData('webshop/produkter/'+category+'/'+subcategory)
+    //this.props.fetchFirebaseData('webshop/menus/badrumsinredning')
   }
 
   componentWillReceiveProps(nextProps) {
-    this.state = {
-      items: nextProps
+    const { params } = nextProps
+    const { category, subcategory } = params
+
+    this.setState({
+      firebaseData: nextProps.firebaseData
+    })
+
+    if (this.props.params.subcategory !== subcategory) {
+      this.props.fetchFirebaseData('webshop/produkter/'+category+'/'+subcategory)
+
+      this.setState({
+        firebaseData: nextProps.firebaseData
+      })
     }
   }
 
   render() {
     const { params } = this.props
-    const { category } = params
-    let firebaseData = this.state.items.firebaseData
-    let category2 = 'aggregat' // TEST
+    const { category, subcategory } = params
+    const { firebaseData } = this.state
 
-    return (
+    // let firebaseDataItems =  firebaseData ? firebaseData['webshop/menus/'+category].items : []
+    //
+    // var subcategorys = firebaseDataItems.map((key, value) => {
+    //                 return <li key={key}>{value}</li>
+    //               })
+
+  return (
       <div>
         <div id="products">
           <section>
-            <ul>
-              <li>{category}</li>
-            </ul>
+            <ul> subcategorys </ul>
           </section>
 
           <section>
-            {<ProductElements items={firebaseData ? firebaseData[category2].items : []}/>}
+            {<ProductElements items={firebaseData ? firebaseData['webshop/produkter/'+category+'/'+subcategory].items : []}/>}
           </section>
 
         </div>
@@ -53,7 +68,6 @@ class Products extends Component {
 
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     firebaseData: state.firebaseReducer.firebaseData
   }

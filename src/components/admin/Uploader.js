@@ -14,7 +14,7 @@ export default class Uploader extends Component {
 
   handleBtnClick() { 
     const { item, updateDescription } = this.props
-    updateDescription(item.folder, item.key, item.name, this.state.value)
+    updateDescription(item.key, item.name, this.state.value)
     this.setState({
       value: ''
     })

@@ -7,30 +7,36 @@ import * as shoppingcartActions from '../../actions/shoppingcartActions'
 class ShoppingCart extends Component {
 
   componentWillMount() {
-    this.props.createShoppingCart()
+    this.state = {
+      shoppingcartReducer: []
+    }
   }
 
-  clicked(article, price) {
-
-    this.props.addArticle(article, price)
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      shoppingcartReducer: nextProps.shoppingcartReducer ? nextProps.shoppingcartReducer : ''
+    })
   }
+
   render() {
+    const { shoppingcartReducer } = this.props
+    const { sum, quantity } = shoppingcartReducer
 
     return (
       <div className="shoppingCart">
-        <p>
-          {this.state || 'loading' }
-        </p>
-
-        <button onClick={this.clicked.bind(this, 'hej', '12')}></button>
+          <ul>
+            <li>Summa: {sum} :-</li>
+            <li>Antal varor: {quantity}</li>
+          </ul>
       </div>
     )
   }
 }
 
 function mapStateToProps(state) {
+  console.log('shoppingcartReducer', state.shoppingcartReducer);
   return {
-    shoppingcart: state.shoppingcartReducer
+    shoppingcartReducer: state.shoppingcartReducer
   }
 }
 
