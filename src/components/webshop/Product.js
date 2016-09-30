@@ -4,58 +4,56 @@ import ProductElements from './ProductElements'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as firebaseActions from '../../actions/firebaseActions'
+import * as shoppingcartActions from '../../actions/shoppingcartActions'
 
 require('firebase/database')
 require('styles/_webshopPage/products.css')
 
-class Products extends Component {
+class Product extends Component {
 
   componentWillMount() {
     this.state = {
-      items: []
+      product: []
     }
 
-    let category = this.props.params.category
-    this.props.fetchFirebaseData(category)
+    const { params } = this.props
+    const { category, subcategory, product } = params
+    let folder = 'webshop/produkter/'+category+'/'+subcategory
+
+    this.props.actions.firebaseActions.filterAndFetchFirebaseProducts(folder, product)
   }
 
   componentWillReceiveProps(nextProps) {
-    this.state = {
-      items: nextProps
-    }
+    this.setState({
+      product: nextProps.firebaseData.sortedProducts ? nextProps.firebaseData.sortedProducts.items[0] : ''
+    })
+  }
+
+  clickedBuyBtn() {
+    this.props.actions.shoppingcartActions.addToShoppingcart(this.state.product)
   }
 
   render() {
-    const { params } = this.props
-    const { category } = params
-    let firebaseData = this.state.items.firebaseData
-
-    //Find product based on articleNr
-    let hej = firebaseData ? firebaseData[category].items : []
-    console.log('2', hej);
+    const { product } = this.state
+    const { price, description, url, productName } = product
 
     return (
       <div>
         <div id="products">
           <section>
             <ul>
-              <li>{this.props.params.category}</li>
+              <li>Hejhej</li>
             </ul>
           </section>
 
           <section>
-              <img style={{}} src="https://placekitten.com/g/200/300" alt="" />
-
-                <div>
-                  <h4>title</h4>
-                  <p>description</p>
-                  <div className="buy-btn">
-                    <span>price:- </span>
-                    <span>Mer info</span>
-                  </div>
-                </div>
+            <figure style={{backgroundImage: 'url(' + url + ')'}} />
+            <h4>{productName}</h4>
+            <p>{description}</p>
+            <div onClick={this.clickedBuyBtn.bind(this)} className="buy-btn">
+              <span>{price}:-</span>
+            </div>
           </section>
-
         </div>
       </div>
     )
@@ -70,7 +68,12 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(firebaseActions, dispatch)
+  return {
+    actions: {
+      firebaseActions: bindActionCreators(firebaseActions, dispatch),
+      shoppingcartActions: bindActionCreators(shoppingcartActions, dispatch)
+    }
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Products)
+export default connect(mapStateToProps, mapDispatchToProps)(Product)

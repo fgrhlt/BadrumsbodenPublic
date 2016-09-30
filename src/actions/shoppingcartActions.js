@@ -1,13 +1,13 @@
 let nextTodoId = 0
 
-const ADD_ARTICLE = 'ADD_ARTICLE'
+const ADD_TO_SHOPPINGCART = 'ADD_TO_SHOPPINGCART'
 const CREATE_SHOPPING_CART = 'CREATE_SHOPPING_CART'
 
-export function addArticle(article, price) {
+export function addToShoppingcart(product) {
   return {
-    type: ADD_ARTICLE,
-    article,
-    price
+    type: ADD_TO_SHOPPINGCART,
+    articleNr: product.articleNr,
+    product: product,
   }
 }
 

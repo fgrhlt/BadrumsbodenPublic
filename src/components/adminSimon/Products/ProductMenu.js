@@ -30,11 +30,11 @@ class CategoryItem extends Component {
 class SubListItems extends Component {
   handleClick(subcategory, category) {
     browserHistory.push('/newAdmin/webshop/produkter/' + category.toLowerCase() + '/' + subcategory.toLowerCase())
+
   }
 
   render() {
     let category = this.props.categories.name
-    console.log(category)
     return (
       <div>
         <ul>
@@ -55,7 +55,7 @@ export default class ProductMenu extends Component {
       categories: [
         {
           name: 'Badrumsinredning',
-          subCategories: ['Stolar', 'pallar', 'sängar', 'soffor'],
+          subCategories: ['Aggregat', 'Bastudörrar', 'Lampor', 'Batterier'],
           key:'1'
         },
         {

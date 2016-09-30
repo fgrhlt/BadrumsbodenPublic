@@ -18,7 +18,7 @@ export default class Products extends Component {
         />
 
         <div id="container">
-          <ProductMenu />
+          <ProductMenu/>
           <ProductTable />
         </div>
       </div>

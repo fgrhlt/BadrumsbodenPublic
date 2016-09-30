@@ -52,11 +52,12 @@ const router = (
         <Route path="services" component={Services}></Route>
         <Route path="admin" component={Admin}></Route>
 
-        <Route path="newAdmin" component={NewAdmin}></Route>
-        <Route path="/newAdmin/:site" component={NewAdmin}></Route>
-        <Route path="/newAdmin/:site/:section" component={NewAdmin}></Route>
-        <Route path="/newAdmin/:site/:section/:category/:subcategory" component={NewAdmin}></Route>
-
+        <Route path="newAdmin" component={NewAdmin}>
+          <Route path="/newAdmin/:site" component={NewAdmin}></Route>
+          <Route path="/newAdmin/:site/:section" component={NewAdmin}></Route>
+          <Route path="/newAdmin/:site/:section/:category/:subcategory" component={NewAdmin}></Route>
+        </Route>
+        
         <Route path="checkout" component={Checkouts}></Route>
         <Route path="faq" component={Faq}></Route>
         <Route path="animation" component={Animation}></Route>

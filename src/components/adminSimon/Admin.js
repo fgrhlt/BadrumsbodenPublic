@@ -15,10 +15,10 @@ export default class Admin extends Component {
       <div>
         <AdminHeader param={site} />
         {site=='webshop' ? <AdminWebshopMenu param={section} /> : ''}
-        {site=='webshop' && section=='produkter' ? <Products /> : ''}
+        {site=='webshop' && section=='produkter' ? <Products param={this.props.params}/> : ''}
         {site=='webshop' && section=='kampanjer' ? <Campaigns /> : ''}
 
-        
+
 
       </div>
     )

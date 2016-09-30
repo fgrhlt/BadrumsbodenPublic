@@ -8,18 +8,22 @@ export default class ProductPreview extends Component {
     const { item } = this.props
     const { folder, articleNr } = item
 
-    browserHistory.push('/webshop/'+'badrumsinredning/aggregat/'+articleNr) // TEST
-    //browserHistory.push('/webshop/'+folder+articleNr)
+    let path = ''
+    browserHistory.listen( (event) => {
+      path = event.pathname.replace('/newAdmin', '')
+    })
+
+    browserHistory.push(path+'/'+articleNr)
   }
 
   render() {
     const { item } = this.props
-    const { url, title, description, price } = item
+    const { articleNr, price, description, productName, supplier, url } = item
 
     return (
       <div onClick={this.onClick.bind(this)}>
         <figure style={{backgroundImage: 'url(' + url + ')'}} />
-        <h4>{title}</h4>
+        <h4>{productName}</h4>
         <p>{description}</p>
         <div className="buy-btn">
           <span>{price}:-</span>
