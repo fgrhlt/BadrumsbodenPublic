@@ -57,7 +57,7 @@ const router = (
           <Route path="/newAdmin/:site/:section" component={NewAdmin}></Route>
           <Route path="/newAdmin/:site/:section/:category/:subcategory" component={NewAdmin}></Route>
         </Route>
-        
+
         <Route path="checkout" component={Checkouts}></Route>
         <Route path="faq" component={Faq}></Route>
         <Route path="animation" component={Animation}></Route>

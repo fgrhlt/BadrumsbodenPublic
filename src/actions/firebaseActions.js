@@ -3,14 +3,15 @@ const DELETE_FIREBASE_DATA = 'DELETE_FIREBASE_DATA'
 const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION'
 const FILTER_AND_FETCH_FIREBASE_PRODUCTS = 'FILTER_AND_FETCH_FIREBASE_PRODUCTS'
 
-require('firebase/database')
-require('firebase/storage')
+import firebase from 'firebase/app'
+
+// require('firebase/database')
+// require('firebase/storage')
 
 export function fetchFirebaseData(folder, articleNr) {
   var ref = firebase.database()
   .ref()
   .child(folder)
-
   return (dispatch) => {
     ref.on('value', (snapshot) => {
       var items = []
