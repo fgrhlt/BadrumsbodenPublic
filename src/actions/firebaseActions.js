@@ -2,6 +2,7 @@ const FETCH_FIREBASE_DATA = 'FETCH_FIREBASE_DATA'
 const DELETE_FIREBASE_DATA = 'DELETE_FIREBASE_DATA'
 const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION'
 const FILTER_AND_FETCH_FIREBASE_PRODUCTS = 'FILTER_AND_FETCH_FIREBASE_PRODUCTS'
+const SEARCH_AND_FETCH_FIREBASE_PRODUCTS = 'SEARCH_AND_FETCH_FIREBASE_PRODUCTS'
 
 import firebase from 'firebase/app'
 
@@ -33,12 +34,12 @@ export function fetchFirebaseData(folder, articleNr) {
   }
 }
 
-export function filterAndFetchFirebaseProducts(folder, product) {
+export function filterAndFetchFirebaseProducts(folder, articleNr) {
   var ref = firebase.database()
   .ref()
   .child(folder)
   .orderByChild('articleNr')
-  .equalTo(product)
+  .equalTo(articleNr)
 
   return (dispatch) => {
     ref.on('value', (snapshot) => {
@@ -60,23 +61,63 @@ export function filterAndFetchFirebaseProducts(folder, product) {
   }
 }
 
-export function deleteFirebaseElement(folder, key, name) {
+export function searchAndFetchFirebaseProducts(productName) {
+  var ref = firebase.database()
+  .ref()
+  .child('webshop/produkter')
+  // .orderByChild('productName')
+  // .equalTo(productName)
+  //
+  // ref.child('webshop/produkter/badrumsinredning')
+  //    .orderByChild('productName')
+  //    .equalTo('Katt2')
+  //    .on('value', (snapshot) => {
+  //       console.log(snapshot.val())
+  //     })
+  //
+  // ref.child("studentList")
+  //    .orderByChild("name")
+  //    .equalTo("54ca2c11d1afc1612871624a")
+  //    .on("child_added", function(snapshot) {
+  //       console.log(snapshot.val());
+  //     });
+
+
   return (dispatch) => {
-    var DBref = firebase.database()
-    .ref(folder+key)
-    .remove()
-    .then(() => {
-      console.log('Database: '+folder+key, 'deleted!')
-      var storageRef = firebase.storage().ref()
-      var storageRef2 = storageRef.child(folder+name)
-      storageRef2.delete()
-      console.log('Storage: '+folder+name, 'deleted!')
+    ref.on('value', (snapshot) => {
+      snapshot.forEach( (childSnapshot) => {
+        childSnapshot.forEach( (subchildSnapshot) => {
+          var item = subchildSnapshot.val()
+          console.log('test', item.productName)
+        })
+      })
+      dispatch({
+        type: SEARCH_AND_FETCH_FIREBASE_PRODUCTS,
+        item
+      })
     })
+  }
+}
+
+export function deleteFirebaseElement(product) {
+  var databaseRef = firebase.database()
+  .ref(product.folder+'/'+product.key)
+  .remove()
+  .then(() => {
+    console.log('Database: '+product.folder+'/'+product.key, 'deleted!')
+    var storageRef = firebase.storage()
+    .ref()
+    .child(product.folder+'/'+product.filename)
+    .delete()
+
+    console.log('Storage: '+product.folder+'/'+product.filename, 'deleted!')
+  })
+
+  return (dispatch) => {
     dispatch({
       type: DELETE_FIREBASE_DATA,
-      folder,
-      key,
-      name
+      folder: product.folder,
+      productName: product.productName
     })
   }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
+import { replaceSpecialCharactersURLs } from '../../utils/Utils'
 
 require('styles/_webshopPage/dropdownMenu.css')
 
@@ -11,7 +12,8 @@ export default class DropdownMenu extends Component {
     if (category=='menu/') {
       browserHistory.push('/webshop/')
     }else {
-      let subcategory = e.target.textContent.toLowerCase()
+      let subcategory = e.target.textContent
+      subcategory = replaceSpecialCharactersURLs(subcategory)
       browserHistory.push('/webshop/'+category+subcategory)
     }
   }
@@ -31,7 +33,7 @@ export default class DropdownMenu extends Component {
 
 
               <div>Dusch och badkar
-                <section id="duschOchBadkar">
+                <section id="duschochbadkar">
                   <div>Aggregat</div>
                   <div>Bastudörrar</div>
                   <div>Lampor</div>
@@ -68,7 +70,7 @@ export default class DropdownMenu extends Component {
               </div>
 
               <div>Värme och pumpar
-                <section id="varmeOchPumpar">
+                <section id="varmeochpumpar">
                   <div>Aggregat</div>
                   <div>Bastudörrar</div>
                   <div>Lampor</div>

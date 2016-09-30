@@ -8,25 +8,27 @@ class ShoppingCart extends Component {
 
   componentWillMount() {
     this.state = {
-      shoppingcartReducer: []
+      summary: []
+    }
+    this.state = {
+      summary: this.props.shoppingcartReducer.summary ? this.props.shoppingcartReducer.summary : ''
     }
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      shoppingcartReducer: nextProps.shoppingcartReducer ? nextProps.shoppingcartReducer : ''
+      summary: nextProps.shoppingcartReducer.summary ? nextProps.shoppingcartReducer.summary : ''
     })
   }
 
   render() {
-    const { shoppingcartReducer } = this.props
-    const { sum, quantity } = shoppingcartReducer
-
+    const { summary } = this.state
+    
     return (
       <div className="shoppingCart">
           <ul>
-            <li>Summa: {sum} :-</li>
-            <li>Antal varor: {quantity}</li>
+            <li>Summa: {summary.sum} :-</li>
+            <li>Antal varor: {summary.quantity}</li>
           </ul>
       </div>
     )
@@ -34,7 +36,6 @@ class ShoppingCart extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('shoppingcartReducer', state.shoppingcartReducer);
   return {
     shoppingcartReducer: state.shoppingcartReducer
   }
