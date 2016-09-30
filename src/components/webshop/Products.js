@@ -11,45 +11,47 @@ require('styles/_webshopPage/products.css')
 class Products extends Component {
 
   componentWillMount() {
+    const { params } = this.props
+    const { category, subcategory } = params
+    let path = 'webshop/produkter/'+category+'/'+subcategory
+
     this.state = {
       items: []
     }
-    const { params } = this.props
-    const { category, subcategory } = params
 
-    this.props.fetchFirebaseData('webshop/produkter/'+category+'/'+subcategory)
+    switch (category) {
+      case 'searchQuery':
+        this.props.searchAndFetchFirebaseProducts(subcategory)
+        break
+      default:
+        this.props.fetchFirebaseData(path)
+    }
+
     //this.props.fetchFirebaseData('webshop/menus/badrumsinredning')
   }
 
   componentWillReceiveProps(nextProps) {
     const { params } = nextProps
     const { category, subcategory } = params
+    let path = 'webshop/produkter/'+category+'/'+subcategory
 
     this.setState({
-      firebaseData: nextProps.firebaseData
+      items: nextProps.firebaseData[path] ? nextProps.firebaseData[path].items : []
     })
 
     if (this.props.params.subcategory !== subcategory) {
-      this.props.fetchFirebaseData('webshop/produkter/'+category+'/'+subcategory)
+      this.props.fetchFirebaseData(path)
 
       this.setState({
-        firebaseData: nextProps.firebaseData
+        items: nextProps.firebaseData[path] ? nextProps.firebaseData[path].items : []
       })
     }
   }
 
   render() {
-    const { params } = this.props
-    const { category, subcategory } = params
-    const { firebaseData } = this.state
+    const { items } = this.state
 
-    // let firebaseDataItems =  firebaseData ? firebaseData['webshop/menus/'+category].items : []
-    //
-    // var subcategorys = firebaseDataItems.map((key, value) => {
-    //                 return <li key={key}>{value}</li>
-    //               })
-
-  return (
+    return (
       <div>
         <div id="products">
           <section>
@@ -57,7 +59,7 @@ class Products extends Component {
           </section>
 
           <section>
-            {<ProductElements items={firebaseData ? firebaseData['webshop/produkter/'+category+'/'+subcategory].items : []}/>}
+            {<ProductElements items={items}/>}
           </section>
 
         </div>

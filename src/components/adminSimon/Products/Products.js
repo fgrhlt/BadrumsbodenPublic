@@ -7,6 +7,18 @@ require('styles/_adminSimon/_products/products.css')
 
 export default class Products extends Component {
 
+componentWillMount() {
+  this.state = {
+    showProductTable: false
+  }
+}
+
+showProductTable() {
+  this.setState({
+    showProductTable: true
+  })
+}
+
   render() {
     return (
       <div id="adminProducts">
@@ -18,8 +30,8 @@ export default class Products extends Component {
         />
 
         <div id="container">
-          <ProductMenu/>
-          <ProductTable />
+          <ProductMenu showProductTable={this.showProductTable.bind(this)}/>
+          { this.state.showProductTable? <ProductTable /> : ''}
         </div>
       </div>
     )

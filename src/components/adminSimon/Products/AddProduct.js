@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { replaceSpecialCharactersURLs } from '../../../utils/Utils'
 import { browserHistory } from 'react-router'
+import firebase from 'firebase/app'
 
 require('styles/_adminSimon/_products/addProduct.css')
 
@@ -12,7 +14,7 @@ export default class AddProduct extends Component {
 
     browserHistory.listen( (event) => {
       let newVar = event.pathname.replace('/newAdmin', '')
-
+      newVar = replaceSpecialCharactersURLs(newVar)
       this.setState({ dbAndStoragePath: newVar })
       }
     )
@@ -37,7 +39,7 @@ export default class AddProduct extends Component {
 
     var file = this.refs.bild.files[0]
     var storageRef = firebase.storage().ref()
-    var uploadTask = storageRef.child(dbAndStoragePath+file.name)
+    var uploadTask = storageRef.child(dbAndStoragePath+'/'+file.name)
     //Upload file (and metadata)
     var task = uploadTask.put(file)
 

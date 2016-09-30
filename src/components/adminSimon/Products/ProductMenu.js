@@ -21,7 +21,7 @@ class CategoryItem extends Component {
           </div>
           <figure />
         </div>
-        {this.state.clicked ? <SubListItems categories={this.props}/> : ''}
+        {this.state.clicked ? <SubListItems showProductTable={this.props.showProductTable} categories={this.props}/> : ''}
       </div>
     );
   }
@@ -30,7 +30,7 @@ class CategoryItem extends Component {
 class SubListItems extends Component {
   handleClick(subcategory, category) {
     browserHistory.push('/newAdmin/webshop/produkter/' + category.toLowerCase() + '/' + subcategory.toLowerCase())
-
+    this.props.showProductTable()
   }
 
   render() {
@@ -81,7 +81,8 @@ export default class ProductMenu extends Component {
           <CategoryItem
             key={category.key}
             name={category.name}
-            subCategories={category.subCategories}/>
+            subCategories={category.subCategories}
+            showProductTable={this.props.showProductTable}/>
         )})}
 
         <div id="yellow">

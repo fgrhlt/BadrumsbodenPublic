@@ -3,6 +3,8 @@ import {Table, Column, Cell} from 'fixed-data-table';
 import FittedTable from './ResponsiveFittedTable';
 import AddProduct from './AddProduct';
 
+import { replaceSpecialCharactersURLs } from '../../../utils/Utils'
+
 import { browserHistory } from 'react-router'
 
 import { bindActionCreators } from 'redux'
@@ -19,31 +21,24 @@ require('styles/_fixedDataTable/fixed-data-table.css')
 class ProductTable extends Component {
 
   componentWillMount() {
-    this.state = {
-      products: [],
-      columns: [],
-      path: ''
-    }
-    console.log('1');
     browserHistory.listen( (event) => {
       let newVar = event.pathname.replace('/newAdmin', '')
-
+      newVar = replaceSpecialCharactersURLs(newVar)
       this.props.fetchFirebaseData(newVar)
-console.log('2');
-      this.setState({
+
+      this.state = {
+        products: [],
+        columns: [],
         path: newVar
-      })
+      }
     })
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('3');
-
-    let path = 'webshop/produkter/badrumsinredning/stolar'
     let fbData = nextProps.firebaseData ? nextProps.firebaseData[this.state.path].items : []
 
-    let arrr = fbData.map( (item) => {
-      return [item.articleNr, item.supplier, item.productName, item.description, item.filename]
+    let arrr = fbData.map( (product) => {
+      return [product.articleNr, product.supplier, product.productName, product.description, product.filename, product]
     }
   )
 
@@ -59,8 +54,12 @@ console.log('2');
   }
 }
 
+removeArticle() {
+ let product = this.state.products[0][5]
+ this.props.deleteFirebaseElement(product)
+}
+
 render() {
-console.log('4');
   return (
     <div id="productTable">
       <FittedTable
@@ -123,9 +122,9 @@ console.log('4');
         <Column
           cell={
             <Cell>
-              <figure className="star" />
-              <figure className="pencil" />
-              <figure className="trash" />
+              <figure className="pencil" onClick={this.removeArticle.bind(this)}/>
+              {/*<figure className="star" />*/}
+              {/*<figure className="trash" />*/}
             </Cell>}
             flexGrow={1}
             width={60}
