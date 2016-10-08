@@ -1,296 +1,167 @@
 @import '../global.css';
 
-#serviceSelector {
-  min-height:400px;
+.serviceSelector {
+  height:400px;
   background-repeat:no-repeat;
-  background-size: cover;
+  background-size:cover;
   lost-utility:clearfix;
   box-sizing:border-box;
   text-align:center;
   color:white;
   overflow: hidden;
 
+    /* The two skewed containers */
     & > div {
+      transform: skew(-20deg);
+      position: relative;
+      lost-column: 1/2 0 0;
+      width:60%;
       min-height:400px;
-      display: flex;
-      align-items:center;
-      justify-content:center;
       cursor:pointer;
-      user-select:none;
-      padding-top: 50px;
-      box-sizing:border-box;
-    }
+      box-sizing: border-box;
+      transition: 400ms;
 
-    & h3 {
-      padding:0 15%;
-    }
-
-    & #leftService {
-      background-color:rgba(#A9DDD6, 0.8);
-      transform: skew(-20deg);//Parallelogram
-      overflow: hidden;
-      position: relative;
-      lost-column: 1/2 0 0;
-      transition: 500ms;
-
-        & #expandArrowLeft {
-          display: none;
+        /* The inner content div */
+        & > div:nth-of-type(1) {
           transform: skew(20deg);
-        }
+          margin-top:60px;
+          user-select:none;
 
-        & #innerContainerLeft {
-          position: absolute;
-          transform: skew(20deg);
-
-            & figure {
-              background:url(../../assets/icons/services/wrench.svg) no-repeat;
-              width:112px;
-              height:83px;
-              margin:0 auto 30px auto;
-            }
-        }
-
-        & #innerContainerLeft2 {
-          position: absolute;
-          transform: skew(20deg);
-          display: none;
-        }
-
-        & #borderLeft {
-          position: absolute;
-          background-color:rgba(#9FC5C1,0.8);
-          width: 40px;
-          height: 400px;
-          z-index: 10;
-          right: 0px;
-          transition: 500ms;
-          padding-bottom: 50px;
-        }
-    }
-
-    & #leftServiceExpanded {
-      background-color:rgba(#A9DDD6, 0.8);
-      transform: skew(-20deg);//Parallelogram
-      overflow: hidden;
-      position: relative;
-      lost-column: 5/6 0 0;
-      transition: 500ms;
-      display: none;
-
-        & #expandArrowLeft {
-          display: none;
-          transform: skew(20deg);
-        }
-
-        & #innerContainerLeft {
-          position: absolute;
-          transform: skew(20deg);
-          lost-column: 1/2 0 0;
-
-            & figure {
-              background:url(../../assets/icons/services/wrench.svg) no-repeat;
-              width:112px;
-              height:83px;
-              margin:0 auto 30px auto;
-            }
-        }
-
-        & #innerContainerLeft2 {
-          position: absolute;
-          transform: skew(20deg);
-          display: none;
-          lost-column: 1/2 0 0;
-        }
-
-        & #borderLeft {
-          position: absolute;
-          background-color:rgba(#9FC5C1,0.8);
-          width: 40px;
-          height: 400px;
-          z-index: 10;
-          right: 0px;
-          transition: 500ms;
-          padding-bottom: 50px;
-        }
-    }
-
-    & #leftServiceMinimized {
-      background-color:rgba(#A9DDD6, 0.8);
-      transform: skew(-20deg);//Parallelogram
-      overflow: hidden;
-      position: relative;
-      lost-column: 1/6 0 0;
-      transition: 500ms;
-      display: none;
-
-        & #expandArrowLeft {
-          transform: skew(20deg);
-        }
-
-        & #borderLeft {
-          position: absolute;
-          background-color:rgba(#9FC5C1,0.8);
-          width: 40px;
-          height: 400px;
-          z-index: 10;
-          right: 0px;
-          transition: 500ms;
-          padding-bottom: 50px;
-        }
-    }
-
-    & #leftService:hover {
-      background-color:color(#9FC5C1 alpha(-20%) shade(25%));
-    }
-    & #leftService:hover #borderLeft {
-      background-color:color(#9FC5C1 alpha(-20%) shade(25%));
-    }
-    & #leftServiceMinimized:hover {
-      background-color:color(#9FC5C1 alpha(-20%) shade(25%));
-    }
-    & #leftServiceMinimized:hover #borderLeft {
-      background-color:color(#9FC5C1 alpha(-20%) shade(25%));
-    }
-
-
-    & #rightService {
-      background-color:rgba(#A7D49B, 0.8);
-      transform: skew(-20deg);//Parallelogram
-      overflow: hidden;
-      position: relative;
-      lost-column: 1/2 0 0;
-      transition: 500ms;
-
-        & #expandArrowRight {
-          display: none;
-          transform: skew(20deg);
-        }
-
-        & #innerContainerRight {
-          position: absolute;
-          transform: skew(20deg);
-
-            & figure {
-              background:url(../../assets/icons/services/tap.svg) no-repeat;
-              width:78px;
-              height:98px;
-              margin:0 auto 30px auto;
-            }
+          & h3 {
+            padding:0 20%;
           }
-
-         & #innerContainerRight2 {
-           position: absolute;
-           transform: skew(20deg);
-           display: none;
-        }
-
-         & #borderRight {
-           position: absolute;
-           background-color:rgba(#9FC198,0.8);
-           width: 40px;
-           height: 400px;
-           z-index: 10;
-           left: 0px;
-           transition: 500ms;
-           padding-bottom: 50px;
-         }
-    }
-
-    & #rightServiceExpanded {
-      background-color:rgba(#A7D49B, 0.8);
-      transform: skew(-20deg);//Parallelogram
-      overflow: hidden;
-      position: relative;
-      lost-column: 5/6 0 0;
-      transition: 500ms;
-      display: none;
-
-        & #expandArrowRight {
-          display: none;
-          transform: skew(20deg);
-        }
-
-        & #innerContainerRight {
-          position: absolute;
-          transform: skew(20deg);
-
-            & figure {
-              background:url(../../assets/icons/services/tap.svg) no-repeat;
-              width:78px;
-              height:98px;
-              margin:0 auto 30px auto;
-            }
+          & span {
+            display:inline-block;
+            margin-top:20px;
           }
-
-         & #innerContainerRight2 {
-           position: absolute;
-           transform: skew(20deg);
-           display: none;
         }
 
-         & #borderRight {
-           position: absolute;
-           background-color:rgba(#9FC198,0.8);
-           width: 40px;
-           height: 400px;
-           z-index: 10;
-           left: 0px;
-           transition: 500ms;
-           padding-bottom: 50px;
-         }
-    }
-
-    & #rightServiceMinimized {
-      background-color:rgba(#A7D49B, 0.8);
-      transform: skew(-20deg);//Parallelogram
-      overflow: hidden;
-      position: relative;
-      lost-column: 1/6 0 0;
-      transition: 500ms;
-      display: none;
-
-        & #expandArrowRight {
-          transform: skew(20deg);
-        }
-
-        & #borderRight {
+        & .border {
           position: absolute;
-          background-color:rgba(#9FC5C1,0.8);
+          top:0;
           width: 40px;
           height: 400px;
           z-index: 10;
-          right: 0px;
           transition: 500ms;
-          padding-bottom: 50px;
         }
     }
 
-    & #rightService:hover {
-      background-color:color(#9FC198 alpha(-20%) shade(25%));
+    /* The left, blue service field. This div is pushed out of
+     * the window by 10% (this works becuase the div is 60% wide)
+     * and then pushes the content inside 6% because then the content
+     * appears to be centered by the skew */
+    & > div:nth-of-type(1) {
+      background-color:rgba(#A9DDD6, 0.8);
+      margin-left:-10%;
+      padding-left: 6%;
+
+      & > div:nth-of-type(1) {
+        & figure {
+          background:url(../../assets/icons/services/wrench.svg) no-repeat;
+          width:112px;
+          height:83px;
+          margin:0 auto 30px auto;
+        }
+        /* The link */
+        & span {
+          color:#536B67;
+        }
+        & span:hover {
+          color:#374744;
+        }
+      }
+
+      & .border {
+        background-color:rgba(#9FC5C1,0.8);
+        right: 0;
+      }
     }
-    & #rightService:hover #borderRight {
-      background-color:color(#9FC198 alpha(-20%) shade(25%));
+    & > div:nth-of-type(1):hover {
+      background-color:color(#9FC5C1 alpha(-20%) shade(25%));
+
+      & .border {
+        background-color:color(#9FC5C1 alpha(-20%) shade(25%));
+      }
     }
-    & #rightServiceMinimized:hover {
-      background-color:color(#9FC198 alpha(-20%) shade(25%));
+
+    /* The right, green service field. This div is pushed out of
+     * the window by 10% (this works becuase the div is 60% wide)
+     * and then pushes the content inside 6% because then the content
+     * appears to be centered by the skew */
+    & > div:nth-of-type(2) {
+      background-color:rgba(#A7D49B, 0.8);
+      margin-right:-10%;
+      padding-right: 6%;
+
+      & .border {
+        background-color:rgba(#9FC198,0.8);
+        left: 0;
+      }
+      /* The inner content */
+      & > div:nth-of-type(1) {
+        & figure {
+          background:url(../../assets/icons/services/tap.svg) no-repeat;
+          width:78px;
+          height:98px;
+          margin:0 auto 30px auto;
+        }
+        /* The link */
+        & span {
+          color:#637C5C;
+        }
+        & span:hover {
+          color:#364432;
+        }
+      }
     }
-    & #rightServiceMinimized:hover #borderRight {
+    & > div:nth-of-type(2):hover {
       background-color:color(#9FC198 alpha(-20%) shade(25%));
+
+      & .border {
+        background-color:color(#9FC198 alpha(-20%) shade(25%));
+      }
+    }
+
+    & .expanded {
+      width:100%;
+    }
+    & .minimized {
+      width:20%;
+
+      & figure {
+        width:50px;
+        height:50px;
+        transform: skew(20deg);
+      }
+    }
+    & .left.minimized {
+      background-color:rgba(#8CB5AE, 0.8);
+      & figure {
+        margin:170px auto 0 auto;
+        background: url(../../assets/arrows/expandArrowRight.svg) no-repeat;
+      }
+    }
+    & .left.expanded:hover {
+      background-color:
+    }
+    & .right.minimized {
+      background-color:rgba(#8FAF84,0.8);
+      & figure {
+        margin:190px auto 0 auto;
+        background: url(../../assets/arrows/expandArrowLeft.svg) no-repeat;
+      }
+    }
+    & .hidden {
+      display: none;
     }
 }
-
 
 /* responsive */
 @media (width <= 1280px) {
-  #serviceSelector {
-    min-height:400px;
-  }
+
 }
 
 @media (width <= 800px) {
-  #serviceSelector > div {
-    lost-column:1;
-  }
 }
 
 @media (max-width: 435px) {

@@ -1,39 +1,34 @@
 @import '../global.css';
 
 #priceCalc {
-  text-align: center;
-  width: 40%;
-  margin: auto;
+    /* Top section, the progressbar and the circle */
+    & section:first-of-type {
+      padding:50px 5% 50px 5%;
+      box-sizing: border-box;
 
-    & h1 {
-      font-size: 250%;
-    }
-    & h3 {
-      font-size: 120%;
-    }
-
-    & h2 {
-        font-size: 120%;
+        /* The progress bar */
+        & > div:nth-of-type(2) {
+          margin:0 100px 0 0;
+          float:right;
+          text-align: center;
+        }
     }
 
-    & p {
-        font-size: 120%;
-    }
+    /* Lost container bottom, the form fields */
+    & section:nth-of-type(2) {
+      lost-utility:clearfix;
+      box-sizing:border-box;
+      padding-bottom:60px;
+      margin:0 1% 0 5%;
 
-    & .next {
-      background:url(../../assets/icons/services/orange_arrow_next.svg) no-repeat;
-      width:49px;
-      height:77px;
-      cursor:pointer;
-      margin:120px auto;
-    }
-
-    & .next:hover {
-      background:url(../../assets/icons/services/orange_arrow_next_hover.svg) no-repeat;
-    }
-
-    & .next:active {
-      background:url(../../assets/icons/services/orange_arrow_next_click.svg) no-repeat;
+        /* The first lost item with the text */
+        & > div:nth-of-type(1) {
+          lost-column:4/15 0 1%;
+        }
+        /* The whole form field area with arrows */
+        & > div:nth-of-type(2) {
+          lost-column:11/15 0 1%;
+        }
     }
 }
 

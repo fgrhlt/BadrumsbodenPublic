@@ -3,15 +3,22 @@
 #progressBar {
   lost-utility:clearfix;
   box-sizing:border-box;
-  width:40%;
+  width:45%;
   margin:auto;
-
+  & h4 {
+    margin:0;
+    font-size:22pt;
+    font-weight: bold;
+    border-bottom:1px solid lightgrey;
+    padding-bottom:15px;
+  }
   & > div {
-    lost-column:1/5 5;
+    lost-column:1/6 0;
     height:60px;
+    margin-top:15px;
 
       & p {
-        margin-top:10px;
+        margin:10px 0 0 -25px;
         font-size:14pt;
       }
 
@@ -19,7 +26,6 @@
       & > div {
         border-radius: 50%;
         user-select:none;
-        cursor:default;
         padding:5px;
         box-sizing:border-box;
         width: 25px;
@@ -34,7 +40,7 @@
             cursor:default;
             width: 15px;
             height: 15px;
-            background-color: #FC8060;
+            background-color: var(--orange);
           }
       }
   }

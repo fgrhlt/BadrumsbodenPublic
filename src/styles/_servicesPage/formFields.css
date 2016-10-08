@@ -1,0 +1,112 @@
+@import '../global.css';
+#formFields {
+  /* The react-tooltip div */
+  & .show {
+    font-size:16pt;
+    color:#666;
+  }
+
+  /* The next and previous arrow */
+  & .arrowHolder {
+    lost-column:1/11 0 0;
+
+    & .arrow {
+      background:url(../../assets/arrows/orange_arrow_next.svg) no-repeat;
+      width:49px;
+      height:77px;
+      cursor:pointer;
+      margin:120px auto;
+    }
+    & .arrow:hover {
+      background:url(../../assets/arrows/orange_arrow_next_hover.svg) no-repeat;
+    }
+    & .arrow:active {
+      background:url(../../assets/arrows/orange_arrow_next_click.svg) no-repeat;
+    }
+    & .previous {
+       transform: rotate(180deg);
+    }
+    & .empty {
+      width:49px;
+      height:77px;
+    }
+  }
+
+  /* The form fields */
+  & .inputHolder {
+    lost-column:9/11 0 0;
+
+    & form {
+      & button {
+        float:right;
+      }
+      /* The wrapper holding the three columns of fields */
+      & .fieldWrapper.three {
+        & > div {
+          lost-column: 1/3 0 15px;
+        }
+      }
+      /* The wrapper of the fields */
+      & .fieldWrapper {
+        & > div {
+          lost-column:1/2 0 6%;
+
+          & h4 {
+            margin-bottom:5px;
+            float:left;
+
+            & span {
+              font-size:12pt;
+            }
+          }
+          & figure {
+            background:url('../../assets/icons/services/questionmark.svg') no-repeat;
+            width:25px;
+            height:25px;
+            margin:0;
+            float:right;
+            cursor:pointer;
+          }
+          & figure:hover {
+            background:url('../../assets/icons/services/questionmark_h.svg') no-repeat;
+          }
+          & .checkboxes {
+            margin:15px 0 25px 0;
+            lost-utility:clearfix;
+            /* Every checkbox is a lost item */
+            & > div {
+              lost-column:1/2 0 0;
+            }
+          }
+          & input {
+            width:100%;
+            padding:10px;
+            font-size:16pt;
+            margin-bottom:30px;
+          }
+
+          & textarea {
+            min-width:100%;
+            max-width:100%;
+            min-height:270px;
+            padding:15px;
+            box-sizing: border-box;
+            font-size: 14pt;
+            margin-bottom:30px;
+          }
+          & .half {
+            min-height:105px;
+          }
+          & select {
+            width:100%;
+            height:48px;
+            padding-left:10px;
+            margin-bottom:30px;
+            font-size:16pt;
+          }
+
+        }
+      }
+    }
+  }
+}
