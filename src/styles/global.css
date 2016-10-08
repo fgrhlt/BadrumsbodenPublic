@@ -3,6 +3,8 @@
 /* Set the global colors for the Badrumsboden */
 :global :root {
   --orange: #FD551F;
+  --orangeHover: #A0251C;
+  --orangeClick: #751715;
   --lightBlue: #A9DDD6;
   --lightGreen: #A7D49B;
   --lightYellow: #EAD168;
@@ -74,6 +76,40 @@ input, textarea, select  {
   outline:0;
   border:0;
   background-color: rgba(255,255,255, 0.8);
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+/* Checkbox styles */
+input[type=checkbox] {
+  display:none;
+}
+input[type=checkbox] + label {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  padding:0 0 5px 50px;
+  margin:15px 0;
+  font-size:14pt;
+}
+input[type=checkbox] + label:before {
+  content: "";
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  margin-right: 10px;
+  position: absolute;
+  left: 0;
+  bottom: 1px;
+  background-color: rgba(255,255,255,0.8);
+}
+input[type=checkbox]:checked + label:before {
+  content: "\2713";
+  font-size: 25px;
+  color: #999;
+  text-align: center;
+  line-height: 35px;
+  font-weight: bold;
 }
 
 .btn {
@@ -113,6 +149,18 @@ input, textarea, select  {
 .redButton:active {
   background-color: #7C1212;
 }
+.orangeButton {
+  background-color:var(--orange);
+}
+.orangeButton:hover {
+  background-color: var(--orangeHover);
+}
+.orangeButton:active {
+  background-color: var(--orangeClick);
+}
 button {
   display:block;
+}
+.hidden {
+  display:none;
 }

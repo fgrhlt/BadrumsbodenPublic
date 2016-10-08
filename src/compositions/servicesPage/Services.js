@@ -3,40 +3,59 @@ import { Motion, spring } from 'react-motion'
 
 import Header from '../../components/services/Header'
 import ServiceSelector from '../../components/services/ServiceSelector'
-import PriceCalculator from '../../components/services/PriceCalculator-copy'
+import PriceCalculator from '../../components/services/PriceCalculator'
 import VVSRequest from '../../components/services/VvsRequest'
 import VVSFeatures from '../../components/services/VVSFeatures'
 import GalleryPreview from '../../components/services/GalleryPreview'
 import Footer from '../../components/services/Footer'
 
 require('styles/_servicesPage/services.css')
-require('styles/_servicesPage/serviceSelector.css')
-var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 export default class Services extends Component {
 
   componentWillMount() {
     this.state = {
-      showPriceCalculator: false
+      showPriceCalculator: false,
+      showVVSRequest: false,
+      containerStyle: ''
+    }
+  }
+
+  /* Update what to show depending on which service-box the user clicks in ServiceSelector */
+  displayCalculators(userChoice) {
+    if(userChoice == 'left') {
+      this.setState({
+        showPriceCalculator: true,
+        showVVSRequest: false,
+      })
+    }
+    else if(userChoice == 'right') {
+      this.setState({
+        showPriceCalculator: false,
+        showVVSRequest: true
+      })
     }
   }
 
   render() {
-    var styleVar = {
-      backgroundImage: 'url(assets/images/services/service_bg.jpg)'
-    }
     return (
-      <div>
+      <div id="services">
         <Header />
-        <ServiceSelector />
+        <ServiceSelector displayCalculators={this.displayCalculators.bind(this)}/>
 
+        {this.state.showPriceCalculator ?
           <div>
-            <VVSFeatures/>
-            <PriceCalculator/>
-          </div>
+            <VVSFeatures />
+            <PriceCalculator />
+          </div> : null
+        }
 
-          {/*<VVSFeatures />
-          <VVSRequest />*/}
+        {this.state.showVVSRequest ?
+          <div>
+            <VVSFeatures />
+            <VVSRequest />
+          </div> : null
+        }
 
         <GalleryPreview />
         <Footer />

@@ -2,7 +2,7 @@
 
 #features {
     text-align:center;
-    padding:60px 0 10px 0;
+    padding:60px 0;
 
     & h2 {
       font-style:normal;
@@ -12,13 +12,7 @@
     /* The elements */
     & section  {
       lost-utility:clearfix;
-      min-height:350px;
-      padding:60px 0 20px 0;
       box-sizing:border-box;
-
-        & > div {
-          padding-bottom:30px;
-        }
 
         & h3 {
           margin-top:10px;
