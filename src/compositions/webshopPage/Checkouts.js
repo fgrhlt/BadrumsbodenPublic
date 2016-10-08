@@ -8,7 +8,7 @@ import * as firebaseActions from '../../actions/firebaseActions'
 
 require('styles/_webshopPage/webshop.css')
 
-class Webshop extends Component {
+class Checkouts extends Component {
 
   postRequest() {
     const { NOODLIO_PAY_API_URL, NOODLIO_PAY_API_KEY, TEST_MODE } = this.state
@@ -106,4 +106,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(firebaseActions, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Webshop)
+export default connect(mapStateToProps, mapDispatchToProps)(Checkouts)
