@@ -12,7 +12,7 @@ import Gallery from './compositions/galleryPage/Gallery'
 import Services from './compositions/servicesPage/Services'
 import Animation from './components/Animation'
 import Admin from './compositions/adminPage/Admin'
-import Checkouts from './compositions/WebshopPage/Checkouts'
+import Checkout from './compositions/WebshopPage/Checkout'
 import Faq from './compositions/faq/Faq'
 import Products from './components/webshop/Products'
 import Product from './components/webshop/Product'
@@ -58,7 +58,7 @@ const router = (
           <Route path="/newAdmin/:site/:section/:category/:subcategory" component={NewAdmin}></Route>
         </Route>
 
-        <Route path="checkout" component={Checkouts}></Route>
+        <Route path="checkout" component={Checkout}></Route>
         <Route path="faq" component={Faq}></Route>
         <Route path="animation" component={Animation}></Route>
         <Route path="*" component={NotFound}></Route>
