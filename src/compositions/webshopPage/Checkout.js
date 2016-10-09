@@ -14,12 +14,12 @@ export default class Checkout extends Component {
 		//   data: {"firstName":"Alfred", "lastName": "Chang", "email": "support@mlab.com"}
 		// })
 
-    // // Send a POST request
-		// axios({
-		//   method: 'post',
-		//   url: 'https://shrouded-plateau-50284.herokuapp.com/email',
-		//   data: {"firstName":"Alfred", "lastName": "Chang", "email": "support@mlab.com"}
-		// })
+    // Send a POST request
+		axios({
+		  method: 'post',
+		  url: 'https://shrouded-plateau-50284.herokuapp.com/email',
+		  data: {"firstName":"Alfred", "lastName": "Chang", "email": "support@mlab.com"}
+		})
 
 		// // Send a POST request
 		// axios({

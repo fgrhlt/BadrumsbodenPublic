@@ -74,6 +74,7 @@
     "core-js": "^2.0.0",
     "firebase": "^3.4.1",
     "fixed-data-table": "^0.6.3",
+    "flat": "^2.0.1",
     "history": "^3.0.0",
     "lodash": "^4.15.0",
     "lost": "^7.0.3",

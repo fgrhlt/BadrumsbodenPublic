@@ -14,7 +14,7 @@ export function fetchFirebaseData(folder, articleNr) {
   .ref()
   .child(folder)
   return (dispatch) => {
-    ref.on('value', (snapshot) => {
+    ref.once('value', (snapshot) => {
       var items = []
       // Loop through {objects} in order
       snapshot.forEach( (childSnapshot) => {
@@ -42,7 +42,7 @@ export function filterAndFetchFirebaseProducts(folder, articleNr) {
   .equalTo(articleNr)
 
   return (dispatch) => {
-    ref.on('value', (snapshot) => {
+    ref.once('value', (snapshot) => {
       var items = []
       // Loop through {objects} in order
       snapshot.forEach( (childSnapshot) => {
@@ -84,7 +84,7 @@ export function searchAndFetchFirebaseProducts(productName) {
 
 
   return (dispatch) => {
-    ref.on('value', (snapshot) => {
+    ref.once('value', (snapshot) => {
       snapshot.forEach( (childSnapshot) => {
         childSnapshot.forEach( (subchildSnapshot) => {
           var item = subchildSnapshot.val()
