@@ -38,7 +38,6 @@ export default class PriceCalculator extends Component {
 
     return (
       <div className="serviceForm" id="priceCalc" style={styleVar}>
-
         <section>
           <div className="circle">Svar <br />inom 24h!</div>
           <ProgressBar counter={this.state.stepCounter} />

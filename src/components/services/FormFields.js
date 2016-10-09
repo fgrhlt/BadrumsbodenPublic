@@ -442,7 +442,7 @@ export default class FormFields extends Component {
     // Kan tas bort sen
 
     /* Send email to Mats! TODO: Göra en mall som all input hamnar i som man sedan
-     * kan skicka som email. Så att emailet går att läsa */ 
+     * kan skicka som email. Så att emailet går att läsa */
   }
 
   render() {
@@ -477,7 +477,6 @@ export default class FormFields extends Component {
             <figure className="arrow" onClick={this.submitFormSet.bind(this)}/>
           :<div className="empty"/>}
         </div>
-        {console.log('state', this.state)}
       </div>
     )
   }

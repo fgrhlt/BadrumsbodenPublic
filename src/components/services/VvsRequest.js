@@ -3,17 +3,35 @@ import React, { Component } from 'react'
 require('styles/_servicesPage/vvsRequest.css')
 
 export default class VVSRequest extends Component {
-  render() {
+  componentWillMount() {
+    this.state = {
+      form: {}
+    }
+  }
 
+  /* Takes the input fields and stores them in the state */
+  submitForm(e) {
+    e.preventDefault()
+    let inputValues = {}
+
+    // Get all input fields
+    for(let input in this.refs) {
+      inputValues[input] = this.refs[input].value
+    }
+
+    this.setState({
+      form: inputValues
+    })
+  }
+
+  render() {
     var styleVar = {
       backgroundImage: 'url(assets/images/services/vvs_green_bg.svg)',
       backgroundPosition: 'left center'
     }
 
     return (
-
-      <div className="service-form" id="vvsRequest" style={styleVar}>
-
+      <div className="serviceForm" id="vvsRequest" style={styleVar}>
         <section>
           <div>
             <h2>Kontakta oss för VVS och värmejobb!</h2>
@@ -27,26 +45,28 @@ export default class VVSRequest extends Component {
           </div>
 
           <div>
-            <h3>Namn*</h3>
-            <input />
+            <form onSubmit={this.submitForm.bind(this)} name="vvsRequest">
+              <div>
+                <h3>Namn*</h3>
+                <input type="text" ref="namn" required="true"/>
 
-            <h3>Telefonnummer*</h3>
-            <input />
+                <h3>Telefonnummer*</h3>
+                <input type="text" ref="telefonNummer" required="true"/>
 
-            <h3>E-post*</h3>
-            <input />
-          </div>
+                <h3>E-post*</h3>
+                <input type="text" ref="epost" required="true"/>
+              </div>
 
-          <div>
-            <div className="circle">Svar<br /> inom 24h!</div>
-            <h3>Meddelande*</h3>
-              <textarea />
-              <button className="btn" id="send" name="send">Skicka förfrågan</button>
+              <div>
+                <div className="circle">Svar<br /> inom 24h!</div>
+                <h3>Meddelande*</h3>
+                  <textarea ref="meddelande" required="true"/>
+                  <input type="submit" className="btn" id="send" value="Skicka förfrågan"/>
+              </div>
+            </form>
           </div>
         </section>
       </div>
-
-
     )
   }
 }
