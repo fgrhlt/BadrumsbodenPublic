@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+import flat from 'flat'
 
 import {replaceSpecialCharacters, createLineBreak} from '../../utils/Utils'
 import ReactTooltip from 'react-tooltip'
@@ -16,7 +18,7 @@ class FirstSet extends Component {
             defaultValue={this.props.form.namn}
             type="text"
             required={true}
-          />
+            />
 
           <h4>Telefon*</h4>
           <input
@@ -24,7 +26,7 @@ class FirstSet extends Component {
             defaultValue={this.props.form.telefon}
             type="text"
             //required={true}
-          />
+            />
 
           <h4>E-post*</h4>
           <input
@@ -32,7 +34,7 @@ class FirstSet extends Component {
             defaultValue={this.props.form.epost}
             type="email"
             //required={true}
-          />
+            />
         </div>
 
         <div>
@@ -42,7 +44,7 @@ class FirstSet extends Component {
             defaultValue={this.props.form.adress}
             type="text"
             //required={true}
-          />
+            />
 
           <h4>Huset byggår*</h4>
           <input
@@ -58,7 +60,7 @@ class FirstSet extends Component {
             defaultValue={this.props.form.bredd}
             type="text"
             //required={true}
-          />
+            />
         </div>
 
         <div>
@@ -67,7 +69,7 @@ class FirstSet extends Component {
             ref="langd"
             defaultValue={this.props.form.langd}
             type="text"
-          />
+            />
 
           <Tooltip heading="Takhöjd*" tooltip="Vid snedtak, ange högsta och lägsta punkt" />
           <input
@@ -75,14 +77,14 @@ class FirstSet extends Component {
             defaultValue={this.props.form.takhojd}
             type="text"
             //required={true}
-          />
+            />
 
           <h4>Ev. fönster <span>Bredd x Höjd</span></h4>
           <input
             ref="fonster"
             defaultValue={this.props.form.fonster}
             type="text"
-          />
+            />
         </div>
       </div>
     );
@@ -102,7 +104,7 @@ class SecondSet extends Component {
             defaultValue={form.brunnar}
             type="text"
             required={true}
-          />
+            />
 
           <h4>Läge i fastigheten*</h4>
           <select ref="lage" defaultValue={form.lage}>
@@ -210,7 +212,7 @@ class FourthSet extends Component {
           <Tooltip
             heading="Övrigt"
             tooltip={'Skriv här om det är något du vill informera \nom angående de besvarade frågorna'}
-          />
+            />
           <textarea ref="ovrigt" defaultValue={form.ovrigt}/>
         </div>
       </div>
@@ -247,7 +249,7 @@ class FifthSet extends Component {
             heading="Golvvärme*"
             span="i det nya badrummet"
             tooltip="OBS! fungerar även med våtrumsmatta"
-          />
+            />
           <select ref="golvvarmeNyaBadrummet" defaultValue={form.golvvarmeNyaBadrummet}>
             <option value="elburen">Ja det finns, el-buren</option>
             <option value="vattenburen">Ja det finns, vattenburen</option>
@@ -257,7 +259,7 @@ class FifthSet extends Component {
           <Tooltip
             heading="Element eller handdukstork*"
             tooltip="I det nya badrummet"
-          />
+            />
           <div className="checkboxes" ref="elementHanddukstorkNyaBadrummet">
             <Checkbox name="Element" checked={element ? element.element:null}/>
             <Checkbox name="Handdukstork" checked={element ? element.handdukstork:null}/>
@@ -280,7 +282,7 @@ class SixthSet extends Component {
             heading="Önskad inredning*"
             span="i det nya badrummet"
             tooltip= {'I kalkylen lämnas inget förslag på inredning \nmen det är viktigt att veta vad som önskas av dig'}
-          />
+            />
           <div className="checkboxes" ref="onskadInredningNyaBadrummet">
             <Checkbox name="WC stol" checked={inredning ? inredning.wcstol:null}/>
             <Checkbox name="Bidé" checked={inredning? inredning.bide:null}/>
@@ -299,17 +301,17 @@ class SixthSet extends Component {
           <Tooltip
             heading="Övrigt"
             tooltip={'Beskriv allt som kan vara av vikt för oss då vi ska\n beräkna kostnaden. \n\n' +
-                     'Ju mer vi vet desto bättre blir kalkylens träffsäkerhet'}
-          />
-          <textarea className="half" ref="ovrigtNyaBadrummet" defaultValue={this.props.form.ovrigtNyaBadrummet} />
+              'Ju mer vi vet desto bättre blir kalkylens träffsäkerhet'}
+              />
+            <textarea className="half" ref="ovrigtNyaBadrummet" defaultValue={this.props.form.ovrigtNyaBadrummet} />
 
-          <h4>Filuppladdning</h4>
-          <input type="file" ref="file" />
+            <h4>Filuppladdning</h4>
+            <input type="file" ref="file" />
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
-}
 
 /* Help class to render new checkboxes with the custom css-styling */
 export class Checkbox extends Component {
@@ -318,6 +320,7 @@ export class Checkbox extends Component {
       isChecked: this.props.checked
     }
   }
+
   toggleCheckbox() {
     this.setState({
       isChecked: !this.state.isChecked
@@ -333,11 +336,11 @@ export class Checkbox extends Component {
           id={name}
           onChange={this.toggleCheckbox.bind(this)}
           defaultChecked={this.state.isChecked}
-        />
+          />
         <label htmlFor={name}>{this.props.name}</label>
       </div>
     )}
-}
+  }
 
 /* Help class to render a heading to each input field with tooltip */
 export class Tooltip extends Component {
@@ -352,10 +355,10 @@ export class Tooltip extends Component {
         </ReactTooltip>
       </div>
     )}
-}
+  }
 
 /* The holder for all the form fields. Hides the ones that does not correspond to
- * the value of the counter. */
+* the value of the counter. */
 export default class FormFields extends Component {
   componentWillMount() {
     this.state = {
@@ -371,58 +374,51 @@ export default class FormFields extends Component {
   }
 
   /* Gets the subform that is currently displaying (firstForm, secondForm...)
-   * and collects all the values inside. Then puts the values in the correct
-   * state. */
+  * and collects all the values inside. Then puts the values in the correct
+  * state. */
   submitForm(e) {
     e.preventDefault()
     let inputValues = {}
     let checkboxValues = {}
     let id = ''
 
-    /* Gets the formSet that is active (firstSet, secondSet...) */
+    /* The form set active (firstSet, secondSet ...) */
     for (let formSet in this.refs) {
       id = formSet
 
-      /* Goes into each input field in set */
+      /* Each input field in set */
       for (let inputField in this.refs[formSet].refs) {
 
-        /* Put the input values in an object */
         let inputFields = this.refs[formSet].refs
         inputValues[inputField] = inputFields[inputField].value
 
-        /* Take all the checkboxes */
         if(inputFields[inputField].className == 'checkboxes') {
-          /* Important to reset the checkbox values */
           checkboxValues = {}
 
           /* Go into the checkbox wrapper div */
           for(let checkbox in inputFields[inputField].childNodes) {
             let checkboxes = inputFields[inputField].childNodes
-
             /* Take away stuff that isn't checkbox inputs */
             if(checkboxes[checkbox].firstChild != null) {
+
               let checkboxId = checkboxes[checkbox].firstChild.id
               checkboxValues[checkboxId] = checkboxes[checkbox].firstChild.checked
             }
           }
-          /* Put the checkbox values in the inputValues object */
           inputValues[inputField] = checkboxValues
         }
       }
     }
-
-    /* Update the state with all the input values in the correct sub form (id)*/
+    /* Get the current state and update the correct sub-form (first, second...) */
     let currentState = this.state.formSet
     currentState[id] = inputValues
     this.setState({
       formSet: currentState
     })
-
     // When the form is submitted, increase the stepcounter and load next form
     this.props.increaseStepCounter()
   }
 
-  /* Submit the formSet and go to the next form (stepcounter in submitForm()) */
   submitFormSet(e) {
     e.preventDefault()
     document.getElementById('submitButton').click()
@@ -430,54 +426,49 @@ export default class FormFields extends Component {
 
   /* Sends the complete form to the admin's email */
   sendCompleteForm() {
-    // First submit the last form (sixthSet)
     document.getElementById('submitButton').click()
 
-    // Det här är test för att skriva ut!
-    for(let form in this.state.formSet) {
-      for(let input in this.state.formSet[form]) {
-        console.log(input, ':', this.state.formSet[form][input])
-      }
-    }
-    // Kan tas bort sen
-
-    /* Send email to Mats! TODO: Göra en mall som all input hamnar i som man sedan
-     * kan skicka som email. Så att emailet går att läsa */
+    console.log( flat(this.state.formSet));
+    axios({
+      method: 'post',
+      url: 'https://shrouded-plateau-50284.herokuapp.com/email/priskalkyl',
+      data: flat(this.state.formSet)
+    })
   }
 
   render() {
-    return (
+    return(
       <div id="formFields">
         <div className="arrowHolder">
           {this.props.counter > 1 ?
             <figure className="arrow previous" onClick={this.props.decreaseStepCounter.bind(this)}/>
-          :<div className="empty" />}
-        </div>
+            :<div className="empty" />}
+          </div>
 
-        <div className="inputHolder">
-          <form onSubmit={this.submitForm.bind(this)} name="badrumsrenovering">
-            {this.props.counter == 1 ? <FirstSet ref="first" form={this.state.formSet['first']}/>: null}
-            {this.props.counter == 2 ? <SecondSet ref="second" form={this.state.formSet['second']}/> : null}
-            {this.props.counter == 3 ? <ThirdSet ref="third" form={this.state.formSet['third']}/>: null}
-            {this.props.counter == 4 ? <FourthSet ref="fourth" form={this.state.formSet['fourth']}/>: null}
-            {this.props.counter == 5 ? <FifthSet ref="fifth" form={this.state.formSet['fifth']}/>: null}
-            {this.props.counter == 6 ?
-              <div>
-                <SixthSet ref="sixth" form={this.state.formSet['sixth']}/>
-                <button className="btn orangeButton" onClick={this.sendCompleteForm.bind(this)}>Skicka priskalkyl</button>
+          <div className="inputHolder">
+            <form onSubmit={this.submitForm.bind(this)} name="badrumsrenovering">
+              {this.props.counter == 1 ? <FirstSet ref="first" form={this.state.formSet['first']}/>: null}
+              {this.props.counter == 2 ? <SecondSet ref="second" form={this.state.formSet['second']}/> : null}
+              {this.props.counter == 3 ? <ThirdSet ref="third" form={this.state.formSet['third']}/>: null}
+              {this.props.counter == 4 ? <FourthSet ref="fourth" form={this.state.formSet['fourth']}/>: null}
+              {this.props.counter == 5 ? <FifthSet ref="fifth" form={this.state.formSet['fifth']}/>: null}
+              {this.props.counter == 6 ?
+                <div>
+                  <SixthSet ref="sixth" form={this.state.formSet['sixth']}/>
+                  <button className="btn orangeButton" onClick={this.sendCompleteForm.bind(this)}>Skicka priskalkyl</button>
+                </div>
+                : null}
+
+                <input type="submit" hidden="true" id="submitButton" />
+              </form>
+            </div>
+
+            <div className="arrowHolder">
+              {this.props.counter < 6 ?
+                <figure className="arrow" onClick={this.submitFormSet.bind(this)}/>
+                :<div className="empty"/>}
               </div>
-            : null}
-
-            <input type="submit" hidden="true" id="submitButton" />
-          </form>
-        </div>
-
-        <div className="arrowHolder">
-          {this.props.counter < 6 ?
-            <figure className="arrow" onClick={this.submitFormSet.bind(this)}/>
-          :<div className="empty"/>}
-        </div>
-      </div>
-    )
-  }
-}
+            </div>
+          )
+        }
+      }

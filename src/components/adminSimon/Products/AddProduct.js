@@ -22,6 +22,7 @@ export default class AddProduct extends Component {
 
   /* Takes the values from the form and puts in the state when submitted */
   submitForm(e) {
+    const { dbAndStoragePath } = this.state
 
     e.preventDefault()
     let articleNr = this.refs.articleNr.value;
@@ -30,36 +31,27 @@ export default class AddProduct extends Component {
     let bild = this.refs.bild.value;
     let description = this.refs.description.value;
     let price = this.refs.price.value;
+    var file = this.refs.bild.files[0]
 
     /* Check if any form fields are empty */
     if(articleNr=='' || supplier=='' || productName=='' || bild=='' || description=='') {
       alert('Alla fält måste innehålla ett värde')
     }
-    const { dbAndStoragePath } = this.state
 
-    var file = this.refs.bild.files[0]
-    var storageRef = firebase.storage().ref()
-    var uploadTask = storageRef.child(dbAndStoragePath+'/'+file.name)
-    //Upload file (and metadata)
-    var task = uploadTask.put(file)
-
-    console.log('Uploading file', file.name, 'to', dbAndStoragePath)
+    var storageRef = firebase.storage().ref().child(dbAndStoragePath+'/'+file.name)
+    //Upload file to storageRef
+    let task = storageRef.put(file)
 
     task.on('state_changed', () => {
       // Observe state change events such as progress, pause, and resume
       // See below for more detail
-
+      console.log('Uploading file', file.name, 'to', dbAndStoragePath)
     }, (error) => {
       // Handle unsuccessful uploads
       console.log('error:', error)
     }, () => {
       // Handle successful uploads on complete
       console.log('Upload successful!')
-
-      //Push URL to database
-      console.log('Uploading imageURL', file.name, 'to', dbAndStoragePath )
-      console.log('--------------------')
-
       this.setState({
         infoText: file.name+' är uppladdad till: '+dbAndStoragePath
       })
