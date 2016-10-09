@@ -379,53 +379,70 @@ export default class FormFields extends Component {
     let checkboxValues = {}
     let id = ''
 
-    /* The form set active (firstSet, secondSet ...) */
+    /* Gets the formSet that is active (firstSet, secondSet...) */
     for (let formSet in this.refs) {
       id = formSet
 
-      /* Each input field in set */
+      /* Goes into each input field in set */
       for (let inputField in this.refs[formSet].refs) {
 
+        /* Put the input values in an object */
         let inputFields = this.refs[formSet].refs
         inputValues[inputField] = inputFields[inputField].value
 
+        /* Take all the checkboxes */
         if(inputFields[inputField].className == 'checkboxes') {
+          /* Important to reset the checkbox values */
           checkboxValues = {}
 
           /* Go into the checkbox wrapper div */
           for(let checkbox in inputFields[inputField].childNodes) {
             let checkboxes = inputFields[inputField].childNodes
+
             /* Take away stuff that isn't checkbox inputs */
             if(checkboxes[checkbox].firstChild != null) {
-
               let checkboxId = checkboxes[checkbox].firstChild.id
               checkboxValues[checkboxId] = checkboxes[checkbox].firstChild.checked
             }
           }
+          /* Put the checkbox values in the inputValues object */
           inputValues[inputField] = checkboxValues
         }
       }
-
-      // When the form is submitted, increase the stepcounter and load next form
-      this.props.increaseStepCounter()
     }
 
-    /* Get the current state and update the correct sub-form (first, second...) */
+    /* Update the state with all the input values in the correct sub form (id)*/
     let currentState = this.state.formSet
     currentState[id] = inputValues
     this.setState({
       formSet: currentState
     })
+
+    // When the form is submitted, increase the stepcounter and load next form
+    this.props.increaseStepCounter()
+  }
+
+  /* Submit the formSet and go to the next form (stepcounter in submitForm()) */
+  submitFormSet(e) {
+    e.preventDefault()
+    document.getElementById('submitButton').click()
   }
 
   /* Sends the complete form to the admin's email */
   sendCompleteForm() {
-    // send email to mats
-  }
+    // First submit the last form (sixthSet)
+    document.getElementById('submitButton').click()
 
-  /* Submit the formSet and go to the next form (stepcounter in submitForm()) */
-  sendFormSet(e) {
-    this.refs.submitButton.click()
+    // Det här är test för att skriva ut!
+    for(let form in this.state.formSet) {
+      for(let input in this.state.formSet[form]) {
+        console.log(input, ':', this.state.formSet[form][input])
+      }
+    }
+    // Kan tas bort sen
+
+    /* Send email to Mats! TODO: Göra en mall som all input hamnar i som man sedan
+     * kan skicka som email. Så att emailet går att läsa */ 
   }
 
   render() {
@@ -447,17 +464,17 @@ export default class FormFields extends Component {
             {this.props.counter == 6 ?
               <div>
                 <SixthSet ref="sixth" form={this.state.formSet['sixth']}/>
-                <button className="btn orangeButton" onClick={this.sendCompleteForm.bind(this)}>Skicka</button>
+                <button className="btn orangeButton" onClick={this.sendCompleteForm.bind(this)}>Skicka priskalkyl</button>
               </div>
             : null}
 
-            <input type="submit" hidden="true" ref="submitButton" />
+            <input type="submit" hidden="true" id="submitButton" />
           </form>
         </div>
 
         <div className="arrowHolder">
           {this.props.counter < 6 ?
-            <figure className="arrow" onClick={this.sendFormSet.bind(this)}/>
+            <figure className="arrow" onClick={this.submitFormSet.bind(this)}/>
           :<div className="empty"/>}
         </div>
         {console.log('state', this.state)}
