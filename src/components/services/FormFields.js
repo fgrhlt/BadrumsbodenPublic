@@ -424,29 +424,17 @@ export default class FormFields extends Component {
     document.getElementById('submitButton').click()
   }
 
+
   /* Sends the complete form to the admin's email */
   sendCompleteForm() {
-    document.getElementById('submitButton').click()
-
-<<<<<<< 197375b60ec8d4372d18fa1f5b0dd47a33522519
-    console.log( flat(this.state.formSet));
+    console.log(flat(this.state.formSet));
     axios({
       method: 'post',
       url: 'https://shrouded-plateau-50284.herokuapp.com/email/priskalkyl',
       data: flat(this.state.formSet)
     })
   }
-=======
-        /* Sends the complete form to the admin's email */
-        sendCompleteForm() {
-          console.log(flat(this.state.formSet));
-          axios({
-            method: 'post',
-            url: 'https://shrouded-plateau-50284.herokuapp.com/email/priskalkyl',
-            data: flat(this.state.formSet)
-          })
-        }
->>>>>>> hjejefj
+
 
   render() {
     return(
