@@ -428,6 +428,7 @@ export default class FormFields extends Component {
   sendCompleteForm() {
     document.getElementById('submitButton').click()
 
+<<<<<<< 197375b60ec8d4372d18fa1f5b0dd47a33522519
     console.log( flat(this.state.formSet));
     axios({
       method: 'post',
@@ -435,6 +436,17 @@ export default class FormFields extends Component {
       data: flat(this.state.formSet)
     })
   }
+=======
+        /* Sends the complete form to the admin's email */
+        sendCompleteForm() {
+          console.log(flat(this.state.formSet));
+          axios({
+            method: 'post',
+            url: 'https://shrouded-plateau-50284.herokuapp.com/email/priskalkyl',
+            data: flat(this.state.formSet)
+          })
+        }
+>>>>>>> hjejefj
 
   render() {
     return(

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-
+import axios from 'axios'
 require('styles/_servicesPage/vvsRequest.css')
 
 export default class VVSRequest extends Component {
+<<<<<<< 197375b60ec8d4372d18fa1f5b0dd47a33522519
   componentWillMount() {
     this.state = {
       form: {}
@@ -23,6 +24,18 @@ export default class VVSRequest extends Component {
       form: inputValues
     })
   }
+=======
+
+  sendCompleteForm() {
+    axios({
+      method: 'post',
+      url: 'https://shrouded-plateau-50284.herokuapp.com/email/VVSRequest',
+      data: 'informatiooooon'//flat(this.state.formSet)
+    })
+  }
+
+  render() {
+>>>>>>> hjejefj
 
   render() {
     var styleVar = {
@@ -57,6 +70,7 @@ export default class VVSRequest extends Component {
                 <input type="text" ref="epost" required="true"/>
               </div>
 
+<<<<<<< 197375b60ec8d4372d18fa1f5b0dd47a33522519
               <div>
                 <div className="circle">Svar<br /> inom 24h!</div>
                 <h3>Meddelande*</h3>
@@ -64,6 +78,13 @@ export default class VVSRequest extends Component {
                   <input type="submit" className="btn" id="send" value="Skicka förfrågan"/>
               </div>
             </form>
+=======
+          <div>
+            <div className="circle">Svar<br /> inom 24h!</div>
+            <h3>Meddelande*</h3>
+              <textarea />
+              <button onClick={this.sendCompleteForm.bind(this)} className="btn" id="send" name="send">Skicka förfrågan</button>
+>>>>>>> hjejefj
           </div>
         </section>
       </div>
