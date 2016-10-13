@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import * as firebaseActions from '../../actions/firebaseActions'
 
 import Campaign from '../../components/webshop/Campaign'
-import TopSellers from '../../components/webshop/TopSellers'
+import TopSellers from '../../components/webshop/topSellers/TopSellers'
 import Banner from '../../components/webshop/Banner'
 import Features from '../../components/webshop/Features'
 
