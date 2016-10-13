@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
-import { replaceSpecialCharacters } from '../../utils/Utils'
+import { replaceSpecialCharactersURLs } from '../../utils/Utils'
 
 require('styles/_webshopPage/dropdownMenu.css')
 
@@ -13,7 +13,7 @@ export default class DropdownMenu extends Component {
       browserHistory.push('/webshop/')
     }else {
       let subcategory = e.target.textContent
-      subcategory = replaceSpecialCharacters(subcategory)
+      subcategory = replaceSpecialCharactersURLs(subcategory)
       browserHistory.push('/webshop/'+category+subcategory)
     }
   }
