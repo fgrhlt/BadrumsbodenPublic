@@ -6,7 +6,7 @@ require('styles/_headerPage/header.css')
 export default class Header extends Component {
 
   onClickLandingpage() {
-    browserHistory.push('/')
+    browserHistory.push('/services')
   }
 
   render() {
@@ -16,7 +16,7 @@ export default class Header extends Component {
         <div id="header">
             <div id="left">
               <span onClick={this.onClickLandingpage.bind(this)}>
-                <img src="assets/arrows/small_backarrow.svg" /> Tillbaka till portalen
+                <img src="assets/arrows/small_backarrow.svg" /> Tillbaka till tjänster
               </span>
 
               <figure id="logo" />
