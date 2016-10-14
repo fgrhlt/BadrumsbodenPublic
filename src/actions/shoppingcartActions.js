@@ -16,16 +16,16 @@ export function addProduct(product) {
   }
 
   let stringObj=JSON.stringify(object)
-  cookie.save([product.articleNr], stringObj, { path: '/' })
+  cookie.save([product.articleNr], stringObj, { path: '/' , httpOnly: true})
 
   return {
     type: ADD_PRODUCT,
-    product: cookie.load([product.articleNr])
+    product: cookie.load([product.articleNr], {httpOnly: true})
   }
 }
 
 export function updateQuantity(articleNr, quantity) {
-  let cookieQnt = parseInt(cookie.load([articleNr].quantity))
+  let cookieQnt = parseInt(cookie.load([articleNr].quantity, {httpOnly: true}))
 
   let parsedQuantity
   if (cookieQnt < quantity) {
@@ -36,7 +36,7 @@ export function updateQuantity(articleNr, quantity) {
     parsedQuantity = -quantity
   }
 
-  cookie.save([articleNr].quantity, quantity, { path: '/' })
+  cookie.save([articleNr].quantity, quantity, { path: '/' , httpOnly: true})
 
   return {
     type: UPDATE_QUANTITY,
@@ -46,7 +46,7 @@ export function updateQuantity(articleNr, quantity) {
 }
 
 export function deleteProduct(articleNr) {
-  cookie.remove([articleNr], { path: '/' })
+  cookie.remove([articleNr], { path: '/' , httpOnly: true})
 
   return {
     type: DELETE_PRODUCT,
