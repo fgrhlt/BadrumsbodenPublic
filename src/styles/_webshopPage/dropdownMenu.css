@@ -17,7 +17,6 @@
       user-select:none;
       background-color:var(--orange);
     }
-
     & > div:hover {
       background-color: #892C12;
     }
@@ -46,10 +45,10 @@
           box-sizing:border-box;
           lost-column: 1/2 0 0;
           float:left;
-          background-color: #666;
+          background-color: rgba(30,30,30,0.8);
         }
         & section > div:hover {
-          background-color:#333;
+          background-color: rgba(10,10,10,0.8);
         }
 }
 
