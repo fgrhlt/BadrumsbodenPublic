@@ -9,37 +9,39 @@ export default class LandingPageHeader extends Component {
     let clipboard= new Clipboard('.copyBtn');
 
     return (
+      <div id="landingPageHeader">
         <div id="header">
-            <div id="left">
-              <figure id="logo" />
-            </div>
+          <div id="left">
+            <figure id="logo" className="alone" />
+          </div>
 
-            <div id="right">
+          <div id="right">
+            <div>
+              <figure id="email_icon" />
               <div>
-                <figure id="email_icon" />
-                <div>
-                  <h4>E-post</h4>
-                  <p>
-                    Klicka för att kopiera<br />
-                    epost-address
-                    <button
-                      style={{backgroundColor:'red', width:25}}
-                      className="copyBtn"
-                      data-clipboard-text="test123">
-                    </button>
-                  </p>
-                </div>
-              </div>
-
-              <div>
-                <figure id="phone_icon" />
-                <div>
-                  070 57 43 373<br />
-                  <span>Öppet 08-18</span>
-                </div>
+                <h4>E-post</h4>
+                <p>
+                  Klicka för att kopiera<br />
+                  epost-address
+                  <button
+                    style={{backgroundColor:'red', width:25}}
+                    className="copyBtn"
+                    data-clipboard-text="test123">
+                  </button>
+                </p>
               </div>
             </div>
+
+            <div>
+              <figure id="phone_icon" />
+              <div>
+                070 57 43 373<br />
+                <span>Öppet 08-18</span>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     )
   }
 }

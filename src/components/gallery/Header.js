@@ -11,20 +11,18 @@ export default class Header extends Component {
 
   render() {
     return (
-      <div>
-
+      <div id="galleryPageHeader">
         <div id="header">
             <div id="left">
               <span onClick={this.onClickLandingpage.bind(this)}>
-                <img src="assets/arrows/small_backarrow.svg" /> Tillbaka till tjänster
+                <figure id="backArrow"/> Tillbaka till tjänster
               </span>
-
               <figure id="logo" />
             </div>
 
             <div id="right">
               <div>
-                <img id="email_icon" src="assets/icons/header/email_icon.svg" />
+                <figure id="email_icon"/>
                 <div>
                   <h4>E-post</h4>
                     <a href="mailto:webmaster@example.com">
@@ -37,16 +35,14 @@ export default class Header extends Component {
               </div>
 
               <div>
-                <img id="phone_icon"  src="assets/icons/header/phone_icon.svg" />
+                <figure id="phone_icon" />
                 <div>
                   070 57 43 373<br />
                   <span>Öppet 08-18</span>
                 </div>
               </div>
-
             </div>
         </div>
-
       </div>
     )
   }
