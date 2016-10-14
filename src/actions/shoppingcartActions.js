@@ -1,52 +1,77 @@
-let nextTodoId = 0
+import cookie from 'react-cookie'
 
 const CREATE_SHOPPING_CART = 'CREATE_SHOPPING_CART'
 const ADD_PRODUCT = 'ADD_PRODUCT'
-const ADD_SUMMARY = 'ADD_SUMMARY'
+const DELETE_PRODUCT = 'DELETE_PRODUCT'
+const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
+const SUMMARY = 'SUMMARY'
 
 export function addProduct(product) {
+
+  let object = {
+    price: product.price,
+    articleNr: product.articleNr,
+    productName: product.productName,
+    quantity: product.quantity
+  }
+
+  let stringObj=JSON.stringify(object)
+  cookie.save([product.articleNr], stringObj, { path: '/' })
+
   return {
     type: ADD_PRODUCT,
-    articleNr: product.articleNr,
-    product: product,
+    product: cookie.load([product.articleNr])
   }
 }
 
-export function addSummary(product) {
+export function updateQuantity(articleNr, quantity) {
+  let cookieQnt = parseInt(cookie.load([articleNr].quantity))
+
+  let parsedQuantity
+  if (cookieQnt < quantity) {
+    parsedQuantity = quantity
+  } else if(cookieQnt == quantity) {
+    parsedQuantity = 0
+  } else {
+    parsedQuantity = -quantity
+  }
+
+  cookie.save([articleNr].quantity, quantity, { path: '/' })
+
   return {
-    type: ADD_SUMMARY,
-    product: product
+    type: UPDATE_QUANTITY,
+    articleNr,
+    quantity: parsedQuantity
+  }
+}
+
+export function deleteProduct(articleNr) {
+  cookie.remove([articleNr], { path: '/' })
+
+  return {
+    type: DELETE_PRODUCT,
+    articleNr
+  }
+}
+
+export function summary(quantity, price) {
+  return {
+    type: SUMMARY,
+    quantity,
+    price
   }
 }
 
 export function addToShoppingcart(product) {
     return (dispatch) => {
             dispatch( addProduct(product))
-            dispatch( addSummary(product))
+            dispatch( summary(product.quantity, product.price))
     }
 }
 
-export function fetchFirebaseData(folder, articleNr) {
-  var ref = firebase.database()
-  .ref()
-  .child(folder)
-  return (dispatch) => {
-    ref.on('value', (snapshot) => {
-      var items = []
-      // Loop through {objects} in order
-      snapshot.forEach( (childSnapshot) => {
-        //The object
-        var item = childSnapshot.val()
-        //Get the key of object and push into object
-        item['key'] = childSnapshot.key
-        //Push object to array with items
-        items.push(item)
-      })
-      dispatch({
-        type: FETCH_FIREBASE_DATA,
-        folder,
-        items
-      })
-    })
-  }
+export function removeFromShoppingcart(product) {
+    return (dispatch) => {
+            dispatch( deleteProduct(product))
+            dispatch( summary(product.quantity, -product.price))
+    }
 }

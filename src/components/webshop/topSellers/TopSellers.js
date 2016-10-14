@@ -5,7 +5,7 @@ require('styles/_webshopPage/topSellers.css')
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as firebaseActions from '../../actions/firebaseActions'
+import * as firebaseActions from '../../../actions/firebaseActions'
 
 
 class TopSellers extends Component {
