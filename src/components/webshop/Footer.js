@@ -31,7 +31,7 @@ export default class Footer extends Component {
                 Kabelvägen 8 <br />
                 901 33 Umeå <br />
                 090 - 13 13 04 <br />
-                <a href="">info@badrumsboden.se</a><br />
+                info@badrumsboden.se<br />
               </p>
             </div>
 

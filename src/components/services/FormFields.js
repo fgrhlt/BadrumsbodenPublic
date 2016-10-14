@@ -17,7 +17,6 @@ class FirstSet extends Component {
             ref="namn"
             defaultValue={this.props.form.namn}
             type="text"
-            required={true}
             />
 
           <h4>Telefon*</h4>
@@ -25,7 +24,6 @@ class FirstSet extends Component {
             ref="telefon"
             defaultValue={this.props.form.telefon}
             type="text"
-            //required={true}
             />
 
           <h4>E-post*</h4>
@@ -33,7 +31,6 @@ class FirstSet extends Component {
             ref="epost"
             defaultValue={this.props.form.epost}
             type="email"
-            //required={true}
             />
         </div>
 
@@ -43,7 +40,6 @@ class FirstSet extends Component {
             ref="adress"
             defaultValue={this.props.form.adress}
             type="text"
-            //required={true}
             />
 
           <h4>Huset byggår*</h4>
@@ -51,7 +47,6 @@ class FirstSet extends Component {
             ref="byggar"
             defaultValue={this.props.form.byggar}
             type="text"
-            //required={true}
             />
 
           <h4>Rummets bredd*</h4>
@@ -59,7 +54,6 @@ class FirstSet extends Component {
             ref="bredd"
             defaultValue={this.props.form.bredd}
             type="text"
-            //required={true}
             />
         </div>
 
@@ -76,7 +70,6 @@ class FirstSet extends Component {
             ref="takhojd"
             defaultValue={this.props.form.takhojd}
             type="text"
-            //required={true}
             />
 
           <h4>Ev. fönster <span>Bredd x Höjd</span></h4>
@@ -103,7 +96,6 @@ class SecondSet extends Component {
             ref="brunnar"
             defaultValue={form.brunnar}
             type="text"
-            required={true}
             />
 
           <h4>Läge i fastigheten*</h4>
