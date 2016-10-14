@@ -17,7 +17,7 @@ searchProducts() {
     return (
       <div className="searchBar">
         <input type="text" placeholder="Vad söker du efter?"></input>
-        <img onClick={this.searchProducts.bind(this)} src="assets/buttons/search_button.svg"></img>
+        <figure onClick={this.searchProducts.bind(this)}/>
       </div>
     )
   }

@@ -10,11 +10,17 @@
   display: flex;
   justify-content: center;
 
-  & img {
-   height: 50px;
-   display: inline;
+  & figure {
+    background: url('../../assets/buttons/search_button.svg') no-repeat;
+    width:81px;
+    height: 51px;
   }
-
+  & figure:hover {
+    background: url('../../assets/buttons/search_button_h.svg') no-repeat;
+  }
+  & figure:active {
+    background: url('../../assets/buttons/search_button_a.svg') no-repeat;
+  }
   & input {
     box-sizing: border-box;
     padding: 10px;
