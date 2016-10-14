@@ -20,6 +20,9 @@ onClickLandingpage() {
 handleClick() {
   ReactTooltip.show(this.refs.emailClick)
 }
+handleMouseOut() {
+  ReactTooltip.hide(this.refs.emailClick)
+}
 
   render() {
     let clipboard= new Clipboard('.copyBtn');
@@ -38,7 +41,12 @@ handleClick() {
             <div id="right">
               <div>
                 <figure id="email_icon" />
-                <button className="copyBtn" data-clipboard-text="info@badrumsboden.se" onClick={this.handleClick.bind(this)}/>
+                <button
+                  className="copyBtn"
+                  data-clipboard-text="info@badrumsboden.se"
+                  onClick={this.handleClick.bind(this)}
+                  onMouseOut={this.handleMouseOut.bind(this)}
+                />
                 <div ref="emailClick" data-tip data-for="emailCopy">
                   <h4>E-post</h4>
                   <p>
@@ -50,8 +58,7 @@ handleClick() {
                   id="emailCopy"
                   type='success'
                   event="click"
-                  eventOff="mouseout"
-                  delayHide={1100}
+                  delayHide={1000}
                 >
                   <h4>Kopierat!</h4>
                 </ReactTooltip>
