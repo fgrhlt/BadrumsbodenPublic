@@ -4,9 +4,8 @@
   min-height: 105px;
   margin-top: 25px;
   lost-center:90%;
-}
 
-#left {
+  & #left {
     lost-column:2/5 0 0;
 
     & span, & #logo {
@@ -24,7 +23,6 @@
       width:251px;
       height:45px;
     }
-
     & #backArrow {
       background: url('../../assets/arrows/small_backarrow.svg') no-repeat;
       width:7px;
@@ -32,23 +30,28 @@
       float:left;
       margin:2px 7px 0 0;
     }
-}
+    & .alone {
+      margin-top:28px;
+    }
+  }
+  & #right {
+    lost-column:3/5 0 0;
 
-#right {
-  lost-column:3/5 0 0;
     & > div {
       lost-column:3/11;
     }
     /* E-mail */
     & > div:nth-of-type(1) {
+      margin-top:-10px;
       & > div {
-        padding-top:10px;
+        padding-top:15px;
       }
     }
     /* Phone */
     & > div:nth-of-type(2) {
+      margin-top:-15px;
       & > div {
-        padding-top:20px;
+        padding-top:30px;
       }
     }
     /* shopping cart */
@@ -94,25 +97,43 @@
       height: 50px;
       margin-top:15px;
     }
+  }
+}
+#landingPageHeader, #servicePageHeader, #galleryPageHeader {
+  & #left {
+    lost-column:3/5;
+  }
+  & #right {
+     lost-column:2/5;
+     & > div {
+       lost-column:1/2;
+     }
+  }
 }
 
 /* responsive */
 @media (max-width: 1100px) {
-  #left, #right {
-    lost-column:1;
+  #header {
+    & #left,  & #right {
+      lost-column:1;
+    }
   }
 }
 @media (width <= 750px) {
-  #right {
-    & > div {
-      lost-column:1/2;
+  #header {
+    & #right {
+      & > div {
+        lost-column:1/2;
+      }
     }
   }
 }
 @media (width <= 400px) {
-  #right {
-    & > div {
-      lost-column:1;
+  #header {
+    & #right {
+      & > div {
+        lost-column:1;
+      }
     }
   }
 }
