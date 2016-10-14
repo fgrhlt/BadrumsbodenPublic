@@ -38,7 +38,7 @@
     lost-column:3/5 0 0;
 
     & > div {
-      lost-column:3/11;
+      lost-column:3/12;
       position:relative;
     }
     /* E-mail */
@@ -57,14 +57,28 @@
     }
     /* shopping cart */
     & > div:nth-of-type(3) {
+      lost-column:4/12;
+      margin-top:-5px;
       & > div {
-        padding-top:5px;
+        padding-top:15px;
+
+        & > div {
+          font-size:14pt;
+          text-align: right;
+          float:left;
+          margin-left:10px;
+        }
+        & > div:last-of-type {
+          font-weight: bold;
+          text-align:left;
+
+        }
       }
     }
     /* The button */
     & > div:nth-of-type(4) {
       padding-top:15px;
-      lost-column:2/11;
+      lost-column:2/12;
     }
 
     & p {
@@ -123,26 +137,32 @@
 }
 
 /* responsive */
-@media (max-width: 1100px) {
+@media (max-width: 1300px) {
   #header {
     & #left,  & #right {
       lost-column:1;
     }
   }
 }
-@media (width <= 750px) {
+@media (width <= 850px) {
   #header {
     & #right {
       & > div {
         lost-column:1/2;
       }
+      & > div:nth-of-type(4), & > div:nth-of-type(3) {
+        lost-column:1/2;
+      }
     }
   }
 }
-@media (width <= 400px) {
+@media (width <= 500px) {
   #header {
     & #right {
       & > div {
+        lost-column:1;
+      }
+      & > div:nth-of-type(4), & > div:nth-of-type(3) {
         lost-column:1;
       }
     }

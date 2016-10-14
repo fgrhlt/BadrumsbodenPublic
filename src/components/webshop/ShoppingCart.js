@@ -23,13 +23,17 @@ class ShoppingCart extends Component {
 
   render() {
     const { summary } = this.state
-    
+
     return (
       <div className="shoppingCart">
-          <ul>
-            <li>Summa: {summary.sum} :-</li>
-            <li>Antal varor: {summary.quantity}</li>
-          </ul>
+        <div>
+          Antal varor:<br/>
+          Summa:
+        </div>
+        <div>
+          {summary.quantity}<br/>
+          {summary.sum}:-
+        </div>
       </div>
     )
   }
