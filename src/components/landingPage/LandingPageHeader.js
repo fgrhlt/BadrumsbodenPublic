@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
-
+require('Clipboard')
+import Clipboard from 'clipboard'
 require('styles/_headerPage/header.css')
 
 export default class LandingPageHeader extends Component {
 
   render() {
+    let clipboard= new Clipboard('.copyBtn');
+
     return (
         <div id="header">
             <div id="left">
@@ -16,12 +19,16 @@ export default class LandingPageHeader extends Component {
                 <img id="email_icon" src="assets/icons/header/email_icon.svg" />
                 <div>
                   <h4>E-post</h4>
-                  <a href="mailto:webmaster@example.com">
-                    <p>
-                      Klicka för att <br />
-                      skicka epost
-                    </p>
-                  </a>
+                  <p>
+                    Klicka för att kopiera<br />
+                    epost-address
+                    <button
+                      style={{backgroundColor:'red', width:25}}
+                      className="copyBtn"
+                      data-clipboard-text="test123">
+
+                    </button>
+                  </p>
                 </div>
               </div>
 

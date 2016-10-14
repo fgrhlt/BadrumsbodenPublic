@@ -71,6 +71,7 @@
     "autoprefixer": "^6.3.7",
     "axios": "^0.13.1",
     "classnames": "^2.2.5",
+    "clipboard": "^1.5.12",
     "core-js": "^2.0.0",
     "firebase": "^3.4.1",
     "fixed-data-table": "^0.6.3",

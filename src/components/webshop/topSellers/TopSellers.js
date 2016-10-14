@@ -39,7 +39,7 @@ class TopSellers extends Component {
             <span>7080:-</span>
           </div>
 
-          {<ProductElements items={items}/>}
+          {/*<ProductElements items={items}/>*/}
 
 
 {/*          <div>
