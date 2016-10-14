@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-require('Clipboard')
 import Clipboard from 'clipboard'
+import ReactTooltip from 'react-tooltip'
+require('Clipboard')
 require('styles/_headerPage/header.css')
 
 export default class LandingPageHeader extends Component {
-
+  handleClick() {
+    ReactTooltip.show(this.refs.emailClick)
+  }
   render() {
     let clipboard= new Clipboard('.copyBtn');
-
     return (
       <div id="landingPageHeader">
         <div id="header">
@@ -18,18 +20,23 @@ export default class LandingPageHeader extends Component {
           <div id="right">
             <div>
               <figure id="email_icon" />
-              <div>
+              <button className="copyBtn" data-clipboard-text="info@badrumsboden.se" onClick={this.handleClick.bind(this)}/>
+              <div ref="emailClick" data-tip data-for="emailCopy">
                 <h4>E-post</h4>
                 <p>
                   Klicka för att kopiera<br />
                   epost-address
-                  <button
-                    style={{backgroundColor:'red', width:25}}
-                    className="copyBtn"
-                    data-clipboard-text="test123">
-                  </button>
                 </p>
               </div>
+              <ReactTooltip
+                id="emailCopy"
+                type='success'
+                event="click"
+                eventOff="mouseout"
+                delayHide={1100}
+              >
+                <h4>Kopierat!</h4>
+              </ReactTooltip>
             </div>
 
             <div>

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-
 import { browserHistory } from 'react-router'
-
 import SearchBar from './SearchBar'
 import ShoppingCart from './ShoppingCart'
+import Clipboard from 'clipboard'
+import ReactTooltip from 'react-tooltip'
 
+require('Clipboard')
 require('styles/_headerPage/header.css')
 
 export default class Header extends Component {
@@ -16,8 +17,12 @@ handleToCheckoutClick() {
 onClickLandingpage() {
   browserHistory.push('/')
 }
+handleClick() {
+  ReactTooltip.show(this.refs.emailClick)
+}
 
   render() {
+    let clipboard= new Clipboard('.copyBtn');
     return (
       <div>
         <div id="header">
@@ -33,15 +38,23 @@ onClickLandingpage() {
             <div id="right">
               <div>
                 <figure id="email_icon" />
-                <div>
+                <button className="copyBtn" data-clipboard-text="info@badrumsboden.se" onClick={this.handleClick.bind(this)}/>
+                <div ref="emailClick" data-tip data-for="emailCopy">
                   <h4>E-post</h4>
-                    <a href="mailto:webmaster@example.com">
-                      <p>
-                        Klicka för att <br />
-                        skicka epost
-                      </p>
-                    </a>
+                  <p>
+                    Klicka för att kopiera<br />
+                    epost-address
+                  </p>
                 </div>
+                <ReactTooltip
+                  id="emailCopy"
+                  type='success'
+                  event="click"
+                  eventOff="mouseout"
+                  delayHide={1100}
+                >
+                  <h4>Kopierat!</h4>
+                </ReactTooltip>
               </div>
 
               <div>
