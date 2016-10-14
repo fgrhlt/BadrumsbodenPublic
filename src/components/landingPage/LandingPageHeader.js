@@ -16,7 +16,7 @@ export default class LandingPageHeader extends Component {
 
             <div id="right">
               <div>
-                <img id="email_icon" src="assets/icons/header/email_icon.svg" />
+                <figure id="email_icon" />
                 <div>
                   <h4>E-post</h4>
                   <p>
@@ -26,14 +26,13 @@ export default class LandingPageHeader extends Component {
                       style={{backgroundColor:'red', width:25}}
                       className="copyBtn"
                       data-clipboard-text="test123">
-
                     </button>
                   </p>
                 </div>
               </div>
 
               <div>
-                <img id="phone_icon" src="assets/icons/header/phone_icon.svg" />
+                <figure id="phone_icon" />
                 <div>
                   070 57 43 373<br />
                   <span>Öppet 08-18</span>

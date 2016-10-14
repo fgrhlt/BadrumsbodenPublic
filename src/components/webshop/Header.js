@@ -23,7 +23,8 @@ onClickLandingpage() {
         <div id="header">
             <div id="left">
               <span onClick={this.onClickLandingpage.bind(this)}>
-                <img src="assets/arrows/small_backarrow.svg" /> Tillbaka till portalen
+                <figure id="backArrow"/>
+                Tillbaka till portalen
               </span>
 
               <figure id="logo" />
@@ -31,7 +32,7 @@ onClickLandingpage() {
 
             <div id="right">
               <div>
-                <img id="email_icon" src="assets/icons/header/email_icon.svg" />
+                <figure id="email_icon" />
                 <div>
                   <h4>E-post</h4>
                     <a href="mailto:webmaster@example.com">
@@ -44,7 +45,7 @@ onClickLandingpage() {
               </div>
 
               <div>
-                <img id="phone_icon"  src="assets/icons/header/phone_icon.svg" />
+                <figure id="phone_icon" />
                 <div>
                   070 57 43 373<br />
                   <span>Öppet 08-18</span>
@@ -52,12 +53,16 @@ onClickLandingpage() {
               </div>
 
               <div>
-                <img id="shoppingCart" src="assets/icons/header/shoppingCart.svg" />
+                <figure id="shoppingCart" />
                 <ShoppingCart/>
               </div>
 
-              <div id="button">
-                <button onClick={this.handleToCheckoutClick.bind(this)} className="btn greenButton">Till kassan</button>
+              <div>
+                <button
+                  onClick={this.handleToCheckoutClick.bind(this)}
+                  className="btn greenButton">
+                  Till kassan
+                </button>
               </div>
             </div>
         </div>
