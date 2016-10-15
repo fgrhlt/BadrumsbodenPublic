@@ -24,13 +24,17 @@ componentWillReceiveProps(nextProps) {
 
     return (
       <div id="campaign" style={{backgroundImage: 'url(' + this.state.url + ')'}}>
-        <section>
-          <h1>{title}</h1>
-          <p>
-            {description}
-          </p>
-        </section>
-        <button className="btn greenButton">Till erbjudande</button>
+        <div className="lostWrapper">
+          <div>
+            <h1>{title}</h1>
+            <p>
+              {description}
+            </p>
+          </div>
+          <div>
+            <button className="btn greenButton">Till erbjudande</button>
+          </div>
+        </div>
       </div>
     )
   }

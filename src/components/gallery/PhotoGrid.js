@@ -57,7 +57,7 @@ export default class PhotoGrid extends Component {
   render() {
 
     return (
-      <div>
+      <div id="gallery">
         <div>
           <Modal
             isOpen={this.state.open}

@@ -1,53 +1,55 @@
 @import '../global.css';
 
-#info {
-  min-height:300px;
-  background-color: #F2F2F2;
-  text-align: center;
-  display:flex;
-  align-items: center;
-  justify-content: center;
+#gallery {
+  #info {
+    min-height:300px;
+    background-color: #F2F2F2;
+    text-align: center;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 
-  & div {
-    width:500px;
+    & div {
+      width:500px;
+    }
   }
-}
-* {
-  //lost-utility:edit;
-}
-.container {
-  margin-top:5%;
-  padding:0 5%;
-  text-align: center;
-}
-.container:nth-child(even) {
-  background:#ccc;
-  padding: 5%;
-}
+  * {
+    //lost-utility:edit;
+  }
+  .container {
+    margin-top:5%;
+    padding:0 5%;
+    text-align: center;
+  }
+  .container:nth-child(even) {
+    background:#ccc;
+    padding: 5%;
+  }
 
-section {
-  lost-utility: clearfix;
+  section {
+    lost-utility: clearfix;
 
-    & > div {
-      overflow: hidden;
-      lost-column:1/3 3 10px;
-    }
+      & > div {
+        overflow: hidden;
+        lost-column:1/3 3 10px;
+      }
 
-    & img {
-      min-width: 100%;
-    }
+      & img {
+        min-width: 100%;
+      }
 
-    & figure {
-      margin:0;
-      max-height: 400px;
-      overflow:hidden;
-      margin-bottom:10px;
-    }
+      & figure {
+        margin:0;
+        max-height: 400px;
+        overflow:hidden;
+        margin-bottom:10px;
+      }
 
-    & figure div {
-      background: #ccc;
-      padding: 5% 2%;
-    }
+      & figure div {
+        background: #ccc;
+        padding: 5% 2%;
+      }
+  }
 }
 
 @media (max-width: 435px) {

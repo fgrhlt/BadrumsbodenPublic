@@ -4,5 +4,63 @@
 
     & #container {
       background:var(--lightGray);
+
+      & .campaignImg {
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height:600px;
+        box-sizing:border-box;
+        color:white;
+        padding:100px 5% 0 5%;
+
+        & .lostWrapper {
+          width:100%;
+          lost-utility:clearfix;
+          & > div {
+            min-height:400px;
+            lost-column:1/2 0 30%;
+
+            & input {
+              font-size: 30pt;
+              display:block;
+              margin-bottom:30px;
+              padding:10px 20px;
+              width:100%;
+            }
+            & textarea {
+              font-size:16pt;
+              width:100%;
+              max-width: 100%;
+              min-height:300px;
+              padding:20px;
+            }
+          }
+          & > div:nth-of-type(2) {
+            lost-column:1/2 0 30%;
+            position:relative;
+
+            & button {
+              position: absolute;
+              bottom:0;
+              right:0;
+              cursor:auto;
+            }
+          }
+        }
+      }
+
+      & .buttons {
+        padding:30px 5%;
+        clear:fix;
+        & > div {
+          float:right;
+          margin-left:40px;
+
+          & input {
+            font-weight: bold;
+            font-size: 14pt;
+          }
+        }
+      }
     }
 }
