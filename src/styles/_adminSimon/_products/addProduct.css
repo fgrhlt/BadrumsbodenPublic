@@ -58,32 +58,8 @@
               float:none;
             }
 
-            /* Hide the file input */
-            & #picUpload {
-            	width: 0;
-            	height: 0;
-            	opacity: 0;
-            	overflow: hidden;
-            	position: absolute;
-            	z-index: -1;
-            }
-            /* Style the label, the upload file button */
             & #picUpload + label {
-              display:inline-block;
-              cursor:pointer;
-              font-size:12pt;
-              background:var(--darkBlue);
-              height:35px;
-              padding-top:7px;
-              box-sizing:border-box;
-              text-align:center;
               lost-column:2/5 0 0;
-            }
-            & #picUpload + label:hover {
-              background: var(--darkBlueHover);
-            }
-            & #picUpload + label:active {
-              background: var(--darkBlueActive);
             }
             /* The holder of the file name */
             & #fileHolder {

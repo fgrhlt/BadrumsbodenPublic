@@ -113,6 +113,41 @@ input[type=checkbox]:checked + label:before {
   font-weight: bold;
 }
 
+/* Hide the file input */
+#picUpload {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+/* Style the label, the upload file button */
+#picUpload + label {
+  display:inline-block;
+  cursor:pointer;
+  font-size:14pt;
+  font-weight: bold;
+  background:var(--darkBlue);
+  height:40px;
+  padding:10px 20px;
+  box-sizing:border-box;
+  text-align:center;
+  color:white;
+}
+#picUpload + label:hover {
+  background: var(--darkBlueHover);
+}
+#picUpload + label:active {
+  background: var(--darkBlueActive);
+}
+/* The holder of the file name */
+#fileHolder {
+  height:40px;
+  box-sizing: padding-box;
+  padding-left:15px;
+}
+
 .btn {
   padding:12px 28px;
   border:none;
