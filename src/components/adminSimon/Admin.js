@@ -4,6 +4,7 @@ import AdminHeader from './AdminHeader'
 import AdminWebshopMenu from './AdminWebshopMenu'
 import Products from './Products/Products'
 import Campaigns from './Campaigns/Campaigns'
+import Banner from './Campaigns/Banner'
 
 export default class Admin extends Component {
   render() {
@@ -17,8 +18,7 @@ export default class Admin extends Component {
         {site=='webshop' ? <AdminWebshopMenu param={section} /> : ''}
         {site=='webshop' && section=='produkter' ? <Products param={this.props.params}/> : ''}
         {site=='webshop' && section=='kampanjer' ? <Campaigns /> : ''}
-
-
+        {site=='webshop' && section=='kampanjer' ? <Banner /> : ''}
 
       </div>
     )
