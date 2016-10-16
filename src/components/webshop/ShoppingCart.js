@@ -7,15 +7,15 @@ import * as shoppingcartActions from '../../actions/shoppingcartActions'
 class ShoppingCart extends Component {
 
   componentWillMount() {
+    const { shoppingcartReducer, shoppingcartActions } = this.props
+    this.props.fetchShoppingcart()
+
     this.state = {
-      summary: []
+      summary: shoppingcartReducer.summary ? shoppingcartReducer.summary : ''
     }
-    this.state = {
-      summary: this.props.shoppingcartReducer.summary ? this.props.shoppingcartReducer.summary : ''
-  }}
+  }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.shoppingcartReducer);
     this.setState({
       summary: nextProps.shoppingcartReducer.summary ? nextProps.shoppingcartReducer.summary : ''
     })
@@ -30,6 +30,7 @@ class ShoppingCart extends Component {
           Antal varor:<br/>
           Summa:
         </div>
+
         <div>
           {summary.quantity}<br/>
           {summary.sum}:-
@@ -40,7 +41,6 @@ class ShoppingCart extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('1',state.shoppingcartReducer);
   return {
     shoppingcartReducer: state.shoppingcartReducer
   }

@@ -6,12 +6,11 @@ export default class SubCategoryList extends Component {
 
   render() {
     return (
-      <div>
+      <div id="productlist1">
         <ul>
-          <li>Hej!</li>
-          <li>Apor</li>
-          <li>Katter</li>
-          <li>Hamstrar</li>
+          {this.props.subcatItems.map((item, key) => {
+            return <li key={key}>{item}</li>
+          })}
         </ul>
       </div>
     )
