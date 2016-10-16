@@ -6,10 +6,7 @@ const SEARCH_AND_FETCH_FIREBASE_PRODUCTS = 'SEARCH_AND_FETCH_FIREBASE_PRODUCTS'
 
 import firebase from 'firebase/app'
 
-// require('firebase/database')
-// require('firebase/storage')
-
-export function fetchFirebaseData(folder, articleNr) {
+export function fetchFirebaseData(folder) {
   var ref = firebase.database()
   .ref()
   .child(folder)
@@ -24,6 +21,28 @@ export function fetchFirebaseData(folder, articleNr) {
         item['key'] = childSnapshot.key
         //Push object to array with items
         items.push(item)
+      })
+      dispatch({
+        type: FETCH_FIREBASE_DATA,
+        folder,
+        items
+      })
+    })
+  }
+}
+
+export function fetchSubcategories(folder) {
+  var ref = firebase.database()
+  .ref()
+  .child(folder)
+  return (dispatch) => {
+    ref.once('value', (snapshot) => {
+      var items = []
+      // Loop through {objects} in order
+      snapshot.forEach( (childSnapshot) => {
+        //Get the key of object and push into object
+        let firstLetterToUppercase = childSnapshot.key.charAt(0).toUpperCase() + childSnapshot.key.slice(1)
+        items.push(firstLetterToUppercase)
       })
       dispatch({
         type: FETCH_FIREBASE_DATA,
@@ -88,7 +107,6 @@ export function searchAndFetchFirebaseProducts(productName) {
       snapshot.forEach( (childSnapshot) => {
         childSnapshot.forEach( (subchildSnapshot) => {
           var item = subchildSnapshot.val()
-          console.log('test', item.productName)
         })
       })
       dispatch({

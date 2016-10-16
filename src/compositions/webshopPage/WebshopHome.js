@@ -23,7 +23,7 @@ class WebshopHome extends Component {
     return (
       <div>
         <Campaign items={firebaseData ? firebaseData.campaign.items : []}/>
-        <TopSellers></TopSellers>
+        <TopSellers items={firebaseData ? firebaseData.campaign.items : []}/>
         <Banner></Banner>
         <Features></Features>
       </div>

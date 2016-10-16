@@ -15,9 +15,11 @@ class Products extends Component {
     const { params } = this.props
     const { category, subcategory } = params
     let path = 'webshop/produkter/'+category+'/'+subcategory
+    let subcategoryPath = 'webshop/produkter/'+category
 
     this.state = {
-      items: []
+      items: [],
+      subcatItems: []
     }
 
     switch (category) {
@@ -29,37 +31,40 @@ class Products extends Component {
         break
       default:
         this.props.fetchFirebaseData(path)
+        this.props.fetchSubcategories(subcategoryPath)
     }
-
-    //this.props.fetchFirebaseData('webshop/menus/badrumsinredning')
   }
 
   componentWillReceiveProps(nextProps) {
     const { params } = nextProps
     const { category, subcategory } = params
     let path = 'webshop/produkter/'+category+'/'+subcategory
+    let subcategoryPath = 'webshop/produkter/'+category
 
     this.setState({
-      items: nextProps.firebaseData[path] ? nextProps.firebaseData[path].items : []
+      items: nextProps.firebaseData[path] ? nextProps.firebaseData[path].items : [],
+      subcatItems: nextProps.firebaseData[subcategoryPath] ? nextProps.firebaseData[subcategoryPath].items : []
     })
 
     if (this.props.params.subcategory !== subcategory) {
       this.props.fetchFirebaseData(path)
+      this.props.fetchSubcategories(subcategoryPath)
 
       this.setState({
-        items: nextProps.firebaseData[path] ? nextProps.firebaseData[path].items : []
+        items: nextProps.firebaseData[path] ? nextProps.firebaseData[path].items : [],
+        subcatItems: nextProps.firebaseData[subcategoryPath] ? nextProps.firebaseData[subcategoryPath].items : []
       })
     }
   }
 
   render() {
-    const { items } = this.state
+    const { items, subcatItems} = this.state
 
     return (
       <div>
         <div id="products">
           <section>
-            <SubCategoryList />
+            <SubCategoryList subcatItems={subcatItems}/>
           </section>
 
           <section>

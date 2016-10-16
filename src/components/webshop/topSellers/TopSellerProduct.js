@@ -6,7 +6,7 @@ export default class TopSellerProduct extends Component {
 
   onClick() {
     const { item } = this.props
-    const { folder, articleNr } = item
+    const { articleNr } = item
 
     let path = ''
     browserHistory.listen( (event) => {
@@ -18,17 +18,14 @@ export default class TopSellerProduct extends Component {
 
   render() {
     const { item } = this.props
-    const { articleNr, price, description, productName, supplier, url } = item
+    const { price, description, productName, url } = item
 
     return (
       <div onClick={this.onClick.bind(this)}>
         <figure style={{backgroundImage: 'url(' + url + ')'}} />
         <h4>{productName}</h4>
         <p>{description}</p>
-        <div className="buy-btn">
-          <span>{price}:-</span>
-          <span>Mer info</span>
-        </div>
+        <span>{price}:-</span>
       </div>
     )
   }

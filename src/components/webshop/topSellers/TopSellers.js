@@ -3,26 +3,12 @@ import React, { Component } from 'react'
 import ProductElements from './ProductElements'
 require('styles/_webshopPage/topSellers.css')
 
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import * as firebaseActions from '../../../actions/firebaseActions'
-
-
-class TopSellers extends Component {
+export default class TopSellers extends Component {
 
   componentWillMount() {
     this.state = {
       items: []
     }
-    this.props.fetchFirebaseData('webshop/produkter/kampanjer')
-  }
-
-  componentWillReceiveProps(nextProps) {
-    let path = 'webshop/produkter/kampanjer'
-
-    this.setState({
-      items: nextProps.firebaseData[path] ? nextProps.firebaseData[path].items : []
-    })
   }
 
   render() {
@@ -32,12 +18,7 @@ class TopSellers extends Component {
         <h4>Toppsäljare</h4>
 
         <div id="products">
-          <div>
-            <figure style={{backgroundImage: 'url(assets/images/webshop/img1.jpg)'}} />
-            <h4>IFÖ tvättställ AE4</h4>
-            <p>Halvfront</p>
-            <span>7080:-</span>
-          </div>
+          <ProductElements items={this.props.items}/>
 
           {/*<ProductElements items={items}/>*/}
 
@@ -67,16 +48,3 @@ class TopSellers extends Component {
     )
   }
 }
-
-
-function mapStateToProps(state) {
-  return {
-    firebaseData: state.firebaseReducer.firebaseData
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(firebaseActions, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TopSellers)
