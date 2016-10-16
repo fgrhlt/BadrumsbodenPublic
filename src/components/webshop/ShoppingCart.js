@@ -12,10 +12,10 @@ class ShoppingCart extends Component {
     }
     this.state = {
       summary: this.props.shoppingcartReducer.summary ? this.props.shoppingcartReducer.summary : ''
-    }
-  }
+  }}
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps.shoppingcartReducer);
     this.setState({
       summary: nextProps.shoppingcartReducer.summary ? nextProps.shoppingcartReducer.summary : ''
     })
@@ -40,6 +40,7 @@ class ShoppingCart extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log('1',state.shoppingcartReducer);
   return {
     shoppingcartReducer: state.shoppingcartReducer
   }

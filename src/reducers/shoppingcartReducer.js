@@ -21,8 +21,9 @@ export default function shoppingcartReducer(state = initialState, action) {
       return state
         .setIn(['products', action.product.articleNr], addArticle(action))
 
-    // case DELETE_PRODUCT:
-    //   return ??
+    case DELETE_PRODUCT:
+      return state
+        .setIn(['products', action.articleNr], undefined)
 
     case SUMMARY:
       return state
@@ -46,6 +47,7 @@ function addArticle(action) {
 }
 
 function calculateQuantity(action, state) {
+  debugger
   return {
     quantity: state.summary.quantity + action.quantity
   }
