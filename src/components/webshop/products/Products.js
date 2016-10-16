@@ -22,7 +22,10 @@ class Products extends Component {
 
     switch (category) {
       case 'searchQuery':
-        this.props.searchAndFetchFirebaseProducts(subcategory)
+        this.props.searchAndFetchFirebaseProducts(subcategory, '')
+        break
+      case 'all':
+        this.props.searchAndFetchFirebaseProducts('', 'all')
         break
       default:
         this.props.fetchFirebaseData(path)

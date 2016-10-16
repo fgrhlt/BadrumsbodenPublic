@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ProductElements from './ProductElements'
+import SubCategoryList from './SubCategoryList'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -40,9 +41,7 @@ class Product extends Component {
     return (
       <div id="productView">
         <section>
-          <ul>
-            <li>Hejhej</li>
-          </ul>
+          <SubCategoryList />
         </section>
 
         <section>
