@@ -16,11 +16,11 @@ export function addProduct(product) {
   }
 
   let stringObj=JSON.stringify(object)
-  cookie.save([product.articleNr], stringObj, { path: '/' , httpOnly: true})
+  cookie.save([product.articleNr], stringObj, { path: '/' , httpOnly: false})
 
   return {
     type: ADD_PRODUCT,
-    product: cookie.load([product.articleNr], {httpOnly: true})
+    product: cookie.load([product.articleNr])
   }
 }
 
@@ -46,7 +46,7 @@ export function updateQuantity(articleNr, quantity) {
 }
 
 export function deleteProduct(articleNr) {
-  cookie.remove([articleNr], { path: '/' , httpOnly: true})
+  cookie.remove([articleNr], { path: '/'})
 
   return {
     type: DELETE_PRODUCT,
@@ -65,13 +65,13 @@ export function summary(quantity, price) {
 export function addToShoppingcart(product) {
     return (dispatch) => {
             dispatch( addProduct(product))
-            dispatch( summary(product.quantity, product.price))
+            dispatch( summary(parseInt(product.quantity), parseInt(product.price)))
     }
 }
 
 export function removeFromShoppingcart(product) {
     return (dispatch) => {
             dispatch( deleteProduct(product))
-            dispatch( summary(product.quantity, -product.price))
+            dispatch( summary(parseInt(product.quantity), parseInt(-product.price)))
     }
 }

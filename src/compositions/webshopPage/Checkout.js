@@ -79,7 +79,7 @@ class Checkout extends Component {
 
 
 function mapStateToProps(state) {
-  console.log(state.shoppingcartReducer);
+  console.log(state);
   return {
     shoppingcartReducer: state.shoppingcartReducer
   }

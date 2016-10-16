@@ -25,12 +25,20 @@ class Product extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    let data = nextProps.firebaseData.sortedProducts ? nextProps.firebaseData.sortedProducts.items[0] : ''
+
     this.setState({
-      product: nextProps.firebaseData.sortedProducts ? nextProps.firebaseData.sortedProducts.items[0] : ''
+      product: {
+        price: data.price,
+        articleNr: data.articleNr,
+        productName: data.productName,
+        quantity: this.refs.quantity.value
+      }
     })
   }
 
   clickedBuyBtn() {
+    console.log(this.state.product);
     this.props.actions.shoppingcartActions.addToShoppingcart(this.state.product)
   }
 
@@ -51,6 +59,7 @@ class Product extends Component {
         <section>
           <h2>{productName}</h2>
           <p>{description}</p>
+          <span>Antal <input type="text" ref="quantity" value="1"/> </span>
           <div onClick={this.clickedBuyBtn.bind(this)} className="buy-btn">
             <span>{price}:-</span>
             <span><figure /></span>
