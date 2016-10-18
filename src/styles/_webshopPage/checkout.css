@@ -3,18 +3,18 @@
 
 #checkout {
   lost-utility:clearfix;
-  /*lost-utility:edit;*/
-  lost-center:70%;
+  lost-center:80%;
   padding:80px 0;
   box-sizing: border-box;
 
     /* First column contains some info text */
     & > section:nth-of-type(1) {
       lost-column:1/4;
-
-        & p {
-          font-size:12pt;
-          margin-top:40px;
+      font-size:12pt;
+      margin-top:90px;
+      line-height: 1.5;
+        & h4 {
+          margin-top:10px;
         }
     }
 

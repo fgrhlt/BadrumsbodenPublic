@@ -46,6 +46,7 @@ const router = (
           <IndexRoute component={WebshopHome}></IndexRoute>
             <Route path="/webshop/:category/:subcategory" component={Products}></Route>
             <Route path="/webshop/:category/:subcategory/:product" component={Product}></Route>
+            <Route path="/webshop/checkout" component={Checkout}></Route>
         </Route>
 
         <Route path="gallery" component={Gallery}></Route>
@@ -58,7 +59,6 @@ const router = (
           <Route path="/newAdmin/:site/:section/:category/:subcategory" component={NewAdmin}></Route>
         </Route>
 
-        <Route path="checkout" component={Checkout}></Route>
         <Route path="faq" component={Faq}></Route>
         <Route path="animation" component={Animation}></Route>
         <Route path="*" component={NotFound}></Route>
