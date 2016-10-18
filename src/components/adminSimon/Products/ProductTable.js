@@ -34,6 +34,7 @@ class ProductTable extends Component {
     })
   }
 
+  /* Receive data from firebase */
   componentWillReceiveProps(nextProps) {
     let fbData = nextProps.firebaseData ? nextProps.firebaseData[this.state.path].items : []
 
@@ -41,7 +42,6 @@ class ProductTable extends Component {
       return [product.articleNr, product.supplier, product.productName, product.description, product.filename, product]
     }
   )
-
   this.state = {
     products: arrr,
     columns: [
@@ -54,9 +54,16 @@ class ProductTable extends Component {
   }
 }
 
+/* Removes the article from firebase */
 removeArticle() {
  let product = this.state.products[0][5]
  this.props.deleteFirebaseElement(product)
+}
+/* Sets the selected product as a favorite product, which displays onn the
+ * main webshop-page
+ */
+setFavorite() {
+
 }
 
 render() {
@@ -122,9 +129,9 @@ render() {
         <Column
           cell={
             <Cell>
-              <figure className="pencil" onClick={this.removeArticle.bind(this)}/>
-              {/*<figure className="star" />*/}
-              {/*<figure className="trash" />*/}
+              {<figure className="star" onClick={this.setFavorite.bind(this)} />}
+              <figure className="trash" onClick={this.removeArticle.bind(this)}/>
+              {/*<figure className="pencil" />*/}
             </Cell>}
             flexGrow={1}
             width={60}
