@@ -13,7 +13,6 @@ export function replaceSpecialCharacters(inputStr) {
   outPutStr = outPutStr.replace(/[,.-_'´"#$&%()!?+<>{}¨*/]/g,'');
   return outPutStr
 }
-
 export function replaceSpecialCharactersURLs(inputStr) {
   inputStr = inputStr.toLowerCase()
   let outPutStr = inputStr.replace(/[åäáãâ]/g,'a');
