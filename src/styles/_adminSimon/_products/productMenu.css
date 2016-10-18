@@ -11,9 +11,9 @@
       & .listHead {
         lost-utility:clearfix;
 
-        /* The clickable div with the text */
+        /* The clickable div with the text 8/9 if you want the pencil icon on the right */
         & > div {
-          lost-column:8/9 0 0;
+          lost-column:9/9 0 0;
           font-size:16pt;
           color:#fff;
           padding:7px 20px;
@@ -22,7 +22,7 @@
         /* The div holding the edit icon */
         & figure {
           lost-column:1/9 0 0;
-          background: url('../../../assets/icons/admin/pencil_w.svg') no-repeat;
+          /*background: url('../../../assets/icons/admin/pencil_w.svg') no-repeat;*/
           background-color:var(--adminMenuDarkBlue);
           background-size:12px 12px;
           height:45px;

@@ -19,7 +19,7 @@ class CategoryItem extends Component {
           <div onClick={this.handleClick.bind(this)}>
             {this.props.name}
           </div>
-          <figure />
+          {/*{<figure />}*/}
         </div>
         {this.state.clicked ? <SubListItems showProductTable={this.props.showProductTable} categories={this.props}/> : ''}
       </div>
