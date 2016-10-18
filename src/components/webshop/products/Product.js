@@ -71,7 +71,20 @@ class Product extends Component {
         <section>
           <h2>{productName}</h2>
           <p>{description}</p>
-          <span>Antal <input type="text" ref="quantity" value="1"/> </span>
+          <p>Antal</p>
+          <select ref="quantity" defaultValue="1">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+          </select>
+
           <div onClick={this.clickedBuyBtn.bind(this)} className="buy-btn">
             <span>{price}:-</span>
             <span><figure /></span>
