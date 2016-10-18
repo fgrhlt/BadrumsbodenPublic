@@ -5,6 +5,7 @@ import AdminWebshopMenu from './AdminWebshopMenu'
 import Products from './Products/Products'
 import Campaigns from './Campaigns/Campaigns'
 import Banner from './Campaigns/Banner'
+import AdminServices from './Services/AdminServices'
 
 export default class Admin extends Component {
   render() {
@@ -19,7 +20,7 @@ export default class Admin extends Component {
         {site=='webshop' && section=='produkter' ? <Products param={this.props.params}/> : ''}
         {site=='webshop' && section=='kampanjer' ? <Campaigns /> : ''}
         {site=='webshop' && section=='kampanjer' ? <Banner /> : ''}
-
+        {site=='tjanster' ? <AdminServices /> : ''}
       </div>
     )
   }

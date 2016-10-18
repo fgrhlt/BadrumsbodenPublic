@@ -1,0 +1,61 @@
+@import '../../global.css';
+
+#adminGallery {
+
+  & #container {
+
+    /* The sections holding each gallery category "kök, badrum" */
+    & > section:nth-of-type(odd) {
+      background:var(--lightGray);
+    }
+    & > section:nth-of-type(even) {
+      background:var(--mediumGray);
+    }
+    & > section {
+      padding:60px 5%;
+      box-sizing: border-box;
+      clear:fix;
+      & h3 {
+        font-weight: bold;
+        margin-bottom:15px;
+      }
+      & button {
+        font-size: 16pt;
+        float:right;
+      }
+      & .lostContainer {
+        lost-utility:clearfix;
+
+        /* All the images in the gallery */
+        & > div {
+          lost-waffle:1/8;
+          box-sizing: border-box;
+          position: relative;
+          & figure {
+            width:170px;
+            height:170px;
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            cursor:pointer;
+          }
+          & .delete {
+            display: none;
+            padding:15px 0;
+            width:170px;
+            box-sizing: border-box;
+            position:absolute;
+            bottom:0;
+          }
+        }
+        /* Show the delete button when hovering */
+        & > div:hover {
+          & .delete {
+            display: block;
+          }
+        }
+      }
+    }
+
+  }
+}

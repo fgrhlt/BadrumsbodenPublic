@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
+import {replaceSpecialCharactersURLs} from '../../utils/Utils'
 
 require('styles/_adminSimon/adminHeader.css')
 
@@ -7,7 +8,7 @@ export default class AdminHeader extends Component {
 
   /* Get the text that's in the div being clicked. Push it to the router */
   handleClick(e) {
-    var name = e.target.textContent.toLowerCase()
+    var name = replaceSpecialCharactersURLs(e.target.textContent)
     browserHistory.push('/newAdmin/' + name)
   }
 
@@ -24,8 +25,8 @@ export default class AdminHeader extends Component {
             <h2>Webshop</h2>
           </div>
 
-          <div className={this.props.param=='hemsida'?'bluegreen':'passive'} onClick={this.handleClick.bind(this)}>
-            <h2>Hemsida</h2>
+          <div className={this.props.param=='tjanster'?'bluegreen':'passive'} onClick={this.handleClick.bind(this)}>
+            <h2>Tjänster</h2>
           </div>
         </section>
       </div>

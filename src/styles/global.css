@@ -13,6 +13,8 @@
   --darkGray:#4D4D4D;
   --darkGreen: #019A3F;
   --darkRed: #D6211D;
+  --darkRedHover: #A31717;
+  --darkRedClick: #821212;
   --darkBlue: #106189;
   --darkBlueHover: #0D526D;
   --darkBlueActive: #0B4359;
@@ -180,10 +182,10 @@ input[type=checkbox]:checked + label:before {
   background-color:var(--darkRed);
 }
 .redButton:hover {
-  background-color: #B21919;
+  background-color: var(--darkRedHover);
 }
 .redButton:active {
-  background-color: #7C1212;
+  background-color: var(--darkRedClick);
 }
 .orangeButton {
   background-color:var(--orange);
