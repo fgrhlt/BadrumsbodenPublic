@@ -9,9 +9,9 @@
 
     /* the menu items */
     & > div {
-      font-size:12pt;
+      font-size:14pt;
       height:50px;
-      padding-top: 15px;
+      padding-top: 13px;
       box-sizing:border-box;
       lost-column:1/6 0 0;
       user-select:none;
