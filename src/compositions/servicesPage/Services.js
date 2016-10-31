@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Motion, spring } from 'react-motion'
-
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Header from '../../components/services/Header'
 import ServiceSelector from '../../components/services/ServiceSelector'
 import PriceCalculator from '../../components/services/PriceCalculator'
@@ -37,26 +36,45 @@ export default class Services extends Component {
       })
     }
   }
+  hideCalculators() {
+    this.setState({
+      showPriceCalculator: false,
+      showVVSRequest: false,
+    })
+  }
 
   render() {
     return (
       <div id="services">
         <Header />
-        <ServiceSelector displayCalculators={this.displayCalculators.bind(this)}/>
+        <ServiceSelector
+          displayCalculators={this.displayCalculators.bind(this)}
+          hideCalculators={this.hideCalculators.bind(this)}
+        />
 
-        {this.state.showPriceCalculator ?
-          <div>
-            <BathroomFeatures />
-            <PriceCalculator />
-          </div> : null
-        }
+        <ReactCSSTransitionGroup
+        transitionName="dropDown"
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={700}>
+          {this.state.showPriceCalculator ?
+              <div className="container">
+                <BathroomFeatures />
+                <PriceCalculator />
+              </div> : null
+          }
+        </ReactCSSTransitionGroup>
 
-        {this.state.showVVSRequest ?
-          <div>
-            <VVSFeatures />
-            <VVSRequest />
-          </div> : null
-        }
+        <ReactCSSTransitionGroup
+        transitionName="dropDown"
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={1000}>
+          {this.state.showVVSRequest ?
+            <div className="container">
+              <VVSFeatures />
+              <VVSRequest />
+            </div> : null
+          }
+        </ReactCSSTransitionGroup>
 
         <GalleryPreview />
         <Footer />

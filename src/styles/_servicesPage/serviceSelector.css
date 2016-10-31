@@ -20,6 +20,15 @@
       cursor:pointer;
       box-sizing: border-box;
       transition: 400ms;
+        & button {
+          background:color(#FD551F alpha(80%));
+        }
+        & button:hover {
+          background:color(#FD551F alpha(80%) shade(10%));
+        }
+        & button:active {
+          background:color(#FD551F alpha(80%) shade(20%));
+        }
         /* The inner content div */
         & > div:nth-of-type(1) {
           transform: skew(20deg);
@@ -85,15 +94,6 @@
         & span:hover {
           color:#374744;
         }
-        & button {
-          background:color(#7FA59F alpha(80%) shade(30%));
-        }
-        & button:hover {
-          background:color(#7FA59F alpha(80%) shade(40%));
-        }
-        & button:active {
-          background:color(#7FA59F alpha(80%) shade(50%));
-        }
       }
       & .border {
         background-color:rgba(#6F8986,0.8);
@@ -131,15 +131,6 @@
         }
         & span:hover {
           color:#364432;
-        }
-        & button {
-          background:color(#72876C alpha(80%) shade(25%));
-        }
-        & button:hover {
-          background:color(#72876C alpha(80%) shade(35%));
-        }
-        & button:active {
-          background:color(#72876C alpha(80%) shade(45%));
         }
       }
     }

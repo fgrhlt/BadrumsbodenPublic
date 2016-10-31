@@ -1,17 +1,38 @@
 @import '../global.css';
 
 #services {
+	& .dropDown-enter {
+		height:0;
+		overflow: hidden;
+	}
+
+	& .dropDown-enter.dropDown-enter-active {
+		height:1000px;
+		transition: height 500ms ease-in;
+	}
+
+	& .dropDown-leave {
+		height: 1000px;
+	}
+
+	& .dropDown-leave.dropDown-leave-active {
+		height:0;
+		overflow: hidden;
+		transition: height 500ms ease-out;
+	}
 
 	& .serviceForm {
 	  box-sizing:border-box;
 	  background-color:#F2F2F2;
 	  background-repeat: no-repeat;
-
 	    & h3 {
 				font-size:20pt;
 	      margin-bottom:5px;
 	    }
 
+			& .container {
+				transition: opacity 400ms;
+			}
 	    & .circle {
 	      display: flex;
 	      align-items: center;
