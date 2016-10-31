@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
+import Clipboard from 'clipboard'
+import ReactTooltip from 'react-tooltip'
 
 require('styles/_footerPage/footer.css')
 
@@ -8,8 +10,14 @@ export default class Footer extends Component {
   onClickFaq() {
     browserHistory.push('/faq')
   }
-
+  handleClick() {
+    ReactTooltip.show(this.refs.emailClick)
+  }
+  handleMouseOut() {
+    ReactTooltip.hide(this.refs.emailClick)
+  }
   render() {
+    let clipboard= new Clipboard('.copyBtnFooterWebshopPage');
     return (
       <div id="footer">
         <section>
@@ -31,8 +39,25 @@ export default class Footer extends Component {
                 Kabelvägen 8 <br />
                 901 33 Umeå <br />
                 090 - 13 13 04 <br />
-                info@badrumsboden.se<br />
               </p>
+              <div ref="emailClick" data-tip data-for="emailCopy">
+              </div>
+              <ReactTooltip
+                id="emailCopy"
+                type='success'
+                event="click"
+                delayHide={1000}
+              >
+                <h4>Kopierat!</h4>
+              </ReactTooltip>
+              <button
+                className="copyBtnFooterLandingPage"
+                data-clipboard-text="info@badrumsboden.se"
+                onClick={this.handleClick.bind(this)}
+                onMouseOut={this.handleMouseOut.bind(this)}
+              >
+                info@badrumsboden.se
+              </button>
             </div>
 
             <div onClick={this.onClickFaq.bind(this)}>

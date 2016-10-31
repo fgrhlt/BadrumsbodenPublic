@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Clipboard from 'clipboard'
 import ReactTooltip from 'react-tooltip'
-require('Clipboard')
 require('styles/_headerPage/header.css')
 
 export default class LandingPageHeader extends Component {
