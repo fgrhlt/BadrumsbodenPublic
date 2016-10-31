@@ -55,7 +55,7 @@ export default class Services extends Component {
         <ReactCSSTransitionGroup
         transitionName="dropDown"
         transitionEnterTimeout={500}
-        transitionLeaveTimeout={700}>
+        transitionLeaveTimeout={500}>
           {this.state.showPriceCalculator ?
               <div className="container">
                 <BathroomFeatures />
