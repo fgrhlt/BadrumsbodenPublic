@@ -61,12 +61,13 @@
     margin-bottom:15px;
     height: 60px;
   }
-
   & .gauge {
     height:45px;
     margin-bottom:20px;
   }
-
+  & .bathroomIcon {
+    height:80px;
+  }
   & .circle {
     background:#fff;
     height:160px;

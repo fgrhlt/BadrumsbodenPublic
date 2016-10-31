@@ -96,7 +96,7 @@ export default class ServiceSelector extends Component {
                   Vi gör naturligtvis inte bara kaklade badrum.
                   Du väljer kakel, matta eller våtrumsskivor.
                 </p>
-                <button className="btn" onClick={this.handleClick.bind(this)}>Läs mer!</button>
+                <button className="btn" onClick={this.handleClick.bind(this, "left")}>Läs mer!</button>
               </div>
           </div>
           <div className="border" />
@@ -118,7 +118,7 @@ export default class ServiceSelector extends Component {
                 Vi gör naturligtvis inte bara kaklade badrum.
                 Du väljer kakel, matta eller våtrumsskivor.
               </p>
-              <button className="btn" onClick={this.handleClick.bind(this)}>Läs mer!</button>
+              <button className="btn" onClick={this.handleClick.bind(this, "right")}>Läs mer!</button>
             </div>
             <div id="mainInfo">
               <figure name="tap"/>

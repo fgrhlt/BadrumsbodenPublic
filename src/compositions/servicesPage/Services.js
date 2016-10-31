@@ -6,6 +6,7 @@ import ServiceSelector from '../../components/services/ServiceSelector'
 import PriceCalculator from '../../components/services/PriceCalculator'
 import VVSRequest from '../../components/services/VvsRequest'
 import VVSFeatures from '../../components/services/VVSFeatures'
+import BathroomFeatures from '../../components/services/BathroomFeatures'
 import GalleryPreview from '../../components/services/GalleryPreview'
 import Footer from '../../components/services/Footer'
 
@@ -45,7 +46,7 @@ export default class Services extends Component {
 
         {this.state.showPriceCalculator ?
           <div>
-            <VVSFeatures />
+            <BathroomFeatures />
             <PriceCalculator />
           </div> : null
         }
