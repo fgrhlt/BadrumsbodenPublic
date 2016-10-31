@@ -4,7 +4,7 @@
   lost-utility:clearfix;
   box-sizing:border-box;
   width:45%;
-  margin:auto;
+
   & h4 {
     margin:0;
     font-size:22pt;
@@ -12,6 +12,7 @@
     border-bottom:1px solid lightgrey;
     padding-bottom:15px;
   }
+
   & > div {
     lost-column:1/6 0;
     height:60px;
