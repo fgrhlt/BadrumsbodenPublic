@@ -8,37 +8,38 @@ export default class ServiceSelector extends Component {
       left: {
         name: '',
         innerContent: '',
-        arrow: 'hidden'
+        arrow: 'hidden',
+        description: 'hidden'
       },
       right: {
         name: '',
         innerContent: '',
-        arrow: 'hidden'
+        arrow: 'hidden',
+        description: 'hidden'
       }
     }
   }
 
-  /* Toggles the service field back and forth. Depending on where you click
+  /* Toggles the service field back and forth. Depending if you click left or right,
    * the service-divs will get different classnames.
    * Also tells the parent which div was clicked: left or right */
   toggleService(e) {
     let left = this.refs.left
     let right = this.refs.right
-    const originalState = {name:'', innerContent: '', arrow: 'hidden'}
 
-    /* If you clicked the left or right box and it's minimized, put it to normal state */
+    /* If you clicked the left or right box and it's minimized, put both to normal state */
     if((e.currentTarget == left && e.currentTarget.className == 'left minimized')
     || (e.currentTarget == right && e.currentTarget.className == 'right minimized')) {
       this.setState({
-        left: {originalState},
-        right: {originalState}
+        left: {name:'', innerContent:'', description:'hidden', arrow:'hidden'},
+        right: {name:'', innerContent:'', description:'hidden', arrow:'hidden'}
       })
     }
 
     /* If you clicked the left box, expand it and minimize the right */
     else if(e.currentTarget == left) {
       this.setState({
-        left: {name: 'left expanded'},
+        left: {name: 'left expanded', description:'visible', innerContent:'expandedInnerContent'},
         right: {name: 'right minimized', innerContent:'hidden'}
       })
       /* Send state to parent */
@@ -48,10 +49,10 @@ export default class ServiceSelector extends Component {
     /* If you clicked the right box, expand it and minimize the left */
     else if(e.currentTarget == right) {
       this.setState({
-        right: {name: 'right expanded'},
+        right: {name: 'right expanded', description:'visible', innerContent:'expandedInnerContent'},
         left: {name: 'left minimized', innerContent:'hidden'}
       })
-      /* Send state to parent */
+      /* Send state to parent, the service component */
       this.props.displayCalculators('right')
     }
   }
@@ -74,14 +75,29 @@ export default class ServiceSelector extends Component {
           <figure className={this.state.left.arrow} />
 
           <div className={this.state.left.innerContent}>
-            <figure name="wrench" />
-            <h2>Badrumsrenovering</h2>
-            <h3>
-              Låt våra badrumsproffs med lång erfarenhet
-              utföra din badrumsrenovering.
+              <div id="mainInfo">
+                <figure name="wrench" />
+                <h2>Badrumsrenovering</h2>
+                <h3>
+                  Låt våra badrumsproffs med lång erfarenhet
+                  utföra din badrumsrenovering.<br/>
+                </h3>
+              </div>
 
-              <span onClick={this.handleClick.bind(this)}>Klicka och läs mer!</span>
-            </h3>
+              <div className={this.state.left.description} id="description">
+                <p>
+                  Låt våra badrumsproffs med lång erfarenhet utföra din badrumsrenovering.
+                  Vi följer alla tillämpbara branschregler och håller oss löpande
+                  uppdaterade om alla nya regler och rekommendationer som utkommer.
+                  <br /><br />
+                  Om du lämnar ditt badrum i våra händer kan du känna dig trygg.
+                  Fyll i underlaget på sidana Offertförfrågan så återkopplar vi
+                  inom kort med vad just din renovering kommer att kosta.
+                  Vi gör naturligtvis inte bara kaklade badrum.
+                  Du väljer kakel, matta eller våtrumsskivor.
+                </p>
+                <button className="btn" onClick={this.handleClick.bind(this)}>Läs mer!</button>
+              </div>
           </div>
           <div className="border" />
         </div>
@@ -90,14 +106,28 @@ export default class ServiceSelector extends Component {
           <figure className={this.state.right.arrow} />
 
           <div className={this.state.right.innerContent}>
-            <figure name="tap"/>
-            <h2>VVS</h2>
-            <h3>
-              Låt våra badrumsproffs med lång erfarenhet
-              utföra din badrumsrenovering.
-              
-              <span onClick={this.handleClick.bind(this)}>Klicka och läs mer!</span>
-            </h3>
+            <div className={this.state.right.description} id="description">
+              <p>
+                Låt våra badrumsproffs med lång erfarenhet utföra din badrumsrenovering.
+                Vi följer alla tillämpbara branschregler och håller oss löpande
+                uppdaterade om alla nya regler och rekommendationer som utkommer.
+                <br /><br />
+                Om du lämnar ditt badrum i våra händer kan du känna dig trygg.
+                Fyll i underlaget på sidana Offertförfrågan så återkopplar vi
+                inom kort med vad just din renovering kommer att kosta.
+                Vi gör naturligtvis inte bara kaklade badrum.
+                Du väljer kakel, matta eller våtrumsskivor.
+              </p>
+              <button className="btn" onClick={this.handleClick.bind(this)}>Läs mer!</button>
+            </div>
+            <div id="mainInfo">
+              <figure name="tap"/>
+              <h2>VVS</h2>
+              <h3>
+                Låt våra badrumsproffs med lång erfarenhet
+                utföra din badrumsrenovering.
+              </h3>
+            </div>
           </div>
           <div className="border" />
         </div>
