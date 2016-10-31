@@ -7,7 +7,6 @@ export default class VVSFeatures extends Component {
   render() {
     return (
       <div id="features">
-
           <section id="three">
             <div>
               <img src="assets/icons/services/fastservice.svg" className="gauge" />
