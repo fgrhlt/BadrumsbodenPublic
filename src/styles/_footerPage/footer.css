@@ -47,6 +47,21 @@
           & h3 {
             font-style:italic;
           }
+          & button {
+            width:80%;
+            height:30px;
+            padding:0;
+            background:none;
+            cursor:pointer;
+            text-align:left;
+            font-size:14pt;
+            outline:0;
+            border:0;
+            margin:-45px 0 50px 0;
+          }
+          & button:hover {
+            color:var(--darkGray);
+          }
       }
     }
 

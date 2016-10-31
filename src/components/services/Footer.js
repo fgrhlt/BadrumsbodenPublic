@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
-
+import Clipboard from 'clipboard'
+import ReactTooltip from 'react-tooltip'
 require('styles/_footerPage/footer.css')
 
 export default class Footer extends Component {
-
+  handleClick() {
+    ReactTooltip.show(this.refs.emailClick)
+  }
+  handleMouseOut() {
+    ReactTooltip.hide(this.refs.emailClick)
+  }
   render() {
+    let clipboard= new Clipboard('.copyBtnFooterServicesPage');
     return (
       <div id="footer">
         <section>
@@ -26,8 +33,25 @@ export default class Footer extends Component {
                 Kabelvägen 8 <br />
                 901 33 Umeå <br />
                 090 - 13 13 04 <br />
-                info@badrumsboden.se<br />
               </p>
+              <div ref="emailClick" data-tip data-for="emailCopy">
+              </div>
+              <ReactTooltip
+                id="emailCopy"
+                type='success'
+                event="click"
+                delayHide={1000}
+              >
+                <h4>Kopierat!</h4>
+              </ReactTooltip>
+              <button
+                className="copyBtnFooterServicesPage"
+                data-clipboard-text="info@badrumsboden.se"
+                onClick={this.handleClick.bind(this)}
+                onMouseOut={this.handleMouseOut.bind(this)}
+              >
+                info@badrumsboden.se
+              </button>
             </div>
 
             <div>
