@@ -20,13 +20,12 @@
       cursor:pointer;
       box-sizing: border-box;
       transition: 400ms;
-
         /* The inner content div */
         & > div:nth-of-type(1) {
           transform: skew(20deg);
-          margin-top:60px;
+          margin-top:70px;
           user-select:none;
-
+          lost-utility:clearfix;
           & h3 {
             padding:0 20%;
           }
@@ -35,7 +34,21 @@
             margin-top:20px;
           }
         }
+        & .expandedInnerContent {
 
+          /* The inner content first column */
+          & #mainInfo {
+            lost-column:3/5 0 0;
+          }
+          /* The inner content second column */
+          & #description {
+            lost-column:2/5 0 0;
+            & button {
+              margin:30px auto 0 auto;
+              font-size:16pt;
+            }
+          }
+        }
         & .border {
           position: absolute;
           top:0;
@@ -51,10 +64,13 @@
      * and then pushes the content inside 6% because then the content
      * appears to be centered by the skew */
     & > div:nth-of-type(1) {
-      background-color:rgba(#A9DDD6, 0.8);
+      background-color:rgba(#7FA59F ,0.8);
       margin-left:-10%;
       padding-left: 6%;
-
+      & .expandedInnerContent {
+        padding-right:12%;
+      }
+      /* Inner content */
       & > div:nth-of-type(1) {
         & figure {
           background:url(../../assets/icons/services/wrench.svg) no-repeat;
@@ -69,18 +85,19 @@
         & span:hover {
           color:#374744;
         }
+        & button {
+          background:color(#7FA59F alpha(80%) shade(30%));
+        }
+        & button:hover {
+          background:color(#7FA59F alpha(80%) shade(40%));
+        }
+        & button:active {
+          background:color(#7FA59F alpha(80%) shade(50%));
+        }
       }
-
       & .border {
-        background-color:rgba(#9FC5C1,0.8);
+        background-color:rgba(#6F8986,0.8);
         right: 0;
-      }
-    }
-    & > div:nth-of-type(1):hover {
-      background-color:color(#9FC5C1 alpha(-20%) shade(25%));
-
-      & .border {
-        background-color:color(#9FC5C1 alpha(-20%) shade(25%));
       }
     }
 
@@ -89,13 +106,16 @@
      * and then pushes the content inside 6% because then the content
      * appears to be centered by the skew */
     & > div:nth-of-type(2) {
-      background-color:rgba(#A7D49B, 0.8);
+      background-color:rgba(#77936F, 0.8);
       margin-right:-10%;
       padding-right: 6%;
 
       & .border {
-        background-color:rgba(#9FC198,0.8);
+        background-color:rgba(#72876C,0.8);
         left: 0;
+      }
+      & .expandedInnerContent {
+        padding-left:12%;
       }
       /* The inner content */
       & > div:nth-of-type(1) {
@@ -112,13 +132,15 @@
         & span:hover {
           color:#364432;
         }
-      }
-    }
-    & > div:nth-of-type(2):hover {
-      background-color:color(#9FC198 alpha(-20%) shade(25%));
-
-      & .border {
-        background-color:color(#9FC198 alpha(-20%) shade(25%));
+        & button {
+          background:color(#72876C alpha(80%) shade(25%));
+        }
+        & button:hover {
+          background:color(#72876C alpha(80%) shade(35%));
+        }
+        & button:active {
+          background:color(#72876C alpha(80%) shade(45%));
+        }
       }
     }
 
@@ -141,14 +163,23 @@
         background: url(../../assets/arrows/expandArrowRight.svg) no-repeat;
       }
     }
-    & .left.expanded:hover {
-      background-color:
+    & .left.minimized:hover {
+      background-color:color(#9FC5C1 alpha(-20%) shade(25%));
+      & .border {
+        background-color:color(#9FC5C1 alpha(-20%) shade(40%));
+      }
     }
     & .right.minimized {
       background-color:rgba(#8FAF84,0.8);
       & figure {
         margin:190px auto 0 auto;
         background: url(../../assets/arrows/expandArrowLeft.svg) no-repeat;
+      }
+    }
+    & .right.minimized:hover {
+      background-color:color(#9FC198 alpha(-20%) shade(30%));
+      & .border {
+        background-color:color(#9FC198 alpha(-20%) shade(35%));
       }
     }
     & .hidden {
