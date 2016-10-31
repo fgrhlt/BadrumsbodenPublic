@@ -34,6 +34,7 @@ export default class ServiceSelector extends Component {
         left: {name:'', innerContent:'', description:'hidden', arrow:'hidden'},
         right: {name:'', innerContent:'', description:'hidden', arrow:'hidden'}
       })
+      this.props.hideCalculators()
     }
 
     /* If you clicked the left box, expand it and minimize the right */
@@ -42,8 +43,6 @@ export default class ServiceSelector extends Component {
         left: {name: 'left expanded', description:'visible', innerContent:'expandedInnerContent'},
         right: {name: 'right minimized', innerContent:'hidden'}
       })
-      /* Send state to parent */
-      this.props.displayCalculators('left')
     }
 
     /* If you clicked the right box, expand it and minimize the left */
@@ -52,15 +51,15 @@ export default class ServiceSelector extends Component {
         right: {name: 'right expanded', description:'visible', innerContent:'expandedInnerContent'},
         left: {name: 'left minimized', innerContent:'hidden'}
       })
-      /* Send state to parent, the service component */
-      this.props.displayCalculators('right')
     }
   }
 
   /* Tells the parent which service to display: left or right */
   handleClick(userChoice) {
-    var element = document.getElementById('features');
-    element.scrollIntoView();
+    this.props.displayCalculators(userChoice)
+
+    //var element = document.getElementById('features');
+    //element.scrollIntoView();
   }
 
   render() {
@@ -96,7 +95,11 @@ export default class ServiceSelector extends Component {
                   Vi gör naturligtvis inte bara kaklade badrum.
                   Du väljer kakel, matta eller våtrumsskivor.
                 </p>
-                <button className="btn" onClick={this.handleClick.bind(this, "left")}>Läs mer!</button>
+                <button
+                  className="btn"
+                  onClick={this.handleClick.bind(this, "left")}>
+                  Beräkna din kostnad
+                </button>
               </div>
           </div>
           <div className="border" />
@@ -118,14 +121,18 @@ export default class ServiceSelector extends Component {
                 Vi gör naturligtvis inte bara kaklade badrum.
                 Du väljer kakel, matta eller våtrumsskivor.
               </p>
-              <button className="btn" onClick={this.handleClick.bind(this, "right")}>Läs mer!</button>
+              <button
+                className="btn"
+                onClick={this.handleClick.bind(this, "right")}>
+                Kontakt för VVS-service
+              </button>
             </div>
             <div id="mainInfo">
               <figure name="tap"/>
               <h2>VVS</h2>
               <h3>
-                Låt våra badrumsproffs med lång erfarenhet
-                utföra din badrumsrenovering.
+                Kontakta oss för att utföra VVS-service.<br/>
+                Vi utför snabb service inom 5 arbetsdagar.
               </h3>
             </div>
           </div>
