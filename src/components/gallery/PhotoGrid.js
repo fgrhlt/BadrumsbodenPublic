@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-
-import Modal from 'react-modal'
 import GalleryElements from './GalleryElements'
-
 import firebase from 'firebase/app'
 require('firebase/storage')
+require('styles/_galleryPage/gallery.css')
 
 export default class PhotoGrid extends Component {
 
@@ -13,17 +11,6 @@ export default class PhotoGrid extends Component {
       items: []
     }
     this.loadFromDB('gallery', 'imageURLs')
-
-    this.openModal = this.openModal.bind(this)
-    this.closeModal = this.closeModal.bind(this)
-  }
-
-  openModal () {
-    this.setState({open: true})
-  }
-
-  closeModal () {
-    this.setState({open: false})
   }
 
   loadFromDB(path1, path2) {
@@ -55,24 +42,8 @@ export default class PhotoGrid extends Component {
       }
 
   render() {
-
     return (
       <div id="gallery">
-        <div>
-          <Modal
-            isOpen={this.state.open}
-            onRequestClose={this.closeModal}
-            shouldCloseOnOverlayClick={true}
-            className="ModalClass"
-            overlayClassName="OverlayClass">
-
-            <h1>Basic Modal</h1>
-            <button onClick={this.closeModal}>Close</button>
-
-
-          </Modal>
-        </div>
-
         <div id="info">
           <div>
             <h2>Galleri</h2>
@@ -87,11 +58,8 @@ export default class PhotoGrid extends Component {
 
         <div className="container">
           <h3>Badrum</h3>
-
           <GalleryElements items={this.state.items}/>
-
         </div>
-
       </div>
     )
   }

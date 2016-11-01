@@ -10,14 +10,12 @@ export default class GalleryElements extends Component {
       return item
     }
   }
-
   thirdElement1(item, index) {
     let index2 = index + 1
     if (index2 % 3 == 0) {
       return item
     }
   }
-
   thirdElement2(item, index) {
     let index3 = index + 2
     if (index3 % 3 == 0) {
@@ -26,10 +24,8 @@ export default class GalleryElements extends Component {
   }
 
   render() {
-
     return (
       <section>
-
         <div>
           {this.props.items
             .filter(this.thirdElement0)
@@ -53,7 +49,6 @@ export default class GalleryElements extends Component {
             return <GalleryElement key={item.key} item={item}/>
           })}
         </div>
-
       </section>
     )
   }
