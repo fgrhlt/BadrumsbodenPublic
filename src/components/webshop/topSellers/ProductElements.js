@@ -7,12 +7,10 @@ export default class ProductElements extends Component {
 
   render() {
     return (
-      <div id="productlist1">
-
+      <div id="productListTopSellers">
         {this.props.items.map((item) => {
           return <TopSellerProduct key={item.key} item={item}/>
         })}
-
       </div>
     )
   }
