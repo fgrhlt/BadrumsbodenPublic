@@ -20,6 +20,8 @@ export function fetchFirebaseData(path, query, searchString) {
     .child('webshop/categories')
     .orderByChild(query)
     .equalTo(searchString)
+    
+    path = path+'/'+searchString
   }
   else {
     ref = firebase.database()
@@ -39,7 +41,7 @@ export function fetchFirebaseData(path, query, searchString) {
         //Push object to array with items
         items.push(item)
       })
-      
+
       dispatch({
         type: FETCH_FIREBASE_DATA,
         folder: path,

@@ -42,13 +42,3 @@ export default class Webshop extends Component {
     )
   }
 }
-
-// Man skriver input
-//   onClick
-//     spara input i this.state
-//     browserHistory.push(searchQuery/input)
-//
-//     Product renderas med params = :category/:subcategory
-//
-//       Product.js
-//         searchAndFetchFirebaseProducts(subcategory)
