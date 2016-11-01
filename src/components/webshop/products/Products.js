@@ -19,11 +19,16 @@ class Products extends Component {
       productItems: [],
       subcatItems: []
     }
-    console.log('123123', category, subcategory);
+
     if (category=='search') {
-      fetchFirebaseData('products', 'articleNr', subcategory)
       fetchFirebaseData('products', 'productName', subcategory)
-    }else {
+      fetchFirebaseData('categories', 'parent', 0)
+
+    } else if (subcategory=='all') {
+      fetchFirebaseData('products', 'category', category)
+      fetchFirebaseData('categories', 'parent', category)
+    }
+    else {
       fetchFirebaseData('products', 'subcategory', subcategory)
       fetchFirebaseData('categories', 'parent', category)
     }
@@ -41,9 +46,12 @@ class Products extends Component {
 
     if (this.props.params.subcategory !== subcategory) {
       if (category=='search') {
-        fetchFirebaseData('products', 'articleNr', subcategory)
         fetchFirebaseData('products', 'productName', subcategory)
-      }else {
+        fetchFirebaseData('categories', 'parent', 0)
+      } else if (subcategory=='all') {
+      fetchFirebaseData('products', 'category', category)
+      fetchFirebaseData('categories', 'parent', category)
+      } else {
         fetchFirebaseData('products', 'subcategory', subcategory)
         fetchFirebaseData('categories', 'parent', category)
       }

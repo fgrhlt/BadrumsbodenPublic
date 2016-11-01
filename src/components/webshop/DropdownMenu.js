@@ -2,15 +2,51 @@ import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 import { replaceSpecialCharactersURLs } from '../../utils/Utils'
 
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as firebaseActions from '../../actions/firebaseActions'
+
 require('styles/_webshopPage/dropdownMenu.css')
 
-export default class DropdownMenu extends Component {
+  class DropdownMenu extends Component {
+
+  componentWillMount() {
+    const { fetchFirebaseData } = this.props
+
+    this.state = {
+      subcatItems1: [],
+      subcatItems2: [],
+      subcatItems3: [],
+      subcatItems4: [],
+      subcatItems5: [],
+      subcatItems6: []
+    }
+
+    fetchFirebaseData('categories', 'parent', 'badrumsinredning')
+    fetchFirebaseData('categories', 'parent', 'duschochbadkar')
+    // fetchFirebaseData('categories', 'parent', 'blandare')
+    // fetchFirebaseData('categories', 'parent', 'bastu')
+    // fetchFirebaseData('categories', 'parent', 'vvs')
+    // fetchFirebaseData('categories', 'parent', 'varmeochpumpar')
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { firebaseData } = nextProps
+
+    this.state = {
+      subcatItems1: firebaseData['categories/badrumsinredning'] ? firebaseData['categories/badrumsinredning'].items : [],
+      subcatItems2: firebaseData['categories/duschochbadkar'] ? firebaseData['categories/duschochbadkar'].items : [],
+    // subcatItems3: firebaseData.products ? firebaseData.products.items : [],
+    //   subcatItems4: firebaseData.products ? firebaseData.products.items : [],
+    //   subcatItems5: firebaseData.products ? firebaseData.products.items : [],
+    //   subcatItems6: firebaseData.products ? firebaseData.products.items : []
+     }
+  }
 
   clickHandler(e) {
     let category = e.target.parentNode.id+'/'
     let category2 = e.target.id
 
-    console.log(category2);
     if (!category2=='') {
       browserHistory.push('/webshop/'+category2+'/all')
     }else {
@@ -20,16 +56,21 @@ export default class DropdownMenu extends Component {
     }
   }
 
+  renderDivs(subcatItems) {
+    let list = this.state[subcatItems].map( (item, key) => {
+                return <div key={key}>{item.key}</div>
+              })
+    return list
+  }
+
+
   render() {
     return (
       <div>
           <div id="menu" onClick={this.clickHandler.bind(this)}>
               <div id="badrumsinredning">Badrumsinredning
                 <section id="badrumsinredning">
-                  <div>Aggregat</div>
-                  <div>Bastudörrar</div>
-                  <div>Lampor</div>
-                  <div>Batterier</div>
+                  {this.renderDivs('subcatItems1')}
                 </section>
               </div>
 
@@ -84,3 +125,15 @@ export default class DropdownMenu extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    firebaseData: state.firebaseReducer.firebaseData
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(firebaseActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DropdownMenu)
