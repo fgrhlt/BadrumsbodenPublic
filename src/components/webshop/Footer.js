@@ -63,11 +63,11 @@ export default class Footer extends Component {
             <div onClick={this.onClickFaq.bind(this)}>
               <h3>Information</h3>
               <p>
-                <a>Vanliga frågor</a> <br />
-                <a>Betalning</a> <br />
-                <a>Frakt och leverans</a> <br />
-                <a>Retur och ångerrätt</a> <br />
-                <a>Garanti, reklamation</a> <br />
+                <a>Vanliga frågor</a><br />
+                <a>Betalning</a><br />
+                <a>Frakt och leverans</a><br />
+                <a>Retur och ångerrätt</a><br />
+                <a>Garanti, reklamation</a><br />
               </p>
             </div>
 
