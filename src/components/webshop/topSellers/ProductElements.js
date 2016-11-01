@@ -12,7 +12,7 @@ export default class ProductElements extends Component {
           return <TopSellerProduct
             key={item.key}
             item={item}
-            size={this.props.items.length}/>
+            />
         })}
       </div>
     )

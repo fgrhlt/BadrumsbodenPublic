@@ -1,22 +1,24 @@
 @import '../global.css';
 
 #topSellers {
-  min-height:350px;
+  min-height:300px;
   text-align:center;
-  padding-top:15px;
+  padding-top:30px;
 
   & h4 {
     margin-bottom:10px;
   }
 
-  & #products {
+  & #topSellersProducts {
     box-sizing: border-box;
+    padding:40px 0;
 
       & #productListTopSellers {
-        lost-center: 70%;
+        lost-center: 80%;
         /* Lost items, the starred products */
         & > div {
-          lost-column:1/4 0 30px;
+          cursor:pointer;
+          lost-column:1/5 0 30px;
           min-width:200px;
           margin-bottom:20px;
           box-sizing: border-box;
