@@ -2,7 +2,6 @@
 
 #header {
   min-height: 105px;
-  margin-top: 25px;
   lost-center:90%;
 
   & #left {
@@ -125,6 +124,8 @@
   }
 }
 #landingPageHeader, #servicePageHeader, #galleryPageHeader {
+  box-shadow: 0 2px 15px #CCC;
+  padding-top:25px;
   & #left {
     lost-column:3/5;
   }
