@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Header from '../../components/gallery/Header'
+import Header from '../../components/faq/Header'
 import Footer from '../../components/webshop/Footer'
 
 require('styles/_webshopPage/infoBank.css')

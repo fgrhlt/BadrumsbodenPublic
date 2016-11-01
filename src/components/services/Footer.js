@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 import Clipboard from 'clipboard'
 import ReactTooltip from 'react-tooltip'
+import { browserHistory } from 'react-router'
+
 require('styles/_footerPage/footer.css')
 
 export default class Footer extends Component {
+  onClickFaq() {
+    browserHistory.push('/faq')
+  }
   handleClick() {
     ReactTooltip.show(this.refs.emailClick)
   }
@@ -54,7 +59,7 @@ export default class Footer extends Component {
               </button>
             </div>
 
-            <div>
+            <div onClick={this.onClickFaq.bind(this)}>
               <h3>Information</h3>
               <p>
                 <a href="">Vanliga frågor</a> <br />
