@@ -34,7 +34,7 @@ export function addProduct(product) {
 export function fetchProducts() {
   let cookies = []
   Object.keys(cookie.select(/^articles.*/i)).forEach(name => cookies.push((cookie.load(name))))
-  console.log('fet', cookies);
+
   return {
     type: FETCH_PRODUCTS,
     products: cookies

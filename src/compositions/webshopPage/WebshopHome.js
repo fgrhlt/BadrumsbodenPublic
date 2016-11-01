@@ -16,15 +16,29 @@ class WebshopHome extends Component {
   componentWillMount() {
     this.props.fetchFirebaseData('campaign')
     this.props.fetchFirebaseData('products', 'starred', true)
+
+    this.state = {
+      campaignItems: [],
+      toppsellerItems: []
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+
+    const { firebaseData } = nextProps
+    this.setState({
+      campaignItems: firebaseData.campaign ? firebaseData.campaign.items : [],
+      toppsellerItems: firebaseData.products ? firebaseData.products.items : [],
+    })
   }
 
   render() {
-    const { firebaseData } = this.props
+    const { campaignItems, toppsellerItems } = this.state
 
     return (
       <div>
-        <Campaign items={firebaseData ? firebaseData.campaign.items : []}/>
-        <TopSellers items={firebaseData ? firebaseData['products/starred'].items : []}/>
+        <Campaign items={ campaignItems }/>
+        <TopSellers items={ toppsellerItems }/>
         <Banner></Banner>
         <Features></Features>
       </div>

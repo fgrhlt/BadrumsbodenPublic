@@ -9,7 +9,7 @@ searchProducts() {
   let inputText = 'katt1'
 
   if (inputText) {
-    browserHistory.push('/webshop/searchQuery/'+inputText)
+    browserHistory.push('/webshop/search/'+inputText)
   }
 }
 

@@ -10,12 +10,12 @@ componentWillMount() {
 }
 
 componentWillReceiveProps(nextProps) {
-  const { item } = nextProps
+  const { items } = nextProps
 
   this.setState({
-    url: nextProps.items[0].url,
-    title: nextProps.items[0].title,
-    description: nextProps.items[0].description
+    url: items[0].url,
+    title: items[0].title,
+    description: items[0].description
   })
 }
 

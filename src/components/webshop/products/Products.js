@@ -12,53 +12,41 @@ require('styles/_webshopPage/products.css')
 class Products extends Component {
 
   componentWillMount() {
-    const { params } = this.props
-    const { category, subcategory } = params
-    let path = 'webshop/produkter/'+category+'/'+subcategory
-    let subcategoryPath = 'webshop/produkter/'+category
+    const { params, fetchFirebaseData } = this.props
+    const { subcategory, category } = params
 
     this.state = {
-      items: [],
+      productItems: [],
       subcatItems: []
     }
 
-    switch (category) {
-      case 'searchQuery':
-        this.props.searchAndFetchFirebaseProducts(subcategory, '')
-        break
-      case 'all':
-        this.props.searchAndFetchFirebaseProducts('', 'all')
-        break
-      default:
-        this.props.fetchFirebaseData(path)
-        this.props.fetchSubcategories(subcategoryPath)
-    }
+    fetchFirebaseData('products', 'subcategory', subcategory)
+    fetchFirebaseData('categories', 'parent', category)
   }
 
+
   componentWillReceiveProps(nextProps) {
-    const { params } = nextProps
-    const { category, subcategory } = params
-    let path = 'webshop/produkter/'+category+'/'+subcategory
-    let subcategoryPath = 'webshop/produkter/'+category
+    const { params, firebaseData } = nextProps
+    const { subcategory, category } = params
 
     this.setState({
-      items: nextProps.firebaseData[path] ? nextProps.firebaseData[path].items : [],
-      subcatItems: nextProps.firebaseData[subcategoryPath] ? nextProps.firebaseData[subcategoryPath].items : []
+      productItems: firebaseData.products ? firebaseData.products.items : [],
+      subcatItems: firebaseData.categories ? firebaseData.categories.items : [],
     })
 
     if (this.props.params.subcategory !== subcategory) {
-      this.props.fetchFirebaseData(path)
-      this.props.fetchSubcategories(subcategoryPath)
+      this.props.fetchFirebaseData('products', 'subcategory', subcategory)
+      this.props.fetchFirebaseData('categories', 'parent', category)
 
       this.setState({
-        items: nextProps.firebaseData[path] ? nextProps.firebaseData[path].items : [],
-        subcatItems: nextProps.firebaseData[subcategoryPath] ? nextProps.firebaseData[subcategoryPath].items : []
+        productItems: firebaseData.products ? firebaseData.products.items : [],
+        subcatItems: firebaseData.categories ? firebaseData.categories.items : [],
       })
     }
   }
 
   render() {
-    const { items, subcatItems} = this.state
+    const { productItems, subcatItems} = this.state
 
     return (
       <div>
@@ -68,7 +56,7 @@ class Products extends Component {
           </section>
 
           <section>
-            {<ProductElements items={items}/>}
+            {<ProductElements items={productItems}/>}
           </section>
         </div>
       </div>

@@ -13,7 +13,7 @@ export default class TopSellerProduct extends Component {
       path = event.pathname.replace('/newAdmin', '')
     })
 
-    browserHistory.push(path+'/'+articleNr)
+    browserHistory.push(path+'/search/'+articleNr)
   }
 
   render() {
