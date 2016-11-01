@@ -20,7 +20,7 @@ export function fetchFirebaseData(path, query, searchString) {
     .child('webshop/categories')
     .orderByChild(query)
     .equalTo(searchString)
-    
+
     path = path+'/'+searchString
   }
   else {

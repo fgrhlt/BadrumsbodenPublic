@@ -41,7 +41,7 @@ class Products extends Component {
 
     this.setState({
       productItems: firebaseData.products ? firebaseData.products.items : [],
-      subcatItems: firebaseData.categories ? firebaseData.categories.items : [],
+      subcatItems: firebaseData['categories/'+category] ? firebaseData['categories/'+category].items : [],
     })
 
     if (this.props.params.subcategory !== subcategory) {
@@ -55,9 +55,10 @@ class Products extends Component {
         fetchFirebaseData('products', 'subcategory', subcategory)
         fetchFirebaseData('categories', 'parent', category)
       }
+
       this.setState({
         productItems: firebaseData.products ? firebaseData.products.items : [],
-        subcatItems: firebaseData.categories ? firebaseData.categories.items : [],
+        subcatItems: firebaseData['categories/'+category] ? firebaseData['categories/'+category].items : [],
       })
     }
   }
