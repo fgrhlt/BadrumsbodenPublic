@@ -11,18 +11,10 @@ export default class AddProduct extends Component {
     this.state = {
       infoText: 'Väntar på uppladdning...'
     }
-
-    browserHistory.listen( (event) => {
-      let newVar = event.pathname.replace('/newAdmin', '')
-      newVar = replaceSpecialCharactersURLs(newVar)
-      this.setState({ dbAndStoragePath: newVar })
-      }
-    )
   }
 
   /* Takes the values from the form and puts in the state when submitted */
   submitForm(e) {
-    const { dbAndStoragePath } = this.state
 
     e.preventDefault()
     let articleNr = this.refs.articleNr.value;
@@ -38,14 +30,14 @@ export default class AddProduct extends Component {
       alert('Alla fält måste innehålla ett värde')
     }
 
-    var storageRef = firebase.storage().ref().child(dbAndStoragePath+'/'+file.name)
+    var storageRef = firebase.storage().ref().child('webshop/produkter/'+file.name)
     //Upload file to storageRef
     let task = storageRef.put(file)
 
     task.on('state_changed', () => {
       // Observe state change events such as progress, pause, and resume
       // See below for more detail
-      console.log('Uploading file', file.name, 'to', dbAndStoragePath)
+      console.log('Uploading file', file.name, 'to', 'webshop/produkter/')
     }, (error) => {
       // Handle unsuccessful uploads
       console.log('error:', error)
@@ -53,19 +45,20 @@ export default class AddProduct extends Component {
       // Handle successful uploads on complete
       console.log('Upload successful!')
       this.setState({
-        infoText: file.name+' är uppladdad till: '+dbAndStoragePath
+        infoText: file.name+' är uppladdad till: webshop/produkter/'
       })
 
-      firebase.database().ref().child(dbAndStoragePath)
+      firebase.database().ref().child('webshop/produkter/')
       .push({
         url: task.snapshot.downloadURL,
         filename: file.name,
-        folder: dbAndStoragePath,
         articleNr,
         supplier,
         productName,
         description,
-        price
+        price,
+        category: this.props.param.category,
+        subcategory: this.props.param.subcategory
       })
     })
   }
@@ -80,7 +73,6 @@ export default class AddProduct extends Component {
     return (
       <div id="addProduct">
         <h3>Lägg till produkter</h3>
-        <h4>Mapp: {this.state.dbAndStoragePath || ''}</h4>
 
         <form onSubmit={this.submitForm.bind(this)}>
           <div className="addProductField">
