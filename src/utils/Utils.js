@@ -32,8 +32,11 @@ export function createLineBreak(text) {
   })}
   return formattedText
 }
-
 /* Generates an unique id with three digits at the end */
 export function uniqueId(name) {
   return name + new Date().valueOf().toString().slice(10,13)
+}
+/* Capitalize the first letter of a string */
+export function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
