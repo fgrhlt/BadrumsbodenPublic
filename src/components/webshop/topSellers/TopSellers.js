@@ -10,7 +10,7 @@ export default class TopSellers extends Component {
       <div id="topSellers">
         <h4>Toppsäljare</h4>
 
-        <div id="products">
+        <div id="topSellersProducts">
           <ProductElements items={this.props.items}/>
         </div>
       </div>
