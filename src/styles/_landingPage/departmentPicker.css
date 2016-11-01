@@ -1,11 +1,14 @@
 @import '../global.css';
 
 #departmentPicker {
-  min-height:400px;
-  lost-utility:clearfix;
-  padding-top:130px;
-  box-sizing: border-box;
-  color:#fff;
+  box-shadow: 0 5px 15px 2px #CCC;
+  min-height:350px;
+
+  & > section {
+    lost-utility:clearfix;
+    padding-top:130px;
+    box-sizing: border-box;
+    color:#fff;
 
     /* Lost items */
     & > div {
@@ -31,11 +34,11 @@
           padding:18px 35px;
           position: absolute 0 0 auto auto;
 
-            /* The arrow */
-            & figure {
-              width:37px;
-              height:44px;
-            }
+          /* The arrow */
+          & figure {
+            width:37px;
+            height:44px;
+          }
         }
     }
 
@@ -43,73 +46,67 @@
     & > div:first-of-type {
       background:var(--lightYellow);
 
-        /* The background of the arrow */
-        & > div {
-          background: color(#EAD168 alpha(80%) shade(10%));
-        }
-        /* The arrow */
-        & figure {
-          background:url(../../assets/arrows/yellow_btn_arrow.svg) no-repeat;
-        }
+      /* The background of the arrow */
+      & > div {
+        background: color(#EAD168 alpha(80%) shade(10%));
+      }
+      /* The arrow */
+      & figure {
+        background:url(../../assets/arrows/yellow_btn_arrow.svg) no-repeat;
+      }
     }
-
-        & > div:first-of-type:hover {
-          background:color(#EAD168 alpha(80%) shade(5%));
-
-            & > div {
-              background: color(#EAD168 alpha(80%) shade(15%));
-            }
-        }
-
-        & > div:first-of-type:active {
-          background:color(#EAD168 alpha(80%) shade(10%));
-
-            & > div {
-              background: color(#EAD168 alpha(80%) shade(20%));
-            }
-        }
+    & > div:first-of-type:hover {
+      background:color(#EAD168 alpha(80%) shade(5%));
+      & > div {
+        background: color(#EAD168 alpha(80%) shade(15%));
+      }
+    }
+    & > div:first-of-type:active {
+      background:color(#EAD168 alpha(80%) shade(10%));
+      & > div {
+        background: color(#EAD168 alpha(80%) shade(20%));
+      }
+    }
 
     /* Services button */
     & > div:nth-of-type(2) {
       background:url(../../assets/buttons/service_btn_bg.svg) no-repeat #A7D49B;
-
-        & figure {
-          background:url(../../assets/arrows/green_btn_arrow.svg) no-repeat;
-        }
-
-        /* The background of the arrow */
-        & > div {
-          background: color(#A7D49B alpha(80%) shade(10%));
-        }
+      & figure {
+        background:url(../../assets/arrows/green_btn_arrow.svg) no-repeat;
+      }
+      /* The background of the arrow */
+      & > div {
+        background: color(#A7D49B alpha(80%) shade(10%));
+      }
     }
-
-        & > div:nth-of-type(2):hover {
-          background:url(../../assets/buttons/service_btn_bg_h.svg) no-repeat #9AC18F;
-
-            & > div {
-              background: color(#A7D49B alpha(80%) shade(15%));
-            }
-        }
-
-        & > div:nth-of-type(2):active {
-          background:url(../../assets/buttons/service_btn_bg_a.svg) no-repeat #91B286;
-
-            & > div {
-              background: color(#A7D49B alpha(80%) shade(20%));
-            }
-        }
+    & > div:nth-of-type(2):hover {
+      background:url(../../assets/buttons/service_btn_bg_h.svg) no-repeat #9AC18F;
+      & > div {
+        background: color(#A7D49B alpha(80%) shade(15%));
+      }
+    }
+    & > div:nth-of-type(2):active {
+      background:url(../../assets/buttons/service_btn_bg_a.svg) no-repeat #91B286;
+      & > div {
+        background: color(#A7D49B alpha(80%) shade(20%));
+      }
+    }
+  }
 }
 
 /* Responsive */
 @media (width > 1400px) {
   #departmentPicker {
-    lost-center:60%;
+    & > section {
+      lost-center:60%;
+    }
   }
 }
 
 @media (width <= 1100px) {
   #departmentPicker {
-    lost-center:90%;
+    & > section {
+      lost-center:90%;
 
       & > div {
         min-width:250px;
@@ -119,28 +116,32 @@
           margin-top:17px;
         }
       }
+    }
   }
 }
 
 @media (width <= 700px) {
   #departmentPicker {
-    lost-center:90%;
+    & > section {
+      lost-center:90%;
 
       & > div {
         min-width:100%;
         lost-column:1;
       }
+    }
   }
 }
 
 @media (width <= 400px) {
   #departmentPicker {
-
+    & > section {
       & > div {
         & h1 {
           font-size:20pt;
           margin:25px 30% 0 0;
         }
       }
+    }
   }
 }

@@ -16,15 +16,17 @@ export default class departmentPicker extends Component {
 
     return (
       <div id="departmentPicker">
-        <div onClick={this.onClickWebshop.bind(this)}>
-          <h1>Webbshop</h1>
-          <div><figure /></div>
-        </div>
+        <section name="lostContainer">
+          <div onClick={this.onClickWebshop.bind(this)}>
+            <h1>Webbshop</h1>
+            <div><figure /></div>
+          </div>
 
-        <div onClick={this.onClickServices.bind(this)}>
-          <h1>Tjänster</h1>
-          <div><figure /></div>
-        </div>
+          <div onClick={this.onClickServices.bind(this)}>
+            <h1>Tjänster</h1>
+            <div><figure /></div>
+          </div>
+        </section>
       </div>
     )
   }
