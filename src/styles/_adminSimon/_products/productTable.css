@@ -20,4 +20,9 @@
     width:25px;
     height:23px;
   }
+  & .filled {
+    background: url('../../../assets/icons/admin/star_filled.svg');
+    width:25px;
+    height:23px;
+  }
 }
