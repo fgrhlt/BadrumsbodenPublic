@@ -123,9 +123,11 @@
     }
   }
 }
+#webshopHeader, #landingPageHeader, #servicePageHeader, #galleryPageHeader {
+  padding-top:25px;
+}
 #landingPageHeader, #servicePageHeader, #galleryPageHeader {
   box-shadow: 0 2px 15px #CCC;
-  padding-top:25px;
   & #left {
     lost-column:3/5;
   }

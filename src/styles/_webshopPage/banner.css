@@ -5,11 +5,12 @@
   min-height:150px;
   color:#808080;
   text-align:center;
+  box-shadow:var(--defaultShadow);
 
   & > div {
     margin:0 auto;
     padding-top:50px;
-    
+
     & h3 {
       font-weight:bold;
       font-style:italic;
