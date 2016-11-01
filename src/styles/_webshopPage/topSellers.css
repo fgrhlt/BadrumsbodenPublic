@@ -10,15 +10,17 @@
   }
 
   & #products {
-    lost-utility:clearfix;
-    lost-center: 910px;
     box-sizing: border-box;
 
-      /* Lost container */
-      & > div {
-        lost-column:1/4 0 30px;
-        min-width:200px;
-        margin-bottom:20px;
+      & #productListTopSellers {
+        lost-center: 70%;
+
+        /* Lost items, the starred products */
+        & > div {
+          lost-column:1/4 0 30px;
+          min-width:200px;
+          margin-bottom:20px;
+          box-sizing: border-box;
 
           /* Images */
           & figure {
@@ -41,6 +43,7 @@
             font-weight:bold;
             padding:2px 20px 5px 12px;
           }
+        }
       }
     }
 }
