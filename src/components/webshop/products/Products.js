@@ -19,15 +19,20 @@ class Products extends Component {
       productItems: [],
       subcatItems: []
     }
-
-    fetchFirebaseData('products', 'subcategory', subcategory)
-    fetchFirebaseData('categories', 'parent', category)
+    console.log('123123', category, subcategory);
+    if (category=='search') {
+      fetchFirebaseData('products', 'articleNr', subcategory)
+      fetchFirebaseData('products', 'productName', subcategory)
+    }else {
+      fetchFirebaseData('products', 'subcategory', subcategory)
+      fetchFirebaseData('categories', 'parent', category)
+    }
   }
-
 
   componentWillReceiveProps(nextProps) {
     const { params, firebaseData } = nextProps
     const { subcategory, category } = params
+    const { fetchFirebaseData } = this.props
 
     this.setState({
       productItems: firebaseData.products ? firebaseData.products.items : [],
@@ -35,9 +40,13 @@ class Products extends Component {
     })
 
     if (this.props.params.subcategory !== subcategory) {
-      this.props.fetchFirebaseData('products', 'subcategory', subcategory)
-      this.props.fetchFirebaseData('categories', 'parent', category)
-
+      if (category=='search') {
+        fetchFirebaseData('products', 'articleNr', subcategory)
+        fetchFirebaseData('products', 'productName', subcategory)
+      }else {
+        fetchFirebaseData('products', 'subcategory', subcategory)
+        fetchFirebaseData('categories', 'parent', category)
+      }
       this.setState({
         productItems: firebaseData.products ? firebaseData.products.items : [],
         subcatItems: firebaseData.categories ? firebaseData.categories.items : [],
@@ -63,7 +72,6 @@ class Products extends Component {
     )
   }
 }
-
 
 function mapStateToProps(state) {
   return {

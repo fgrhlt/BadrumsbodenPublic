@@ -13,40 +13,27 @@ require('styles/_webshopPage/productView.css')
 class Product extends Component {
 
   componentWillMount() {
+    const { params, actions } = this.props
+    const { firebaseActions } = actions
+    const { fetchFirebaseData } = firebaseActions
+    const { subcategory, category } = params
+
     this.state = {
-      product: [],
+      productItems: [],
       subcatItems: []
     }
 
-    const { params } = this.props
-    const { category, subcategory, product } = params
-    let folder = 'webshop/produkter/'+category+'/'+subcategory
-    let subcategoryPath = 'webshop/produkter/'+category
-
-    this.props.actions.firebaseActions.fetchSubcategories(subcategoryPath)
-    this.props.actions.firebaseActions.filterAndFetchFirebaseProducts(folder, product)
+    fetchFirebaseData('products', 'subcategory', subcategory)
+    fetchFirebaseData('categories', 'parent', category)
   }
 
   componentWillReceiveProps(nextProps) {
-    const { params } = nextProps
-    const { category, subcategory } = params
-    let subcategoryPath = 'webshop/produkter/'+category
-
-    let data = nextProps.firebaseData.sortedProducts ? nextProps.firebaseData.sortedProducts.items[0] : ''
+    const { params, firebaseData } = nextProps
+    const { subcategory, category } = params
 
     this.setState({
-      subcatItems: nextProps.firebaseData[subcategoryPath] ? nextProps.firebaseData[subcategoryPath].items : []
-    })
-
-    this.setState({
-      product: {
-        price: data.price,
-        articleNr: data.articleNr,
-        productName: data.productName,
-        quantity: this.refs.quantity.value,
-        url: data.url,
-        description: data.description
-      }
+      productItems: firebaseData.products ? firebaseData.products.items[0] : [],
+      subcatItems: firebaseData.categories ? firebaseData.categories.items : [],
     })
   }
 
@@ -55,8 +42,8 @@ class Product extends Component {
   }
 
   render() {
-    const { product, subcatItems } = this.state
-    const { price, description, url, productName } = product
+    const { productItems, subcatItems } = this.state
+    const { price, description, url, productName } = productItems
 
     return (
       <div id="productView">
