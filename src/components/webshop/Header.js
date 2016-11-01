@@ -13,7 +13,6 @@ export default class Header extends Component {
 handleToCheckoutClick() {
   browserHistory.push('/checkout')
 }
-
 onClickLandingpage() {
   browserHistory.push('/')
 }
@@ -27,7 +26,7 @@ handleMouseOut() {
   render() {
     let clipboard= new Clipboard('.copyBtn');
     return (
-      <div>
+      <div id="webshopHeader">
         <div id="header">
             <div id="left">
               <span onClick={this.onClickLandingpage.bind(this)}>
