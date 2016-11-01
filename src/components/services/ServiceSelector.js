@@ -6,13 +6,13 @@ export default class ServiceSelector extends Component {
   componentWillMount() {
     this.state = {
       left: {
-        name: '',
+        name: 'left standard',
         innerContent: '',
         arrow: 'hidden',
         description: 'hidden'
       },
       right: {
-        name: '',
+        name: 'right standard',
         innerContent: '',
         arrow: 'hidden',
         description: 'hidden'
@@ -31,8 +31,8 @@ export default class ServiceSelector extends Component {
     if((e.currentTarget == left && e.currentTarget.className == 'left minimized')
     || (e.currentTarget == right && e.currentTarget.className == 'right minimized')) {
       this.setState({
-        left: {name:'', innerContent:'', description:'hidden', arrow:'hidden'},
-        right: {name:'', innerContent:'', description:'hidden', arrow:'hidden'}
+        left: {name:'left standard', innerContent:'', description:'hidden', arrow:'hidden'},
+        right: {name:'right standard', innerContent:'', description:'hidden', arrow:'hidden'}
       })
       this.props.hideCalculators()
     }
