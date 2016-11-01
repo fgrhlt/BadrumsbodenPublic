@@ -132,7 +132,6 @@
         & span:hover {
           color:#364432;
         }
-
       }
     }
 
@@ -155,7 +154,8 @@
         background: url(../../assets/arrows/expandArrowRight.svg) no-repeat;
       }
     }
-    & .left.minimized:hover {
+    /* When hovering the minimized left and the standard left skewed div */
+    & .left.minimized:hover, & .left.standard:hover {
       background-color:color(#9FC5C1 alpha(-20%) shade(25%));
       & .border {
         background-color:color(#9FC5C1 alpha(-20%) shade(40%));
@@ -168,7 +168,8 @@
         background: url(../../assets/arrows/expandArrowLeft.svg) no-repeat;
       }
     }
-    & .right.minimized:hover {
+    /* When hovering the minimized right and the standard right skewed div */
+    & .right.minimized:hover, & .right.standard:hover {
       background-color:color(#9FC198 alpha(-20%) shade(30%));
       & .border {
         background-color:color(#9FC198 alpha(-20%) shade(35%));
