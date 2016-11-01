@@ -1,23 +1,34 @@
 import React, { Component } from 'react'
+import { browserHistory } from 'react-router'
+
 require('styles/_webshopPage/campaign.css')
 
 export default class Campaign extends Component {
 
-componentWillMount() {
-  this.state = {
-    url: ''
+  componentWillMount() {
+    this.state = {
+      url: ''
+    }
   }
-}
 
-componentWillReceiveProps(nextProps) {
-  const { items } = nextProps
+  componentWillReceiveProps(nextProps) {
+    const { items } = nextProps
+    
+    this.setState({
+      url: items[0].url,
+      title: items[0].title,
+      description: items[0].description,
+      articleNr: items[0].articleNr,
+      category: items[0].category,
+      subcategory: items[0].subcategory,
+    })
+  }
 
-  this.setState({
-    url: items[0].url,
-    title: items[0].title,
-    description: items[0].description
-  })
-}
+  onClick() {
+    const { category, subcategory, articleNr } = this.state
+
+    browserHistory.push('/webshop/'+category+'/'+subcategory+'/'+articleNr)
+  }
 
   render() {
     const { url, title, description } = this.state
@@ -32,7 +43,7 @@ componentWillReceiveProps(nextProps) {
             </p>
           </div>
           <div>
-            <button className="btn greenButton">Till erbjudande</button>
+            <button onClick={this.onClick.bind(this)} className="btn greenButton">Till erbjudande</button>
           </div>
         </div>
       </div>

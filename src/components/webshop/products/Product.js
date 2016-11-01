@@ -16,15 +16,20 @@ class Product extends Component {
     const { params, actions } = this.props
     const { firebaseActions } = actions
     const { fetchFirebaseData } = firebaseActions
-    const { subcategory, category } = params
+    const { subcategory, category, product } = params
 
     this.state = {
       productItems: [],
       subcatItems: []
     }
 
-    fetchFirebaseData('products', 'subcategory', subcategory)
-    fetchFirebaseData('categories', 'parent', category)
+    if (category=='search') {
+      fetchFirebaseData('products', 'articleNr', product)
+      fetchFirebaseData('categories', 'parent', 0)
+    }else {
+      fetchFirebaseData('products', 'subcategory', subcategory)
+      fetchFirebaseData('categories', 'parent', category)
+    }
   }
 
   componentWillReceiveProps(nextProps) {

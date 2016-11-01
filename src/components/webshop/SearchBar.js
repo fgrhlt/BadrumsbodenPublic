@@ -19,7 +19,6 @@ export default class Webshop extends Component {
   }
 
   searchProducts() {
-    console.log(this.state.inputText)
     if (this.state.inputText.length>0) {
       browserHistory.push('/webshop/search/'+this.state.inputText)
     }else {
