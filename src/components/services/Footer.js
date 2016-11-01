@@ -72,7 +72,6 @@ export default class Footer extends Component {
                 Lör-Sön: Stängt <br />
               </p>
             </div>
-
         </section>
       </div>
     )
