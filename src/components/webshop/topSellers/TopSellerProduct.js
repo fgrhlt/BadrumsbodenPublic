@@ -6,14 +6,14 @@ export default class TopSellerProduct extends Component {
 
   onClick() {
     const { item } = this.props
-    const { articleNr } = item
+    const { articleNr, category, subcategory } = item
 
     let path = ''
     browserHistory.listen( (event) => {
       path = event.pathname.replace('/newAdmin', '')
     })
 
-    browserHistory.push(path+'/search/'+articleNr)
+    browserHistory.push(path+'/'+category+'/'+subcategory+'/'+articleNr)
   }
 
   render() {

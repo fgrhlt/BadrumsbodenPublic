@@ -3,20 +3,40 @@ import { browserHistory } from 'react-router'
 
 export default class Webshop extends Component {
 
-searchProducts() {
-  console.log('this', this);
-
-  let inputText = 'katt1'
-
-  if (inputText) {
-    browserHistory.push('/webshop/search/'+inputText)
+  componentWillMount() {
+    this.state = {
+      inputText: ''
+    }
   }
-}
+
+  onChange(event) {
+
+    this.state = {
+      inputText: event.target.value
+    }
+
+    this.searchProducts()
+  }
+
+  searchProducts() {
+    console.log(this.state.inputText)
+    if (this.state.inputText.length>0) {
+      browserHistory.push('/webshop/search/'+this.state.inputText)
+    }else {
+      browserHistory.push('/webshop/search/'+'0')
+    }
+  }
 
   render() {
     return (
       <div className="searchBar">
-        <input type="text" placeholder="Vad söker du efter?"></input>
+        <input
+          value={this.state.inputText}
+          onChange={this.onChange.bind(this)}
+          type="text"
+          placeholder="Vad söker du efter?">
+        </input>
+
         <figure onClick={this.searchProducts.bind(this)}/>
       </div>
     )
