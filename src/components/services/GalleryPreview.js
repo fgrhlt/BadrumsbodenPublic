@@ -1,15 +1,57 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as firebaseActions from '../../actions/firebaseActions'
+
 require('styles/_servicesPage/galleryPreview.css')
 
-export default class PriceCalc extends Component {
+class GalleryPreview extends Component {
+
+  componentWillMount() {
+    const { fetchFirebaseData } = this.props
+
+    fetchFirebaseData('gallery', 'category', 'badrum')
+    fetchFirebaseData('gallery', 'category', 'kok')
+
+    this.state = {
+      imagesBadrum: [],
+      imagesKok: []
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { firebaseData } = nextProps
+
+    this.setState({
+      imagesBadrum: firebaseData['gallery/badrum'] ? firebaseData['gallery/badrum'].items : [],
+      imagesKok: firebaseData['gallery/kok'] ? firebaseData['gallery/kok'].items : [],
+    })
+
+    let urlsBadrum = this.state.imagesBadrum.map( (item) => {
+      return item.url
+    })
+    let urlsKok = this.state.imagesKok.map( (item) => {
+      return item.url
+    })
+
+    this.setState({
+      urlsBadrum,
+      urlsKok
+    })
+  }
 
   onClickGallery() {
     browserHistory.push('/gallery')
   }
 
   render() {
+  const { urlsBadrum, urlsKok } = this.state
+
+  let urlsKok1 = urlsKok ? urlsKok : ''
+  let urlsBadrum1 = urlsBadrum ? urlsBadrum : ''
+
     return (
       <div id="galleryPreview">
         <div id="lostGrid">
@@ -17,28 +59,28 @@ export default class PriceCalc extends Component {
           <h2>Låt dig inspireras av bilder från våra projekt</h2>
           <section>
             <div>
-              <div><figure style={{backgroundImage: 'url(http://placekitten.com/1045/305)'}} /></div>
+              <div><figure style={{backgroundImage: 'url('+ urlsKok1[0]+')' }} /></div>
             </div>
 
             <div>
-              <div><figure style={{backgroundImage: 'url(http://placekitten.com/1045/305)'}} /></div>
-              <div><figure style={{backgroundImage: 'url(http://placekitten.com/505/305)'}} /></div>
-              <div><figure style={{backgroundImage: 'url(http://placekitten.com/805/605)'}} /></div>
+              <div><figure style={{backgroundImage: 'url('+ urlsKok1[1]+')'}} /></div>
+              <div><figure style={{backgroundImage: 'url('+ urlsKok1[2]+')'}} /></div>
+              <div><figure style={{backgroundImage: 'url('+ urlsKok1[3]+')'}} /></div>
             </div>
           </section>
 
           <section>
-            <figure style={{backgroundImage: 'url(http://placekitten.com/800/800)'}} />
+            <figure style={{backgroundImage: 'url('+ urlsBadrum1[0]+')'}} />
           </section>
 
           <section>
             <div>
-              <div><figure style={{backgroundImage: 'url(http://placekitten.com/405/605)'}} /></div>
-              <div><figure style={{backgroundImage: 'url(http://placekitten.com/855/305)'}} /></div>
+              <div><figure style={{backgroundImage: 'url('+ urlsBadrum1[1]+')'}} /></div>
+              <div><figure style={{backgroundImage: 'url('+ urlsBadrum1[2]+')'}} /></div>
             </div>
 
             <div>
-              <div><figure style={{backgroundImage: 'url(http://placekitten.com/605/505)'}} /></div>
+              <div><figure style={{backgroundImage: 'url('+ urlsBadrum1[3]+')'}} /></div>
             </div>
           </section>
         </div>
@@ -48,3 +90,16 @@ export default class PriceCalc extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  console.log('state',state);
+  return {
+    firebaseData: state.firebaseReducer.firebaseData
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(firebaseActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GalleryPreview)

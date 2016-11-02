@@ -23,6 +23,15 @@ export function fetchFirebaseData(path, query, searchString) {
 
     path = path+'/'+searchString
   }
+  else if(path=='gallery'){
+    ref = firebase.database()
+    .ref()
+    .child('gallery')
+    .orderByChild(query)
+    .equalTo(searchString)
+
+    path = path+'/'+searchString
+  }
   else {
     ref = firebase.database()
     .ref()
@@ -51,28 +60,46 @@ export function fetchFirebaseData(path, query, searchString) {
   }
 }
 
-export function deleteFirebaseElement(product) {
-  console.log(product.key);
-  var databaseRef = firebase.database()
-  .ref()
-  .child('webshop/produkter/'+product.key)
-  .remove()
+export function deleteFirebaseElement(path, article) {
+  var ref
 
-  .then(() => {
-    console.log('Database: '+product.folder+'/'+product.key, 'deleted!')
-    var storageRef = firebase.storage()
+  if(path=='products'){
+    ref = firebase.database()
     .ref()
-    .child('webshop/produkter/'+product.filename)
-    .delete()
+    .child('webshop/produkter/'+article.key)
+    .remove()
 
-    console.log('Storage: '+product.folder+'/'+product.filename, 'deleted!')
-  })
+    .then(() => {
+      console.log('Database: deleted!')
+      var storageRef = firebase.storage()
+      .ref()
+      .child('webshop/produkter/'+article.filename)
+      .delete()
+
+      console.log('Storage: deleted!')
+    })
+  } else if(path=='gallery'){
+    ref = firebase.database()
+    .ref()
+    .child('gallery/'+article.key)
+    .remove()
+
+    .then(() => {
+      console.log('Database: deleted!')
+      var storageRef = firebase.storage()
+      .ref()
+      .child('gallery/'+article.filename)
+      .delete()
+
+      console.log('Storage: deleted!')
+    })
+  }
 
   return (dispatch) => {
     dispatch({
       type: DELETE_FIREBASE_DATA,
-      folder: product.folder,
-      productName: product.productName
+      folder: article.folder,
+      productName: article.productName
     })
   }
 }

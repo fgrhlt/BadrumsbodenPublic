@@ -1,45 +1,35 @@
 import React, { Component } from 'react'
 import GalleryElements from './GalleryElements'
-import firebase from 'firebase/app'
+
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as firebaseActions from '../../actions/firebaseActions'
+
 require('firebase/storage')
 require('styles/_galleryPage/gallery.css')
 
-export default class PhotoGrid extends Component {
+  class PhotoGrid extends Component {
 
   componentWillMount() {
+    const { fetchFirebaseData } = this.props
+
+    fetchFirebaseData('gallery', 'category', 'badrum')
+    fetchFirebaseData('gallery', 'category', 'kok')
+
     this.state = {
-      items: []
+      imagesBadrum: [],
+      imagesKok: []
     }
-    this.loadFromDB('gallery', 'imageURLs')
   }
 
-  loadFromDB(path1, path2) {
-      var ref = firebase.database()
-        .ref(path1)
-        .child(path2)
+  componentWillReceiveProps(nextProps) {
+    const { firebaseData } = nextProps
 
-        ref.on('value', (snapshot) => {
-          var items = []
-
-          // Loop through imageURLs/{objects} in order
-          snapshot.forEach( (childSnapshot) => {
-
-            //The object
-            var item = childSnapshot.val()
-
-            //Get the key of object and push into object
-            item['key'] = childSnapshot.key
-
-            //Push object to array with items
-            items.push(item)
-
-            })
-
-            this.setState({
-              items: items
-            })
-          })
-      }
+    this.setState({
+      imagesBadrum: firebaseData['gallery/badrum'] ? firebaseData['gallery/badrum'].items : [],
+      imagesKok: firebaseData['gallery/kok'] ? firebaseData['gallery/kok'].items : [],
+    })
+  }
 
   render() {
     return (
@@ -58,9 +48,25 @@ export default class PhotoGrid extends Component {
 
         <div className="container">
           <h3>Badrum</h3>
-          <GalleryElements items={this.state.items}/>
+          <GalleryElements items={this.state.imagesBadrum}/>
+
+          <h3>Kök</h3>
+          <GalleryElements items={this.state.imagesKok}/>
         </div>
       </div>
     )
   }
 }
+
+
+function mapStateToProps(state) {
+  return {
+    firebaseData: state.firebaseReducer.firebaseData
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(firebaseActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PhotoGrid)

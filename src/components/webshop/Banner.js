@@ -4,12 +4,31 @@ require('styles/_webshopPage/banner.css')
 
 export default class Banner extends Component {
 
+  componentWillMount() {
+    this.state = {
+      bannerItemBlueheading: '',
+      bannerItemHeading: '',
+      bannerItemDescription: ''
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { item  } = nextProps
+
+    this.setState({
+      bannerItemBlueheading: item ? item.blueHeading : '',
+      bannerItemHeading: item ? item.heading : '',
+      bannerItemDescription: item ? item.description : ''
+    })
+  }
+
   render() {
+    const { bannerItemHeading, bannerItemBlueheading, bannerItemDescription } = this.state
     return (
       <div id="banner">
         <div>
-          <h3>Köp nu, betala i slutet av augusti! <span>0% ränta</span></h3>
-          <p>Endast en erläggningsavgift på 29:- tillkommer</p>
+          <h3>{bannerItemHeading} <span>{bannerItemBlueheading}</span></h3>
+          <p>{bannerItemDescription}</p>
         </div>
       </div>
     )

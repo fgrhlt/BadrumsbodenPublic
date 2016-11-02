@@ -14,11 +14,13 @@ require('styles/_webshopPage/webshop.css')
 class WebshopHome extends Component {
 
   componentWillMount() {
-    this.props.fetchFirebaseData('campaign')
+    //this.props.fetchFirebaseData('campaign')
+    this.props.fetchFirebaseData('banner')
     this.props.fetchFirebaseData('products', 'starred', true)
 
     this.state = {
       campaignItems: [],
+      bannerItems: [],
       toppsellerItems: []
     }
   }
@@ -28,18 +30,19 @@ class WebshopHome extends Component {
     const { firebaseData } = nextProps
     this.setState({
       campaignItems: firebaseData.campaign ? firebaseData.campaign.items : [],
+      bannerItem: firebaseData.banner ? firebaseData.banner.items[0] : [],
       toppsellerItems: firebaseData.products ? firebaseData.products.items : [],
     })
   }
 
   render() {
-    const { campaignItems, toppsellerItems } = this.state
+    const { campaignItems, toppsellerItems, bannerItem } = this.state
 
     return (
       <div>
         <Campaign items={ campaignItems }/>
         <TopSellers items={ toppsellerItems }/>
-        <Banner></Banner>
+        <Banner item={ bannerItem }></Banner>
         <Features></Features>
       </div>
     )

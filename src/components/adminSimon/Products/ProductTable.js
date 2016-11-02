@@ -25,7 +25,11 @@ class ProductTable extends Component {
   componentWillMount() {
 
     let subcat = replaceSpecialCharactersURLs(this.props.param.subcategory)
-    this.props.fetchFirebaseData('subcategory', subcat)
+    if (this.props.param.category=='toppsäljare') {
+      this.props.fetchFirebaseData('products', 'starred', true)
+    } else {
+      this.props.fetchFirebaseData('products', 'subcategory', subcat)
+    }
 
     this.state = {
       products: [],
@@ -35,13 +39,18 @@ class ProductTable extends Component {
 
   /* Receive data from firebase */
   componentWillReceiveProps(nextProps) {
+
     let subcat = replaceSpecialCharactersURLs(nextProps.param.subcategory)
-    console.log('sdfdsfsd');
+
     if (nextProps.param.subcategory != this.props.param.subcategory) {
-      this.props.fetchFirebaseData('subcategory', subcat)
+      if (nextProps.param.category=='toppsäljare') {
+        this.props.fetchFirebaseData('products', 'starred', true)
+      } else {
+        this.props.fetchFirebaseData('products', 'subcategory', subcat)
+      }
     }
 
-    let fbData = nextProps.firebaseData[subcat] ? nextProps.firebaseData[subcat].items : []
+    let fbData = nextProps.firebaseData.products ? nextProps.firebaseData.products.items : []
     let arrr = fbData.map( (product) => {
       return [product.articleNr, product.supplier, product.productName, product.description, product.filename, product, product.starred]
     })
