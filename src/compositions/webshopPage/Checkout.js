@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import StripeCheckout from 'react-stripe-checkout';
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -143,8 +144,14 @@ class Checkout extends Component {
             </div>
           </div>
 
-          <div id="klarna">
-            <img src="../assets/images/webshop/klarna_test.png" />
+          <div id="stripe">
+            <StripeCheckout
+              token={this.onToken}
+              stripeKey="pk_test_fIT3T4pAmisM8mJT3UtcvZEG"
+              >
+
+              <button className="btn greenButton bigButton">Betala med kort</button>
+            </StripeCheckout>
           </div>
         </section>
       </div>
