@@ -49,7 +49,7 @@ class Checkout extends Component {
     this.props.updateQuantity('123123123', 10)
   }
   testShoppingcartR() {
-    this.props.deleteProduct('123123123')
+    this.props.deleteProduct("123123")
   }
   componentWillReceiveProps(nextProps) {
     this.setState({

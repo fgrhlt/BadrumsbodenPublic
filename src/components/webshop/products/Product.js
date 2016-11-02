@@ -19,15 +19,14 @@ class Product extends Component {
     const { subcategory, category, product } = params
 
     this.state = {
-      productItems: [],
+      productItem: [],
       subcatItems: []
     }
 
+    fetchFirebaseData('products', 'articleNr', product)
     if (category=='search') {
-      fetchFirebaseData('products', 'articleNr', product)
       fetchFirebaseData('categories', 'parent', 0)
-    }else {
-      fetchFirebaseData('products', 'subcategory', subcategory)
+    } else {
       fetchFirebaseData('categories', 'parent', category)
     }
   }
@@ -37,18 +36,18 @@ class Product extends Component {
     const { subcategory, category } = params
 
     this.setState({
-      productItems: firebaseData.products ? firebaseData.products.items[0] : [],
+      productItem: firebaseData.products ? firebaseData.products.items[0] : [],
       subcatItems: firebaseData.categories ? firebaseData.categories.items : [],
     })
   }
 
   clickedBuyBtn() {
-    this.props.actions.shoppingcartActions.addToShoppingcart(this.state.product)
+    this.props.actions.shoppingcartActions.addToShoppingcart(this.state.productItem, this.refs.quantity.value)
   }
 
   render() {
-    const { productItems, subcatItems } = this.state
-    const { price, description, url, productName } = productItems
+    const { productItem, subcatItems } = this.state
+    const { price, description, url, productName } = productItem
 
     return (
       <div id="productView">

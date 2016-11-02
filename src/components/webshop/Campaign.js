@@ -13,7 +13,7 @@ export default class Campaign extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { items } = nextProps
-    
+
     this.setState({
       url: items[0].url,
       title: items[0].title,
@@ -26,7 +26,6 @@ export default class Campaign extends Component {
 
   onClick() {
     const { category, subcategory, articleNr } = this.state
-
     browserHistory.push('/webshop/'+category+'/'+subcategory+'/'+articleNr)
   }
 

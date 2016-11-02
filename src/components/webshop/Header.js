@@ -11,10 +11,13 @@ require('styles/_headerPage/header.css')
 export default class Header extends Component {
 
 handleToCheckoutClick() {
-  browserHistory.push('/checkout')
+  browserHistory.push('/webshop/checkout')
 }
 onClickLandingpage() {
   browserHistory.push('/')
+}
+onClickLogo() {
+  browserHistory.push('/webshop')
 }
 handleClick() {
   ReactTooltip.show(this.refs.emailClick)
@@ -34,7 +37,7 @@ handleMouseOut() {
                 Tillbaka till portalen
               </span>
 
-              <figure id="logo" />
+              <figure onClick={this.onClickLogo.bind(this)} id="logo" />
             </div>
 
             <div id="right">

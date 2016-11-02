@@ -5,7 +5,15 @@ import DepartmentPicker from '../../components/landingPage/DepartmentPicker'
 import LandingPageFeatures from '../../components/landingPage/LandingPageFeatures'
 import LandingPageFooter from '../../components/landingPage/LandingPageFooter'
 
-export default class LandingPage extends Component {
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as firebaseActions from '../../actions/firebaseActions'
+
+ class LandingPage extends Component {
+
+  componentWillMount() {
+    this.props.fetchFirebaseData('campaign')
+  }
 
   render() {
     return (
@@ -19,3 +27,15 @@ export default class LandingPage extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    firebaseData: state.firebaseReducer.firebaseData
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(firebaseActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPage)
