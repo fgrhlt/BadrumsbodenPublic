@@ -64,8 +64,8 @@ export default class ProductMenu extends Component {
           key:'2'
         },
         {
-          name: 'Annat',
-          subCategories: ['Diverse', 'prylar', 'skotrar', 'katter'],
+          name: 'Toppsäljare',
+          subCategories: ['Alla toppsäljare'],
           key:'3'
         },
       ]
@@ -78,18 +78,12 @@ export default class ProductMenu extends Component {
       <div id="productMenu">
         {this.state.categories.map((category) => {
           return (
-          <CategoryItem
+          <CategoryItem id="yellow"
             key={category.key}
             name={category.name}
             subCategories={category.subCategories}
             showProductTable={this.props.showProductTable}/>
         )})}
-
-        <div id="yellow">
-          <div>
-            <h4>Se alla toppsäljare</h4>
-          </div>
-        </div>
       </div>
     )
   }

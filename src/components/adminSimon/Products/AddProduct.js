@@ -60,6 +60,8 @@ export default class AddProduct extends Component {
         category: this.props.param.category,
         subcategory: this.props.param.subcategory
       })
+      //Reset placeholder inputtext
+      this.refs.fileHolder.value = ''
     })
   }
 

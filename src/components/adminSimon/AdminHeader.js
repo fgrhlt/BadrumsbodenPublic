@@ -12,13 +12,18 @@ export default class AdminHeader extends Component {
     browserHistory.push('/newAdmin/' + name)
   }
 
+  handleClickLogo(e) {
+    var name = replaceSpecialCharactersURLs(e.target.textContent)
+    browserHistory.push('/newAdmin/')
+  }
+
   render() {
     /* The header of the admin page. The two buttons get different background color depending on the URL */
     return (
       <div id="adminHeader">
         <section id="lostItems">
           <div>
-            <figure id="logo" />
+            <figure style={{cursor: 'pointer'}} onClick={this.handleClickLogo.bind(this)} id="logo" />
           </div>
 
           <div className={this.props.param=='webshop'?'yellow':'passive'} onClick={this.handleClick.bind(this)}>

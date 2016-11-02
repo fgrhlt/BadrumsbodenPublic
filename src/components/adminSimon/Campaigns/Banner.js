@@ -2,18 +2,57 @@ import React, { Component } from 'react'
 import ComponentTitle from '../ComponentTitle'
 require('styles/_adminSimon/_campaigns/banner.css')
 
-export default class Banner extends Component {
+import firebase from 'firebase/app'
+
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as firebaseActions from '../../../actions/firebaseActions'
+
+class Banner extends Component {
+
+  componentWillMount() {
+    const { fetchFirebaseData } = this.props
+
+    fetchFirebaseData('banner')
+    this.state = {
+      bannerItem: [],
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { firebaseData } = nextProps
+
+    this.setState({
+      bannerItem: firebaseData.banner ? firebaseData.banner.items[0] : []
+    })
+  }
+
   submitForm(e) {
       e.preventDefault()
       let heading = this.refs.heading.value
       let blueHeading = this.refs.blueHeading.value
       let description = this.refs.description.value
-      console.log(heading)
-      console.log(blueHeading)
-      console.log(description)
+
+      /* Check if any form fields are empty */
+      if(heading=='' || blueHeading=='' || description=='') {
+        alert('Alla fält måste innehålla ett värde')
+      }
+
+      firebase.database().ref().child('banner/')
+      .push({
+        heading,
+        description,
+        blueHeading
+      })
   }
 
   render() {
+    const { bannerItem  } = this.state
+
+    let bannerItemBlueheading = bannerItem ? bannerItem.blueHeading : ''
+    let bannerItemHeading = bannerItem ? bannerItem.heading : ''
+    let bannerItemDescription = bannerItem ? bannerItem.description : ''
+
     return (
       <div id="adminBanner">
         <ComponentTitle
@@ -27,17 +66,17 @@ export default class Banner extends Component {
               <div>
                 <input
                   type="text"
-                  defaultValue="Köp nu, betala i slutet av augusti!"
+                  defaultValue={bannerItemHeading}
                   ref="heading"
                 />
                 <input
                   type="text"
-                  defaultValue="0% ränta"
+                  defaultValue={bannerItemBlueheading}
                   ref="blueHeading"
                 />
                 <input
                   type="text"
-                  defaultValue="Endest en erläggningsavgift på 29:- tillkommer"
+                  defaultValue={bannerItemDescription}
                   ref="description"
                 />
               </div>
@@ -50,3 +89,16 @@ export default class Banner extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  console.log(state);
+  return {
+    firebaseData: state.firebaseReducer.firebaseData
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(firebaseActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Banner)
