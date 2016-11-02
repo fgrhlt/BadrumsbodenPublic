@@ -21,7 +21,7 @@ export default function shoppingcartReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_PRODUCT:
       return state
-        .setIn(['products', action.product.articleNr], addArticle(action))
+        .setIn(['products', /*action.product.articleNr*/'sdf'], addArticle(action))
 
     case FETCH_PRODUCTS:
       return state
@@ -47,6 +47,7 @@ export default function shoppingcartReducer(state = initialState, action) {
       return state.
         set('summary', calculateQuantity(action, state))
   }
+
   return state
 }
 
