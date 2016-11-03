@@ -9,10 +9,6 @@ require('styles/_adminSimon/adminHeader.css')
 
 export default class AdminHeader extends Component {
 
-  this.state = {
-    
-  }
-
   /* Get the text that's in the div being clicked. Push it to the router */
   handleClick(e) {
     var name = replaceSpecialCharactersURLs(e.target.textContent)
@@ -24,9 +20,11 @@ export default class AdminHeader extends Component {
     browserHistory.push('/newAdmin/')
   }
 
-  userInfo() {
-    firebase.auth().onAuthStateChanged( (user) => {
+  handleSubmit(event) {
+    event.preventDefault()
 
+      const promise = firebase.auth().signOut()
+      promise.catch( (e) => {console.log(e.message)})
   }
 
   render() {
@@ -37,6 +35,7 @@ export default class AdminHeader extends Component {
           <div>
             <figure style={{cursor: 'pointer'}} onClick={this.handleClickLogo.bind(this)} id="logo" />
 
+            <button onClick={this.handleSubmit.bind(this)}>logout</button>
           </div>
 
           <div className={this.props.param=='webshop'?'yellow':'passive'} onClick={this.handleClick.bind(this)}>
