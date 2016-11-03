@@ -1,6 +1,7 @@
 import React from 'react'
 
 import firebase from 'firebase/app'
+require('firebase/auth')
 
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
@@ -19,6 +20,7 @@ import Product from './components/webshop/products/Product'
 import SubCategoryList from './components/webshop/products/SubCategoryList.js'
 import WebshopHome from './compositions/webshopPage/WebshopHome'
 import NewAdmin from './components/adminSimon/Admin'
+import Login from './compositions/adminPage/Login'
 
 require('styles/styles.css')
 
@@ -34,8 +36,16 @@ var config = {
 firebase.initializeApp(config)
 
 const app = document.getElementById('app')
-const NotFound = () => (
-  <h4>404.. Oops, nu hamnade du fel!</h4>)
+const NotFound = () => (<h4>404.. Oops, nu hamnade du fel!</h4>)
+
+function requireAuth(nextState, replace) {
+  if (null === firebase.auth().currentUser) {
+    replace({
+      pathname: '/login',
+      state: { nextPathname: nextState.location.pathname }
+    })
+  }
+}
 
 const router = (
     <Provider store={store}>
@@ -53,7 +63,8 @@ const router = (
         <Route path="services" component={Services}></Route>
         <Route path="admin" component={Admin}></Route>
 
-        <Route path="newAdmin" component={NewAdmin}>
+        <Route path="login" component={Login}></Route>
+        <Route path="newAdmin" component={NewAdmin} onEnter={requireAuth}>
           <Route path="/newAdmin/:site" component={NewAdmin}></Route>
           <Route path="/newAdmin/:site/:section" component={NewAdmin}></Route>
           <Route path="/newAdmin/:site/:section/:category/:subcategory" component={NewAdmin}></Route>
