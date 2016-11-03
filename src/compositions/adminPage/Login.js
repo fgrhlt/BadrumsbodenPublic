@@ -8,14 +8,16 @@ export default class Login extends Component {
 
   componentWillMount() {
     this.state = {
-      message: ''
+      message: '',
+      signedIn: false
     }
 
     firebase.auth().onAuthStateChanged( (user) => {
       if (user) {
         // User is signed in.
         this.setState({
-          message: 'User '+user.email+' is signed in'
+          message: 'User '+user.email+' is signed in',
+          signedIn: true
         })
 
         const location = this.props.location
@@ -35,8 +37,6 @@ export default class Login extends Component {
 
 
   handleSubmit(log, event) {
-    event.preventDefault()
-
     const email = this.refs.email.value
     const pass = this.refs.pass.value
 
@@ -60,8 +60,8 @@ export default class Login extends Component {
         <input ref="email" placeholder="email" defaultValue="00badrumsboden@gmail.com" /> <br/>
         <input ref="pass" placeholder="Skriv in lösenord" /><br/>
 
-        <button onClick={this.handleSubmit.bind(this, 'login')}>login</button>
-        <button onClick={this.handleSubmit.bind(this, 'logout')}>logout</button>
+        {!this.state.signedIn ? <button onClick={this.handleSubmit.bind(this, 'login')}>login</button> : ''}
+        {this.state.signedIn ? <button onClick={this.handleSubmit.bind(this, 'logout')}>logout</button> : ''}
 
         {this.state.message}
       </div>

@@ -39,7 +39,7 @@ const app = document.getElementById('app')
 const NotFound = () => (<h4>404.. Oops, nu hamnade du fel!</h4>)
 
 function requireAuth(nextState, replace) {
-  if (null === firebase.auth().currentUser) {
+  if (null !== firebase.auth().currentUser) {
     replace({
       pathname: '/login',
       state: { nextPathname: nextState.location.pathname }
