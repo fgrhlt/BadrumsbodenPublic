@@ -15,27 +15,14 @@ class Checkout extends Component {
       data: []
     }
   }
-  postRequest() {
-    // // Send a POST request
-    // axios({
-    //   method: 'post',
-    //   url: 'https://shrouded-plateau-50284.herokuapp.com/payment',
-    //   data: {"firstName":"Alfred", "lastName": "Chang", "email": "support@mlab.com"}
-    // })
-
-    // Send a POST request
+  postRequest = (token) => {
+    let amount = 10000
+    console.log(token)
     axios({
-      method: 'post',
-      url: 'https://shrouded-plateau-50284.herokuapp.com/email',
-      data: {"firstName":"Alfred", "lastName": "Chang", "email": "support@mlab.com"}
+     method: 'post',
+     url: 'https://shrouded-plateau-50284.herokuapp.com/payment',
+     data: {token, amount}
     })
-
-    // // Send a POST request
-    // axios({
-    //   method: 'post',
-    //   url: 'https://shrouded-plateau-50284.herokuapp.com/contacts',
-    //   data: {"firstName":"Alfred", "lastName": "Chang", "email": "support@mlab.com"}
-    // })
   }
   testShoppingcart() {
     let productExample = {
@@ -146,10 +133,13 @@ class Checkout extends Component {
 
           <div id="stripe">
             <StripeCheckout
-              token={this.onToken}
+              token={this.postRequest}
               stripeKey="pk_test_fIT3T4pAmisM8mJT3UtcvZEG"
+              billingAddress={true}
+              amount={10000}
+              currency="SEK"
+              locale="auto"
               >
-
               <button className="btn greenButton bigButton">Betala med kort</button>
             </StripeCheckout>
           </div>
