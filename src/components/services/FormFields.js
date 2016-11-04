@@ -312,13 +312,11 @@ export class Checkbox extends Component {
       isChecked: this.props.checked
     }
   }
-
   toggleCheckbox() {
     this.setState({
       isChecked: !this.state.isChecked
     })
   }
-
   render() {
     let name = replaceSpecialCharacters(this.props.name)
     return (
@@ -360,7 +358,7 @@ export default class FormFields extends Component {
         'third': {},
         'fourth': {},
         'fifth': {},
-        'sixth': {}
+        'sixth': {},
       }
     }
   }
@@ -407,24 +405,32 @@ export default class FormFields extends Component {
     this.setState({
       formSet: currentState
     })
+
     // When the form is submitted, increase the stepcounter and load next form
     this.props.increaseStepCounter()
+
+    /* If it is the last formSet, send the whole form to the admin mail */
+    if(Object.keys(this.state.formSet.sixth).length !== 0) {
+      console.log(flat(this.state.formSet))
+
+      axios({
+        method: 'post',
+        url: 'https://shrouded-plateau-50284.herokuapp.com/email/priskalkyl',
+        data: flat(this.state.formSet)
+      })
+    }
   }
 
-  submitFormSet(e) {
+  /* Used by the arrow to submit the current form */
+  clickSubmitButton(e) {
     e.preventDefault()
     document.getElementById('submitButton').click()
   }
 
-
   /* Sends the complete form to the admin's email */
   sendCompleteForm() {
-    console.log(flat(this.state.formSet));
-    axios({
-      method: 'post',
-      url: 'https://shrouded-plateau-50284.herokuapp.com/email/priskalkyl',
-      data: flat(this.state.formSet)
-    })
+      console.log(flat(this.state.formSet));
+
   }
 
 
@@ -447,7 +453,7 @@ export default class FormFields extends Component {
               {this.props.counter == 6 ?
                 <div>
                   <SixthSet ref="sixth" form={this.state.formSet['sixth']}/>
-                  <button className="btn orangeButton" onClick={this.sendCompleteForm.bind(this)}>Skicka priskalkyl</button>
+                  <button className="btn orangeButton" onClick={this.clickSubmitButton.bind(this)}>Skicka priskalkyl</button>
                 </div>
                 : null}
 
@@ -457,7 +463,7 @@ export default class FormFields extends Component {
 
             <div className="arrowHolder">
               {this.props.counter < 6 ?
-                <figure className="arrow" onClick={this.submitFormSet.bind(this)}/>
+                <figure className="arrow" onClick={this.clickSubmitButton.bind(this)}/>
                 :<div className="empty"/>}
               </div>
             </div>
