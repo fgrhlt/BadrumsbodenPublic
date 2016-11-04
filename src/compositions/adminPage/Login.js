@@ -24,7 +24,7 @@ export default class Login extends Component {
         if (location.state && location.state.nextPathname) {
           browserHistory.push(location.state.nextPathname)
         } else {
-          browserHistory.push('/')
+          browserHistory.push('/newAdmin')
         }
       } else {
         // No user is signed in.
@@ -37,6 +37,7 @@ export default class Login extends Component {
 
 
   handleSubmit(log, event) {
+
     const email = this.refs.email.value
     const pass = this.refs.pass.value
 
