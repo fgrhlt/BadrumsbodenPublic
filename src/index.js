@@ -36,14 +36,11 @@ var config = {
 firebase.initializeApp(config)
 
 const app = document.getElementById('app')
-const NotFound = () => (<h4>404.. Oops, nu hamnade du fel!</h4>)
+const NotFound = () => (<h4 style={{textAlign: 'center', paddingTop: 100}}>404.. Oops, nu hamnade du fel!</h4>)
 
 function requireAuth(nextState, replace, callback) {
   firebase.auth().onAuthStateChanged((user) => {
-    console.log('nextState.location.pathname', nextState.location.pathname);
-  console.log('user',user);
     if (null === user) {
-      console.log('use2r',user);
       replace({
         pathname: '/login',
         state: { nextPathname: nextState.location.pathname }

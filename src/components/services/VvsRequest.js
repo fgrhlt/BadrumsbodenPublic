@@ -19,19 +19,17 @@ export default class VVSRequest extends Component {
       inputValues[input] = this.refs[input].value
     }
 
-    this.setState({
-      form: inputValues
-    })
-  }
-
-  sendCompleteForm() {
     axios({
       method: 'post',
       url: 'https://shrouded-plateau-50284.herokuapp.com/email/VVSRequest',
-      data: flat(this.state.form)
+      data: inputValues
     })
-  }
 
+    this.setState({
+      form: {}
+    })
+
+  }
 
   render() {
     var styleVar = {

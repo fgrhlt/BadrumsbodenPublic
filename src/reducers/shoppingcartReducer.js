@@ -6,7 +6,6 @@ const CREATE_SHOPPING_CART = 'CREATE_SHOPPING_CART'
 const ADD_PRODUCT = 'ADD_PRODUCT'
 const DELETE_PRODUCT = 'DELETE_PRODUCT'
 const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
-const SUMMARY = 'SUMMARY'
 const FETCH_PRODUCTS = 'FETCH_PRODUCTS'
 const FETCH_SUMMARY = 'FETCH_SUMMARY'
 
@@ -31,10 +30,6 @@ export default function shoppingcartReducer(state = initialState, action) {
       return state
         .setIn(['products', action.articleNr], undefined)
 
-    case SUMMARY:
-      return state
-        .set('summary', calculateSums(action, state))
-
     case FETCH_SUMMARY:
       return state
         .set('summary', fetchSum(action, state))
@@ -45,7 +40,7 @@ export default function shoppingcartReducer(state = initialState, action) {
 
     case UPDATE_QUANTITY:
       return state.
-        set('summary', calculateQuantity(action, state))
+        set('summary', fetchSum(action, state))
   }
 
   return state
@@ -57,30 +52,10 @@ function addArticle(action) {
   }
 }
 
-function calculateQuantity(action, state) {
-  return {
-    quantity: state.summary.quantity + action.quantity
-  }
-}
-
-function calculateSums(action, state) {
-  return {
-      sum: state.summary.sum + action.price,
-      quantity: state.summary.quantity + action.quantity
-  }
-}
-
 function fetchSum(action, state) {
   return {
       sum: action.sum,
       quantity: action.quantity
-  }
-}
-
-function calculateSumsDelete(action, state) {
-  return {
-      sum: state.summary.sum - action.product.price,
-      quantity: state.summary.quantity - action.product.quantity
   }
 }
 
