@@ -49,7 +49,7 @@ require('styles/_webshopPage/dropdownMenu.css')
     let category2 = e.target.id
 
     if (!category2=='') {
-      browserHistory.push('/webshop/'+category2+'/all')
+      browserHistory.push('/webshop/'+category2)
     }else {
       let subcategory = e.target.textContent
       subcategory = replaceSpecialCharactersURLs(subcategory)

@@ -17,14 +17,14 @@ class Products extends Component {
 
     this.state = {
       productItems: [],
-      subcatItems: []
+      subcatItems: [],
     }
 
     if (category=='search') {
       fetchFirebaseData('products', 'productName', subcategory)
       fetchFirebaseData('categories', 'parent', 0)
-
-    } else if (subcategory=='all') {
+    }
+    else if (subcategory==undefined) {
       fetchFirebaseData('products', 'category', category)
       fetchFirebaseData('categories', 'parent', category)
     }
@@ -39,8 +39,13 @@ class Products extends Component {
     const { subcategory, category } = params
     const { fetchFirebaseData } = this.props
 
+    let subpath = subcategory
+    if (subcategory==undefined) {
+      subpath = category
+    }
+
     this.setState({
-      productItems: firebaseData.products ? firebaseData.products.items : [],
+      productItems: firebaseData['products/'+subpath] ? firebaseData['products/'+subpath].items : [],
       subcatItems: firebaseData['categories/'+category] ? firebaseData['categories/'+category].items : [],
     })
 
@@ -48,16 +53,18 @@ class Products extends Component {
       if (category=='search') {
         fetchFirebaseData('products', 'productName', subcategory)
         fetchFirebaseData('categories', 'parent', 0)
-      } else if (subcategory=='all') {
-      fetchFirebaseData('products', 'category', category)
-      fetchFirebaseData('categories', 'parent', category)
-      } else {
+      }
+      else if (subcategory=='all') {
+        fetchFirebaseData('products', 'category', category)
+        fetchFirebaseData('categories', 'parent', category)
+      }
+      else {
         fetchFirebaseData('products', 'subcategory', subcategory)
         fetchFirebaseData('categories', 'parent', category)
       }
 
       this.setState({
-        productItems: firebaseData.products ? firebaseData.products.items : [],
+        productItems: firebaseData['products/'+subpath] ? firebaseData['products/'+subpath].items : [],
         subcatItems: firebaseData['categories/'+category] ? firebaseData['categories/'+category].items : [],
       })
     }
