@@ -58,10 +58,10 @@ const router = (
 
         <Route path="webshop" component={Webshop}>
           <IndexRoute component={WebshopHome}></IndexRoute>
+            <Route path="/webshop/checkout" component={Checkout}></Route>
             <Route path="/webshop/:category" component={Products}></Route>
             <Route path="/webshop/:category/:subcategory" component={Products}></Route>
             <Route path="/webshop/:category/:subcategory/:product" component={Product}></Route>
-            <Route path="/webshop/checkout" component={Checkout}></Route>
         </Route>
 
         <Route path="gallery" component={Gallery}></Route>

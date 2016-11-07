@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import ProductElements from './ProductElements'
 import SubCategoryList from './SubCategoryList'
 
+import { browserHistory } from 'react-router'
+
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as firebaseActions from '../../../actions/firebaseActions'
@@ -24,17 +26,14 @@ class Product extends Component {
     }
 
     fetchFirebaseData('products', 'articleNr', product)
-    fetchFirebaseData('categories', 'parent', category)
   }
 
   componentWillReceiveProps(nextProps) {
-
     const { params, firebaseData } = nextProps
     const { subcategory, category } = params
 
     this.setState({
       productItem: firebaseData.products ? firebaseData.products.items[0] : [],
-      subcatItems: firebaseData['categories/'+category] ? firebaseData['categories/'+category].items : [],
     })
   }
 
@@ -42,11 +41,25 @@ class Product extends Component {
     this.props.actions.shoppingcartActions.addToShoppingcart(this.state.productItem, this.refs.quantity.value)
   }
 
+  clickHandler(category, subcategory) {
+    if ( typeof(subcategory) === 'string') {
+      browserHistory.replace('/webshop/'+category+'/'+subcategory)
+    }else {
+      browserHistory.replace('/webshop/'+category)
+    }
+  }
+
   render() {
     const { productItem, subcatItems } = this.state
-    const { price, description, url, productName } = productItem
+    const { price, description, url, productName, category, subcategory } = productItem
+    let styles = {paddingLeft: 10}
 
     return (
+      <div>
+      <span id="1" onClick={this.clickHandler.bind(this, category)} style={styles}>{category} ></span>
+      <span id="2" onClick={this.clickHandler.bind(this, category, subcategory)} style={styles}>{subcategory} ></span>
+      <span id="3" style={styles}>{productName}</span>
+
       <div id="productView">
         <section>
           <SubCategoryList subcatItems={subcatItems} />
@@ -79,6 +92,8 @@ class Product extends Component {
           </div>
         </section>
       </div>
+    </div>
+
     )
   }
 }
