@@ -102,11 +102,11 @@ class Campaign extends Component {
                 <input
                   type="text"
                   ref="heading"
-                  defaultValue={campaignItemHeading}
+                  value={campaignItemHeading}
                 />
                 <textarea
                   ref="description"
-                  defaultValue={campaignItemDescription}
+                  value={campaignItemDescription}
                 />
               </div>
               <div>
@@ -123,7 +123,7 @@ class Campaign extends Component {
             <input
               type="text"
               ref="articleNr"
-              defaultValue={campaignItemArticleNr}
+              value={campaignItemArticleNr}
             />
             <div>
               <input disabled="disabled" ref="fileHolder" id="fileHolder" />

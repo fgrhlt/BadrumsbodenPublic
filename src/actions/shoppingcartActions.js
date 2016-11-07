@@ -4,29 +4,25 @@ const CREATE_SHOPPING_CART = 'CREATE_SHOPPING_CART'
 const ADD_PRODUCT = 'ADD_PRODUCT'
 const DELETE_PRODUCT = 'DELETE_PRODUCT'
 const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
-const SUMMARY = 'SUMMARY'
+const UPDATE_SUMMARY = 'UPDATE_SUMMARY'
 const FETCH_PRODUCTS = 'FETCH_PRODUCTS'
 const FETCH_SUMMARY = 'FETCH_SUMMARY'
 
 export function addProduct(product, quantity) {
 
-  let cookieObj = cookie.load('articles'+[product.articleNr])
-  if (!cookieObj) {
-    cookieObj = { quantity: 0 }
-  }
-
   let object = {
     price: product.price,
     articleNr: product.articleNr,
     productName: product.productName,
-    quantity: parseInt(quantity) + parseInt(cookieObj.quantity)
+    imageUrl: product.url,
+    quantity: parseInt(quantity)
   }
-  console.log('add', object);
+
   let stringObj=JSON.stringify(object)
   var d = new Date()
   d.setTime(d.getTime() + (2*24*60*60*1000))
-
   cookie.save('articles'+[product.articleNr], stringObj, { path: '/', expires: d })
+
   return {
     type: ADD_PRODUCT,
     product: cookie.load('articles'+[product.articleNr])
@@ -36,14 +32,14 @@ export function addProduct(product, quantity) {
 export function fetchProducts() {
   let cookies = []
   Object.keys(cookie.select(/^articles.*/i)).forEach(name => cookies.push((cookie.load(name))))
-  console.log('fetch', cookies);
+
   return {
     type: FETCH_PRODUCTS,
     products: cookies
   }
 }
 
-export function updateQuantity(articleNr, quantity) {
+export function updateArticleQuantity(articleNr, quantity) {
   var d = new Date()
   d.setTime(d.getTime() + (2*24*60*60*1000))
 
@@ -76,46 +72,55 @@ export function deleteProduct(articleNr) {
   }
 }
 
-export function summary(quantity, price) {
+export function updateSummary(quantity, price) {
+  let cookieObj = cookie.load('summary')
+
+  if (!cookieObj) {
+    cookieObj = { quantity: 0, sum: 0 }
+  }
+
+  let object = {
+    sum: parseInt(cookieObj.sum) + (price*quantity),
+    quantity: parseInt(cookieObj.quantity) + quantity
+  }
+
+  let stringObj=JSON.stringify(object)
+  var d = new Date()
+  d.setTime(d.getTime() + (2*24*60*60*1000))
+  cookie.save('summary', stringObj, { path: '/', expires: d })
+
   return {
-    type: SUMMARY,
-    quantity,
-    price
+    type: FETCH_SUMMARY,
+    quantity: object.quantity,
+    sum: object.sum
   }
 }
 
 export function fetchSummary() {
-  let cookies = []
-  Object.keys(cookie.select(/^articles.*/i)).forEach(name => cookies.push((cookie.load(name))))
+  let cookieObj = cookie.load('summary')
 
-  let totSum = 0
-  let totQuantity = 0
-
-  cookies.map( product => {
-    let price = parseInt(product.price)
-    let quantity = parseInt(product.quantity)
-    totSum = totSum + (price*quantity)
-    totQuantity = totQuantity + quantity
-  })
+  if (!cookieObj) {
+    cookieObj = { quantity: 0, sum: 0 }
+  }
 
   return {
     type: FETCH_SUMMARY,
-    quantity: totQuantity,
-    sum: totSum
+    quantity: cookieObj.quantity,
+    sum: cookieObj.sum
   }
 }
 
 export function addToShoppingcart(product, quantity) {
     return (dispatch) => {
             dispatch( addProduct(product, quantity))
-            dispatch( summary(parseInt(quantity), parseInt(product.price)))
+            dispatch( updateSummary(parseInt(quantity), parseInt(product.price)))
     }
 }
 
 export function removeFromShoppingcart(product) {
     return (dispatch) => {
             dispatch( deleteProduct(product))
-            dispatch( summary(parseInt(product.quantity), parseInt(-product.price)))
+            dispatch( updateSummary(parseInt(product.quantity), parseInt(-product.price)))
     }
 }
 
@@ -123,5 +128,12 @@ export function fetchShoppingcart(product) {
     return (dispatch) => {
             dispatch( fetchProducts())
             dispatch( fetchSummary())
+    }
+}
+
+export function updateQuantity(product) {
+    return (dispatch) => {
+            dispatch( updateArticleQuantity(product.articleNr, product.quantity))
+            dispatch( updateSummary(parseInt(product.quantity), parseInt(product.price)))
     }
 }

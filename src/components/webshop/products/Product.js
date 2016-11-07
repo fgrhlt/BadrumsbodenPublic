@@ -24,20 +24,17 @@ class Product extends Component {
     }
 
     fetchFirebaseData('products', 'articleNr', product)
-    if (category=='search') {
-      fetchFirebaseData('categories', 'parent', 0)
-    } else {
-      fetchFirebaseData('categories', 'parent', category)
-    }
+    fetchFirebaseData('categories', 'parent', category)
   }
 
   componentWillReceiveProps(nextProps) {
+
     const { params, firebaseData } = nextProps
     const { subcategory, category } = params
 
     this.setState({
       productItem: firebaseData.products ? firebaseData.products.items[0] : [],
-      subcatItems: firebaseData.categories ? firebaseData.categories.items : [],
+      subcatItems: firebaseData['categories/'+category] ? firebaseData['categories/'+category].items : [],
     })
   }
 

@@ -66,17 +66,17 @@ class Banner extends Component {
               <div>
                 <input
                   type="text"
-                  defaultValue={bannerItemHeading}
+                  value={bannerItemHeading}
                   ref="heading"
                 />
                 <input
                   type="text"
-                  defaultValue={bannerItemBlueheading}
+                  value={bannerItemBlueheading}
                   ref="blueHeading"
                 />
                 <input
                   type="text"
-                  defaultValue={bannerItemDescription}
+                  value={bannerItemDescription}
                   ref="description"
                 />
               </div>
