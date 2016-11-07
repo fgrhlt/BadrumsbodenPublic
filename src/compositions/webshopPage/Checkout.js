@@ -11,13 +11,17 @@ require('styles/_webshopPage/checkout.css')
 class Checkout extends Component {
 
   componentWillMount() {
+    const { shoppingcartReducer, shoppingcartActions } = this.props
+    this.props.fetchShoppingcart()
+
     this.state = {
-      data: []
+      data: [],
+      summary: shoppingcartReducer.summary ? shoppingcartReducer.summary : '',
+      products: shoppingcartReducer.products ? shoppingcartReducer.products : '',
     }
   }
   postRequest = (token) => {
     let amount = 10000
-    console.log(token)
     axios({
      method: 'post',
      url: 'https://shrouded-plateau-50284.herokuapp.com/payment',
@@ -41,13 +45,16 @@ class Checkout extends Component {
   }
   componentWillReceiveProps(nextProps) {
     this.setState({
-      data: this.props.shoppingcartReducer
+      data: this.props.shoppingcartReducer,
+      summary: nextProps.shoppingcartReducer.summary ? nextProps.shoppingcartReducer.summary : '',
+      products: nextProps.shoppingcartReducer.products ? nextProps.shoppingcartReducer.products : '',
     })
   }
 
   render() {
     return (
       <div id="checkout">
+      {console.log(this.state)}
         <button onClick={this.postRequest.bind(this)} type="button" name="button">Send req</button>
         <button onClick={this.testShoppingcart.bind(this)} type="button" name="button">add product</button>
         <button onClick={this.testShoppingcartQ.bind(this)} type="button" name="button">update q</button>
@@ -73,28 +80,6 @@ class Checkout extends Component {
             <div className="item">
               <div className="image">
                 <figure style={{backgroundImage:'url(http://placekitten.com/200/300)'}} />
-              </div>
-
-              <div className="info">
-                <h4>IFÖ</h4>
-                <p>Rostfritt stål</p>
-                <span>200 cm</span>
-              </div>
-
-              <div className="quantity">
-                <p>Antal: 1</p>
-                <span>-</span>
-                <span>+</span>
-              </div>
-
-              <div className="price">
-                <h4>799:-</h4>
-              </div>
-            </div>
-
-            <div className="item">
-              <div className="image">
-                <figure style={{backgroundImage:'url(http://placekitten.com/500/300)'}} />
               </div>
 
               <div className="info">
@@ -150,7 +135,7 @@ class Checkout extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
+  console.log('firebase ', state)
   return {
     shoppingcartReducer: state.shoppingcartReducer
   }

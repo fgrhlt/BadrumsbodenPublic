@@ -15,7 +15,7 @@ export function addProduct(product, quantity) {
     articleNr: product.articleNr,
     productName: product.productName,
     imageUrl: product.url,
-    quantity: parseInt(quantity)
+    quantity: parseInt(quantity) + parseInt(cookieObj.quantity)
   }
 
   let stringObj=JSON.stringify(object)
