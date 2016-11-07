@@ -54,7 +54,7 @@ class GalleryPreview extends Component {
 
     return (
       <div id="galleryPreview">
-        <div id="lostGrid">
+        <div id="lostGrid" onClick={this.onClickGallery.bind(this)}>
 
           <h2>Låt dig inspireras av bilder från våra projekt</h2>
           <section>
