@@ -45,7 +45,7 @@ class Products extends Component {
     }
 
     this.setState({
-      productItems: firebaseData['products/'+subpath] ? firebaseData['products/'+subpath].items : [],
+      productItems: firebaseData.products ? firebaseData.products.items : [],
       subcatItems: firebaseData['categories/'+category] ? firebaseData['categories/'+category].items : [],
     })
 
@@ -54,7 +54,7 @@ class Products extends Component {
         fetchFirebaseData('products', 'productName', subcategory)
         fetchFirebaseData('categories', 'parent', 0)
       }
-      else if (subcategory=='all') {
+      else if (subcategory==undefined) {
         fetchFirebaseData('products', 'category', category)
         fetchFirebaseData('categories', 'parent', category)
       }
@@ -64,7 +64,7 @@ class Products extends Component {
       }
 
       this.setState({
-        productItems: firebaseData['products/'+subpath] ? firebaseData['products/'+subpath].items : [],
+        productItems: firebaseData.products ? firebaseData.products.items : [],
         subcatItems: firebaseData['categories/'+category] ? firebaseData['categories/'+category].items : [],
       })
     }
