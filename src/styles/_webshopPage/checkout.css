@@ -31,9 +31,10 @@
             lost-utility:clearfix;
             background:#F2F2F2;
             lost-row:1 20px;
+            box-sizing: border-box;
 
               & .image {
-                lost-column:2/11 0 0;
+                lost-column:2/14 0 0;
 
                   & figure {
                     width:100px;
@@ -42,19 +43,23 @@
                     background-position: center;
                     background-size: contain;
                     background-repeat: no-repeat;
+                    cursor:pointer;
                   }
               }
               & .info {
                 padding-top:12px;
-                lost-column:4/11;
-
+                lost-column:6/14 0 0;
+                overflow: hidden;
                   & p {
                     font-size:14pt;
                   }
+                  & h4 {
+                    cursor:pointer;
+                  }
               }
               & .quantity {
-                lost-column:3/11;
-                padding-top:18px;
+                lost-column:2/14 0 0;
+                padding:18px 0 0 0;
 
                   /* The plus and minus boxes */
                   & span {
@@ -83,12 +88,24 @@
                   }
               }
               & .price {
-                lost-column:2/11;
+                lost-column:2/14 0 0;
                 padding-top:37px;
                 text-align: center;
-                  & h4 {
-                    font-weight:bold;
-                  }
+                text-align: right;
+                & h4 {
+                  font-weight:bold;
+                }
+              }
+              & .trash {
+                lost-column:2/14;
+                padding-top:35px;
+                & figure {
+                  background:url(../../assets/icons/admin/trash.svg) no-repeat;
+                  width:30px;
+                  height:30px;
+                  float:right;
+                  cursor:pointer;
+                }
               }
            }
 
@@ -122,9 +139,14 @@
                 }
             }
         }
-
         & #stripe {
-        
+          & h4 {
+            margin:20px 0 0 0;
+
+            & span {
+              font-weight: bold;
+            }
+          }
         }
     }
 }
@@ -132,20 +154,27 @@
 @media (width <= 1030px) {
   #checkout {
     lost-center:90%;
+      & > section:nth-of-type(1), & section:nth-of-type(2) {
+        lost-waffle:1;
+      }
       & section:nth-of-type(2) {
         & #cart {
+          lost-column:1;
            & .item {
              & .image {
-               lost-column:1/4;
+               lost-column:1/5;
              }
              & .info {
-               lost-column:1/4;
+               lost-column:1/5;
              }
              & .quantity {
-               lost-column:1/4;
+               lost-column:1/5;
              }
              & .price {
-               lost-column:1/4;
+               lost-column:1/5;
+             }
+             & .trash {
+               lost-column:1/5;
              }
            }
          }
@@ -176,17 +205,18 @@
                 lost-waffle:1/2;
               }
               & .quantity {
-                lost-waffle:1/2;
+                lost-waffle:1/3;
               }
               & .price {
-                lost-waffle:1/2;
+                lost-waffle:1/3;
+              }
+              & .trash {
+                lost-waffle:1/3;
               }
           }
         }
-
         & #delivery {
           padding:15px;
-
           & p {
             font-size:12pt;
           }

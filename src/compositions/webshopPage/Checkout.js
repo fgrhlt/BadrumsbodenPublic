@@ -18,8 +18,12 @@ class Checkout extends Component {
       data: [],
       summary: shoppingcartReducer.summary ? shoppingcartReducer.summary : '',
       products: shoppingcartReducer.products ? shoppingcartReducer.products : '',
+      radioButtonValue:"store",
+      totalSum: 0,
     }
   }
+  /* Posts a payment request to the node-server with the customers information
+   * Amount is always in Öre (swedish cents) 1 kr = 100 öre */
   postRequest = (token) => {
     let amount = 10000
     axios({
@@ -28,38 +32,41 @@ class Checkout extends Component {
      data: {token, amount}
     })
   }
-  testShoppingcart() {
-    let productExample = {
-      price: 120,
-      articleNr: '123123123',
-      productName: 'Badkar Stort',
-      quantity: 10
-    }
-    this.props.addToShoppingcart(productExample)
-  }
-  testShoppingcartQ() {
-    this.props.updateQuantity('123123123', 10)
-  }
-  testShoppingcartR() {
-    this.props.deleteProduct("123123")
-  }
   componentWillReceiveProps(nextProps) {
     this.setState({
       data: this.props.shoppingcartReducer,
       summary: nextProps.shoppingcartReducer.summary ? nextProps.shoppingcartReducer.summary : '',
       products: nextProps.shoppingcartReducer.products ? nextProps.shoppingcartReducer.products : '',
+      totalSum: this.state.summary.sum ? this.state.summary.sum : 0
+    })
+    //console.log(this.state.totalSum)
+  }
+  /* Delete a product from this checkout, uses the article number of the product */
+  deleteProduct(articleNr) {
+    this.props.deleteProduct(articleNr)
+  }
+  /* Adds one to the quantity of a product */
+  updateQuantityAdd(articleNr) {
+    this.props.updateQuantity(articleNr, 1)
+  }
+  /* Subtracts one from the quantity of the product */
+  updateQuantitySubtract(articleNr) {
+    this.props.updateQuantity(articleNr, -1)
+  }
+  handleRadioButton(e) {
+    let deliveryValue = 0
+    if(e.target.value == 'schenker') {
+      deliveryValue = 159
+    }
+    this.setState({
+      radioButtonValue: e.target.value,
+      totalSum: this.state.summary.sum + deliveryValue
     })
   }
-
   render() {
+    console.log('state', this.state)
     return (
       <div id="checkout">
-      {console.log(this.state)}
-        <button onClick={this.postRequest.bind(this)} type="button" name="button">Send req</button>
-        <button onClick={this.testShoppingcart.bind(this)} type="button" name="button">add product</button>
-        <button onClick={this.testShoppingcartQ.bind(this)} type="button" name="button">update q</button>
-        <button onClick={this.testShoppingcartR.bind(this)} type="button" name="button">remove product</button>
-
         <section>
           Dina uppgifter är trygga, säkra och krypterade.<br /><br />
 
@@ -77,56 +84,70 @@ class Checkout extends Component {
           <h2>Varukorg</h2>
 
           <div id="cart">
-            <div className="item">
-              <div className="image">
-                <figure style={{backgroundImage:'url(http://placekitten.com/200/300)'}} />
-              </div>
+            {this.state.products.map(function(product, i) {
+              return (
+                <div className="item" key={i}>
+                  <div className="image">
+                    <figure style={{backgroundImage:'url('+product.imageUrl+')'}} />
+                  </div>
 
-              <div className="info">
-                <h4>IFÖ</h4>
-                <p>Rostfritt stål</p>
-                <span>200 cm</span>
-              </div>
+                  <div className="info">
+                    <h4>{product.productName}</h4>
+                    <span>Artikelnr: {product.articleNr}</span>
+                  </div>
 
-              <div className="quantity">
-                <p>Antal: 1</p>
-                <span>-</span>
-                <span>+</span>
-              </div>
+                  <div className="quantity">
+                    <p>Antal: {product.quantity}</p>
+                    <span onClick={this.updateQuantitySubtract.bind(this,product.articleNr)}>-</span>
+                    <span onClick={this.updateQuantityAdd.bind(this,product.articleNr)}>+</span>
+                  </div>
 
-              <div className="price">
-                <h4>799:-</h4>
-              </div>
-            </div>
+                  <div className="price">
+                    <h4>{product.price}:-</h4>
+                  </div>
 
-            <h4 className="total">Totalt: 1499:-</h4>
+                  <div className="trash">
+                    <figure onClick={this.deleteProduct.bind(this, product.articleNr)}/>
+                  </div>
+                </div>
+            )}, this)}
+            <h4 className="total">Summa: {this.state.summary.sum}:-</h4>
           </div>
 
           <div id="delivery">
             <h2>Leveranssätt</h2>
-
             <div>
-              <input type="radio" />
+              <input
+                type="radio"
+                value="store"
+                checked={this.state.radioButtonValue == 'store' ? true : false}
+                onChange={this.handleRadioButton.bind(this)}
+              />
               <p>Hämta i butik</p>
             </div>
 
             <div>
-              <input type="radio" />
+              <input
+                type="radio"
+                value="schenker"
+                checked={this.state.radioButtonValue == 'schenker' ? true : false}
+                onChange={this.handleRadioButton.bind(this)}
+              />
               <p>Postpaket Schenker, 159:-</p>
             </div>
           </div>
-
           <div id="stripe">
             <StripeCheckout
               token={this.postRequest}
               stripeKey="pk_test_fIT3T4pAmisM8mJT3UtcvZEG"
               billingAddress={true}
-              amount={10000}
+              amount={this.state.totalSum*100}
               currency="SEK"
               locale="auto"
               >
               <button className="btn greenButton bigButton">Betala med kort</button>
             </StripeCheckout>
+            <h4 className="total">Totalt: <span>{this.state.totalSum}:- </span></h4>
           </div>
         </section>
       </div>
