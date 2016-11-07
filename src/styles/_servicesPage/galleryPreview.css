@@ -28,6 +28,7 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
+        cursor:pointer;
       }
 
       /* The first of three columns of pictures */

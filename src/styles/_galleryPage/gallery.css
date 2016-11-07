@@ -37,11 +37,12 @@
         padding: 5% 2%;
       }
     }
+    & section:nth-of-type(even) {
+      background:#ccc;
+      padding: 5%;
+    }
   }
-  & .container:nth-child(even) {
-    background:#ccc;
-    padding: 5%;
-  }
+
 }
 
 @media (max-width: 435px) {
