@@ -6,14 +6,9 @@ export default class ProductPreview extends Component {
 
   onClick() {
     const { item } = this.props
-    const { folder, articleNr } = item
+    const { folder, articleNr, category, subcategory } = item
 
-    let path = ''
-    browserHistory.listen( (event) => {
-      path = event.pathname.replace('/newAdmin', '')
-    })
-
-    browserHistory.push(path+'/'+articleNr)
+    browserHistory.replace('webshop/'+category+'/'+subcategory+'/'+articleNr)
   }
 
   render() {
