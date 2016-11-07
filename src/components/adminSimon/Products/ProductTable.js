@@ -39,14 +39,17 @@ class ProductTable extends Component {
 
   /* Receive data from firebase */
   componentWillReceiveProps(nextProps) {
+    const { param, firebaseData } = nextProps
+    const { subcategory, category } = param
+    const { fetchFirebaseData } = this.props
 
-    let subcat = replaceSpecialCharactersURLs(nextProps.param.subcategory)
+    let subcat = replaceSpecialCharactersURLs(subcategory)
 
-    if (nextProps.param.subcategory != this.props.param.subcategory) {
-      if (nextProps.param.category=='toppsäljare') {
-        this.props.fetchFirebaseData('products', 'starred', true)
+    if (subcategory != this.props.param.subcategory) {
+      if (category=='toppsäljare') {
+        fetchFirebaseData('products', 'starred', true)
       } else {
-        this.props.fetchFirebaseData('products', 'subcategory', subcat)
+        fetchFirebaseData('products', 'subcategory', subcat)
       }
     }
 
@@ -54,7 +57,6 @@ class ProductTable extends Component {
     let arrr = fbData.map( (product) => {
       return [product.articleNr, product.supplier, product.productName, product.description, product.filename, product, product.starred]
     })
-
     this.state = {
       products: arrr,
       columns: [
@@ -169,6 +171,7 @@ class ProductTable extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log('staet', state);
   return {
     firebaseData: state.firebaseReducer.firebaseData
   }
