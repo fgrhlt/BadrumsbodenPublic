@@ -36,12 +36,10 @@ class Checkout extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      data: this.props.shoppingcartReducer,
       summary: nextProps.shoppingcartReducer.summary ? nextProps.shoppingcartReducer.summary : '',
       products: nextProps.shoppingcartReducer.products ? nextProps.shoppingcartReducer.products : '',
       totalSum: this.state.summary.sum ? this.state.summary.sum : 0
     })
-    //console.log(this.state.totalSum)
   }
 
   /* Delete a product from this checkout, uses the article number of the product */
@@ -49,8 +47,8 @@ class Checkout extends Component {
     this.props.removeFromShoppingcart(product)
   }
 
-  updateQuantity(articleNr, quantity) {
-    this.props.updateQuantity(articleNr, quantity)
+  updateQuantity(product, quantity) {
+    this.props.updateQuantity(product, quantity)
   }
 
   handleRadioButton(e) {
@@ -65,6 +63,7 @@ class Checkout extends Component {
   }
 
   render() {
+    console.log(this.state.products);
     return (
       <div id="checkout">
         <section>
@@ -98,8 +97,8 @@ class Checkout extends Component {
 
                   <div className="quantity">
                     <p>Antal: {product.quantity}</p>
-                    <span onClick={this.updateQuantity.bind(this, product.articleNr, -1)}>-</span>
-                    <span onClick={this.updateQuantity.bind(this, product.articleNr, 1)}>+</span>
+                    <span onClick={this.updateQuantity.bind(this, product, -1)}>-</span>
+                    <span onClick={this.updateQuantity.bind(this, product, 1)}>+</span>
                   </div>
 
                   <div className="price">
@@ -156,7 +155,6 @@ class Checkout extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('firebase ', state)
   return {
     shoppingcartReducer: state.shoppingcartReducer
   }

@@ -15,7 +15,7 @@ export function addProduct(product, quantity) {
     articleNr: product.articleNr,
     productName: product.productName,
     imageUrl: product.url,
-    quantity: parseInt(quantity) + parseInt(cookieObj.quantity)
+    quantity: parseInt(quantity)
   }
 
   let stringObj=JSON.stringify(object)
@@ -40,18 +40,25 @@ export function fetchProducts() {
 }
 
 export function updateArticleQuantity(articleNr, quantity) {
+  let cookie = cookie.load('articles'+[articleNr])
+
+  let object = {
+    price: cookie.price,
+    articleNr: cookie.articleNr,
+    productName: cookie.productName,
+    imageUrl: cookie.url,
+    quantity: parseInt(cookie.quantity) + parseInt(quantity)
+  }
+
+  let stringObj=JSON.stringify(object)
   var d = new Date()
   d.setTime(d.getTime() + (2*24*60*60*1000))
-
-  let cookieQnt = parseInt(cookie.load('articles'+[articleNr].quantity))
-
-  let newQuantity = cookieQnt + quantity
-  cookie.save('articles'+[articleNr].quantity, newQuantity, { path: '/', expires: d})
+  cookie.save('articles'+[articleNr], stringObj, { path: '/', expires: d })
 
   return {
     type: UPDATE_QUANTITY,
     articleNr,
-    quantity: newQuantity
+    quantity: object
   }
 }
 
@@ -72,7 +79,7 @@ export function updateSummary(quantity, price) {
   }
 
   let object = {
-    sum: parseInt(cookieObj.sum) + (price*quantity),
+    sum: parseInt(cookieObj.sum) + parseInt(price*quantity),
     quantity: parseInt(cookieObj.quantity) + quantity
   }
 
@@ -112,7 +119,7 @@ export function addToShoppingcart(product, quantity) {
 export function removeFromShoppingcart(product) {
     return (dispatch) => {
             dispatch( deleteProduct(product.articleNr))
-            dispatch( updateSummary(parseInt(product.quantity), parseInt(-product.price)))
+            dispatch( updateSummary(parseInt(-product.quantity), parseInt(product.price)))
     }
 }
 
@@ -123,9 +130,9 @@ export function fetchShoppingcart(product) {
     }
 }
 
-export function updateQuantity(articleNr, quantity) {
+export function updateQuantity(product, quantity) {
     return (dispatch) => {
-            dispatch( updateArticleQuantity(articleNr, quantity))
-            dispatch( updateSummary(parseInt(quantity), parseInt(price)))
+            dispatch( updateArticleQuantity(product.articleNr, quantity))
+            dispatch( updateSummary(parseInt(quantity), parseInt(product.price)))
     }
 }
