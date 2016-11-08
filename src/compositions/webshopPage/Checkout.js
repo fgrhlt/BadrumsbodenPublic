@@ -22,6 +22,7 @@ class Checkout extends Component {
       totalSum: 0,
     }
   }
+
   /* Posts a payment request to the node-server with the customers information
    * Amount is always in Öre (swedish cents) 1 kr = 100 öre */
   postRequest = (token) => {
@@ -32,6 +33,7 @@ class Checkout extends Component {
      data: {token, amount}
     })
   }
+
   componentWillReceiveProps(nextProps) {
     this.setState({
       data: this.props.shoppingcartReducer,
@@ -41,18 +43,16 @@ class Checkout extends Component {
     })
     //console.log(this.state.totalSum)
   }
+
   /* Delete a product from this checkout, uses the article number of the product */
-  deleteProduct(articleNr) {
-    this.props.deleteProduct(articleNr)
+  deleteProduct(product) {
+    this.props.removeFromShoppingcart(product)
   }
-  /* Adds one to the quantity of a product */
-  updateQuantityAdd(articleNr) {
-    this.props.updateQuantity(articleNr, 1)
+
+  updateQuantity(articleNr, quantity) {
+    this.props.updateQuantity(articleNr, quantity)
   }
-  /* Subtracts one from the quantity of the product */
-  updateQuantitySubtract(articleNr) {
-    this.props.updateQuantity(articleNr, -1)
-  }
+
   handleRadioButton(e) {
     let deliveryValue = 0
     if(e.target.value == 'schenker') {
@@ -63,8 +63,8 @@ class Checkout extends Component {
       totalSum: this.state.summary.sum + deliveryValue
     })
   }
+
   render() {
-    console.log('state', this.state)
     return (
       <div id="checkout">
         <section>
@@ -98,8 +98,8 @@ class Checkout extends Component {
 
                   <div className="quantity">
                     <p>Antal: {product.quantity}</p>
-                    <span onClick={this.updateQuantitySubtract.bind(this,product.articleNr)}>-</span>
-                    <span onClick={this.updateQuantityAdd.bind(this,product.articleNr)}>+</span>
+                    <span onClick={this.updateQuantity.bind(this, product.articleNr, -1)}>-</span>
+                    <span onClick={this.updateQuantity.bind(this, product.articleNr, 1)}>+</span>
                   </div>
 
                   <div className="price">
@@ -107,7 +107,7 @@ class Checkout extends Component {
                   </div>
 
                   <div className="trash">
-                    <figure onClick={this.deleteProduct.bind(this, product.articleNr)}/>
+                    <figure onClick={this.deleteProduct.bind(this, product)}/>
                   </div>
                 </div>
             )}, this)}

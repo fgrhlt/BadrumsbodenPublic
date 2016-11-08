@@ -43,9 +43,9 @@ class Product extends Component {
 
   clickHandler(category, subcategory) {
     if ( typeof(subcategory) === 'string') {
-      browserHistory.replace('/webshop/'+category+'/'+subcategory)
+      browserHistory.push('/webshop/'+category+'/'+subcategory)
     }else {
-      browserHistory.replace('/webshop/'+category)
+      browserHistory.push('/webshop/'+category)
     }
   }
 

@@ -45,21 +45,13 @@ export function updateArticleQuantity(articleNr, quantity) {
 
   let cookieQnt = parseInt(cookie.load('articles'+[articleNr].quantity))
 
-  let parsedQuantity
-  if (cookieQnt < quantity) {
-    parsedQuantity = quantity
-  } else if(cookieQnt == quantity) {
-    parsedQuantity = 0
-  } else {
-    parsedQuantity = -quantity
-  }
-
-  cookie.save('articles'+[articleNr].quantity, quantity, { path: '/', expires: d})
+  let newQuantity = cookieQnt + quantity
+  cookie.save('articles'+[articleNr].quantity, newQuantity, { path: '/', expires: d})
 
   return {
     type: UPDATE_QUANTITY,
     articleNr,
-    quantity: parsedQuantity
+    quantity: newQuantity
   }
 }
 
@@ -119,7 +111,7 @@ export function addToShoppingcart(product, quantity) {
 
 export function removeFromShoppingcart(product) {
     return (dispatch) => {
-            dispatch( deleteProduct(product))
+            dispatch( deleteProduct(product.articleNr))
             dispatch( updateSummary(parseInt(product.quantity), parseInt(-product.price)))
     }
 }
@@ -131,9 +123,9 @@ export function fetchShoppingcart(product) {
     }
 }
 
-export function updateQuantity(product) {
+export function updateQuantity(articleNr, quantity) {
     return (dispatch) => {
-            dispatch( updateArticleQuantity(product.articleNr, product.quantity))
-            dispatch( updateSummary(parseInt(product.quantity), parseInt(product.price)))
+            dispatch( updateArticleQuantity(articleNr, quantity))
+            dispatch( updateSummary(parseInt(quantity), parseInt(price)))
     }
 }
