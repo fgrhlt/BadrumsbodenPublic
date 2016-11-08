@@ -8,7 +8,15 @@ export default class ProductPreview extends Component {
     const { item } = this.props
     const { folder, articleNr, category, subcategory } = item
 
-    browserHistory.replace('webshop/'+category+'/'+subcategory+'/'+articleNr)
+    let path = ''
+    browserHistory.listen( (event) => {
+      path = event.pathname
+    })
+    console.log('/webshop/'+category+'/'+subcategory+'/'+articleNr);
+    browserHistory.push('/webshop/'+category+'/'+subcategory+'/'+articleNr)
+
+
+    //browserHistory.push(category+'/'+subcategory+'/'+articleNr)
   }
 
   render() {
