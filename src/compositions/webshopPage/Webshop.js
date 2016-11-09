@@ -12,7 +12,7 @@ export default class Webshop extends Component {
     return (
       <div>
         <Header></Header>
-        <DropdownMenu></DropdownMenu>
+        <DropdownMenu params={this.props.params}></DropdownMenu>
         { React.cloneElement(this.props.children, this.props) }
         <Footer></Footer>
       </div>

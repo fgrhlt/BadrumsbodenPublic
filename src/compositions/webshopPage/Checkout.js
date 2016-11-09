@@ -43,8 +43,8 @@ class Checkout extends Component {
   }
 
   /* Delete a product from this checkout, uses the article number of the product */
-  deleteProduct(product) {
-    this.props.removeFromShoppingcart(product)
+  deleteProduct(product, i) {
+    this.props.removeFromShoppingcart(product, i)
   }
 
   updateQuantity(product, quantity) {
@@ -66,7 +66,9 @@ class Checkout extends Component {
   checkIfProducts() {
     return this.state.products.length > 0
   }
-
+  check(element) {
+    return element == 12
+  }
   render() {
     const { products, summary, totalSum } = this.state
     return (
@@ -106,13 +108,12 @@ class Checkout extends Component {
                     <span onClick={this.updateQuantity.bind(this, product, -1)}>-</span>
                     <span onClick={this.updateQuantity.bind(this, product, 1)}>+</span>
                   </div>
-
                   <div className="price">
                     <h4>{product.price}:-</h4>
                   </div>
 
                   <div className="trash">
-                    <figure onClick={this.deleteProduct.bind(this, product)}/>
+                    <figure onClick={this.deleteProduct.bind(this, product, i)}/>
                   </div>
                 </div>
             )}, this)}
