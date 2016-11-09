@@ -32,7 +32,6 @@ require('styles/_webshopPage/dropdownMenu.css')
 
   componentWillReceiveProps(nextProps) {
     const { firebaseData } = nextProps
-
     this.state = {
       subcatItems1: firebaseData['categories/badrumsinredning'] ? firebaseData['categories/badrumsinredning'].items : [],
       subcatItems2: firebaseData['categories/duschochbadkar'] ? firebaseData['categories/duschochbadkar'].items : [],
@@ -64,61 +63,64 @@ require('styles/_webshopPage/dropdownMenu.css')
   }
 
   render() {
+    const paramCategory = this.props.params.category
     return (
-      <div>
-          <div id="menu" onClick={this.clickHandler.bind(this)}>
-              <div id="badrumsinredning">Badrumsinredning
-                <section id="badrumsinredning">
-                  {this.renderDivs('subcatItems1')}
-                </section>
-              </div>
+      <div id="menu" onClick={this.clickHandler.bind(this)}>
+          <div id="badrumsinredning" className={paramCategory=='badrumsinredning' ? "active" : ""}>
+            Badrumsinredning
+            <section>
+              {this.renderDivs('subcatItems1')}
+            </section>
+          </div>
 
+          <div id="duschochbadkar" className={paramCategory=='duschochbadkar' ? "active" : ""}>
+            Dusch och badkar
+            <section id="duschochbadkar">
+              <div>Aggregat</div>
+              <div>Bastudörrar</div>
+              <div>Lampor</div>
+              <div>Batterier</div>
+            </section>
+          </div>
 
-              <div id="duschochbadkar">Dusch och badkar
-                <section id="duschochbadkar">
-                  <div>Aggregat</div>
-                  <div>Bastudörrar</div>
-                  <div>Lampor</div>
-                  <div>Batterier</div>
-                </section>
-              </div>
+          <div id="blandare" className={paramCategory=='blandare' ? "active" : ""}>
+            Blandare
+            <section id="blandare">
+              <div>Aggregat</div>
+              <div>Bastudörrar</div>
+              <div>Lampor</div>
+              <div>Batterier</div>
+            </section>
+          </div>
 
+          <div id="bastu" className={paramCategory=='bastu' ? "active" : ""}>
+            Bastu
+            <section id="bastu">
+              <div>Aggregat</div>
+              <div>Bastudörrar</div>
+              <div>Lampor</div>
+              <div>Batterier</div>
+            </section>
+          </div>
 
-              <div id="blandare">Blandare
-                <section id="blandare">
-                  <div>Aggregat</div>
-                  <div>Bastudörrar</div>
-                  <div>Lampor</div>
-                  <div>Batterier</div>
-                </section>
-              </div>
+          <div id="vvs" className={paramCategory=='vvs' ? "active" : ""}>
+            VVS
+            <section id="VVS">
+              <div>Aggregat</div>
+              <div>Bastudörrar</div>
+              <div>Lampor</div>
+              <div>Batterier</div>
+            </section>
+          </div>
 
-              <div id="bastu">Bastu
-                <section id="bastu">
-                  <div>Aggregat</div>
-                  <div>Bastudörrar</div>
-                  <div>Lampor</div>
-                  <div>Batterier</div>
-                </section>
-              </div>
-
-              <div id="vvs">VVS
-                <section id="VVS">
-                  <div>Aggregat</div>
-                  <div>Bastudörrar</div>
-                  <div>Lampor</div>
-                  <div>Batterier</div>
-                </section>
-              </div>
-
-              <div id="varmeochpumpar">Värme och pumpar
-                <section id="varmeochpumpar">
-                  <div>Aggregat</div>
-                  <div>Bastudörrar</div>
-                  <div>Lampor</div>
-                  <div>Batterier</div>
-                </section>
-              </div>
+          <div id="varmeochpumpar" className={paramCategory=='varmeochpumpar' ? "active" : ""}>
+            Värme och pumpar
+            <section id="varmeochpumpar">
+              <div>Aggregat</div>
+              <div>Bastudörrar</div>
+              <div>Lampor</div>
+              <div>Batterier</div>
+            </section>
           </div>
       </div>
     )
