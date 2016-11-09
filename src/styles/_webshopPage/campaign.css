@@ -11,13 +11,17 @@
   & .lostWrapper {
     width:100%;
     lost-utility:clearfix;
+
+    /* Lost items, first is the heading and description */
     & > div {
       height:400px;
       lost-column:8/10 0;
       & h1 {
         margin-bottom:20pt;
+        text-transform: capitalize;
       }
     }
+    /* The button */
     & > div:nth-of-type(2) {
       lost-column:2/10 0;
       position:relative;

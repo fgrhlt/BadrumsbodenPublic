@@ -13,6 +13,8 @@ export function replaceSpecialCharacters(inputStr) {
   outPutStr = outPutStr.replace(/[,.-_'´"#$&%()!?+<>{}¨*/]/g,'');
   return outPutStr
 }
+
+/* Special case for URL-strings */
 export function replaceSpecialCharactersURLs(inputStr) {
   inputStr = inputStr.toLowerCase()
   let outPutStr = inputStr.replace(/[åäáãâ]/g,'a');
@@ -24,6 +26,7 @@ export function replaceSpecialCharactersURLs(inputStr) {
   outPutStr = outPutStr.replace(/\s+/g,'');
   return outPutStr
 }
+
 /* Creates a <br> tag where there suppose to be a line break */
 export function createLineBreak(text) {
   let formattedText = []
@@ -32,10 +35,12 @@ export function createLineBreak(text) {
   })}
   return formattedText
 }
+
 /* Generates an unique id with three digits at the end */
 export function uniqueId(name) {
   return name + new Date().valueOf().toString().slice(10,13)
 }
+
 /* Capitalize the first letter of a string */
 export function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);

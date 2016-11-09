@@ -44,7 +44,7 @@ class Product extends Component {
   clickHandler(category, subcategory) {
     if ( typeof(subcategory) === 'string') {
       browserHistory.push('/webshop/'+category+'/'+subcategory)
-    }else {
+    } else {
       browserHistory.push('/webshop/'+category)
     }
   }
@@ -55,7 +55,7 @@ class Product extends Component {
     let styles = {paddingLeft: 10}
 
     return (
-      <div>
+    <div>
       <span id="1" onClick={this.clickHandler.bind(this, category)} style={styles}>{category} ></span>
       <span id="2" onClick={this.clickHandler.bind(this, category, subcategory)} style={styles}>{subcategory} ></span>
       <span id="3" style={styles}>{productName}</span>

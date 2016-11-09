@@ -62,8 +62,13 @@ class Checkout extends Component {
     })
   }
 
+  /* Returns true if there are products in the product array */
+  checkIfProducts() {
+    return this.state.products.length > 0
+  }
+
   render() {
-    console.log(this.state.products);
+    const { products, summary, totalSum } = this.state
     return (
       <div id="checkout">
         <section>
@@ -97,6 +102,7 @@ class Checkout extends Component {
 
                   <div className="quantity">
                     <p>Antal: {product.quantity}</p>
+                    {console.log('kvantitet', product.quantity)}
                     <span onClick={this.updateQuantity.bind(this, product, -1)}>-</span>
                     <span onClick={this.updateQuantity.bind(this, product, 1)}>+</span>
                   </div>
@@ -110,7 +116,7 @@ class Checkout extends Component {
                   </div>
                 </div>
             )}, this)}
-            <h4 className="total">Summa: {this.state.summary.sum}:-</h4>
+            <h4 className="total">Summa: {summary.sum}:-</h4>
           </div>
 
           <div id="delivery">
@@ -135,17 +141,19 @@ class Checkout extends Component {
               <p>Postpaket Schenker, 159:-</p>
             </div>
           </div>
-          <div id="stripe">
+
+          <div id="stripe" hidden={!this.checkIfProducts()}>
             <StripeCheckout
               token={this.postRequest}
               stripeKey="pk_test_fIT3T4pAmisM8mJT3UtcvZEG"
               billingAddress={true}
-              amount={this.state.totalSum*100}
+              amount={totalSum*100}
               currency="SEK"
               locale="auto"
               >
               <button className="btn greenButton bigButton">Betala med kort</button>
             </StripeCheckout>
+
             <h4 className="total">Totalt: <span>{this.state.totalSum}:- </span></h4>
           </div>
         </section>
