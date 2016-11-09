@@ -3,6 +3,8 @@ import { browserHistory } from 'react-router'
 
 import firebase from 'firebase/app'
 require('firebase/auth')
+require('styles/_adminSimon/login.css')
+
 
 export default class Login extends Component {
 
@@ -16,7 +18,7 @@ export default class Login extends Component {
       if (user) {
         // User is signed in.
         this.setState({
-          message: 'User '+user.email+' is signed in',
+          message: 'Användare '+user.email+' är inloggad',
           signedIn: true
         })
 
@@ -29,7 +31,7 @@ export default class Login extends Component {
       } else {
         // No user is signed in.
         this.setState({
-          message: 'No user is signed in'
+          message: 'Ingen användare är inloggad'
         })
       }
     })
@@ -44,7 +46,7 @@ export default class Login extends Component {
     if (log=='login') {
       const promise = firebase.auth().signInWithEmailAndPassword(email, pass)
 
-      promise.catch( (e) => {
+      promise.catch((e) => {
         this.setState({
           message: e.message
         })
@@ -57,14 +59,19 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div>
-        <input ref="email" placeholder="email" defaultValue="00badrumsboden@gmail.com" /> <br/>
-        <input ref="pass" placeholder="Skriv in lösenord" /><br/>
+      <div id="loginAdmin">
+        <figure className="logo" />
 
-        {!this.state.signedIn ? <button onClick={this.handleSubmit.bind(this, 'login')}>login</button> : ''}
-        {this.state.signedIn ? <button onClick={this.handleSubmit.bind(this, 'logout')}>logout</button> : ''}
+        <section>
+          <h2>Logga in</h2>
+          <input type="text" ref="email" placeholder="Email" defaultValue="00badrumsboden@gmail.com" />
+          <input type ="password" ref="pass" placeholder="Skriv in lösenord" /><br/>
 
-        {this.state.message}
+          {!this.state.signedIn ? <button className="btn greenButton" onClick={this.handleSubmit.bind(this, 'login')}>Logga in</button> : ''}
+          {this.state.signedIn ? <button className="btn orangeButton" onClick={this.handleSubmit.bind(this, 'logout')}>Logga ut</button> : ''}
+
+          <p>{this.state.message}</p>
+        </section>
       </div>
     )
   }

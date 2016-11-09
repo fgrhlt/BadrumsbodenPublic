@@ -68,7 +68,7 @@ require('styles/_webshopPage/dropdownMenu.css')
       <div id="menu" onClick={this.clickHandler.bind(this)}>
           <div id="badrumsinredning" className={paramCategory=='badrumsinredning' ? "active" : ""}>
             Badrumsinredning
-            <section>
+            <section id="badrumsinredning">
               {this.renderDivs('subcatItems1')}
             </section>
           </div>
