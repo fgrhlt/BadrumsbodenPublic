@@ -5,7 +5,6 @@ import { replaceSpecialCharactersURLs } from '../../utils/Utils'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as firebaseActions from '../../actions/firebaseActions'
-import { capitalizeFirstLetter } from '../../utils/Utils'
 
 require('styles/_webshopPage/dropdownMenu.css')
 
@@ -59,7 +58,7 @@ require('styles/_webshopPage/dropdownMenu.css')
 
   renderDivs(subcatItems) {
     let list = this.state[subcatItems].map( (item, key) => {
-                return <div key={key}>{capitalizeFirstLetter(item.key)}</div>
+                return <div key={key}>{item.key}</div>
               })
     return list
   }

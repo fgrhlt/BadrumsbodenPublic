@@ -58,6 +58,7 @@
                 height:60px;
                 overflow: hidden;
                 cursor:pointer;
+                text-transform: capitalize;
               }
               & p {
                 margin:0 10px;
