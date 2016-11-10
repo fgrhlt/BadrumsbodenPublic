@@ -21,6 +21,11 @@ class Checkout extends Component {
       radioButtonValue:"store",
       totalSum: 0,
     }
+
+    // axios({
+    //  method: 'get',
+    //  url: 'localhost:5000',
+    // })
   }
 
   /* Posts a payment request to the node-server with the customers information
@@ -164,6 +169,7 @@ class Checkout extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log('state', state);
   return {
     shoppingcartReducer: state.shoppingcartReducer
   }
