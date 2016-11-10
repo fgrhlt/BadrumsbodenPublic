@@ -7,8 +7,8 @@ import * as shoppingcartActions from '../../actions/shoppingcartActions'
 class ShoppingCart extends Component {
 
   componentWillMount() {
-    const { shoppingcartReducer, shoppingcartActions } = this.props
-    this.props.fetchShoppingcart()
+    const { shoppingcartReducer } = this.props
+    this.props.fetchSummary()
 
     this.state = {
       summary: shoppingcartReducer.summary ? shoppingcartReducer.summary : ''

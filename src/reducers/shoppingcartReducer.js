@@ -20,7 +20,7 @@ export default function shoppingcartReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_PRODUCT:
       return state
-        .setIn(['products', /*(state.counter+1)*/], addArticle(action))
+        .set(('info'), action.info)
 
     case FETCH_PRODUCTS:
       return state
@@ -42,7 +42,6 @@ export default function shoppingcartReducer(state = initialState, action) {
       return state.
         set('summary', fetchSum(action, state))
   }
-console.log('state',state);
   return state
 }
 
