@@ -1,10 +1,44 @@
 import React, { Component } from 'react'
 import Header from '../../components/faq/Header'
 import Footer from '../../components/webshop/Footer'
-
+import axios from 'axios'
 require('styles/_webshopPage/infoBank.css')
 
 export default class Faq extends Component {
+
+  onClick() {
+
+    var instance = axios.create({
+      baseURL: ' https://api.payson.se/1.0/',
+      timeout: 1000,
+      headers: {
+        'PAYSON-SECURITY-USERID': 1521,
+        'PAYSON-SECURITY-PASSWORD': '03bdcce4-5b50-4ecf-b53f-ff6891a0af34',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    })
+
+    instance.post('Pay/', {
+        returnUrl: 'blocket.se',
+        cancelUrl: 'blocket.se',
+        memo: 'hej!',
+        senderEmail: '00badrumsboden@gmail.com',
+        senderFirstName: 'Alfred',
+        senderLastName: 'Ödling',
+        Description: 'Order item 1. Blue jeans',
+        UnitPrice: '899',
+        Quantity: '1',
+        TaxPercentage: '0,25',
+        Sku: 'N123456',
+      })
+      .then(function (response) {
+        // https://www.payson.se/paySecure/?token={response.TOKEN}
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+  }
 
   render() {
     return (
@@ -13,6 +47,8 @@ export default class Faq extends Component {
         <div id="infoBank">
           <div>
             <h2>Vanliga frågor</h2>
+              <button type="button" name="button" onClick={this.onClick}>hej</button>
+
             <p>
               Lorem Ipsum är en utfyllnadstext från tryck- och förlagsindustrin.
               Lorem ipsum har varit standard ända sedan 1500-talet, när en okänd
