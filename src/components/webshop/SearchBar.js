@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 
-export default class Webshop extends Component {
+export default class SearchBar extends Component {
 
   componentWillMount() {
     this.state = {

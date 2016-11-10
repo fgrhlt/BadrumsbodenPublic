@@ -10,8 +10,7 @@
 
     /* the menu items */
     & > div {
-      font-size:14pt;
-      height:50px;
+      height:45px;
       padding-top: 13px;
       box-sizing:border-box;
       lost-column:1/6 0 0;
@@ -29,7 +28,7 @@
     & section {
       display: none;
       position:absolute;
-      margin-top:16px;
+      margin-top:13px;
       width:40%;
       z-index:2;
       text-transform: capitalize;
@@ -42,8 +41,8 @@
     }
     /* the drop down elements */
     & section > div {
-      height:60px;
-      padding-top: 20px;
+      height:50px;
+      padding-top: 15px;
       box-sizing:border-box;
       lost-column: 1/2 0 0;
       float:left;
