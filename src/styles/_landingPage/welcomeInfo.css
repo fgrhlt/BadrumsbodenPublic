@@ -1,7 +1,7 @@
 @import '../global.css';
 
 #welcomeInfo {
-  min-height:600px;
+  min-height:400px;
   background-repeat: no-repeat;
   background-size: cover;
   padding:40px 5% 40px 5%;
@@ -9,15 +9,15 @@
   & h2 {
     text-align: center;
     color:var(--darkGray);
-    margin-bottom:60px;
+    margin-bottom:40px;
   }
   & section {
-    lost-center:60%;
+    lost-center:70%;
     margin-bottom:40px;
 
     & .heading {
       margin:-40px -60px 20px -60px;
-      padding:20px 55px;
+      padding:20px 0 20px 40px;
       box-sizing: border-box;
     }
     & h3 {
@@ -29,6 +29,7 @@
       padding:40px 60px;
       box-sizing: border-box;
       transform:skew(-20deg);
+      height:300px;
       & p {
         transform: skew(20deg);
       }
@@ -40,14 +41,12 @@
       }
     }
     & > div:nth-of-type(2) {
-      margin:100px 0 0 -31px;
       background:color(#A9DDD6 alpha(80%));
       & .heading {
         background:color(#A9DDD6 alpha(60%) shade(10%));
       }
     }
     & > div:nth-of-type(3) {
-      margin:0 0 0 32px;
       background:color(#A7D49B alpha(80%));
       & .heading {
         background:color(#A7D49B alpha(60%) shade(10%));

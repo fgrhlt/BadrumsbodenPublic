@@ -60,7 +60,7 @@ export default class Login extends Component {
   render() {
     return (
       <div id="loginAdmin">
-        <figure className="logo" />
+        <figure className="logo"/>
 
         <section>
           <h2>Logga in</h2>

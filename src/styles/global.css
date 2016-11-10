@@ -47,21 +47,21 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-  font-size: 50pt;
+  font-size: 40pt;
 }
 h2 {
   font-style: italic;
-  font-size:30pt;
+  font-size:26pt;
 }
 h3 {
-  font-size:22pt;
+  font-size:20pt;
 }
 h4 {
-  font-size:18pt;
+  font-size:17pt;
 }
 p {
   margin:0;
-  font-size:16pt;
+  font-size:14pt;
 }
 
 a {
@@ -94,14 +94,13 @@ input[type=checkbox] + label {
   cursor: pointer;
   position: relative;
   padding:0 0 5px 50px;
-  margin:15px 0;
-  font-size:14pt;
+  margin:12px 0;
 }
 input[type=checkbox] + label:before {
   content: "";
   display: inline-block;
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   margin-right: 10px;
   position: absolute;
   left: 0;
@@ -110,10 +109,10 @@ input[type=checkbox] + label:before {
 }
 input[type=checkbox]:checked + label:before {
   content: "\2713";
-  font-size: 25px;
+  font-size: 20px;
   color: #999;
   text-align: center;
-  line-height: 35px;
+  line-height: 30px;
   font-weight: bold;
 }
 

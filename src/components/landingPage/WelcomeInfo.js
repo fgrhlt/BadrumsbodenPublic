@@ -12,7 +12,7 @@ export default class WelcomeInfo extends Component {
 
     return (
       <div id="welcomeInfo" style={styleVar}>
-        <h2>Välkommen till badrumsboden!</h2>
+        <h2>Välkommen till Badrumsboden!</h2>
 
         <section name="lostContainer">
           <div>
@@ -32,7 +32,7 @@ export default class WelcomeInfo extends Component {
           </div>
 
           <div>
-            <div className="heading"><h3>VVS-service & installation</h3></div>
+            <div className="heading"><h3>VVS-service</h3></div>
             <p>
               Har du problem med vattnet eller övrig VVS? <br/>
               Vi installerar även värmepumpar till förmånliga priser!

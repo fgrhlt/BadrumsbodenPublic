@@ -337,7 +337,7 @@ export class Tooltip extends Component {
   render() {
     let idName = replaceSpecialCharacters(this.props.heading)
     return (
-      <div>
+      <div className="tooltipFormFields">
         <h4>{this.props.heading} <span>{this.props.span}</span></h4>
         <figure data-tip data-for={idName} />
         <ReactTooltip id={idName} type='light' multiline={true} place='left'>
