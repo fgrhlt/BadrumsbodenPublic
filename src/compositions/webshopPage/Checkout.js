@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout';
+import cookie from 'react-cookie'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import * as firebaseActions from '../../actions/firebaseActions'
 import * as shoppingcartActions from '../../actions/shoppingcartActions'
 
 require('styles/_webshopPage/checkout.css')
@@ -11,21 +13,36 @@ require('styles/_webshopPage/checkout.css')
 class Checkout extends Component {
 
   componentWillMount() {
-    const { shoppingcartReducer, shoppingcartActions } = this.props
-    this.props.fetchShoppingcart()
+    const { reducer } = this.props
+    const { firebaseReducer } = reducer
+    const { firebaseData } = firebaseReducer
+    this.fetchShoppingcartProducts()
+
 
     this.state = {
       data: [],
-      summary: shoppingcartReducer.summary ? shoppingcartReducer.summary : '',
-      products: shoppingcartReducer.products ? shoppingcartReducer.products : '',
+      summary: '',
+      products: [],
       radioButtonValue:"store",
       totalSum: 0,
     }
-
     // axios({
     //  method: 'get',
     //  url: 'localhost:5000',
     // })
+  }
+
+  fetchShoppingcartProducts() {
+    const { actions } = this.props
+    const { firebaseActions } = actions
+    const { fetchFirebaseData } = firebaseActions
+
+    let cookies = []
+    Object.keys(cookie.select(/^products/i)).forEach(name => cookies.push((cookie.load(name))))
+
+    cookies.forEach(function(item) {
+        fetchFirebaseData('products', 'articleNr', item.articleNr)
+    })
   }
 
   /* Posts a payment request to the node-server with the customers information
@@ -40,10 +57,21 @@ class Checkout extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const { reducer } = nextProps
+    const { firebaseReducer } = reducer
+    const { firebaseData } = firebaseReducer
+
     this.setState({
-      summary: nextProps.shoppingcartReducer.summary ? nextProps.shoppingcartReducer.summary : '',
-      products: nextProps.shoppingcartReducer.products ? nextProps.shoppingcartReducer.products : '',
-      totalSum: this.state.summary.sum ? this.state.summary.sum : 0
+      products: firebaseData.products ? firebaseData.products.items : [],
+    })
+
+    let sum = this.state.totalSum
+    this.state.products.map(function(product, i) {
+      sum = sum + product.price
+    })
+
+    this.setState({
+      totalSum: sum
     })
   }
 
@@ -109,7 +137,6 @@ class Checkout extends Component {
 
                   <div className="quantity">
                     <p>Antal: {product.quantity}</p>
-                    {console.log('kvantitet', product.quantity)}
                     <span onClick={this.updateQuantity.bind(this, product, -1)}>-</span>
                     <span onClick={this.updateQuantity.bind(this, product, 1)}>+</span>
                   </div>
@@ -169,14 +196,21 @@ class Checkout extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('state', state);
   return {
-    shoppingcartReducer: state.shoppingcartReducer
+    reducer: {
+      firebaseReducer: state.firebaseReducer,
+      shoppingcartReducer: state.shoppingcartReducer
+    }
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(shoppingcartActions, dispatch)
+  return {
+    actions: {
+      firebaseActions: bindActionCreators(firebaseActions, dispatch),
+      shoppingcartActions: bindActionCreators(shoppingcartActions, dispatch)
+    }
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout)

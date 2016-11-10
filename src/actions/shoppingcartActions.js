@@ -1,4 +1,5 @@
 import cookie from 'react-cookie'
+import firebase from 'firebase/app'
 
 const CREATE_SHOPPING_CART = 'CREATE_SHOPPING_CART'
 const ADD_PRODUCT = 'ADD_PRODUCT'
@@ -11,49 +12,31 @@ const FETCH_SUMMARY = 'FETCH_SUMMARY'
 export function addProduct(product, quantity) {
 
   let object = {
-    price: product.price,
     articleNr: product.articleNr,
-    productName: product.productName,
-    imageUrl: product.url,
-    quantity: parseInt(quantity)
+    quantity
   }
 
   let stringObj=JSON.stringify(object)
   var d = new Date()
   d.setTime(d.getTime() + (2*24*60*60*1000))
-  cookie.save('articles'+[product.articleNr], stringObj, { path: '/', expires: d })
+  cookie.save('products', stringObj, { path: '/', expires: d })
 
   return {
     type: ADD_PRODUCT,
-    product: cookie.load('articles'+[product.articleNr])
-  }
-}
-
-export function fetchProducts() {
-  let cookies = []
-  Object.keys(cookie.select(/^articles.*/i)).forEach(name => cookies.push((cookie.load(name))))
-
-  return {
-    type: FETCH_PRODUCTS,
-    products: cookies
+    info: 'added_product'
   }
 }
 
 export function updateArticleQuantity(articleNr, quantity) {
-  let cookie = cookie.load('articles'+[articleNr])
 
   let object = {
     price: cookie.price,
     articleNr: cookie.articleNr,
     productName: cookie.productName,
     imageUrl: cookie.url,
-    quantity: parseInt(cookie.quantity) + parseInt(quantity)
   }
 
-  let stringObj=JSON.stringify(object)
-  var d = new Date()
-  d.setTime(d.getTime() + (2*24*60*60*1000))
-  cookie.save('articles'+[articleNr], stringObj, { path: '/', expires: d })
+
 
   return {
     type: UPDATE_QUANTITY,
@@ -120,13 +103,6 @@ export function removeFromShoppingcart(product) {
     return (dispatch) => {
             dispatch( deleteProduct(product.articleNr))
             dispatch( updateSummary(parseInt(-product.quantity), parseInt(product.price)))
-    }
-}
-
-export function fetchShoppingcart(product) {
-    return (dispatch) => {
-            dispatch( fetchProducts())
-            dispatch( fetchSummary())
     }
 }
 
