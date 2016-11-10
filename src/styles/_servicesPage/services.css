@@ -1,20 +1,18 @@
 @import '../global.css';
 
 #services {
+	/* The dropdown effect of the priceCalc */
 	& .dropDown-enter {
 		height:0;
 		overflow: hidden;
 	}
-
 	& .dropDown-enter.dropDown-enter-active {
 		height:1000px;
 		transition: height 500ms ease-in;
 	}
-
 	& .dropDown-leave {
 		height: 1000px;
 	}
-
 	& .dropDown-leave.dropDown-leave-active {
 		height:0;
 		overflow: hidden;
@@ -23,7 +21,7 @@
 
 	& .serviceForm {
 	  box-sizing:border-box;
-	  background-color:#F2F2F2;
+	  background-color:var(--mediumGray);
 	  background-repeat: no-repeat;
 	    & h3 {
 				font-size:20pt;
@@ -51,25 +49,22 @@
 			& input {
 				width:100%;
 				padding:10px;
-				font-size:16pt;
 				margin-bottom:30px;
 			}
 
 			& textarea {
 				min-width:100%;
 				max-width:100%;
-				min-height:270px;
+				min-height:230px;
 				padding:15px;
 				box-sizing: border-box;
-				font-size: 14pt;
 				margin-bottom:30px;
 			}
 			& select {
 				width:100%;
-				height:48px;
+				height:40px;
 				padding-left:10px;
 				margin-bottom:30px;
-				font-size:16pt;
 			}
 	}
 }

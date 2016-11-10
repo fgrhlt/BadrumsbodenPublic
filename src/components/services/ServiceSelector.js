@@ -77,10 +77,10 @@ export default class ServiceSelector extends Component {
               <div id="mainInfo">
                 <figure name="wrench" />
                 <h2>Badrumsrenovering</h2>
-                <h3>
+                <h4>
                   Låt våra badrumsproffs med lång erfarenhet
                   utföra din badrumsrenovering.<br/>
-                </h3>
+                </h4>
               </div>
 
               <div className={this.state.left.description} id="description">
@@ -130,10 +130,10 @@ export default class ServiceSelector extends Component {
             <div id="mainInfo">
               <figure name="tap"/>
               <h2>VVS</h2>
-              <h3>
+              <h4>
                 Kontakta oss för att utföra VVS-service.<br/>
                 Vi utför snabb service inom 5 arbetsdagar.
-              </h3>
+              </h4>
             </div>
           </div>
           <div className="border" />

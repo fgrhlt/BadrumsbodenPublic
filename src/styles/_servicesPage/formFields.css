@@ -12,10 +12,10 @@
 
     & .arrow {
       background:url(../../assets/arrows/orange_arrow_next.svg) no-repeat;
-      width:49px;
-      height:77px;
+      width:40px;
+      height:60px;
       cursor:pointer;
-      margin:120px auto;
+      margin:100px auto;
     }
     & .arrow:hover {
       background:url(../../assets/arrows/orange_arrow_next_hover.svg) no-repeat;
@@ -27,8 +27,8 @@
        transform: rotate(180deg);
     }
     & .empty {
-      width:49px;
-      height:77px;
+      width:40px;
+      height:60px;
     }
   }
 
@@ -37,8 +37,10 @@
     lost-column:9/11 0 0;
 
     & form {
+      /* The submit button in the end */
       & button {
         float:right;
+        font-size:12pt;
       }
       /* The wrapper holding the three columns of fields */
       & .fieldWrapper.three {
@@ -54,15 +56,20 @@
           & h4 {
             margin-bottom:5px;
             float:left;
+            font-size:14pt;
 
             & span {
               font-size:12pt;
             }
           }
+          & .tooltipFormFields {
+            clear:fix;
+          }
+          /* The tooltip question mark */
           & figure {
             background:url('../../assets/icons/services/questionmark.svg') no-repeat;
-            width:25px;
-            height:25px;
+            width:20px;
+            height:20px;
             margin:0;
             float:right;
             cursor:pointer;
@@ -71,15 +78,16 @@
             background:url('../../assets/icons/services/questionmark_h.svg') no-repeat;
           }
           & .checkboxes {
-            margin:15px 0 25px 0;
+            margin:0 0 25px 0;
             lost-utility:clearfix;
-            /* Every checkbox is a lost item */
+            box-sizing: border-box;
+            /* Every checkbox in checkboxes is a lost item */
             & > div {
               lost-column:1/2 0 0;
             }
           }
           & .half {
-            min-height:105px;
+            min-height:80px;
           }
         }
       }

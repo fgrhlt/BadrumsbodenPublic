@@ -47,10 +47,12 @@ require('styles/_galleryPage/gallery.css')
         </div>
 
         <div className="container">
-          <h3>Badrum</h3>
+          <h2>Badrum</h2>
           <GalleryElements items={this.state.imagesBadrum}/>
+        </div>
 
-          <h3>Kök</h3>
+        <div className="container">
+          <h2>Kök</h2>
           <GalleryElements items={this.state.imagesKok}/>
         </div>
       </div>
