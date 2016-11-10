@@ -6,10 +6,10 @@
   padding:60px 0;
   box-sizing:border-box;
 
-    /* 1st lost column */
+    /* 1st lost column, the subcategory list */
     & > section:nth-of-type(1) {
       lost-column: 1/5 0;
-      font-size:18pt;
+      font-size:14pt;
       line-height:2;
       & > div {
         width:100%;
@@ -41,7 +41,7 @@
         }
     }
 
-    /* 2nd column */
+    /* 2nd column, the products */
     & > section:nth-of-type(2) {
       lost-column: 4/5 0;
 
@@ -55,7 +55,7 @@
             background:#F7F7F7;
               & h4 {
                 margin:20px 10px 0 10px;
-                height:60px;
+                height:40px;
                 overflow: hidden;
                 cursor:pointer;
                 text-transform: capitalize;
@@ -78,11 +78,11 @@
               & .buy-btn {
                 & span {
                   height:45px;
-                  font-size:14pt;
+                  font-size:12pt;
                   font-weight:bold;
                 }
                 & span {
-                  padding-top:11px;
+                  padding-top:13px;
                 }
                 & span:nth-of-type(2) {
                   color:white;
@@ -91,6 +91,46 @@
           }
         }
     }
+}
+/* The buy button */
+.buy-btn {
+  background:#C6E3E5;
+  width:100%;
+  margin:0 50px 0 0;
+  cursor:pointer;
+  position:relative;
+  user-select:none;
+
+  /* Each span is a column */
+  & span {
+    background:#C6E3E5;
+    lost-column:1/2 0 0;
+    font-size:30pt;
+    height:60px;
+    box-sizing: border-box;
+    text-align:center;
+    padding:7px 0 9px 0;
+  }
+
+  & span:nth-of-type(2) {
+    background:#235177;
+
+    & figure {
+      background:url(../../assets/icons/webshop/cart.svg);
+      width:45px;
+      height:41px;
+      margin:0 auto;
+    }
+  }
+}
+
+.buy-btn:hover {
+  & span:nth-of-type(1) {
+    background:color(#C6E3E5 shade(10%));
+  }
+  & span:nth-of-type(2) {
+    background:color(#235177 shade(30%));
+  }
 }
 
 /* Responsive */

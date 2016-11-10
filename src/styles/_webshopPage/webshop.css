@@ -1,11 +1,7 @@
 @import '../global.css';
 
-* {
-  //lost-utility: edit;
-}
-
 .searchBar {
-  height: 50px;
+  height: 45px;
   margin: 15px 0 25px 0;
   display: flex;
   justify-content: center;
@@ -13,7 +9,7 @@
   & figure {
     background: url('../../assets/buttons/search_button.svg') no-repeat;
     width:81px;
-    height: 51px;
+    height: 45px;
   }
   & figure:hover {
     background: url('../../assets/buttons/search_button_h.svg') no-repeat;
@@ -23,57 +19,9 @@
   }
   & input {
     box-sizing: border-box;
-    padding: 10px;
-    width: 650px;
+    padding: 10px 15px;
+    width: 600px;
     background-color: lightgrey;
     border: none;
-  }
-}
-
-/* The buy button */
-.buy-btn {
-  background:#C6E3E5;
-  width:100%;
-  margin:20px 50px 0 0;
-  cursor:pointer;
-  position:relative;
-  user-select:none;
-
-    /* Each span is a column */
-    & span {
-      background:#C6E3E5;
-      lost-column:1/2 0 0;
-      font-size:30pt;
-      height:60px;
-      box-sizing: border-box;
-      text-align:center;
-      padding:7px 0 9px 0;
-    }
-
-    & span:nth-of-type(2) {
-      background:#235177;
-
-        & figure {
-          background:url(../../assets/icons/webshop/cart.svg);
-          width:45px;
-          height:41px;
-          margin:0 auto;
-        }
-    }
-}
-
-.buy-btn:hover {
-    & span {
-      background:color(#235177 alpha(20%));
-      color:white;
-    }
-}
-
-@media (width <= 500px) {
-  .buy-btn {
-      & span:first-of-type {
-        margin-top:5px;
-        font-size:20pt;
-      }
   }
 }
