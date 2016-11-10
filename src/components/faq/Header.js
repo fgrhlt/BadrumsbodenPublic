@@ -23,36 +23,38 @@ export default class Header extends Component {
 
             <div id="right">
               <div>
-                <figure id="email_icon" />
-                <button
-                  className="copyBtn"
-                  data-clipboard-text="info@badrumsboden.se"
-                  onClick={this.handleClick.bind(this)}
-                  onMouseOut={this.handleMouseOut.bind(this)}
-                />
-                <div ref="emailClick" data-tip data-for="emailCopy">
-                  <h4>E-post</h4>
-                  <p>
-                    Klicka för att kopiera<br />
-                    epost-address
-                  </p>
+                <div>
+                  <button
+                    className="copyBtn"
+                    data-clipboard-text="info@badrumsboden.se"
+                    onClick={this.handleClick.bind(this)}
+                    onMouseOut={this.handleMouseOut.bind(this)}
+                  />
+                  <div ref="emailClick" data-tip data-for="emailCopy">
+                    <h4>E-post</h4>
+                    <p>
+                      Klicka för att kopiera<br />
+                      epost-address
+                    </p>
+                  </div>
+                  <ReactTooltip
+                    id="emailCopy"
+                    type='success'
+                    event="click"
+                    delayHide={1000}
+                  >
+                    <h4>Kopierat!</h4>
+                  </ReactTooltip>
                 </div>
-                <ReactTooltip
-                  id="emailCopy"
-                  type='success'
-                  event="click"
-                  delayHide={1000}
-                >
-                  <h4>Kopierat!</h4>
-                </ReactTooltip>
+                <figure id="email_icon" />
               </div>
 
               <div>
-                <figure id="phone_icon" />
                 <div>
                   070 57 43 373<br />
                   <span>Öppet 08-18</span>
                 </div>
+                <figure id="phone_icon" />
               </div>
             </div>
         </div>
