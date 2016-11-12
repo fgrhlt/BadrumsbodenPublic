@@ -11,18 +11,13 @@ import LandingPage from './compositions/landingPage/LandingPage'
 import Webshop from './compositions/webshopPage/Webshop'
 import Gallery from './compositions/galleryPage/Gallery'
 import Services from './compositions/servicesPage/Services'
-import Animation from './components/Animation'
-import Admin from './compositions/adminPage/Admin'
-import Checkout from './compositions/WebshopPage/Checkout'
+import Checkout from './compositions/checkoutPage/Checkout'
 import Faq from './compositions/faq/Faq'
 import Products from './components/webshop/products/Products'
 import Product from './components/webshop/products/Product'
-import SubCategoryList from './components/webshop/products/SubCategoryList.js'
 import WebshopHome from './compositions/webshopPage/WebshopHome'
-import NewAdmin from './components/adminSimon/Admin'
+import Admin from './compositions/adminPage/Admin'
 import Login from './compositions/adminPage/Login'
-
-require('styles/styles.css')
 
 import store from './store/store'
 
@@ -66,17 +61,15 @@ const router = (
 
         <Route path="gallery" component={Gallery}></Route>
         <Route path="services" component={Services}></Route>
-        <Route path="admin" component={Admin}></Route>
 
         <Route path="login" component={Login}></Route>
-        <Route path="newAdmin" component={NewAdmin} onEnter={requireAuth}>
-          <Route path="/newAdmin/:site" component={NewAdmin}></Route>
-          <Route path="/newAdmin/:site/:section" component={NewAdmin}></Route>
-          <Route path="/newAdmin/:site/:section/:category/:subcategory" component={NewAdmin}></Route>
+        <Route path="admin" component={Admin} onEnter={requireAuth}>
+          <Route path="/admin/:site" component={Admin}></Route>
+          <Route path="/admin/:site/:section" component={Admin}></Route>
+          <Route path="/admin/:site/:section/:category/:subcategory" component={Admin}></Route>
         </Route>
 
         <Route path="faq" component={Faq}></Route>
-        <Route path="animation" component={Animation}></Route>
         <Route path="*" component={NotFound}></Route>
       </Router>
     </Provider>

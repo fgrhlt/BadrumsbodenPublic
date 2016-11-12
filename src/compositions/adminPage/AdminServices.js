@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AdminGallery from './AdminGallery'
+import AdminGallery from '../../components/admin/Services/AdminGallery'
 
 require('styles/_adminSimon/_services/adminServices.css')
 

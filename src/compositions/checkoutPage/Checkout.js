@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import StripeCheckout from 'react-stripe-checkout';
 import cookie from 'react-cookie'
 
 import { bindActionCreators } from 'redux'
@@ -173,21 +172,6 @@ class Checkout extends Component {
               />
               <p>Postpaket Schenker, 159:-</p>
             </div>
-          </div>
-
-          <div id="stripe" hidden={!this.checkIfProducts()}>
-            <StripeCheckout
-              token={this.postRequest}
-              stripeKey="pk_test_fIT3T4pAmisM8mJT3UtcvZEG"
-              billingAddress={true}
-              amount={totalSum*100}
-              currency="SEK"
-              locale="auto"
-              >
-              <button className="btn greenButton bigButton">Betala med kort</button>
-            </StripeCheckout>
-
-            <h4 className="total">Totalt: <span>{this.state.totalSum}:- </span></h4>
           </div>
         </section>
       </div>

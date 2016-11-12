@@ -9,7 +9,7 @@ import * as firebaseActions from '../../../actions/firebaseActions'
 
 require('styles/_adminSimon/_services/adminGallery.css')
 
-export default class AdminGallery extends Component {
+class AdminGallery extends Component {
   componentWillMount() {
     const { fetchFirebaseData } = this.props
 
