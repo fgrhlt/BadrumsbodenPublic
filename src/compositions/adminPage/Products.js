@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import ComponentTitle from '../ComponentTitle'
-import ProductMenu from './ProductMenu'
-import ProductTable from './ProductTable'
+import ComponentTitle from '../../components/admin/ComponentTitle'
+import ProductMenu from '../../components/admin/Products/ProductMenu'
+import ProductTable from '../../components/admin/Products/ProductTable'
 
 require('styles/_adminSimon/_products/products.css')
 
