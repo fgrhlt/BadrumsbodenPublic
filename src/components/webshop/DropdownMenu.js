@@ -66,14 +66,14 @@ require('styles/_webshopPage/dropdownMenu.css')
     const paramCategory = this.props.params.category
     return (
       <div id="menu" onClick={this.clickHandler.bind(this)}>
-          <div id="badrumsinredning" className={paramCategory=='badrumsinredning' ? "active" : ""}>
+          <div id="badrumsinredning" className={paramCategory=='badrumsinredning' ? 'active' : ''}>
             Badrumsinredning
             <section id="badrumsinredning">
               {this.renderDivs('subcatItems1')}
             </section>
           </div>
 
-          <div id="duschochbadkar" className={paramCategory=='duschochbadkar' ? "active" : ""}>
+          <div id="duschochbadkar" className={paramCategory=='duschochbadkar' ? 'active' : ''}>
             Dusch och badkar
             <section id="duschochbadkar">
               <div>Aggregat</div>
@@ -83,7 +83,7 @@ require('styles/_webshopPage/dropdownMenu.css')
             </section>
           </div>
 
-          <div id="blandare" className={paramCategory=='blandare' ? "active" : ""}>
+          <div id="blandare" className={paramCategory=='blandare' ? 'active' : ''}>
             Blandare
             <section id="blandare">
               <div>Aggregat</div>
@@ -93,7 +93,7 @@ require('styles/_webshopPage/dropdownMenu.css')
             </section>
           </div>
 
-          <div id="bastu" className={paramCategory=='bastu' ? "active" : ""}>
+          <div id="bastu" className={paramCategory=='bastu' ? 'active' : ''}>
             Bastu
             <section id="bastu">
               <div>Aggregat</div>
@@ -103,7 +103,7 @@ require('styles/_webshopPage/dropdownMenu.css')
             </section>
           </div>
 
-          <div id="vvs" className={paramCategory=='vvs' ? "active" : ""}>
+          <div id="vvs" className={paramCategory=='vvs' ? 'active' : ''}>
             VVS
             <section id="VVS">
               <div>Aggregat</div>
@@ -113,7 +113,7 @@ require('styles/_webshopPage/dropdownMenu.css')
             </section>
           </div>
 
-          <div id="varmeochpumpar" className={paramCategory=='varmeochpumpar' ? "active" : ""}>
+          <div id="varmeochpumpar" className={paramCategory=='varmeochpumpar' ? 'active' : ''}>
             Värme och pumpar
             <section id="varmeochpumpar">
               <div>Aggregat</div>

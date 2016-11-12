@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ProductElements from './ProductElements'
 import SubCategoryList from './SubCategoryList'
 
 import { browserHistory } from 'react-router'
@@ -18,7 +17,7 @@ class Product extends Component {
     const { params, actions } = this.props
     const { firebaseActions } = actions
     const { fetchFirebaseData } = firebaseActions
-    const { subcategory, category, product } = params
+    const { product } = params
 
     this.state = {
       productItem: [],
@@ -29,8 +28,7 @@ class Product extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { params, firebaseData } = nextProps
-    const { subcategory, category } = params
+    const { firebaseData } = nextProps
 
     this.setState({
       productItem: firebaseData.products ? firebaseData.products.items[0] : [],

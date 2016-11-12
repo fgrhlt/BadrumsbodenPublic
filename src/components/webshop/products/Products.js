@@ -39,11 +39,6 @@ class Products extends Component {
     const { subcategory, category } = params
     const { fetchFirebaseData } = this.props
 
-    let subpath = subcategory
-    if (subcategory==undefined) {
-      subpath = category
-    }
-
     this.setState({
       productItems: firebaseData.products ? firebaseData.products.items : [],
       subcatItems: firebaseData['categories/'+category] ? firebaseData['categories/'+category].items : [],

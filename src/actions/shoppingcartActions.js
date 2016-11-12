@@ -1,12 +1,9 @@
 import cookie from 'react-cookie'
 import firebase from 'firebase/app'
 
-const CREATE_SHOPPING_CART = 'CREATE_SHOPPING_CART'
 const ADD_PRODUCT = 'ADD_PRODUCT'
 const DELETE_PRODUCT = 'DELETE_PRODUCT'
 const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
-const UPDATE_SUMMARY = 'UPDATE_SUMMARY'
-const FETCH_PRODUCTS = 'FETCH_PRODUCTS'
 const FETCH_SUMMARY = 'FETCH_SUMMARY'
 
 export function addProduct(product, quantity) {
@@ -36,7 +33,11 @@ export function updateArticleQuantity(articleNr, quantity) {
     imageUrl: cookie.url,
   }
 
-
+  // let stringObj=JSON.stringify(object)
+  // var d = new Date()
+  // d.setTime(d.getTime() + (2*24*60*60*1000))
+  // cookie.save('products', stringObj, { path: '/', expires: d })
+  //
 
   return {
     type: UPDATE_QUANTITY,
