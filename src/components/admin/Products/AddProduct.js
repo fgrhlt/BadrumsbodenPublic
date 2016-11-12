@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { replaceSpecialCharactersURLs } from '../../../utils/Utils'
-import { browserHistory } from 'react-router'
 import firebase from 'firebase/app'
 
 require('styles/_adminSimon/_products/addProduct.css')

@@ -12,18 +12,14 @@ require('styles/_webshopPage/checkout.css')
 class Checkout extends Component {
 
   componentWillMount() {
-    const { reducer } = this.props
-    const { firebaseReducer } = reducer
-    const { firebaseData } = firebaseReducer
     this.fetchShoppingcartProducts()
-
 
     this.state = {
       data: [],
       summary: '',
       products: [],
-      radioButtonValue:"store",
-      totalSum: 0,
+      radioButtonValue: 'store',
+      totalSum: 0
     }
     // axios({
     //  method: 'get',

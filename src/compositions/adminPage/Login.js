@@ -26,7 +26,7 @@ export default class Login extends Component {
         if (location.state && location.state.nextPathname) {
           browserHistory.push(location.state.nextPathname)
         } else {
-          browserHistory.push('/newAdmin')
+          browserHistory.push('/admin')
         }
       } else {
         // No user is signed in.
@@ -38,7 +38,7 @@ export default class Login extends Component {
   }
 
 
-  handleSubmit(log, event) {
+  handleSubmit(log) {
 
     const email = this.refs.email.value
     const pass = this.refs.pass.value
@@ -64,7 +64,7 @@ export default class Login extends Component {
 
         <section>
           <h2>Logga in</h2>
-          <input type="text" ref="email" placeholder="Email" defaultValue="00badrumsboden@gmail.com" />
+          <input type="text" ref="email" placeholder="Email" />
           <input type ="password" ref="pass" placeholder="Skriv in lösenord" /><br/>
 
           {!this.state.signedIn ? <button className="btn greenButton" onClick={this.handleSubmit.bind(this, 'login')}>Logga in</button> : ''}

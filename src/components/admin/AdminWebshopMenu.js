@@ -8,7 +8,7 @@ export default class AdminWebshopMenu extends Component {
   /* When a user clicks a link, router redirects to the name of the link */
   handleClick(e) {
     var name = e.target.getAttribute('name')
-    browserHistory.push('/newAdmin/webshop/' + name)
+    browserHistory.push('/admin/webshop/' + name)
   }
 
   /* Two menu items. When one is clicked, it changes background color depending on the URL */

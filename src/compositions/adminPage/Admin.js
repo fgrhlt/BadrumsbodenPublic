@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-debugger
 import AdminHeader from '../../components/admin/AdminHeader'
 import AdminWebshopMenu from '../../components/admin/AdminWebshopMenu'
 import Products from './Products'

@@ -34,19 +34,11 @@ class AdminGallery extends Component {
   submitImage(category, e) {
     e.preventDefault()
 
-    if (category=='badrum') {
-      let bild = this.refs.bild.value;
-      var file = this.refs.bild.files[0]
-    }else if (category=='kok') {
-      let bild = this.refs.bild2.value;
-      var file = this.refs.bild2.files[0]
-    }
-
     var storageRef = firebase.storage().ref().child('gallery/'+file.name)
     //Upload file to storageRef
     let task = storageRef.put(file)
 
-    task.on('state_changed', (snapshot) => {
+    task.on('state_changed', () => {
       // Observe state change events such as progress, pause, and resume
       // See below for more detail
       console.log('Uploading file', file.name, 'to', 'gallery/')

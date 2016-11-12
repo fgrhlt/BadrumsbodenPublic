@@ -12,12 +12,11 @@ export default class AdminHeader extends Component {
   /* Get the text that's in the div being clicked. Push it to the router */
   handleClick(e) {
     var name = replaceSpecialCharactersURLs(e.target.textContent)
-    browserHistory.push('/newAdmin/' + name)
+    browserHistory.push('/admin/' + name)
   }
 
   handleClickLogo(e) {
-    var name = replaceSpecialCharactersURLs(e.target.textContent)
-    browserHistory.push('/newAdmin/')
+    browserHistory.push('/admin/')
   }
 
   handleSubmit(event) {

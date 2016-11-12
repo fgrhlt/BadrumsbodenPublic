@@ -33,7 +33,7 @@ export default class Campaign extends Component {
     const { url, title, description } = this.state
 
     return (
-      <div id="campaign" style={{backgroundImage: 'url(' + this.state.url + ')'}}>
+      <div id="campaign" style={{backgroundImage: 'url(' + url + ')'}}>
         <div className="lostWrapper">
           <div>
             <h1>{title}</h1>

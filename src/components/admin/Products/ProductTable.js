@@ -171,7 +171,6 @@ class ProductTable extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('staet', state);
   return {
     firebaseData: state.firebaseReducer.firebaseData
   }

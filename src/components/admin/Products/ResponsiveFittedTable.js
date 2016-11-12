@@ -25,7 +25,7 @@ var FittedTable = React.createClass({
     this._update();
   },
 
-  componentWillReceiveProps(props) {
+  componentWillReceiveProps() {
     this._update();
   },
 
