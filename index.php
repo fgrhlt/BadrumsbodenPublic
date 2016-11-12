@@ -1,1 +1,1 @@
-<?php header( 'Location: /Users/Alfred/React/newReactWebpack/reactWebpack/dist/index.html' ) ;  ?>
+<?php header( 'Location: /dist/index.html' ) ;  ?>
