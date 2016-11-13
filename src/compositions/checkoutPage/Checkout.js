@@ -33,10 +33,18 @@ class Checkout extends Component {
     const { fetchFirebaseData } = firebaseActions
 
     let cookies = []
-    Object.keys(cookie.select(/^products/i)).forEach(name => cookies.push((cookie.load(name))))
 
-    cookies.forEach(function(item) {
+    Object.keys(cookie.select(/^product.*/i)).forEach(name => cookies.push((cookie.load(name))))
+    let obj = {}
+
+    cookies.forEach(function(item, i) {
+        obj[i] = item
+        console.log(item);
         fetchFirebaseData('products', 'articleNr', item.articleNr)
+    })
+
+    this.setState({
+      items: obj
     })
   }
 
@@ -59,24 +67,16 @@ class Checkout extends Component {
     this.setState({
       products: firebaseData.products ? firebaseData.products.items : [],
     })
-
-    let sum = this.state.totalSum
-    this.state.products.map(function(product, i) {
-      sum = sum + product.price
-    })
-
-    this.setState({
-      totalSum: sum
-    })
   }
 
   /* Delete a product from this checkout, uses the article number of the product */
   deleteProduct(product, i) {
-    this.props.removeFromShoppingcart(product, i)
+    this.props.actions.shoppingcartActions.removeFromShoppingcart(product, i)
   }
 
   updateQuantity(product, quantity) {
-    this.props.updateQuantity(product, quantity)
+    console.log('sdf');
+    this.props.actions.shoppingcartActions.updateQuantity(product, quantity)
   }
 
   handleRadioButton(e) {
@@ -90,6 +90,7 @@ class Checkout extends Component {
     })
   }
 
+
   /* Returns true if there are products in the product array */
   checkIfProducts() {
     return this.state.products.length > 0
@@ -99,6 +100,8 @@ class Checkout extends Component {
   }
   render() {
     const { products, summary, totalSum } = this.state
+    let sum = 0
+
     return (
       <div id="checkout">
         <section>
@@ -119,6 +122,8 @@ class Checkout extends Component {
 
           <div id="cart">
             {this.state.products.map(function(product, i) {
+              sum = sum + parseInt(product.price)*parseInt(this.state.items[i].quantity)
+
               return (
                 <div className="item" key={i}>
                   <div className="image">
@@ -144,7 +149,7 @@ class Checkout extends Component {
                   </div>
                 </div>
             )}, this)}
-            <h4 className="total">Summa: {summary.sum}:-</h4>
+            <h4 className="total">Summa: {sum}:-</h4>
           </div>
 
           <div id="delivery">
