@@ -5,15 +5,14 @@ require('styles/_adminSimon/_products/addProduct.css')
 
 export default class AddProduct extends Component {
   componentWillMount() {
-
     this.state = {
-      infoText: 'Väntar på uppladdning...'
+      infoText: "Väntar på uppladdning...",
+      color: "LimeGreen"
     }
   }
 
   /* Takes the values from the form and puts in the state when submitted */
   submitForm(e) {
-
     e.preventDefault()
     let articleNr = this.refs.articleNr.value;
     let supplier = this.refs.supplier.value;
@@ -21,46 +20,69 @@ export default class AddProduct extends Component {
     let bild = this.refs.bild.value;
     let description = this.refs.description.value;
     let price = this.refs.price.value;
-    var file = this.refs.bild.files[0]
+    let file = this.refs.bild.files[0]
 
     /* Check if any form fields are empty */
     if(articleNr=='' || supplier=='' || productName=='' || bild=='' || description=='') {
-      alert('Alla fält måste innehålla ett värde')
-    }
-
-    var storageRef = firebase.storage().ref().child('webshop/produkter/'+file.name)
-    //Upload file to storageRef
-    let task = storageRef.put(file)
-
-    task.on('state_changed', () => {
-      // Observe state change events such as progress, pause, and resume
-      // See below for more detail
-      console.log('Uploading file', file.name, 'to', 'webshop/produkter/')
-    }, (error) => {
-      // Handle unsuccessful uploads
-      console.log('error:', error)
-    }, () => {
-      // Handle successful uploads on complete
-      console.log('Upload successful!')
       this.setState({
-        infoText: file.name+' är uppladdad till: webshop/produkter/'
+        infoText:"Alla fält måste innehålla ett värde",
+        color:"red"
       })
+    }
+    else if(isNaN(price)) {
+      this.setState({
+        infoText:"Pris måste vara endast siffror",
+        color:"red"
+      })
+    }
+    else {
+      var storageRef = firebase.storage().ref().child('webshop/produkter/'+file.name)
+      //Upload file to storageRef
+      let task = storageRef.put(file)
 
-      firebase.database().ref().child('webshop/produkter/')
-      .push({
-        url: task.snapshot.downloadURL,
-        filename: file.name,
-        articleNr,
-        supplier,
-        productName,
-        description,
-        price,
-        category: this.props.param.category,
-        subcategory: this.props.param.subcategory
+      task.on('state_changed', () => {
+        // Observe state change events such as progress, pause, and resume
+        // See below for more detail
+        console.log('Uploading file', file.name, 'to', 'webshop/produkter/')
+        this.setState({
+          infoText: 'Laddar upp till databasen...',
+          color: "LimeGreen"
+        })
+      }, (error) => {
+        // Handle unsuccessful uploads
+        this.setState({
+          infoText: error,
+          color: "red"
+        })
+      }, () => {
+        /* Successful uploads */
+        this.setState({
+          infoText: 'Lyckades ladda upp!',
+          color: "LimeGreen"
+        })
+
+        firebase.database().ref().child('webshop/produkter/')
+        .push({
+          url: task.snapshot.downloadURL,
+          filename: file.name,
+          articleNr,
+          supplier,
+          productName,
+          description,
+          price,
+          category: this.props.param.category,
+          subcategory: this.props.param.subcategory
+        })
+        // Reset inputtext
+        this.refs.fileHolder.value = ''
+        this.refs.articleNr.value = ''
+        this.refs.supplier.value = ''
+        this.refs.productName.value = ''
+        this.refs.bild.value = ''
+        this.refs.description.value = ''
+        this.refs.price.value = ''
       })
-      //Reset placeholder inputtext
-      this.refs.fileHolder.value = ''
-    })
+    }
   }
 
   /* Finds the filename of the uploaded file and shows it to the user */
@@ -105,11 +127,11 @@ export default class AddProduct extends Component {
                   <label htmlFor="picUpload">Välj bild</label>
                 </div>
 
-                <div className="status">
+                <div>
                   <p>Status uppladdning</p>
-                  <p style={{color: 'green'}}>
+                  <div className="infoText" style={{color: this.state.color}}>
                     {this.state.infoText}
-                  </p>
+                  </div>
                 </div>
               </section>
 
