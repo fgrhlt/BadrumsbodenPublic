@@ -28,7 +28,7 @@ export default function shoppingcartReducer(state = initialState, action) {
 
     case DELETE_PRODUCT:
       return state
-        .setIn(['products', /*action.articleNr*/], /*undefined*/)
+        .set(('info'), action.info)
 
     case FETCH_SUMMARY:
       return state

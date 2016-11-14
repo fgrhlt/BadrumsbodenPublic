@@ -49,7 +49,6 @@ export function fetchFirebaseData(path, query, searchString) {
         //Push object to array with items
         items.push(item)
       })
-
       dispatch({
         type: FETCH_FIREBASE_DATA,
         folder: path,
