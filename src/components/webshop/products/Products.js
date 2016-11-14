@@ -72,7 +72,7 @@ class Products extends Component {
       <div>
         <div id="products">
           <section>
-            <SubCategoryList subcatItems={subcatItems}/>
+            <SubCategoryList subcatItems={subcatItems} params={this.props.params}/>
           </section>
 
           <section>

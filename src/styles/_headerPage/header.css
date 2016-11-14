@@ -8,13 +8,15 @@
   /* The left side contains the logo */
   & #left {
     lost-column:2/7 0 0;
+    padding-top:10px;
 
     & span, & #logo {
       display: block;
       cursor: pointer;
     }
     & span {
-      margin-bottom: 10px;
+      font-size:10pt;
+      margin-bottom:10px;
     }
     & span:hover {
       color:#000;
@@ -29,10 +31,10 @@
       width:6px;
       height:11px;
       float:left;
-      margin:3px 7px 0 0;
+      margin:2px 7px 0 0;
     }
     & .alone {
-      margin-top:28px;
+      margin-top:25px;
     }
   }
   /* Right side contains the email icon, shoppingcart etc */
