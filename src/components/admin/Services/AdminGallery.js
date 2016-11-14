@@ -83,7 +83,7 @@ class AdminGallery extends Component {
       <div id="adminGallery">
         <ComponentTitle
           title={"Bildgalleri"}
-          text={"Här kan man ta bort, ändra, och lägga till bilder i galleriet."}
+          text={"Här kan man ta bort, ändra, och lägga till bilder i galleriet. \nHåll muspekaren över bilderna för att kunna ta bort bilder"}
         />
 
         <div id="container">
@@ -101,12 +101,11 @@ class AdminGallery extends Component {
 
             <div>
               <p>Välj bild</p>
-              <input disabled="disabled" ref="fileHolder" id="fileHolder" />
-              <input type="file" ref="bild" id="picUpload" onChange={this.findFileName.bind(this, 'badrum')} />
+              <input disabled="disabled" ref="fileHolder" id="fileHolder" className="fileHolder" />
+              <input type="file" ref="bild" id="picUpload" className="picUpload" onChange={this.findFileName.bind(this, 'badrum')} />
               <label htmlFor="picUpload">Välj bild</label>
               <button onClick={this.submitImage.bind(this, 'badrum')} className="btn greenButton">Ladda upp bild</button>
             </div>
-
           </section>
 
           <section>
@@ -122,8 +121,8 @@ class AdminGallery extends Component {
 
             <div>
               <p>Välj bild</p>
-              <input disabled="disabled" ref="fileHolder2" id="fileHolder2" />
-              <input type="file" ref="bild2" id="picUpload2" onChange={this.findFileName.bind(this, 'kok')} />
+              <input disabled="disabled" ref="fileHolder2" id="fileHolder2" className="fileHolder" />
+              <input type="file" ref="bild2" id="picUpload2" className="picUpload" onChange={this.findFileName.bind(this, 'kok')} />
               <label htmlFor="picUpload">Välj bild</label>
               <button onClick={this.submitImage.bind(this, 'kok')} className="btn greenButton">Ladda upp bild</button>
             </div>

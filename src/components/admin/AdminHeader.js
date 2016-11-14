@@ -32,9 +32,8 @@ export default class AdminHeader extends Component {
       <div id="adminHeader">
         <section id="lostItems">
           <div>
+            <button className="btn darkButton" onClick={this.handleSubmit.bind(this)}>Logga ut</button>
             <figure style={{cursor: 'pointer'}} onClick={this.handleClickLogo.bind(this)} id="logo" />
-
-            <button onClick={this.handleSubmit.bind(this)}>logout</button>
           </div>
 
           <div className={this.props.param=='webshop'?'yellow':'passive'} onClick={this.handleClick.bind(this)}>

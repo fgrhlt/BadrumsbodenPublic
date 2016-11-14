@@ -9,11 +9,12 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
-        min-height:600px;
+        min-height:550px;
         box-sizing:border-box;
         color:white;
-        padding:100px 5% 0 5%;
+        padding:70px 5% 0 5%;
 
+        /* The first section with the campaign */
         & .lostWrapper {
           width:100%;
           lost-utility:clearfix;
@@ -50,9 +51,13 @@
         }
       }
 
+      /* The second section with the upload buttons */
       & .buttons {
         padding:30px 5%;
         clear:fix;
+        & .articleInput {
+          float:left;
+        }
         & > div {
           float:right;
           margin-left:40px;

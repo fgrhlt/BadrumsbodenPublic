@@ -100,12 +100,12 @@ export default class AddProduct extends Component {
 
                 <div>
                   <p>Bild</p>
-                  <input disabled="disabled" ref="fileHolder" id="fileHolder" />
-                  <input type="file" ref="bild" id="picUpload" onChange={this.findFileName.bind(this)} />
+                  <input disabled="disabled" ref="fileHolder" id="fileHolder" className="fileHolder" />
+                  <input type="file" ref="bild" id="picUpload" className="picUpload" onChange={this.findFileName.bind(this)} />
                   <label htmlFor="picUpload">Välj bild</label>
                 </div>
 
-                <div>
+                <div className="status">
                   <p>Status uppladdning</p>
                   <p style={{color: 'green'}}>
                     {this.state.infoText}

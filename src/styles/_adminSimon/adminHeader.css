@@ -22,13 +22,20 @@
         /* First lost item, the badrumsboden-logo */
         & > div:nth-of-type(1) {
           lost-column:2/4 0 0;
-          padding:45px 0 0 8%;
+          padding:40px 0 0 0;
 
-            & #logo {
-              background:url("../../assets/logo/logo.svg") no-repeat;
-              width:177px;
-              height:31px;
-            }
+          & button {
+            font-size:9pt;
+            padding:10px 20px;
+            margin:-6px 20px 0 5%;
+            float:left;
+          }
+          & #logo {
+            background:url("../../assets/logo/logo.svg") no-repeat;
+            width:177px;
+            height:31px;
+            float:left;
+          }
         }
 
         /* The two other lost items, the buttons */

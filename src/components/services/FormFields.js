@@ -359,7 +359,8 @@ export default class FormFields extends Component {
         'fourth': {},
         'fifth': {},
         'sixth': {},
-      }
+      },
+      complete: false
     }
   }
 
@@ -406,40 +407,45 @@ export default class FormFields extends Component {
       formSet: currentState
     })
 
-    // When the form is submitted, increase the stepcounter and load next form
-    this.props.increaseStepCounter()
+    /* If the last button is pressed and the form is complete, send to the admin email */
+    if(this.state.complete == true) {
+      console.log("Skicka detta i mail", flat(this.state.formSet))
 
-    /* If it is the last formSet, send the whole form to the admin mail */
-    if(Object.keys(this.state.formSet.sixth).length !== 0) {
-      console.log(flat(this.state.formSet))
-
-      axios({
-        method: 'post',
-        url: 'https://shrouded-plateau-50284.herokuapp.com/email/priskalkyl',
-        data: flat(this.state.formSet)
-      })
+      // axios({
+      //   method: 'post',
+      //   url: 'https://shrouded-plateau-50284.herokuapp.com/email/priskalkyl',
+      //   data: flat(this.state.formSet)
+      // })
     }
   }
 
-  /* Used by the arrow to submit the current form */
-  clickSubmitButton(e) {
-    e.preventDefault()
+  /* Used by the arrow to submit the current form and to go back or forth */
+  clickSubmitButton(direction) {
     document.getElementById('submitButton').click()
+    this.setState({
+      complete: false
+    })
+
+    if(direction == "back") {
+      this.props.decreaseStepCounter()
+    }
+    else if (direction == "forward") {
+      this.props.increaseStepCounter()
+    }
+    // If the last button is clicked, the form is complete
+    else if(direction == "last") {
+      this.setState({
+        complete:true
+      })
+    }
   }
-
-  /* Sends the complete form to the admin's email */
-  sendCompleteForm() {
-      console.log(flat(this.state.formSet));
-
-  }
-
 
   render() {
     return(
       <div id="formFields">
         <div className="arrowHolder">
           {this.props.counter > 1 ?
-            <figure className="arrow previous" onClick={this.props.decreaseStepCounter.bind(this)}/>
+            <figure className="arrow previous" onClick={this.clickSubmitButton.bind(this, "back")}/>
             :<div className="empty" />}
           </div>
 
@@ -453,7 +459,7 @@ export default class FormFields extends Component {
               {this.props.counter == 6 ?
                 <div>
                   <SixthSet ref="sixth" form={this.state.formSet['sixth']}/>
-                  <button className="btn orangeButton" onClick={this.clickSubmitButton.bind(this)}>Skicka priskalkyl</button>
+                  <button className="btn orangeButton" onClick={this.clickSubmitButton.bind(this, "last")}>Skicka priskalkyl</button>
                 </div>
                 : null}
 
@@ -463,7 +469,7 @@ export default class FormFields extends Component {
 
             <div className="arrowHolder">
               {this.props.counter < 6 ?
-                <figure className="arrow" onClick={this.clickSubmitButton.bind(this)}/>
+                <figure className="arrow" onClick={this.clickSubmitButton.bind(this, "forward")}/>
                 :<div className="empty"/>}
               </div>
             </div>

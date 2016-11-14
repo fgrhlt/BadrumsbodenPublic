@@ -19,14 +19,14 @@ export default class AdminWebshopMenu extends Component {
              onClick={this.handleClick.bind(this)}
              className={this.props.param=='produkter'?'active':'passive'}
         >
-          <p name="produkter" >Produkter, kategorier och toppsäljare</p>
+          <span name="produkter" >Produkter, kategorier och toppsäljare</span>
         </div>
 
         <div name="kampanjer"
              onClick={this.handleClick.bind(this)}
              className={this.props.param=='kampanjer'?'active':'passive'}
         >
-          <p name="kampanjer">Kampanjer och banner</p>
+          <span name="kampanjer">Kampanjer och banner</span>
         </div>
       </div>
     )

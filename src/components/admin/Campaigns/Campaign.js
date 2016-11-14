@@ -68,7 +68,7 @@ class Campaign extends Component {
       })
 
       firebase.database().ref().child('campaign/')
-      .push({
+      .set({
         url: task.snapshot.downloadURL,
         filename: file.name,
         heading,
@@ -102,11 +102,11 @@ class Campaign extends Component {
                 <input
                   type="text"
                   ref="heading"
-                  value={campaignItemHeading}
+                  defaultValue={campaignItemHeading}
                 />
                 <textarea
                   ref="description"
-                  value={campaignItemDescription}
+                  defaultValue={campaignItemDescription}
                 />
               </div>
               <div>
@@ -116,18 +116,22 @@ class Campaign extends Component {
           </section>
 
           <section className="buttons">
+            <div className="articleInput">
+              <h4>Artikelnummer</h4>
+              <input
+                type="text"
+                ref="articleNr"
+                defaultValue={campaignItemArticleNr}
+              />
+            </div>
+
             <div>
               <input type="submit" className="btn greenButton" value="Spara" />
             </div>
-            <h4>Artikelnummer</h4>
-            <input
-              type="text"
-              ref="articleNr"
-              value={campaignItemArticleNr}
-            />
+
             <div>
-              <input disabled="disabled" ref="fileHolder" id="fileHolder" />
-              <input type="file" ref="imgFile" id="picUpload" onChange={this.findFileName.bind(this)} />
+              <input disabled="disabled" ref="fileHolder" id="fileHolder" className="fileHolder" />
+              <input type="file" ref="imgFile" id="picUpload" className="picUpload" onChange={this.findFileName.bind(this)} />
               <label htmlFor="picUpload">Välj bild</label>
             </div>
           </section>

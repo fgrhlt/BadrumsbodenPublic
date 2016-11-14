@@ -29,30 +29,33 @@ class Banner extends Component {
 
   submitForm(e) {
       e.preventDefault()
-      let heading = this.refs.heading.value
-      let blueHeading = this.refs.blueHeading.value
-      let description = this.refs.description.value
-
-      /* Check if any form fields are empty */
-      if(heading=='' || blueHeading=='' || description=='') {
-        alert('Alla fält måste innehålla ett värde')
-      }
-
+      let heading = this.state.bannerItem.heading
+      let blueHeading = this.state.bannerItem.blueHeading
+      let description = this.state.bannerItem.description
+      // nu pushar den på en ny hela tiden, hur gör man för att bara lägga på samma ställe?
       firebase.database().ref().child('banner/')
-      .push({
+      .set({
         heading,
         description,
         blueHeading
       })
   }
 
+  /* Updates state depending on what you write */
+  handleChange(e) {
+    let obj = {}
+
+    // Clone the object
+    Object.assign(obj, this.state.bannerItem)
+    obj[e.target.name] = e.target.value
+    this.setState({bannerItem: obj})
+  }
   render() {
     const { bannerItem  } = this.state
-
+    console.log("state: ", this.state.bannerItem)
     let bannerItemBlueheading = bannerItem ? bannerItem.blueHeading : ''
     let bannerItemHeading = bannerItem ? bannerItem.heading : ''
     let bannerItemDescription = bannerItem ? bannerItem.description : ''
-
     return (
       <div id="adminBanner">
         <ComponentTitle
@@ -61,29 +64,30 @@ class Banner extends Component {
                 "Här nedan syns en förhandsvisning på hur den ser ut."}
         />
         <div id="container">
-          <form onSubmit={this.submitForm.bind(this)}>
             <div id="banner">
               <div>
                 <input
                   type="text"
                   value={bannerItemHeading}
-                  ref="heading"
+                  name="heading"
+                  onChange={this.handleChange.bind(this)}
                 />
                 <input
                   type="text"
                   value={bannerItemBlueheading}
-                  ref="blueHeading"
+                  name="blueHeading"
+                  onChange={this.handleChange.bind(this)}
                 />
                 <input
                   type="text"
                   value={bannerItemDescription}
-                  ref="description"
+                  name="description"
+                  onChange={this.handleChange.bind(this)}
                 />
               </div>
             </div>
 
-            <input type="submit" className="btn greenButton" value="Spara" />
-          </form>
+            <button onClick={this.submitForm.bind(this)} className="btn greenButton">Spara</button>
         </div>
       </div>
     )
@@ -91,7 +95,7 @@ class Banner extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
+  console.log("mapStateToProps: ", state)
   return {
     firebaseData: state.firebaseReducer.firebaseData
   }

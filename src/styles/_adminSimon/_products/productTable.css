@@ -1,6 +1,7 @@
 @import '../../global.css';
 
 #productTable {
+  font-size:10pt;
   & figure {
     width:20px;
     height:20px;

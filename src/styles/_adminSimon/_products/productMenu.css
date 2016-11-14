@@ -14,7 +14,7 @@
         /* The clickable div with the text 8/9 if you want the pencil icon on the right */
         & > div {
           lost-column:9/9 0 0;
-          font-size:16pt;
+          font-size:14pt;
           color:#fff;
           padding:7px 20px;
           box-sizing: border-box;

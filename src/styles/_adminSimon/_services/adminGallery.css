@@ -20,12 +20,14 @@
         margin-bottom:15px;
       }
       & button {
-        font-size: 16pt;
         float:right;
       }
+
       & .lostContainer {
         lost-utility:clearfix;
-
+        margin-bottom:30px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom:40px;
         /* All the images in the gallery */
         & > div {
           lost-waffle:1/8;
