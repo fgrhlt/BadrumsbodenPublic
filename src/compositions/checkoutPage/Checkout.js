@@ -12,6 +12,8 @@ require('styles/_webshopPage/checkout.css')
 class Checkout extends Component {
 
   componentWillMount() {
+    console.trace('cwm');
+
     this.state = {
       data: [],
       summary: '',
@@ -31,6 +33,7 @@ class Checkout extends Component {
     const { actions } = this.props
     const { firebaseActions } = actions
     const { fetchFirebaseData } = firebaseActions
+    console.trace('fetchShopping');
 
     let cookies = []
 
@@ -42,16 +45,20 @@ class Checkout extends Component {
       fetchFirebaseData('products', 'articleNr', item.articleNr)
     })
 
-    if (cookies.length<1) {
-      this.setState({
-        products: [],
-        items: []
-      })
-    }else {
-      this.setState({
-        items: obj
-      })
-    }
+    this.setState({
+      items: obj
+    })
+
+    // if (cookies.length<1) {
+    //   this.setState({
+    //     products: [],
+    //     items: []
+    //   })
+    // }else {
+    //   this.setState({
+    //     items: obj
+    //   })
+    // }
   }
 
   /* Posts a payment request to the node-server with the customers information
@@ -69,6 +76,8 @@ class Checkout extends Component {
     const { reducer } = nextProps
     const { firebaseReducer } = reducer
     const { firebaseData } = firebaseReducer
+    console.trace('cwrp');
+
     let stateProducts = this.state.products
 
     if (firebaseData.products) {
@@ -85,6 +94,7 @@ class Checkout extends Component {
     this.props.actions.shoppingcartActions.removeFromShoppingcart(product, price)
     //this.sta({ products: [], items: []})
     this.fetchShoppingcartProducts()
+    console.trace('dltProd');
   }
 
   updateQuantity(product, quantity) {
@@ -114,7 +124,7 @@ class Checkout extends Component {
   render() {
     const { products, summary, totalSum } = this.state
     let sum = 0
-    console.log('renderState', this.state);
+    console.trace('renderState', this.state);
 
     return (
       <div id="checkout">
@@ -136,7 +146,6 @@ Känn dig säker med Stripe!
 
   <div id="cart">
     {this.state.products.map(function(product, i) {
-      console.log('renderQuant', this.state.items[i])
 
       let quantity = this.state.items[i].quantity
       sum = sum + parseInt(product.price)*parseInt(quantity)
