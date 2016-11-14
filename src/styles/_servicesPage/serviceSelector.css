@@ -9,7 +9,7 @@
   text-align:center;
   color:white;
   overflow: hidden;
-
+  box-shadow: var(--defaultShadow);
     /* The two skewed containers */
     & > div {
       transform: skew(-20deg);
