@@ -12,8 +12,6 @@ require('styles/_webshopPage/checkout.css')
 class Checkout extends Component {
 
   componentWillMount() {
-    console.trace('cwm');
-
     this.state = {
       data: [],
       summary: '',
@@ -33,7 +31,6 @@ class Checkout extends Component {
     const { actions } = this.props
     const { firebaseActions } = actions
     const { fetchFirebaseData } = firebaseActions
-    console.trace('fetchShopping');
 
     let cookies = []
 
@@ -48,17 +45,6 @@ class Checkout extends Component {
     this.setState({
       items: obj
     })
-
-    // if (cookies.length<1) {
-    //   this.setState({
-    //     products: [],
-    //     items: []
-    //   })
-    // }else {
-    //   this.setState({
-    //     items: obj
-    //   })
-    // }
   }
 
   /* Posts a payment request to the node-server with the customers information
@@ -76,7 +62,6 @@ class Checkout extends Component {
     const { reducer } = nextProps
     const { firebaseReducer } = reducer
     const { firebaseData } = firebaseReducer
-    console.trace('cwrp');
 
     let stateProducts = this.state.products
 
@@ -84,17 +69,22 @@ class Checkout extends Component {
       stateProducts.push(firebaseData.products.items[0])
     }
 
+
     this.setState({
       products: stateProducts
     })
   }
 
   /* Delete a product from this checkout, uses the article number of the product */
-  deleteProduct(product, price) {
-    this.props.actions.shoppingcartActions.removeFromShoppingcart(product, price)
-    //this.sta({ products: [], items: []})
-    this.fetchShoppingcartProducts()
-    console.trace('dltProd');
+  deleteProduct(product, price, i) {
+
+    this.setState({
+      products: [],
+      items: {}
+    }, () => {
+      this.props.actions.shoppingcartActions.removeFromShoppingcart(product, price)
+      this.fetchShoppingcartProducts()
+    }.bind(this))
   }
 
   updateQuantity(product, quantity) {
@@ -124,7 +114,8 @@ class Checkout extends Component {
   render() {
     const { products, summary, totalSum } = this.state
     let sum = 0
-    console.trace('renderState', this.state);
+
+    console.log('state',this.state);
 
     return (
       <div id="checkout">
@@ -146,8 +137,7 @@ Känn dig säker med Stripe!
 
   <div id="cart">
     {this.state.products.map(function(product, i) {
-
-      let quantity = this.state.items[i].quantity
+      let quantity = this.state.items ? this.state.items[i].quantity : 0
       sum = sum + parseInt(product.price)*parseInt(quantity)
 
       return (
@@ -171,7 +161,7 @@ Känn dig säker med Stripe!
           </div>
 
           <div className="trash">
-            <figure onClick={this.deleteProduct.bind(this, this.state.items[i], product.price)}/>
+            <figure onClick={this.deleteProduct.bind(this, this.state.items[i], product.price, i)}/>
           </div>
         </div>
       )}, this)}
