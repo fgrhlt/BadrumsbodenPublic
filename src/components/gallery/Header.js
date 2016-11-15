@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router'
 import Clipboard from 'clipboard'
 import ReactTooltip from 'react-tooltip'
 require('Clipboard')
-require('styles/_headerPage/header.css')
+require('../../styles/_headerPage/header.css')
 
 export default class Header extends Component {
 

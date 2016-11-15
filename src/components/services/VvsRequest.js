@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-require('styles/_servicesPage/vvsRequest.css')
+require('../../styles/_servicesPage/vvsRequest.css')
 
 export default class VVSRequest extends Component {
   componentWillMount() {

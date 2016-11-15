@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-require('styles/_servicesPage/serviceSelector.css')
+require('../../styles/_servicesPage/serviceSelector.css')
 
 export default class ServiceSelector extends Component {
 

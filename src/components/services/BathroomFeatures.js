@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-require('styles/_features/features.css')
+require('../../styles/_features/features.css')
 
 export default class BathroomFeatures extends Component {
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import firebase from 'firebase/app'
 
-require('styles/_adminSimon/_products/addProduct.css')
+require('../../../styles/_adminSimon/_products/addProduct.css')
 
 export default class AddProduct extends Component {
   componentWillMount() {

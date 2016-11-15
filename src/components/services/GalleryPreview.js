@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as firebaseActions from '../../actions/firebaseActions'
 
-require('styles/_servicesPage/galleryPreview.css')
+require('../../styles/_servicesPage/galleryPreview.css')
 
 class GalleryPreview extends Component {
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 
-require('styles/_adminSimon/_products/productMenu.css')
+require('../../../styles/_adminSimon/_products/productMenu.css')
 
 /* CategoryItem is the main category, which contains sub categories in it */
 class CategoryItem extends Component {

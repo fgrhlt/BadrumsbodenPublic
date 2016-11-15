@@ -5,7 +5,7 @@ import {replaceSpecialCharactersURLs} from '../../utils/Utils'
 import firebase from 'firebase/app'
 require('firebase/auth')
 
-require('styles/_adminSimon/adminHeader.css')
+require('../../styles/_adminSimon/adminHeader.css')
 
 export default class AdminHeader extends Component {
 

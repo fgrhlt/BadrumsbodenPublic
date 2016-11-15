@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 
-require('styles/_landingPage/departmentPicker.css')
+require('../../styles/_landingPage/departmentPicker.css')
 
 export default class departmentPicker extends Component {
 

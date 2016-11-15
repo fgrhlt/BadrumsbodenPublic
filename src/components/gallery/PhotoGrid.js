@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import * as firebaseActions from '../../actions/firebaseActions'
 
 require('firebase/storage')
-require('styles/_galleryPage/gallery.css')
+require('../../styles/_galleryPage/gallery.css')
 
   class PhotoGrid extends Component {
 

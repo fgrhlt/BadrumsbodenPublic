@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-require('styles/_servicesPage/progressBar.css')
+require('../../styles/_servicesPage/progressBar.css')
 
 export default class ProgressBar extends Component {
   render() {

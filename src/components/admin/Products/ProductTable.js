@@ -13,8 +13,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as firebaseActions from '../../../actions/firebaseActions'
 
-require('styles/_adminSimon/_products/productTable.css')
-require('styles/_fixedDataTable/fixed-data-table.css')
+require('../../../styles/_adminSimon/_products/productTable.css')
+require('../../../styles/_fixedDataTable/fixed-data-table.css')
 
 /* The ProductTable contains a FittedTable which comes from Facebook's
 * fixed-data-table, and it's responsive. In the table there is six columns

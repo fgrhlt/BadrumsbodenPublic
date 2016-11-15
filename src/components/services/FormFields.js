@@ -5,7 +5,7 @@ import flat from 'flat'
 import {replaceSpecialCharacters, createLineBreak} from '../../utils/Utils'
 import ReactTooltip from 'react-tooltip'
 
-require('styles/_servicesPage/formFields.css')
+require('../../styles/_servicesPage/formFields.css')
 
 class FirstSet extends Component {
   render() {

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ProgressBar from './ProgressBar'
 import FormFields from './FormFields'
 
-require('styles/_servicesPage/priceCalc.css')
+require('../../styles/_servicesPage/priceCalc.css')
 
 export default class PriceCalculator extends Component {
   componentWillMount() {
