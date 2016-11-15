@@ -113,7 +113,7 @@
 
         & h1 {
           font-size:28pt;
-          margin-top:17px;
+          margin-top:10px;
         }
       }
     }
@@ -136,10 +136,12 @@
 @media (width <= 400px) {
   #departmentPicker {
     & > section {
+      padding:75px 0 0 0;
       & > div {
+        margin-bottom:20px;
         & h1 {
           font-size:20pt;
-          margin:25px 30% 0 0;
+          margin:18px 30% 0 0;
         }
       }
     }

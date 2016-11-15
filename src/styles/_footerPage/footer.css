@@ -126,9 +126,17 @@
   #footer section > div {
     lost-column:1;
 
-      & span {
-        margin:20px auto 0 auto;
-      }
+    & span {
+      margin:20px auto 0 auto;
+    }
+    & p {
+      margin-bottom:0;
+    }
+    & button {
+      margin:auto;
+      margin-bottom:30px;
+      width:170px;
+    }
   }
 
   #footer figure {

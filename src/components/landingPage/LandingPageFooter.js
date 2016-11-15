@@ -34,8 +34,7 @@ export default class LandingPageFooter extends Component {
                 901 33 Umeå <br />
                 090 - 13 13 04
               </p>
-              <div ref="emailClick" data-tip data-for="emailCopy">
-              </div>
+              <div ref="emailClick" data-tip data-for="emailCopy" />
               <ReactTooltip
                 id="emailCopy"
                 type='success'

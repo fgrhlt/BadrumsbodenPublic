@@ -16,6 +16,8 @@ export default class departmentPicker extends Component {
 
     return (
       <div id="departmentPicker">
+        <div className="mobileInfo">
+        </div>
         <section name="lostContainer">
           <div onClick={this.onClickWebshop.bind(this)}>
             <h1>Webbshop</h1>

@@ -95,5 +95,9 @@
 @media (max-width: 435px) {
   #features section > div {
     lost-column:1;
+    margin-bottom:40px;
+  }
+  #features section > div:last-of-type {
+    margin-bottom:0;
   }
 }
