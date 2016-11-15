@@ -47,32 +47,7 @@
 }
 
 @media (width <= 800px) {
-  /* Fields */
-  #priceCalc section:nth-of-type(2) > div:not(last-of-type) {
-    lost-column:1;
-  }
-  /* Arrow */
-  #priceCalc section:nth-of-type(2) > div:last-of-type {
-    lost-column:1;
-  }
-
-  #priceCalc .next {
-    margin:20px auto 50px auto;
-  }
-}
-
-@media (width <= 600px) {
-  #priceCalc #progressBar p {
+  #priceCalc {
     display:none;
-  }
-}
-
-@media (max-width: 435px) {
-  #progressBar {
-    width:100%;
-    margin:0;
-  }
-  #priceCalc section:first-of-type {
-    padding-bottom:0;
   }
 }

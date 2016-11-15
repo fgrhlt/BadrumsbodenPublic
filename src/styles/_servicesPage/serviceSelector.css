@@ -182,13 +182,21 @@
 }
 
 /* responsive */
-@media (width <= 1280px) {
-
+@media (width <= 1200px) {
+  .serviceSelector {
+    & > div {
+      & .expandedInnerContent {
+        & #description {
+          & p {
+            font-size:12pt;
+          }
+        }
+      }
+    }
+  }
 }
-
-@media (width <= 800px) {
-}
-
-@media (max-width: 435px) {
-
+@media (width <= 1024px) {
+  .serviceSelector {
+    display:none;
+  }
 }
