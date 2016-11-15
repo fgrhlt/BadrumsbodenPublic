@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import ProductPreview from './ProductPreview'
-require('styles/_webshopPage/products.css')
+require('../../../styles/_webshopPage/products.css')
 
 export default class ProductElements extends Component {
 

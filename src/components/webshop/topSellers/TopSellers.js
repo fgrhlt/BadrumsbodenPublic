@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import ProductElements from './ProductElements'
-require('styles/_webshopPage/topSellers.css')
+require('../../../styles/_webshopPage/topSellers.css')
 
 export default class TopSellers extends Component {
 

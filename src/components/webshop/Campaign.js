@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 
-require('styles/_webshopPage/campaign.css')
+require('../../styles/_webshopPage/campaign.css')
 
 export default class Campaign extends Component {
 

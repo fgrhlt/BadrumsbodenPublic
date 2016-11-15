@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
-require('styles/_webshopPage/products.css')
+require('../../../styles/_webshopPage/products.css')
 
 export default class TopSellerProduct extends Component {
 

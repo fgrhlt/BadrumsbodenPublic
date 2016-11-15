@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import * as firebaseActions from '../../../actions/firebaseActions'
 
 require('firebase/database')
-require('styles/_webshopPage/products.css')
+require('../../../styles/_webshopPage/products.css')
 
 class Products extends Component {
 

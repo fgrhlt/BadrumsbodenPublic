@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-require('styles/_webshopPage/banner.css')
+require('../../styles/_webshopPage/banner.css')
 
 export default class Banner extends Component {
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 import { replaceSpecialCharactersURLs, capitalizeFirstLetter } from '../../../utils/Utils'
 
-require('styles/_webshopPage/subCategoryList.css')
+require('../../../styles/_webshopPage/subCategoryList.css')
 
 export default class SubCategoryList extends Component {
 

@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router'
 import Clipboard from 'clipboard'
 import ReactTooltip from 'react-tooltip'
 
-require('styles/_footerPage/footer.css')
+require('../../styles/_footerPage/footer.css')
 
 export default class Footer extends Component {
 

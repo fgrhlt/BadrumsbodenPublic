@@ -9,7 +9,7 @@ import * as firebaseActions from '../../../actions/firebaseActions'
 import * as shoppingcartActions from '../../../actions/shoppingcartActions'
 
 require('firebase/database')
-require('styles/_webshopPage/productView.css')
+require('../../../styles/_webshopPage/productView.css')
 
 class Product extends Component {
 

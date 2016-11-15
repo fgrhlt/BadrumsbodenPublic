@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as firebaseActions from '../../actions/firebaseActions'
 
-require('styles/_webshopPage/dropdownMenu.css')
+require('../../styles/_webshopPage/dropdownMenu.css')
 
   class DropdownMenu extends Component {
 
