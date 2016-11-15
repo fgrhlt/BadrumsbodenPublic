@@ -29,14 +29,18 @@ export default class SearchBar extends Component {
   render() {
     return (
       <div className="searchBar">
-        <input
-          value={this.state.inputText}
-          onChange={this.onChange.bind(this)}
-          type="text"
-          placeholder="Vad söker du efter?">
-        </input>
+        <div>
+          <input
+            value={this.state.inputText}
+            onChange={this.onChange.bind(this)}
+            type="text"
+            placeholder="Vad söker du efter?">
+          </input>
+        </div>
 
-        <figure onClick={this.searchProducts.bind(this)}/>
+        <div>
+          <figure onClick={this.searchProducts.bind(this)}/>
+        </div>
       </div>
     )
   }

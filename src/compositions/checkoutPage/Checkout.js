@@ -75,17 +75,17 @@ class Checkout extends Component {
     })
   }
 
-  /* Delete a product from this checkout, uses the article number of the product */
-  deleteProduct(product, price, i) {
-
-    this.setState({
-      products: [],
-      items: {}
-    }, () => {
-      this.props.actions.shoppingcartActions.removeFromShoppingcart(product, price)
-      this.fetchShoppingcartProducts()
-    }.bind(this))
-  }
+  // /* Delete a product from this checkout, uses the article number of the product */
+  // deleteProduct(product, price, i) {
+  //
+  //   this.setState({
+  //     products: [],
+  //     items: {}
+  //   }, () => {
+  //     this.props.actions.shoppingcartActions.removeFromShoppingcart(product, price)
+  //     this.fetchShoppingcartProducts()
+  //   }.bind(this))
+  // }
 
   updateQuantity(product, quantity) {
     this.props.actions.shoppingcartActions.updateQuantity(product, quantity)

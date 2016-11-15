@@ -43,7 +43,7 @@
     & > div {
       lost-column:3/11;
       position:relative;
-      & figure {
+      & figure, & > div {
         float:right;
       }
     }
@@ -54,7 +54,6 @@
     & > div:nth-of-type(1) {
       margin-top:-3px;
       & > div {
-        float:right;
         padding-top:10px;
       }
     }
@@ -62,24 +61,24 @@
     & > div:nth-of-type(2) {
       margin-top:-5px;
       & > div {
-        float:right;
         padding-top:25px;
       }
     }
     /* shopping cart */
     & > div:nth-of-type(3) {
-      & > div {
-        float:right;
-        padding-top:18px;
+      padding-top:18px;
 
-        & > div {
-          text-align: right;
-          float:left;
-          margin-left:10px;
-        }
-        & > div:last-of-type {
-          font-weight: bold;
-          text-align:left;
+      & .shoppingCart {
+        & .container {
+          & > div {
+            text-align: right;
+            float:left;
+            margin-left:10px;
+          }
+          & > div:last-of-type {
+            font-weight: bold;
+            text-align:left;
+          }
         }
       }
     }
@@ -108,13 +107,13 @@
 
     & #email_icon {
       background: url('../../assets/icons/header/email_icon.svg') no-repeat;
-      width:55px;
+      width:48px;
       height: 40px;
     }
 
     & #phone_icon {
       background: url('../../assets/icons/header/phone_icon.svg') no-repeat;
-      width:47px;
+      width:40px;
       height: 45px;
     }
 
@@ -122,7 +121,7 @@
       background: url('../../assets/icons/header/shoppingCart.svg') no-repeat;
       width: 46px;
       height: 50px;
-      margin-top:15px;
+      margin-top:-5px;
     }
     & .copyBtn {
       cursor:pointer;
@@ -175,13 +174,57 @@
 }
 @media (width <= 500px) {
   #header {
+    & #left {
+      & #logo {
+        margin:auto;
+      }
+      & span {
+        text-align:center;
+      }
+    }
     & #right {
+      margin-top:30px;
+      /* The lost items in the right column */
       & > div {
         lost-column:1;
+
+        /* The inner div with text */
+        & > div {
+          margin:auto;
+          float:none;
+          text-align:center;
+
+          & .copyBtn {
+            left:0;
+            width:100%;
+          }
+        }
+
+        & .shoppingCart {
+          clear:fix;
+
+          & .container {
+            margin:0 auto 20px auto;
+            clear:fix;
+            width:125px;
+          }
+        }
+        & figure {
+          float:none;
+          margin:20px auto;
+        }
+        & button {
+          float:none !important;
+          margin:auto;
+        }
       }
       & > div:nth-of-type(4), & > div:nth-of-type(3) {
         lost-column:1;
       }
     }
+  }
+  & .searchBar {
+    lost-center:70%;
+    background: pink;
   }
 }

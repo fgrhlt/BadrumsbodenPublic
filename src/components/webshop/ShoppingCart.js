@@ -26,14 +26,16 @@ class ShoppingCart extends Component {
 
     return (
       <div className="shoppingCart">
-        <div>
-          Antal varor:<br/>
-          Summa:
-        </div>
+        <div className="container">
+          <div>
+            Antal varor:<br/>
+            Summa:
+          </div>
 
-        <div>
-          {summary.quantity}<br/>
-          {summary.sum}:-
+          <div>
+            {summary.quantity}<br/>
+            {summary.sum}:-
+          </div>
         </div>
       </div>
     )

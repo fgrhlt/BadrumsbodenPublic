@@ -79,7 +79,6 @@ handleMouseOut() {
               <div>
                 <ShoppingCart/>
                 <figure id="shoppingCart" />
-
               </div>
 
               <div>

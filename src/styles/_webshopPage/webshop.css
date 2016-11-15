@@ -3,25 +3,45 @@
 .searchBar {
   height: 45px;
   margin: 15px 0 25px 0;
-  display: flex;
-  justify-content: center;
+  lost-center:600px;
+  lost-utility:clearfix;
 
-  & figure {
-    background: url('../../assets/buttons/search_button.svg') no-repeat;
-    width:81px;
-    height: 45px;
+  & div:nth-of-type(1) {
+    lost-column:9/10 0 0;
+
+    & input {
+      box-sizing: border-box;
+      padding: 10px 15px;
+      background-color: lightgrey;
+      border: none;
+      width:100%;
+    }
   }
-  & figure:hover {
-    background: url('../../assets/buttons/search_button_h.svg') no-repeat;
+
+  & > div:nth-of-type(2) {
+    lost-column:1/10 0 0;
+    & figure {
+      background: url('../../assets/buttons/search_button.svg') no-repeat;
+      width:69px;
+      height: 42px;
+    }
+    & figure:hover {
+      background: url('../../assets/buttons/search_button_h.svg') no-repeat;
+    }
+    & figure:active {
+      background: url('../../assets/buttons/search_button_a.svg') no-repeat;
+    }
   }
-  & figure:active {
-    background: url('../../assets/buttons/search_button_a.svg') no-repeat;
-  }
-  & input {
-    box-sizing: border-box;
-    padding: 10px 15px;
-    width: 600px;
-    background-color: lightgrey;
-    border: none;
+}
+
+@media (width <= 500px) {
+  .searchBar {
+    lost-center:90%;
+    & > div:nth-of-type(1) {
+      lost-column:7/10 0 0;
+    }
+    & > div:nth-of-type(2) {
+      lost-column:3/10 0 0;
+    }
   }
 }
