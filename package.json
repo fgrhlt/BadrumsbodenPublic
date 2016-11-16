@@ -75,7 +75,6 @@
   "dependencies": {
     "autoprefixer": "^6.3.7",
     "axios": "^0.13.1",
-    "babel": "^6.5.2",
     "babel-core": "^6.18.2",
     "bower-webpack-plugin": "^0.1.9",
     "classnames": "^2.2.5",
