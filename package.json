@@ -84,6 +84,7 @@
     "core-js": "^2.0.0",
     "eslint": "^2.13.1",
     "eslint-loader": "^1.6.1",
+    "eslint-plugin-react": "^5.2.2",
     "firebase": "^3.4.1",
     "fixed-data-table": "^0.6.3",
     "flat": "^2.0.1",
