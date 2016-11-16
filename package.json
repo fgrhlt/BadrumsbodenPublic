@@ -71,6 +71,7 @@
   "dependencies": {
     "autoprefixer": "^6.3.7",
     "axios": "^0.13.1",
+    "bower-webpack-plugin": "^0.1.9",
     "classnames": "^2.2.5",
     "clipboard": "^1.5.12",
     "core-js": "^2.0.0",
