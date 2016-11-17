@@ -20,7 +20,6 @@ import * as firebaseActions from '../../actions/firebaseActions'
       <div>
         <LandingPageHeader></LandingPageHeader>
         <WelcomeInfo></WelcomeInfo>
-        <DepartmentPicker></DepartmentPicker>
         <LandingPageFeatures></LandingPageFeatures>
         <LandingPageFooter></LandingPageFooter>
       </div>

@@ -5,15 +5,8 @@ require('styles/_features/features.css')
 export default class LandingPageFeatures extends Component {
 
   render() {
-    var styleVar = {
-      backgrund: '#F7F7F7',
-      backgroundImage: 'url(assets/images/landingPage/welcome_bg_w.png)',
-      backgroundPosition: 'bottom center',
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover'
-    }
     return (
-      <div id="features" style={styleVar}>
+      <div id="features">
 
         <h2>Varför anlita Badrumsboden?</h2>
 
