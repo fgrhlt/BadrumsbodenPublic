@@ -8,7 +8,7 @@ let defaultSettings = require('./defaults');
 
 // Add needed plugins here
 let BowerWebpackPlugin = require('bower-webpack-plugin');
-console.log('process.env.PORT', process.env.PORT);
+
 let config = Object.assign({}, baseConfig, {
   entry: [
     //'babel-polyfill',
@@ -19,7 +19,8 @@ let config = Object.assign({}, baseConfig, {
   plugins: [
     new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"'
+      'process.env.NODE_ENV': '"production"',
+      'process.env.PORT': JSON.stringify(process.env.PORT)
     }),
     new BowerWebpackPlugin({
       searchResolveModulesDirectories: false
