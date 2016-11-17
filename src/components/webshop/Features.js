@@ -13,7 +13,7 @@ export default class Features extends Component {
           <section id="four">
             <div>
               <div className="circle">
-                <img src="assets/icons/webshop/shipping.svg" />
+                <figure className="shipping" />
               </div>
 
               <p>Fraktas inom 5 arbetsdagar</p>
@@ -21,7 +21,7 @@ export default class Features extends Component {
 
             <div>
               <div className="circle">
-                <img src="assets/icons/webshop/warranty.svg" />
+                <figure className="warranty" />
               </div>
 
               <p>Garanti på alla varor</p>
@@ -29,7 +29,7 @@ export default class Features extends Component {
 
             <div>
               <div className="circle">
-                <img src="assets/icons/webshop/payment.svg" />
+                <figure className="payment"/>
               </div>
 
               <p>Säkra betalningsmetoder</p>
@@ -37,10 +37,9 @@ export default class Features extends Component {
 
             <div>
               <div className="circle">
-                <img src="assets/icons/webshop/service.svg"></img>
+                <figure className="service" />
               </div>
 
-              <h3>hej</h3>
               <p>Pålitlig service</p>
             </div>
           </section>

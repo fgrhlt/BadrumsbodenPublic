@@ -11,20 +11,14 @@ export default class WelcomeInfo extends Component {
     browserHistory.push('/services')
   }
   render() {
-    /* Data from database */
-    var styleVar = {
-      backgroundImage: 'url(assets/images/landingPage/welcome_bg.png)',
-      color: '#fff'
-    }
-
     return (
-      <div id="welcomeInfo" style={styleVar}>
+      <div id="welcomeInfo">
         <h2>Välkommen till Badrumsboden!</h2>
 
         <section name="lostContainer">
           <div>
             <div className="heading" onClick={this.goWebshop.bind(this)}><h3>Webbshop</h3></div>
-            <div className="content">
+            <div className="content" id="webshop">
               <p>
                 Vi erbjuder webbshop med produkter för hemmafixaren och för proffset.
                 Här hittar ni exempelvis badkar, blandare, och vvs-artiklar.
@@ -57,7 +51,7 @@ export default class WelcomeInfo extends Component {
               </p>
 
               <div className="arrowButton services" onClick={this.goServices.bind(this)}>
-                <h3>Till tjänster</h3>
+                <h3>Till Tjänster</h3>
                 <div><figure /></div>
               </div>
             </div>
