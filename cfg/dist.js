@@ -8,7 +8,7 @@ let defaultSettings = require('./defaults');
 
 // Add needed plugins here
 let BowerWebpackPlugin = require('bower-webpack-plugin');
-
+console.log('process.env.PORT', process.env.PORT);
 let config = Object.assign({}, baseConfig, {
   entry: [
     //'babel-polyfill',
