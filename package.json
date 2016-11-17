@@ -83,6 +83,7 @@
     "clipboard": "^1.5.12",
     "copyfiles": "^0.2.2",
     "core-js": "^2.0.0",
+    "eslint": "^2.13.1",
     "eslint-loader": "^1.6.1",
     "firebase": "^3.4.1",
     "fixed-data-table": "^0.6.3",
