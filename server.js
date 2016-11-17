@@ -7,7 +7,7 @@ const config = require('./webpack.config');
 const open = require('open');
 
 new WebpackDevServer(webpack(config), config.devServer)
-.listen(config.port, 'localhost', (err) => {
+.listen(process.env.PORT, 'localhost', (err) => {
   if (err) {
     console.log(err);
   }
