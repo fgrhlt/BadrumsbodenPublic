@@ -1,4 +1,6 @@
 'use strict';
+console.log('process.env.PORT0', process.env.PORT);
+
 const path = require('path');
 const srcPath = path.join(__dirname, '/../src');
 const dfltPort = 8000;
