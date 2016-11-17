@@ -22,7 +22,7 @@
     "start": "node server.js --env=dev",
     "test": "karma start",
     "test:watch": "karma start --autoWatch=true --singleRun=false",
-    "postinstall": "npm run dist && npm run start"
+    "postinstall": "npm run dist && npm run serve:dist"
   },
   "repository": "",
   "keywords": [],
