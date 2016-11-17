@@ -11,7 +11,7 @@ let BowerWebpackPlugin = require('bower-webpack-plugin');
 
 let config = Object.assign({}, baseConfig, {
   entry: [
-    'babel-polyfill',
+    //'babel-polyfill',
     path.join(__dirname, '../src/index')
   ],
   cache: false,
