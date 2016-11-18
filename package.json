@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "description": "Template application for future builds",
-  "main": "",
+  "main": "server.js",
   "engines": {
     "node": "6.2.2"
   },
