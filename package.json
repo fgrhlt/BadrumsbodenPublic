@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "description": "Template application for future builds",
-  "main": "server.js",
+  "main": "",
   "engines": {
     "node": "6.2.2"
   },
@@ -16,11 +16,11 @@
     "release:major": "npm version major && npm publish && git push --follow-tags",
     "release:minor": "npm version minor && npm publish && git push --follow-tags",
     "release:patch": "npm version patch && npm publish && git push --follow-tags",
-    "dev": "node devServer.js --env=dev",
-    "start": "node server.js",
+    "start:dev": "node devServer.js --env=dev",
+    "start:prod": "node server.js",
     "test": "karma start",
     "test:watch": "karma start --autoWatch=true --singleRun=false",
-    "postinstall": "npm run dist && npm run start"
+    "postinstall": "npm run dist && npm run start:prod"
   },
   "repository": "",
   "keywords": [],

@@ -1,18 +1,16 @@
 const express = require('express')
 const path = require('path')
 const app = express()
-console.log('sdfdsf', process.env.PORT);
-console.log('TESTTEST:', config, config.devServer, config.port);
 
-app.use(express.static(__dirname))
+app.use(express.static(__dirname+'/dist'))
 
-app.get('/api/posts', (req, res) => {
-  res.send([{ id: 1 }])
+//Initialize app
+var server = app.listen(process.env.PORT || 5000, function () {
+  var port = server.address().port
+  console.log("App now running on port", port)
 })
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, './dist/index.html'))
-})
-
-app.listen(process.env.PORT || 8080)
-console.log('Server started')
+// //Listen for all APIs
+// app.get('*', function(req, res) {
+//   res.sendFile(path.resolve(__dirname, 'dist/index.html'))
+// })
