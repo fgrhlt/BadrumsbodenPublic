@@ -1,17 +1,16 @@
-/*eslint no-console:0 */
-'use strict';
-require('core-js/fn/object/assign');
-const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
-const config = require('./webpack.config');
-const open = require('open');
+const express = require('express')
+const path = require('path')
+const app = express()
 
-new WebpackDevServer(webpack(config), config.devServer)
-.listen(config.port, (err) => {
-  if (err) {
-    console.log(err);
-  }
-  console.log('Listening at localhost:' + config.port);
-  console.log('Opening your system browser...');
-  //open('http://localhost:' + config.port + '/webpack-dev-server/');
-});
+app.use(express.static(__dirname))
+
+app.get('/api/posts', (req, res) => {
+  res.send([{ id: 1 }])
+})
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './dist/index.html'))
+})
+
+app.listen(process.env.PORT || 8080)
+console.log('Server started')

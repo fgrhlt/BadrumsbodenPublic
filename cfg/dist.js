@@ -2,7 +2,6 @@
 
 let path = require('path');
 let webpack = require('webpack');
-
 let baseConfig = require('./base');
 let defaultSettings = require('./defaults');
 
@@ -11,7 +10,6 @@ let BowerWebpackPlugin = require('bower-webpack-plugin');
 
 let config = Object.assign({}, baseConfig, {
   entry: [
-    //'babel-polyfill',
     path.join(__dirname, '../src/index')
   ],
   cache: false,
@@ -20,7 +18,6 @@ let config = Object.assign({}, baseConfig, {
     new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"',
-      'process.env.PORT': JSON.stringify(process.env.PORT)
     }),
     new BowerWebpackPlugin({
       searchResolveModulesDirectories: false
