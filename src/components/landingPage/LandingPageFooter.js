@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Clipboard from 'clipboard'
 import ReactTooltip from 'react-tooltip'
 
-require('styles/_footerPage/footer.css')
+require('../../styles/_footerPage/footer.css')
 
 export default class LandingPageFooter extends Component {
   handleClick() {

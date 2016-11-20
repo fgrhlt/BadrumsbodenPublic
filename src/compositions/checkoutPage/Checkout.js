@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import * as firebaseActions from '../../actions/firebaseActions'
 import * as shoppingcartActions from '../../actions/shoppingcartActions'
 
-require('styles/_webshopPage/checkout.css')
+require('../../styles/_webshopPage/checkout.css')
 
 class Checkout extends Component {
 

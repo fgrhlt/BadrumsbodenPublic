@@ -4,7 +4,7 @@ import Header from '../../components/webshop/Header'
 import DropdownMenu from '../../components/webshop/DropdownMenu'
 import Footer from '../../components/webshop/Footer'
 
-require('styles/_webshopPage/webshop.css')
+require('../../styles/_webshopPage/webshop.css')
 
 export default class Webshop extends Component {
 

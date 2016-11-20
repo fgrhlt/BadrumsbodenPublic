@@ -9,7 +9,7 @@ import BathroomFeatures from '../../components/services/BathroomFeatures'
 import GalleryPreview from '../../components/services/GalleryPreview'
 import Footer from '../../components/services/Footer'
 
-require('styles/_servicesPage/services.css')
+require('../../styles/_servicesPage/services.css')
 
 export default class Services extends Component {
 

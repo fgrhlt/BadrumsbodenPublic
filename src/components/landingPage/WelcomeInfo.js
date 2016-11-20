@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 
-require('styles/_landingPage/welcomeInfo.css')
+require('../../styles/_landingPage/welcomeInfo.css')
 
 export default class WelcomeInfo extends Component {
   goWebshop() {

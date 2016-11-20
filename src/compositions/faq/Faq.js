@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Header from '../../components/faq/Header'
 import Footer from '../../components/webshop/Footer'
 import axios from 'axios'
-require('styles/_webshopPage/infoBank.css')
+require('../../styles/_webshopPage/infoBank.css')
 
 export default class Faq extends Component {
 
