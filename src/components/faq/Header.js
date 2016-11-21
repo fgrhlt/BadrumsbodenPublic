@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Clipboard from 'clipboard'
+//import Clipboard from 'clipboard'
 import ReactTooltip from 'react-tooltip'
-require('Clipboard')
+//require('Clipboard')
 require('../../styles/_headerPage/header.css')
 
 export default class Header extends Component {
@@ -13,7 +13,7 @@ export default class Header extends Component {
     ReactTooltip.hide(this.refs.emailClick)
   }
   render() {
-    let clipboard= new Clipboard('.copyBtn');
+    //let clipboard= new Clipboard('.copyBtn');
     return (
       <div id="galleryPageHeader">
         <div id="header">
