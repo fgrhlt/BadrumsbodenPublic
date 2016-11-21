@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 import SearchBar from './SearchBar'
 import ShoppingCart from './ShoppingCart'
-//import Clipboard from 'clipboard'
+import Clipboard from 'clipboard'
 import ReactTooltip from 'react-tooltip'
 
-require('../../../node_modules/clipboard/lib/clipboard')
+require('Clipboard')
 require('../../styles/_headerPage/header.css')
 
 export default class Header extends Component {

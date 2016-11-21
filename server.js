@@ -1,22 +1,17 @@
-const express = require('express')
-const path = require('path')
-const app = express()
+/*eslint no-console:0 */
+'use strict';
+require('core-js/fn/object/assign');
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+const config = require('./webpack.config');
+const open = require('open');
 
-app.set('port', (process.env.PORT || 5000));
-app.use(express.static(__dirname+'/dist'))
-
-
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
+new WebpackDevServer(webpack(config), config.devServer)
+.listen(config.port, 'localhost', (err) => {
+  if (err) {
+    console.log(err);
+  }
+  console.log('Listening at localhost:' + config.port);
+  console.log('Opening your system browser...');
+  open('http://localhost:' + config.port + '/webpack-dev-server/');
 });
-
-//Initialize app
-// var server = app.listen(process.env.PORT || 5000, function () {
-//   var port = server.address().port
-//   console.log("App now running on port", port)
-// })
-
-// //Listen for all APIs
-// app.get('*', function(req, res) {
-//   res.sendFile(path.resolve(__dirname, 'dist/index.html'))
-// })

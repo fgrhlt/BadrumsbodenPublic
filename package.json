@@ -4,9 +4,6 @@
   "version": "0.0.1",
   "description": "Template application for future builds",
   "main": "",
-  "engines": {
-    "node": "6.2.2"
-  },
   "scripts": {
     "clean": "rimraf dist/*",
     "copy": "copyfiles -f ./src/index.html ./src/favicon.ico ./dist",
@@ -16,11 +13,11 @@
     "release:major": "npm version major && npm publish && git push --follow-tags",
     "release:minor": "npm version minor && npm publish && git push --follow-tags",
     "release:patch": "npm version patch && npm publish && git push --follow-tags",
-    "dev": "node devServer.js --env=dev",
-    "start": "node server.js",
+    "serve": "node server.js --env=dev",
+    "serve:dist": "node server.js --env=dist",
+    "start": "node server.js --env=dev",
     "test": "karma start",
-    "test:watch": "karma start --autoWatch=true --singleRun=false",
-    "postinstall": "npm run dist && npm run start"
+    "test:watch": "karma start --autoWatch=true --singleRun=false"
   },
   "repository": "",
   "keywords": [],
@@ -74,7 +71,7 @@
     "autoprefixer": "^6.3.7",
     "axios": "^0.13.1",
     "classnames": "^2.2.5",
-    "clipboard": "^1.5.15",
+    "clipboard": "^1.5.12",
     "core-js": "^2.0.0",
     "firebase": "^3.4.1",
     "fixed-data-table": "^0.6.3",

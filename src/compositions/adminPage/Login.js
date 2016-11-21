@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router'
 
 import firebase from 'firebase/app'
 require('firebase/auth')
-require('../../styles/_adminSimon/login.css')
+require('styles/_adminSimon/login.css')
 
 
 export default class Login extends Component {

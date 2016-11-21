@@ -9,7 +9,7 @@ import TopSellers from '../../components/webshop/topSellers/TopSellers'
 import Banner from '../../components/webshop/Banner'
 import Features from '../../components/webshop/Features'
 
-require('../../styles/_webshopPage/webshop.css')
+require('styles/_webshopPage/webshop.css')
 
 class WebshopHome extends Component {
 

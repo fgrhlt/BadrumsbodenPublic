@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 import Clipboard from 'clipboard'
 import ReactTooltip from 'react-tooltip'
-
-require('../../../node_modules/clipboard/lib/clipboard')
+require('Clipboard')
 require('../../styles/_headerPage/header.css')
 
 export default class Header extends Component {
@@ -18,7 +17,7 @@ export default class Header extends Component {
     ReactTooltip.hide(this.refs.emailClick)
   }
   render() {
-    //let clipboard= new Clipboard('.copyBtn');
+    let clipboard= new Clipboard('.copyBtn');
     return (
       <div id="servicePageHeader">
         <div id="header">
