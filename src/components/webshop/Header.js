@@ -5,7 +5,7 @@ import ShoppingCart from './ShoppingCart'
 //import Clipboard from 'clipboard'
 import ReactTooltip from 'react-tooltip'
 
-//require('../../../node_modules/clipboard/lib/clipboard')
+require('../../../node_modules/clipboard/lib/clipboard')
 require('../../styles/_headerPage/header.css')
 
 export default class Header extends Component {
@@ -27,7 +27,7 @@ handleMouseOut() {
 }
 
   render() {
-    //let clipboard= new Clipboard('.copyBtn');
+    let clipboard= new Clipboard('.copyBtn');
     return (
       <div id="webshopHeader">
         <div id="header">
@@ -45,7 +45,7 @@ handleMouseOut() {
                 <div>
                   <button
                     className="copyBtn"
-                    {/*data-clipboard-text="info@badrumsboden.se"*/}
+                    data-clipboard-text="info@badrumsboden.se"
                     onClick={this.handleClick.bind(this)}
                     onMouseOut={this.handleMouseOut.bind(this)}
                   />
