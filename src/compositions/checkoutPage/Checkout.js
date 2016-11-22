@@ -75,20 +75,21 @@ class Checkout extends Component {
     })
   }
 
-  // /* Delete a product from this checkout, uses the article number of the product */
-  // deleteProduct(product, price, i) {
-  //
-  //   this.setState({
-  //     products: [],
-  //     items: {}
-  //   }, () => {
-  //     this.props.actions.shoppingcartActions.removeFromShoppingcart(product, price)
-  //     this.fetchShoppingcartProducts()
-  //   }.bind(this))
-  // }
+  /* Delete a product from this checkout, uses the article number of the product */
+  deleteProduct(product, price, i) {
 
-  updateQuantity(product, quantity) {
-    this.props.actions.shoppingcartActions.updateQuantity(product, quantity)
+    this.setState({
+      products: [],
+      items: {}
+    }, () => {
+      this.props.actions.shoppingcartActions.removeFromShoppingcart(product, price)
+      this.fetchShoppingcartProducts()
+    }).bind(this)
+  }
+
+  _updateQuantity(i, product, quantity) {
+    this.props.actions.shoppingcartActions.updateQuantity(i, product, quantity)
+    this.fetchShoppingcartProducts()
   }
 
   handleRadioButton(e) {
@@ -114,8 +115,6 @@ class Checkout extends Component {
   render() {
     const { products, summary, totalSum } = this.state
     let sum = 0
-
-    console.log('state',this.state);
 
     return (
       <div id="checkout">
@@ -153,8 +152,8 @@ Känn dig säker med Stripe!
 
           <div className="quantity">
             <p>Antal: {quantity}</p>
-            <span onClick={this.updateQuantity.bind(this, product, -1)}>-</span>
-            <span onClick={this.updateQuantity.bind(this, product, 1)}>+</span>
+              <span onClick={this._updateQuantity.bind(this, i, product, -1)}>-</span>
+              <span onClick={this._updateQuantity.bind(this, i, product, 1)}>+</span>
           </div>
           <div className="price">
             <h4>{product.price}:-</h4>
