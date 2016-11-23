@@ -18,6 +18,9 @@ class Products extends Component {
     this.state = {
       productItems: [],
       subcatItems: [],
+      paginatedProducts: [],
+      productsPerPage: 16,
+      totalPages: 0,
     }
 
     if (category=='search') {
@@ -42,6 +45,7 @@ class Products extends Component {
     this.setState({
       productItems: firebaseData.products ? firebaseData.products.items : [],
       subcatItems: firebaseData['categories/'+category] ? firebaseData['categories/'+category].items : [],
+      paginatedProducts: firebaseData.products ? firebaseData.products.items.slice(0, this.state.productsPerPage) : [],
     })
 
     if (this.props.params.subcategory !== subcategory) {
@@ -57,17 +61,24 @@ class Products extends Component {
         fetchFirebaseData('products', 'subcategory', subcategory)
         fetchFirebaseData('categories', 'parent', category)
       }
-
-      this.setState({
-        productItems: firebaseData.products ? firebaseData.products.items : [],
-        subcatItems: firebaseData['categories/'+category] ? firebaseData['categories/'+category].items : [],
-      })
     }
   }
 
-  render() {
-    const { productItems, subcatItems} = this.state
+  handlePagination = (data) => {
+    let perPage = this.state.productsPerPage
+    let offset = Math.ceil(data.selected * perPage)
+    let limit = offset + perPage
 
+    let pagProductArr = this.state.productItems.slice(offset, limit)
+
+    this.setState({
+      paginatedProducts: pagProductArr
+    })
+  }
+
+  render() {
+    const { productItems, productsPerPage, paginatedProducts, subcatItems} = this.state
+    let totalPages = Math.ceil(productItems.length / productsPerPage)
     return (
       <div>
         <div id="products">
@@ -76,7 +87,11 @@ class Products extends Component {
           </section>
 
           <section>
-            {<ProductElements items={productItems}/>}
+            {<ProductElements
+              items={paginatedProducts}
+              handlePagination={this.handlePagination.bind(this)}
+              totalPages={totalPages}
+              />}
           </section>
         </div>
       </div>

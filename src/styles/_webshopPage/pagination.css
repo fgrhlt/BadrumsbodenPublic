@@ -1,0 +1,40 @@
+@import '../global.css';
+
+.pagination {
+  padding:0;
+  text-align: center;
+  margin:60px auto 0 auto;
+  & li {
+    display: inline-block;
+    padding:8px 12px;
+    margin:0 3px;
+    background: var(--mediumGray);
+    cursor:pointer;
+  }
+  & li:hover {
+    background: color(#E6E6E6 shade(10%))
+  }
+  & .active {
+    background: var(--darkBlue);
+    & a {
+      color:white;
+    }
+  }
+  & .active:hover {
+    background: var(--darkBlueHover);
+  }
+  & .disabled {
+    background:white;
+    cursor:default;
+    & a {
+      color:white;
+      cursor:default;
+    }
+  }
+  & .disabled:hover {
+    background:white;
+  }
+  & .next, & .previous {
+    padding:8px 8px;
+  }
+}

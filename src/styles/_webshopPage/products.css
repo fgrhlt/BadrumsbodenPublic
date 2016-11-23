@@ -3,20 +3,21 @@
 #products {
   lost-center:90%;
   lost-utility:clearfix;
-  padding:60px 0;
+  padding:60px 0 40px 0;
   box-sizing:border-box;
-    /* 1st lost column, the subcategory list */
-    & > section:nth-of-type(1) {
-      lost-column: 1/5 0;
-    }
+  /* 1st lost column, the subcategory list */
+  & > section:nth-of-type(1) {
+    lost-column: 1/5 0;
+  }
 
-    /* 2nd column, the products */
-    & > section:nth-of-type(2) {
-      lost-column: 4/5 0;
+  /* 2nd column, the products */
+  & > section:nth-of-type(2) {
+    lost-column: 4/5 0;
 
-      /* Products */
-      & #productlist1 {
-        width:100%;
+    /* Products */
+    & #productlist1 {
+      width:100%;
+      lost-utility:clearfix;
 
       & > div {
         lost-waffle:1/4;

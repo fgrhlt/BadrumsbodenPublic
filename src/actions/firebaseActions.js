@@ -5,7 +5,7 @@ import firebase from 'firebase/app'
 
 export function fetchFirebaseData(path, query, searchString) {
   var ref
-
+  /* Get products in admin */
   if(path=='products'){
     ref = firebase.database()
     .ref()
