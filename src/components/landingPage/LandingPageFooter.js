@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Clipboard from 'clipboard'
 import ReactTooltip from 'react-tooltip'
+import { browserHistory } from 'react-router'
 
 require('styles/_footerPage/footer.css')
 
@@ -10,6 +11,9 @@ export default class LandingPageFooter extends Component {
   }
   handleMouseOut() {
     ReactTooltip.hide(this.refs.emailClick)
+  }
+  onClickFaq() {
+    browserHistory.push('/faq')
   }
   render() {
     let clipboard= new Clipboard('.copyBtnFooterLandingPage');
@@ -23,7 +27,7 @@ export default class LandingPageFooter extends Component {
                 med lagen om elektronisk kommunikation.<br /><br />
 
                 Genom att fortsätta använda vår webplats förutsätter vi att du
-                godkänner detta. <a href="">Läs mer här</a>.
+                godkänner detta. <a onClick={this.onClickFaq.bind(this)}>Läs mer här</a>.
               </span>
             </div>
 
@@ -65,7 +69,7 @@ export default class LandingPageFooter extends Component {
                 <p className="info">
                   Badrumsboden startades år 2013 av Mats Hammarberg och Jonny Johansson.<br /><br />
                   Målet med badrumsboden är att erbjuda snabb och enkel service inom
-                  VVS med ledordet snabbhet och proffesinalism.
+                  VVS med ledorden snabbhet och professionalism.
                 </p>
               </div>
 

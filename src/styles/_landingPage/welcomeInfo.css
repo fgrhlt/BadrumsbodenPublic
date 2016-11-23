@@ -39,7 +39,7 @@
         padding-top:45px;
       }
       & .content {
-        padding:40px 60px;
+        padding:40px;
         box-sizing: border-box;
         background: color(#fff alpha(90%));
         color:var(--darkGray);

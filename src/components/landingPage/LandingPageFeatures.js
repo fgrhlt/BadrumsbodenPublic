@@ -21,8 +21,7 @@ export default class LandingPageFeatures extends Component {
               <figure className="landingGauge" />
               <h3>Snabbhet</h3>
               <p>
-                  Svar inom 24 h för kalkylförfrågan <br />
-                  Kundtjänst öppen varje dag
+                  Svar inom 24h för när du beställer tjänster av oss
               </p>
             </div>
 
