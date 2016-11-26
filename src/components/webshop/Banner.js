@@ -27,7 +27,7 @@ export default class Banner extends Component {
     return (
       <div id="banner">
         <div>
-          <h3>{bannerItemHeading} <span>{bannerItemBlueheading}</span></h3>
+          <h2>{bannerItemHeading} <span>{bannerItemBlueheading}</span></h2>
           <p>{bannerItemDescription}</p>
         </div>
       </div>

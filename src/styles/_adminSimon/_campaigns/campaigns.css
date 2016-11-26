@@ -1,72 +1,100 @@
 @import '../../global.css';
 
-#campaigns {
+#adminCampaign {
+  lost-utility:clearfix;
 
-    & #container {
-      background:var(--lightGray);
+  & .campaignImg {
+    lost-column:3/4 0 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    box-sizing:border-box;
+    color:white;
+    padding:40px 3%;
 
-      & .campaignImg {
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        min-height:550px;
-        box-sizing:border-box;
-        color:white;
-        padding:70px 5% 0 5%;
-
-        /* The first section with the campaign */
-        & .lostWrapper {
-          width:100%;
-          lost-utility:clearfix;
-          & > div {
-            min-height:400px;
-            lost-column:1/2 0 30%;
-
-            & input {
-              font-size: 30pt;
-              display:block;
-              margin-bottom:30px;
-              padding:10px 20px;
-              width:100%;
-            }
-            & textarea {
-              font-size:16pt;
-              width:100%;
-              max-width: 100%;
-              min-height:300px;
-              padding:20px;
-            }
-          }
-          & > div:nth-of-type(2) {
-            lost-column:1/2 0 30%;
-            position:relative;
-
-            & button {
-              position: absolute;
-              bottom:0;
-              right:0;
-              cursor:auto;
-            }
-          }
-        }
+    /* The first section with the campaign */
+    & .lostWrapper {
+      width:100%;
+      lost-utility:clearfix;
+      position: relative;
+      & input, & textarea {
+        background:none;
+        border:3px dashed white;
       }
-
-      /* The second section with the upload buttons */
-      & .buttons {
-        padding:30px 5%;
-        clear:fix;
-        & .articleInput {
-          float:left;
-        }
-        & > div {
-          float:right;
-          margin-left:40px;
-
-          & input {
-            font-weight: bold;
-            font-size: 14pt;
-          }
-        }
+      & input {
+        font-size: 22pt;
+        display:block;
+        margin-bottom:30px;
+        padding:5px 15px;
+        width:35%;
+      }
+      & textarea {
+        font-size:12pt;
+        width:35%;
+        max-width: 35%;
+        min-width:35%;
+        min-height:295px;
+        padding:20px;
+      }
+      & .black {
+        color:var(--darkGray);
+      }
+      & .white {
+        color:white;
       }
     }
+  }
+
+  /* The second section with the upload buttons */
+  & .buttons {
+    min-height:400px;
+    lost-column:1/4 0 0;
+    padding:30px 2%;
+    box-sizing: border-box;
+    background:var(--lightGray);
+    clear:fix;
+
+    & > div {
+      margin-bottom:30px;
+      & input {
+        font-weight: bold;
+        font-size: 14pt;
+      }
+    }
+    & .articleNrDiv {
+      & input {
+        margin-top:10px;
+        padding:8px 15px;
+        width:100%;
+      }
+    }
+    & .textColorDiv {
+      clear:fix;
+      & > div {
+        margin-top:20px;
+        width:30px;
+        height:30px;
+        float:left;
+        cursor:pointer;
+        box-sizing:border-box;
+        background:var(--darkGray);
+      }
+      & .white {
+        background: white;
+        margin-left:30px;
+      }
+      & .active {
+        border:4px solid gold;
+      }
+    }
+    & .status {
+      margin:0;
+      & p {
+        font-size:12pt;
+      }
+      & p:last-of-type {
+        height: 38px;
+      }
+    }
+  }
 }

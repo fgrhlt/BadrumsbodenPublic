@@ -11,9 +11,9 @@ import * as firebaseActions from '../../../actions/firebaseActions'
 class Banner extends Component {
 
   componentWillMount() {
-    const { fetchFirebaseData } = this.props
+    const { fetchSingleFirebaseItem } = this.props
 
-    fetchFirebaseData('banner')
+    fetchSingleFirebaseItem('banner')
     this.state = {
       bannerItem: [],
     }
@@ -32,7 +32,6 @@ class Banner extends Component {
       let heading = this.state.bannerItem.heading
       let blueHeading = this.state.bannerItem.blueHeading
       let description = this.state.bannerItem.description
-      // nu pushar den på en ny hela tiden, hur gör man för att bara lägga på samma ställe?
       firebase.database().ref().child('banner/')
       .set({
         heading,
@@ -41,21 +40,16 @@ class Banner extends Component {
       })
   }
 
-  /* Updates state depending on what you write */
+  /* Updates state depending on where you write */
   handleChange(e) {
     let obj = {}
 
-    // Clone the object
+    // Clone the object to "obj"
     Object.assign(obj, this.state.bannerItem)
     obj[e.target.name] = e.target.value
     this.setState({bannerItem: obj})
   }
   render() {
-    const { bannerItem  } = this.state
-    console.log("state: ", this.state.bannerItem)
-    let bannerItemBlueheading = bannerItem ? bannerItem.blueHeading : ''
-    let bannerItemHeading = bannerItem ? bannerItem.heading : ''
-    let bannerItemDescription = bannerItem ? bannerItem.description : ''
     return (
       <div id="adminBanner">
         <ComponentTitle
@@ -68,21 +62,21 @@ class Banner extends Component {
               <div>
                 <input
                   type="text"
-                  value={bannerItemHeading}
+                  onChange={this.handleChange.bind(this)}
+                  value={this.state.bannerItem.heading || ""}
                   name="heading"
-                  onChange={this.handleChange.bind(this)}
                 />
                 <input
                   type="text"
-                  value={bannerItemBlueheading}
+                  onChange={this.handleChange.bind(this)}
+                  value={this.state.bannerItem.blueHeading || ""}
                   name="blueHeading"
-                  onChange={this.handleChange.bind(this)}
                 />
                 <input
                   type="text"
-                  value={bannerItemDescription}
-                  name="description"
                   onChange={this.handleChange.bind(this)}
+                  value={this.state.bannerItem.description || ""}
+                  name="description"
                 />
               </div>
             </div>
@@ -95,7 +89,6 @@ class Banner extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("mapStateToProps: ", state)
   return {
     firebaseData: state.firebaseReducer.firebaseData
   }

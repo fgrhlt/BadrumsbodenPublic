@@ -6,20 +6,21 @@
   color:#808080;
   text-align:center;
   box-shadow:var(--defaultShadow);
+  box-sizing: border-box;
 
   & > div {
     margin:0 auto;
-    padding-top:50px;
+    padding-top:45px;
 
-    & h3 {
+    & h2 {
       font-weight:bold;
-      font-style:italic;
       margin:0;
     }
 
     & p {
       font-size:14pt;
       color:#999;
+      margin-top:10px;
     }
 
     & span {

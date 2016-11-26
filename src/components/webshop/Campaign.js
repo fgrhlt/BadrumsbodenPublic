@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
-
+import { createLineBreak } from '../../utils/Utils'
 require('../../styles/_webshopPage/campaign.css')
 
 export default class Campaign extends Component {
 
   componentWillMount() {
     this.state = {
-      url: ''
+      campaignItem: []
     }
   }
 
@@ -15,30 +15,28 @@ export default class Campaign extends Component {
     const { items } = nextProps
 
     this.setState({
-      url: items[0].url,
-      title: items[0].title,
-      description: items[0].description,
-      articleNr: items[0].articleNr,
-      category: items[0].category,
-      subcategory: items[0].subcategory,
+      campaignItem: items[0] ? items[0] : []
     })
   }
 
   onClick() {
-    const { category, subcategory, articleNr } = this.state
+    const { campaignItem } = this.state
+    const { category, subcategory, articleNr } = campaignItem
+
     browserHistory.push('/webshop/'+category+'/'+subcategory+'/'+articleNr)
   }
 
   render() {
-    const { url, title, description } = this.state
+    const { campaignItem } = this.state
+    const { url, heading, description, color } = campaignItem
 
     return (
       <div id="campaign" style={{backgroundImage: 'url(' + url + ')'}}>
         <div className="lostWrapper">
           <div>
-            <h1>{title}</h1>
-            <p>
-              {description}
+            <h1 className={color}>{heading}</h1>
+            <p className={color}>
+              {createLineBreak(description || '')}
             </p>
           </div>
           <div>

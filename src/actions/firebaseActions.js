@@ -38,7 +38,7 @@ export function fetchFirebaseData(path, query, searchString) {
   }
 
   return (dispatch) => {
-    ref.once('value', (snapshot) => {
+    ref.on('value', (snapshot) => {
       var items = []
       // Loop through {objects} in order
       snapshot.forEach( (childSnapshot) => {
@@ -49,6 +49,22 @@ export function fetchFirebaseData(path, query, searchString) {
         //Push object to array with items
         items.push(item)
       })
+      dispatch({
+        type: FETCH_FIREBASE_DATA,
+        folder: path,
+        items
+      })
+    })
+  }
+}
+
+export function fetchSingleFirebaseItem(path) {
+  let ref = firebase.database().ref(path)
+
+  return (dispatch) => {
+    ref.on('value', (snapshot) => {
+      let items = []
+      items.push(snapshot.val())
       dispatch({
         type: FETCH_FIREBASE_DATA,
         folder: path,

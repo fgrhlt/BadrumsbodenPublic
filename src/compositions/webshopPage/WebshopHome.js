@@ -14,8 +14,8 @@ require('styles/_webshopPage/webshop.css')
 class WebshopHome extends Component {
 
   componentWillMount() {
-    this.props.fetchFirebaseData('campaign')
-    this.props.fetchFirebaseData('banner')
+    this.props.fetchSingleFirebaseItem('campaign')
+    this.props.fetchSingleFirebaseItem('banner')
     this.props.fetchFirebaseData('products', 'starred', true)
 
     this.state = {
