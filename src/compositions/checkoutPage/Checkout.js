@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import cookie from 'react-cookie'
+import { browserHistory } from 'react-router'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -145,6 +146,10 @@ check(element) {
   return element == 12
 }
 
+toPayment() {
+  browserHistory.push('/webshop/payment')
+}
+
 render() {
   const { products, summary, deliveryCost } = this.state
   let sum = 0
@@ -221,6 +226,11 @@ Känn dig säker med Stripe!
         <p>Postpaket Schenker, 159:-</p>
       </div>
     </div>
+
+    <div onClick={this.toPayment.bind(this)}>
+      Till betalning ->
+    </div>
+
   </section>
 </div>
 )
