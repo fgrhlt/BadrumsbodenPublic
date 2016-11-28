@@ -30,7 +30,11 @@
 
 @font-face {
   font-family: 'Open Sans Light';
-	font-path: '../assets/fonts/Open_Sans_all/OpenSans-Light.eot'
+  src: url("../assets/fonts/Open_Sans_all/OpenSans-Light.eot?#iefix") format('embedded-opentype'), /* IE6-IE8 */
+	     url("../assets/fonts/Open_Sans_all/OpenSans-Light.woff") format('woff'), /* Modern Browsers */
+       url("../assets/fonts/Open_Sans_all/OpenSans-Light.woff2") format('woff2'),
+	     url("../assets/fonts/Open_Sans_all/OpenSans-Light.ttf")  format('truetype'), /* Safari, Android, iOS */
+	     url("../assets/fonts/Open_Sans_all/OpenSans-Light.svg#OpenSansLight") format('svg'); /* Legacy iOS */
 }
 
 body {
