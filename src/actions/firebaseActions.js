@@ -58,6 +58,61 @@ export function fetchFirebaseData(path, query, searchString) {
   }
 }
 
+export function fetchFirebaseDataAdmin(path, query, searchString) {
+  var ref
+  /* Get products in admin */
+  if(path=='products'){
+    ref = firebase.database()
+    .ref()
+    .child('webshop/produkter')
+    .orderByChild(query)
+    .equalTo(searchString)
+  }
+  else if(path=='categories'){
+    ref = firebase.database()
+    .ref()
+    .child('webshop/categories')
+    .orderByChild(query)
+    .equalTo(searchString)
+
+    path = path+'/'+searchString
+  }
+  else if(path=='gallery'){
+    ref = firebase.database()
+    .ref()
+    .child('gallery')
+    .orderByChild(query)
+    .equalTo(searchString)
+
+    path = path+'/'+searchString
+  }
+  else {
+    ref = firebase.database()
+    .ref()
+    .child(path)
+  }
+
+  return (dispatch) => {
+    ref.on('value', (snapshot) => {
+      var items = []
+      // Loop through {objects} in order
+      snapshot.forEach( (childSnapshot) => {
+        //The object
+        var item = childSnapshot.val()
+        //Get the key of object and push into object
+        item['key'] = childSnapshot.key
+        //Push object to array with items
+        items.push(item)
+      })
+      dispatch({
+        type: FETCH_FIREBASE_DATA,
+        folder: path,
+        items
+      })
+    })
+  }
+}
+
 export function fetchSingleFirebaseItem(path) {
   let ref = firebase.database().ref(path)
 
