@@ -18,7 +18,6 @@ console.log('response', response);
 
   render() {
     return (
-      <div id="mydiv"/>
-    )
+      <div id='paysonContainer' url='https://test-www.payson.se/embedded/checkout?id=e36b2f9d-4b72-4e96-9b05-a6cc0139f505'></div>    )
   }
 }

@@ -253,3 +253,7 @@ app.post("/email/VVSRequest", function(req, res) {
         console.log(response.headers);
       });
     });
+
+  app.get("*", function(req, res) {
+   res.sendFile(path.resolve(__dirname, 'dist/index.html'))
+  })
