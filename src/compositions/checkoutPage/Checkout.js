@@ -17,7 +17,8 @@ class Checkout extends Component {
       summary: '',
       products: [],
       radioButtonValue: 'store',
-      totalSum: 0
+      totalSum: 0,
+      nrOfProductsLoaded: 0
     }
 
     this.fetchShoppingcartProducts()
@@ -31,19 +32,18 @@ class Checkout extends Component {
     const { actions } = this.props
     const { firebaseActions } = actions
     const { fetchFirebaseData } = firebaseActions
-
     let cookies = []
 
     Object.keys(cookie.select(/^product.*/i)).forEach(name => cookies.push((cookie.load(name))))
-    let obj = {}
+    let arr = []
 
     cookies.forEach(function(item, i) {
-      obj[i] = item
+      arr[i] = item
       fetchFirebaseData('products', 'articleNr', item.articleNr)
     })
 
     this.setState({
-      items: obj
+      items: arr,
     })
   }
 
@@ -62,71 +62,102 @@ class Checkout extends Component {
     const { reducer } = nextProps
     const { firebaseReducer } = reducer
     const { firebaseData } = firebaseReducer
+    let nrOfProducts = Object.keys(this.state.items).length
+    let nrOfProductsLoaded = this.state.nrOfProductsLoaded
 
-    let stateProducts = this.state.products
+    //Ifall firebaseData.products har laddats && laddat alla produkter, pusha till state
+    if (firebaseData.products && nrOfProductsLoaded < nrOfProducts) {
+      let stateProducts = this.state.products
+      let product = Object.assign({}, firebaseData.products.items[0])
 
-    if (firebaseData.products) {
-      stateProducts.push(firebaseData.products.items[0])
+      product['quantity'] = this.getQuantity(product.articleNr)
+      stateProducts.push(product)
+
+      this.setState({
+        products: stateProducts,
+        nrOfProductsLoaded: this.state.nrOfProductsLoaded+1
+      })
     }
+  }
 
+  getQuantity(articleNr) {
+    let items = this.state.items
+    let quantity = ''
 
-    this.setState({
-      products: stateProducts
+    items.find( element => {
+      if (element.articleNr==articleNr) {
+        quantity = element.quantity
+      }
     })
+    return quantity
   }
 
-  /* Delete a product from this checkout, uses the article number of the product */
-  deleteProduct(product, price, i) {
+/* Delete a product from this checkout, uses the article number of the product */
+deleteProduct(product, price, i) {
+  let arr = this.state.products
+  //Returnera element som inte matchar product.articleNr
+  let newArr = arr.filter( element => {
+    if (element.articleNr!=product.articleNr) {
+      return element
+    }
+  })
 
-    this.setState({
-      products: [],
-      items: {}
-    }, () => {
-      this.props.actions.shoppingcartActions.removeFromShoppingcart(product, price)
-      this.fetchShoppingcartProducts()
-    }).bind(this)
-  }
-
-  _updateQuantity(i, product, quantity) {
-    this.props.actions.shoppingcartActions.updateQuantity(i, product, quantity)
+  this.setState({
+    products: newArr,
+    items: {}
+  }, () => {
+    this.props.actions.shoppingcartActions.removeFromShoppingcart(product, price)
     this.fetchShoppingcartProducts()
+  })//.bind(this)
+}
+
+_updateQuantity(i, product, quantity) {
+  this.props.actions.shoppingcartActions.updateQuantity(i, product, quantity)
+
+  let stateProducts = this.state.products
+  let newQuantity = parseInt(stateProducts[i].quantity) + parseInt(quantity)
+  stateProducts[i].quantity = newQuantity
+
+  this.setState({
+    products: stateProducts
+  })
+}
+
+handleRadioButton(e) {
+  let deliveryValue = 0
+  if(e.target.value == 'schenker') {
+    deliveryValue = 159
   }
+  this.setState({
+    radioButtonValue: e.target.value,
+    totalSum: this.state.summary.sum + deliveryValue
+  })
+}
 
-  handleRadioButton(e) {
-    let deliveryValue = 0
-    if(e.target.value == 'schenker') {
-      deliveryValue = 159
-    }
-    this.setState({
-      radioButtonValue: e.target.value,
-      totalSum: this.state.summary.sum + deliveryValue
-    })
-  }
+/* Returns true if there are products in the product array */
+checkIfProducts() {
+  return this.state.products.length > 0
+}
 
-  /* Returns true if there are products in the product array */
-  checkIfProducts() {
-    return this.state.products.length > 0
-  }
+check(element) {
+  return element == 12
+}
 
-  check(element) {
-    return element == 12
-  }
+render() {
+  const { products, summary, totalSum } = this.state
+  let sum = 0
 
-  render() {
-    const { products, summary, totalSum } = this.state
-    let sum = 0
+  return (
+    <div id="checkout">
+      <section>
+        Dina uppgifter är trygga, säkra och krypterade.<br /><br />
 
-    return (
-      <div id="checkout">
-        <section>
-          Dina uppgifter är trygga, säkra och krypterade.<br /><br />
+      <h4>Kontakt</h4>
+      Telefon: 08-72 00 797<br/>
+    vardagar 08-12 & 13-16.<br />
+  info@badrumsboden.se<br /><br />
 
-        <h4>Kontakt</h4>
-        Telefon: 08-72 00 797<br/>
-      vardagar 08-12 & 13-16.<br />
-    info@badrumsboden.se<br /><br />
-
-  Vi använder Stripe som samarbetspartner vid betalningar. <br />
+Vi använder Stripe som samarbetspartner vid betalningar. <br />
 Stripe erbjuder en full service vid lagring av adressuppgifter och kontokort.<br /><br />
 Känn dig säker med Stripe!
 </section>
@@ -136,8 +167,7 @@ Känn dig säker med Stripe!
 
   <div id="cart">
     {this.state.products.map(function(product, i) {
-      let quantity = this.state.items ? this.state.items[i].quantity : 0
-      sum = sum + parseInt(product.price)*parseInt(quantity)
+      sum = sum + parseInt(product.price)*parseInt(product.quantity)
 
       return (
         <div className="item" key={i}>
@@ -151,16 +181,16 @@ Känn dig säker med Stripe!
           </div>
 
           <div className="quantity">
-            <p>Antal: {quantity}</p>
-              <span onClick={this._updateQuantity.bind(this, i, product, -1)}>-</span>
-              <span onClick={this._updateQuantity.bind(this, i, product, 1)}>+</span>
+            <p>Antal: {product.quantity}</p>
+            <span onClick={this._updateQuantity.bind(this, i, product, -1)}>-</span>
+            <span onClick={this._updateQuantity.bind(this, i, product, 1)}>+</span>
           </div>
           <div className="price">
             <h4>{product.price}:-</h4>
           </div>
 
           <div className="trash">
-            <figure onClick={this.deleteProduct.bind(this, this.state.items[i], product.price, i)}/>
+            <figure onClick={this.deleteProduct.bind(this, product, product.price, i)}/>
           </div>
         </div>
       )}, this)}
