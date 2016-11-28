@@ -38,7 +38,7 @@ export function fetchFirebaseData(path, query, searchString) {
   }
 
   return (dispatch) => {
-    ref.on('value', (snapshot) => {
+    ref.once('value', (snapshot) => {
       var items = []
       // Loop through {objects} in order
       snapshot.forEach( (childSnapshot) => {

@@ -17,7 +17,7 @@ class Checkout extends Component {
       summary: '',
       products: [],
       radioButtonValue: 'store',
-      totalSum: 0,
+      deliveryCost: 0,
       nrOfProductsLoaded: 0
     }
 
@@ -112,15 +112,17 @@ deleteProduct(product, price, i) {
 }
 
 _updateQuantity(i, product, quantity) {
-  this.props.actions.shoppingcartActions.updateQuantity(i, product, quantity)
-
   let stateProducts = this.state.products
   let newQuantity = parseInt(stateProducts[i].quantity) + parseInt(quantity)
-  stateProducts[i].quantity = newQuantity
 
-  this.setState({
-    products: stateProducts
-  })
+  if (newQuantity>0) {
+    this.props.actions.shoppingcartActions.updateQuantity(i, product, quantity)
+
+    stateProducts[i].quantity = newQuantity
+    this.setState({
+      products: stateProducts
+    })
+  }
 }
 
 handleRadioButton(e) {
@@ -130,7 +132,7 @@ handleRadioButton(e) {
   }
   this.setState({
     radioButtonValue: e.target.value,
-    totalSum: this.state.summary.sum + deliveryValue
+    deliveryCost: deliveryValue
   })
 }
 
@@ -144,7 +146,7 @@ check(element) {
 }
 
 render() {
-  const { products, summary, totalSum } = this.state
+  const { products, summary, deliveryCost } = this.state
   let sum = 0
 
   return (
@@ -167,7 +169,7 @@ Känn dig säker med Stripe!
 
   <div id="cart">
     {this.state.products.map(function(product, i) {
-      sum = sum + parseInt(product.price)*parseInt(product.quantity)
+      sum = sum + parseInt(product.price)*parseInt(product.quantity) + parseInt(deliveryCost)
 
       return (
         <div className="item" key={i}>

@@ -29,19 +29,20 @@ export function addProduct(product, quantity1) {
 }
 
 export function updateArticleQuantity(i, articleNr, quantity) {
-  let cookies = []
-  Object.keys(cookie.select(/^product.*/i)).forEach(name => cookies.push((cookie.load(name))))
-  let obj = {}
-
-  cookies.forEach(function(item, i) {
-    obj[i] = item
-  })
-
-  let loadedCookie = obj[i]
+  // let cookies = []
+  // Object.keys(cookie.select(/^product.*/i)).forEach(name => cookies.push((cookie.load(name))))
+  // let obj = {}
+  //
+  // cookies.forEach(function(item, i) {
+  //   obj[i] = item
+  // })
+  //
+  // let loadedCookie = obj[i]
+  let cookieObj = cookie.load('product'+articleNr)
 
   let object = {
-    quantity: loadedCookie.quantity + quantity,
-    articleNr: loadedCookie.articleNr
+    quantity: parseInt(cookieObj.quantity) + parseInt(quantity),
+    articleNr: articleNr
   }
 
   let stringObj=JSON.stringify(object)
