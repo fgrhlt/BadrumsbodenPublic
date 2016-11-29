@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 
+require('styles/_webshopPage/searchBar.css')
+
 export default class SearchBar extends Component {
 
   componentWillMount() {
@@ -28,7 +30,7 @@ export default class SearchBar extends Component {
 
   render() {
     return (
-      <div className="searchBar">
+      <div id="searchBar">
         <div>
           <input
             value={this.state.inputText}

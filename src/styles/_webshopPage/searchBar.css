@@ -1,8 +1,7 @@
 @import '../global.css';
 
-.searchBar {
-  height: 45px;
-  margin: 15px 0 25px 0;
+#searchBar {
+  margin: 0 0 25px 0;
   lost-center:600px;
   lost-utility:clearfix;
 
@@ -22,8 +21,8 @@
     lost-column:1/10 0 0;
     & figure {
       background: url('../../assets/buttons/search_button.svg') no-repeat;
-      width:69px;
-      height: 42px;
+      width:62px;
+      height: 38px;
     }
     & figure:hover {
       background: url('../../assets/buttons/search_button_h.svg') no-repeat;

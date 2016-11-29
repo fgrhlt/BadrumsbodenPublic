@@ -29,41 +29,39 @@ export default class Header extends Component {
             </div>
 
             <div id="right">
-              <div>
+              <div id="emailDiv">
+                <figure />
                 <div>
-                <button
-                  className="copyBtn"
-                  data-clipboard-text="info@badrumsboden.se"
-                  onClick={this.handleClick.bind(this)}
-                  onMouseOut={this.handleMouseOut.bind(this)}
-                />
-                <div ref="emailClick" data-tip data-for="emailCopy">
-                  <h4>E-post</h4>
-                  <p>
+                  <button
+                    className="copyBtn"
+                    data-clipboard-text="info@badrumsboden.se"
+                    onClick={this.handleClick.bind(this)}
+                    onMouseOut={this.handleMouseOut.bind(this)}
+                  />
+                  <div ref="emailClick" data-tip data-for="emailCopy">
+                    <h4>E-post</h4>
                     Klicka för att kopiera<br />
                     epost-address
-                  </p>
-                </div>
-                <ReactTooltip
-                  id="emailCopy"
-                  type='success'
-                  event="click"
-                  delayHide={1000}
-                >
+                  </div>
+                  <ReactTooltip
+                    id="emailCopy"
+                    type='success'
+                    event="click"
+                    delayHide={1000}
+                  >
                   <h4>Kopierat!</h4>
                 </ReactTooltip>
               </div>
-              <figure id="email_icon" />
             </div>
 
+            <div id="phoneDiv">
+              <figure />
               <div>
-                <div>
-                  070 57 43 373<br />
-                  <span>Öppet 08-18</span>
-                </div>
-                <figure id="phone_icon" />
+                070 57 43 373<br />
+                <span>Öppet 08-18</span>
               </div>
             </div>
+          </div>
         </div>
       </div>
     )

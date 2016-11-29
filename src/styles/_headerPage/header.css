@@ -7,7 +7,7 @@
 
   /* The left side contains the logo */
   & #left {
-    lost-column:2/7 0 0;
+    lost-column:1/5 0 0;
     padding-top:10px;
 
     & span, & #logo {
@@ -23,8 +23,8 @@
     }
     & #logo {
       background:url("../../assets/logo/logo.svg") no-repeat;
-      width:220px;
-      height:35px;
+      width:194px;
+      height:23px;
     }
     & #backArrow {
       background: url('../../assets/arrows/small_backarrow.svg') no-repeat;
@@ -39,32 +39,45 @@
   }
   /* Right side contains the email icon, shoppingcart etc */
   & #right {
-    lost-column:5/7 0 0;
+    lost-column:4/5 0 0;
+    text-align: right;
     & > div {
-      lost-column:3/11;
+      display:inline-block;
+      margin-left: 50px;
       position:relative;
+      clear:fix;
+
       & figure, & > div {
-        float:right;
+        float:left;
       }
     }
-    & h4 {
-      margin-bottom:5px;
+    & figure {
+      margin:20px 25px 25px 0;
     }
-    /* E-mail */
-    & > div:nth-of-type(1) {
+
+    & #emailDiv {
+      margin-left:0;
+      text-align:left;
       & > div {
-        padding-top:10px;
+        padding-top:5px;
+      }
+      & figure {
+        background: url('../../assets/icons/header/email_icon.svg') no-repeat;
+        width:35px;
+        height:26px;
       }
     }
-    /* Phone */
-    & > div:nth-of-type(2) {
-      margin-top:-5px;
+    & #phoneDiv {
       & > div {
-        padding-top:25px;
+        padding-top:20px;
+      }
+      & figure {
+        background: url('../../assets/icons/header/phone_icon.svg') no-repeat;
+        width:30px;
+        height:30px;
       }
     }
-    /* shopping cart */
-    & > div:nth-of-type(3) {
+    & #shoppingCartDiv {
       padding-top:18px;
 
       & .shoppingCart {
@@ -80,48 +93,25 @@
           }
         }
       }
-    }
-    /* The checkout button */
-    & > div:nth-of-type(4) {
-      padding-top:15px;
-      lost-column:2/11;
-      font-size:10pt;
-      & button {
-        float:right;
+      & figure {
+        background: url('../../assets/icons/header/shoppingCart.svg') no-repeat;
+        width: 35px;
+        height: 32px;
+        margin-top:0px;
       }
     }
-
-    & p {
-      font-size: 10pt;
-    }
-
-    & figure {
-      margin:10% 10% 10% 0;
-      float:left;
+    & #checkoutButtonDiv {
+      font-size:10pt;
+      padding-bottom:25px;
+      & button {
+        padding:10px 15px;
+      }
     }
 
     & span {
       color:var(--darkGreen);
     }
 
-    & #email_icon {
-      background: url('../../assets/icons/header/email_icon.svg') no-repeat;
-      width:40px;
-      height: 29px;
-    }
-
-    & #phone_icon {
-      background: url('../../assets/icons/header/phone_icon.svg') no-repeat;
-      width:35px;
-      height: 35px;
-    }
-
-    & #shoppingCart {
-      background: url('../../assets/icons/header/shoppingCart.svg') no-repeat;
-      width: 42px;
-      height: 39px;
-      margin-top:0px;
-    }
     & .copyBtn {
       cursor:pointer;
       height:80px;
@@ -140,33 +130,48 @@
 }
 #landingPageHeader, #servicePageHeader, #galleryPageHeader {
   box-shadow: 0 2px 15px #CCC;
-  & #left {
-    lost-column:3/5;
-  }
-  & #right {
-     lost-column:2/5;
-     & > div {
-       lost-column:1/2;
-     }
+}
+
+/* responsive */
+@media (width <= 1050px) {
+  #webshopHeader {
+    & #header {
+      & #left {
+        lost-waffle:1 0 20px;
+      }
+      & #right {
+        lost-column:1;
+        margin-bottom:20px;
+        text-align: center;
+        padding-left:10px;
+      }
+    }
   }
 }
 
 /* responsive */
-@media (max-width: 1300px) {
-  #header {
-    & #left,  & #right {
-      lost-column:1;
+@media (width <= 700px) {
+  #landingPageHeader, #galleryPageHeader, #servicePageHeader {
+    & #header {
+      & #left {
+        lost-waffle:1 0 20px;
+      }
+      & #right {
+        lost-column:1;
+        margin-bottom:20px;
+        text-align: center;
+        padding-left:10px;
+      }
     }
   }
 }
-@media (width <= 850px) {
+/* responsive */
+@media (width <= 600px) {
   #header {
     & #right {
-      & > div {
-        lost-column:1/2;
-      }
-      & > div:nth-of-type(4), & > div:nth-of-type(3) {
-        lost-column:1/2;
+      padding:0;
+      & #shoppingCartDiv {
+        margin:0;
       }
     }
   }
@@ -182,43 +187,38 @@
       }
     }
     & #right {
-      margin-top:30px;
       /* The lost items in the right column */
       & > div {
         lost-column:1;
-
+        margin:20px 0;
         /* The inner div with text */
         & > div {
-          margin:auto;
           float:none;
           text-align:center;
-
+          margin-bottom:20px;
           & .copyBtn {
             left:0;
             width:100%;
+            height:130px;
           }
         }
-
         & .shoppingCart {
-          clear:fix;
-
           & .container {
-            margin:0 auto 20px auto;
+            margin:20px auto 20px auto;
             clear:fix;
             width:125px;
           }
         }
         & figure {
           float:none;
-          margin:20px auto;
+          margin:0 auto;
         }
         & button {
-          float:none !important;
           margin:auto;
         }
       }
-      & > div:nth-of-type(4), & > div:nth-of-type(3) {
-        lost-column:1;
+      & #checkoutButtonDiv {
+        padding:0;
       }
     }
   }

@@ -22,7 +22,8 @@ export default class Header extends Component {
             </div>
 
             <div id="right">
-              <div>
+              <div id="emailDiv">
+                <figure />
                 <div>
                   <button
                     className="copyBtn"
@@ -32,10 +33,8 @@ export default class Header extends Component {
                   />
                   <div ref="emailClick" data-tip data-for="emailCopy">
                     <h4>E-post</h4>
-                    <p>
-                      Klicka för att kopiera<br />
-                      epost-address
-                    </p>
+                    Klicka för att kopiera<br />
+                    epost-address
                   </div>
                   <ReactTooltip
                     id="emailCopy"
@@ -46,15 +45,14 @@ export default class Header extends Component {
                     <h4>Kopierat!</h4>
                   </ReactTooltip>
                 </div>
-                <figure id="email_icon" />
               </div>
 
-              <div>
+              <div id="phoneDiv">
+                <figure />
                 <div>
                   070 57 43 373<br />
                   <span>Öppet 08-18</span>
                 </div>
-                <figure id="phone_icon" />
               </div>
             </div>
         </div>

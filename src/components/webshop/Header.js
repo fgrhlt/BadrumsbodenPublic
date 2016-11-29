@@ -31,56 +31,56 @@ handleMouseOut() {
     return (
       <div id="webshopHeader">
         <div id="header">
-            <div id="left">
-              <span onClick={this.onClickLandingpage.bind(this)}>
-                <figure id="backArrow"/>
-                Tillbaka till portalen
-              </span>
+          <div id="left">
+            <span onClick={this.onClickLandingpage.bind(this)}>
+              <figure id="backArrow"/>
+              Tillbaka till portalen
+            </span>
 
-              <figure onClick={this.onClickLogo.bind(this)} id="logo" />
+            <figure onClick={this.onClickLogo.bind(this)} id="logo" />
+          </div>
+
+          <div id="right">
+            <div id="emailDiv">
+              <figure />
+              <div>
+                <button
+                  className="copyBtn"
+                  data-clipboard-text="info@badrumsboden.se"
+                  onClick={this.handleClick.bind(this)}
+                  onMouseOut={this.handleMouseOut.bind(this)}
+                />
+
+                <div ref="emailClick" data-tip data-for="emailCopy">
+                  <h4>E-post</h4>
+                  Klicka för att kopiera<br />
+                  epost-address
+                </div>
+                <ReactTooltip
+                  id="emailCopy"
+                  type='success'
+                  event="click"
+                  delayHide={1000}
+                >
+                  <h4>Kopierat!</h4>
+                </ReactTooltip>
+              </div>
             </div>
 
-            <div id="right">
+            <div id="phoneDiv">
+              <figure />
               <div>
-                <div>
-                  <button
-                    className="copyBtn"
-                    data-clipboard-text="info@badrumsboden.se"
-                    onClick={this.handleClick.bind(this)}
-                    onMouseOut={this.handleMouseOut.bind(this)}
-                  />
-                  <div ref="emailClick" data-tip data-for="emailCopy">
-                    <h4>E-post</h4>
-                    <p>
-                      Klicka för att kopiera<br />
-                      epost-address
-                    </p>
-                  </div>
-                  <ReactTooltip
-                    id="emailCopy"
-                    type='success'
-                    event="click"
-                    delayHide={1000}
-                  >
-                    <h4>Kopierat!</h4>
-                  </ReactTooltip>
-                </div>
-                <figure id="email_icon" />
+                070 57 43 373<br />
+                <span>Öppet 08-18</span>
               </div>
+            </div>
 
-              <div>
-                <div>
-                  070 57 43 373<br />
-                  <span>Öppet 08-18</span>
-                </div>
-                <figure id="phone_icon" />
-              </div>
+            <div id="shoppingCartDiv">
+              <figure />
+              <ShoppingCart/>
+            </div>
 
-              <div>
-                <ShoppingCart/>
-                <figure id="shoppingCart" />
-              </div>
-
+            <div id="checkoutButtonDiv">
               <div>
                 <button
                   onClick={this.handleToCheckoutClick.bind(this)}
@@ -89,6 +89,7 @@ handleMouseOut() {
                 </button>
               </div>
             </div>
+          </div>
         </div>
 
         <SearchBar></SearchBar>
