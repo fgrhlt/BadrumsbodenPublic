@@ -52,7 +52,7 @@
       }
     }
     & figure {
-      margin:20px 25px 25px 0;
+      margin:23px 25px 25px 0;
     }
 
     & #emailDiv {
@@ -69,7 +69,7 @@
     }
     & #phoneDiv {
       & > div {
-        padding-top:20px;
+        padding-top:22px;
       }
       & figure {
         background: url('../../assets/icons/header/phone_icon.svg') no-repeat;

@@ -8,7 +8,7 @@ export default class LandingPageFeatures extends Component {
     return (
       <div id="features" className="landingPageFeatures">
 
-        <h2>Varför anlita Badrumsboden?</h2>
+        <h3>Varför anlita Badrumsboden?</h3>
           <section id="three">
             <div className="landingThree">
               <figure className="thumb" />

@@ -13,14 +13,14 @@ export default class WelcomeInfo extends Component {
   render() {
     return (
       <div id="welcomeInfo">
-        <h2>Välkommen till Badrumsboden!</h2>
+        <h3>Välkommen till Badrumsboden!</h3>
 
         <section name="lostContainer">
           <div>
-            <div className="heading" onClick={this.goWebshop.bind(this)}><h3>Webbshop</h3></div>
+            <div className="heading" onClick={this.goWebshop.bind(this)}><h2>Webbshop</h2></div>
             <div className="content" id="webshop">
               <p>
-                Vi erbjuder webbshop med produkter för hemma-<br/>fixaren och proffset.
+                Vi erbjuder webbshop med produkter för hemmafixaren och proffset.
                 Här hittar ni exempelvis badkar, blandare, bastuprodukter och vvs-artiklar.
                 Glöm inte att titta in våra kampanjer.
               </p>
@@ -37,13 +37,13 @@ export default class WelcomeInfo extends Component {
           </div>
 
           <div>
-            <div className="heading" onClick={this.goServices.bind(this)}><h3>Tjänster</h3></div>
+            <div className="heading" onClick={this.goServices.bind(this)}><h2>Tjänster</h2></div>
             <div className="content">
               <div className="subHeading"><figure /><h4>Badrumsrenovering</h4></div>
               <p>
                 Låt våra proffs med lång erfarenhet och brett kunnande utföra din badrumsrenovering.
                 Hos oss kan du beräkna vad en renovering kan kosta utan att vi är på plats.
-              </p><br/>
+              </p><br/><br/>
 
               <div className="subHeading"><figure className="green" /><h4>VVS-service</h4></div>
               <p>
