@@ -4,6 +4,7 @@ import cookie from 'react-cookie'
 import { browserHistory } from 'react-router'
 
 import Payment from './Payment'
+import Modal from 'react-modal'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -22,7 +23,8 @@ class Checkout extends Component {
       radioButtonValue: 'store',
       deliveryCost: 0,
       nrOfProductsLoaded: 0,
-      showKlarnaDiv: false
+      showKlarnaDiv: false,
+      modalIsOpen: false
     }
 
     this.fetchShoppingcartProducts()
@@ -31,6 +33,7 @@ class Checkout extends Component {
     //  url: 'localhost:5000',
     // })
   }
+
 
   fetchShoppingcartProducts() {
     const { actions } = this.props
@@ -160,7 +163,26 @@ toPayment() {
     showKlarnaDiv: true
     }
   )
+  this.openModal()
   //browserHistory.push('/webshop/payment')
+}
+
+openModal() {
+
+  const customStyles = {
+    content : {
+      top                   : '50%',
+      left                  : '50%'
+    }
+  }
+
+  this.setState({
+    modalIsOpen: true
+  })
+}
+
+closeModal() {
+  this.setState({modalIsOpen: false})
 }
 
 render() {
@@ -187,7 +209,7 @@ Känn dig säker med Stripe!
 
   <div id="cart">
     {this.state.products.map(function(product, i) {
-      sum = sum + parseInt(product.price)*parseInt(product.quantity) + parseInt(deliveryCost)
+      sum = sum + parseInt(product.price)*parseInt(product.quantity)
 
       return (
         <div className="item" key={i}>
@@ -214,7 +236,7 @@ Känn dig säker med Stripe!
           </div>
         </div>
       )}, this)}
-      <h4 className="total">Summa: {sum}:-</h4>
+      <h4 className="total">Summa: {sum+parseInt(deliveryCost)}:-</h4>
     </div>
 
     <div id="delivery">
@@ -241,10 +263,18 @@ Känn dig säker med Stripe!
     </div>
 
     <div onClick={this.toPayment.bind(this)}>
-      Betalning
+      Till betalning (öppnas i ny ruta)
     </div>
 
-    {this.state.showKlarnaDiv? <Payment data={this.state.data}/> : ''}
+    <Modal
+      isOpen={this.state.modalIsOpen}
+      onRequestClose={this.closeModal}
+      contentLabel="Example Modal"
+      style={{overlay: {'height': '630px', 'width': '800px'}}}>
+
+        <button onClick={this.closeModal.bind(this)}>Stäng ruta</button>
+        <Payment data={this.state.data}/>
+    </Modal>
 
   </section>
 </div>
