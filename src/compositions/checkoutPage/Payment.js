@@ -5,12 +5,23 @@ require('styles/_webshopPage/infoBank.css')
 export default class Payment extends Component {
 
   componentWillMount() {
+    this.state = {
+      url: ''
+    }
+  }
 
-    axios.get('/payment')
+  componentDidMount() {
+    let data = this.props.data
+
+    axios.post('/payment', { data })
     .then(function (response) {
-console.log('response', response);
-      document.getElementById("mydiv").innerHTML += response.data
-    })
+      //Extracting the URL
+      let url = response.data
+      let splittedUrl = url.split(' ')
+      let formattedURL = splittedUrl[3].slice(5, -15)
+
+      this.setState({ url: formattedURL })
+    }.bind(this))
     .catch(function (error) {
       console.log(error);
     })
@@ -18,6 +29,17 @@ console.log('response', response);
 
   render() {
     return (
-      <div id='paysonContainer' url='https://test-www.payson.se/embedded/checkout?id=e36b2f9d-4b72-4e96-9b05-a6cc0139f505'></div>    )
+      <div>
+        <section>
+          <h2>Betalning</h2>
+          <iframe
+            frameBorder="0"
+            id="paysonIframe"
+            style={{'height':'600px', 'width': '800px'}}
+            src={this.state.url}>
+          </iframe>
+        </section>
+      </div>
+    )
   }
 }

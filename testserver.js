@@ -28,16 +28,14 @@ function handleError(res, reason, message, code) {
 
               //-------ROUTING------
 //payson test
-app.get("/payment", function(req, res) {
+app.post("/payment", function(req, res) {
   console.log('payment');
-
   var util = require('./lib/utils');
   /**
   * require the conctructor
   * @type {Constructor}
   */
   var PaysonPayment = require('./lib/index');
-  console.log('PaysonPayment', PaysonPayment);
 
   /**
   * Get required environment variables
@@ -59,10 +57,13 @@ app.get("/payment", function(req, res) {
   * Create item
   * @type {PaysonPayment}
   */
-  var items = [
+  var items2 = [
     ['123123', 'abc123', 125],
     ['123112', '2abc123', 225]
   ]
+  console.log('itemsFunkar', items2);
+  let items = req.body.data
+  console.log('itemsNy', items);
 
   items.forEach(function(item) {
     // create item
@@ -75,36 +76,12 @@ app.get("/payment", function(req, res) {
   .then(function(getBody) {
     console.log('Checkout created');
     console.log('================');
-    console.log(getBody);
-    console.log('================');
     console.log('id: ' + getBody.id);
     res.send(getBody.snippet);
   })
   .catch(function(err) {
     console.log('Problems... statuscode: ', err);
   });
-})
-
-/* "/payment"
-* POST: Create payment request from card/customer input
-*/
-
-app.post("/payment2", function(req, res) {
-  var stripe = require('stripe')(process.env.STRIPE_API_KEY_TEST);
-
-  stripe.charges.create({
-    amount: req.body.amount,
-    currency: "sek",
-    source: req.body.token.id,
-    description: "Charge for"+req.body.token.email
-  }, function(err, charge) {
-    // asynchronously called
-    console.log('err, charge', err, charge);
-    if (err && err.type === 'StripeCardError') {
-      // The card has been declined
-      console.log('The card has been declined');
-    }
-  })
 })
 
 /* "/email/VVSRequest"
@@ -145,115 +122,115 @@ app.post("/email/VVSRequest", function(req, res) {
   * POST: Send email to specified address
   */
 
-  app.post("/email/priskalkyl", function(req, res) {
-    console.log(req.body);
+app.post("/email/priskalkyl", function(req, res) {
+  console.log(req.body);
 
-    var helper = require('sendgrid').mail;
-    var from_email = new helper.Email('test@example.com');
-    var to_email = new helper.Email('00badrumsboden@gmail.com');
-    var subject = 'Priskalkyl från Badrumsboden.se';
-    var content = new helper.Content(
-      'text/html', 'test');
-      var mail = new helper.Mail(from_email, subject, to_email, content);
+  var helper = require('sendgrid').mail;
+  var from_email = new helper.Email('test@example.com');
+  var to_email = new helper.Email('00badrumsboden@gmail.com');
+  var subject = 'Priskalkyl från Badrumsboden.se';
+  var content = new helper.Content(
+    'text/html', 'test');
+    var mail = new helper.Mail(from_email, subject, to_email, content);
 
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-namn-', req.body['first.namn']));
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-telefon-', req.body['first.telefon']));
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-epost-', req.body['first.epost']));
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-adress-', req.body['first.adress']));
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-byggar-', req.body['first.byggar']));
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-bredd-', req.body['first.bredd']));
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-langd-', req.body['first.langd']));
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-takhojd-', req.body['first.takhojd']));
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-fonster-', req.body['first.fonster']));
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-fonster2-', req.body['first.fonster']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-namn-', req.body['first.namn']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-telefon-', req.body['first.telefon']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-epost-', req.body['first.epost']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-adress-', req.body['first.adress']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-byggar-', req.body['first.byggar']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-bredd-', req.body['first.bredd']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-langd-', req.body['first.langd']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-takhojd-', req.body['first.takhojd']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-fonster-', req.body['first.fonster']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-fonster2-', req.body['first.fonster']));
 
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-brunnar1-', req.body['second.brunnar']));
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-lageIFastigheten1-', req.body['second.lage']));
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-vattenror1-', req.body['second.vattenror']));
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-vaggmaterialBetong1-', req.body['second.vaggmaterialBefintligtBadrum.betong']));
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-vaggmaterialMuradvagg1-', req.body['second.vaggmaterialBefintligtBadrum.muradvagg']));
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-vaggmaterialGipsskivor1-', req.body['second.vaggmaterialBefintligtBadrum.gipsskivor']));
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-vaggmaterialAnnat1-', req.body['second.vaggmaterialBefintligtBadrum.annatvaggmaterial']));
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-golvmaterialTrabjalklag1-', req.body['second.golvmaterialBefintligtBadrum.trabjalklag']));
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-golvmaterialBetonggolv1-', req.body['second.golvmaterialBefintligtBadrum.betonggolv']));
-      mail.personalizations[0].addSubstitution(new helper.Substitution('-golvmaterialAnnat1-', req.body['second.golvmaterialBefintligtBadrum.annat']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-brunnar1-', req.body['second.brunnar']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-lageIFastigheten1-', req.body['second.lage']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-vattenror1-', req.body['second.vattenror']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-vaggmaterialBetong1-', req.body['second.vaggmaterialBefintligtBadrum.betong']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-vaggmaterialMuradvagg1-', req.body['second.vaggmaterialBefintligtBadrum.muradvagg']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-vaggmaterialGipsskivor1-', req.body['second.vaggmaterialBefintligtBadrum.gipsskivor']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-vaggmaterialAnnat1-', req.body['second.vaggmaterialBefintligtBadrum.annatvaggmaterial']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-golvmaterialTrabjalklag1-', req.body['second.golvmaterialBefintligtBadrum.trabjalklag']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-golvmaterialBetonggolv1-', req.body['second.golvmaterialBefintligtBadrum.betonggolv']));
+    mail.personalizations[0].addSubstitution(new helper.Substitution('-golvmaterialAnnat1-', req.body['second.golvmaterialBefintligtBadrum.annat']));
 
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaVaggTapet1-', req.body['third.ytskiktVaggBefintligtBadrum.tapet']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaVaggKakel1-', req.body['third.ytskiktVaggBefintligtBadrum.kakel']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaVaggAnnat1-', req.body['third.ytskiktVaggBefintligtBadrum.annatytskikt']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaGolvVatrumsmatta1-', req.body['third.ytskiktGolvBefintligtBadrum.vatrumsmatta']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaGolvKlinker1-', req.body['third.ytskiktGolvBefintligtBadrum.klinker']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaGolvAnnat1-', req.body['third.ytskiktGolvBefintligtBadrum.annat']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-golvVarme1-', req.body['third.golvvarme']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-handdukstorkElburet1-', req.body['third.handdukstorkElementBefintligtBadrum.elementelburet']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-handdukstorkVattenburet1-', req.body['third.handdukstorkElementBefintligtBadrum.elementvattenburet']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-handdukstorkHanddukstork1-', req.body['third.handdukstorkElementBefintligtBadrum.handdukstork']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-handdukstorkIngenH1-', req.body['third.handdukstorkElementBefintligtBadrum.ingenhanddukstork']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-handdukstork1IngetE-', req.body['third.handdukstorkElementBefintligtBadrum.ingetelement']));
-      //
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-WCStol1-', req.body['fourth.inredningBefintligtBadrum.wcstol']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-duschplats1-', req.body['fourth.inredningBefintligtBadrum.duschplats']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-tvattstall1-', req.body['fourth.inredningBefintligtBadrum.tvattstall']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-torktumlare1-', req.body['fourth.inredningBefintligtBadrum.torktumlare']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-tvattbank1-', req.body['fourth.inredningBefintligtBadrum.tvattbank']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-bide1-', req.body['fourth.inredningBefintligtBadrum.bide']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-badkar1-', req.body['fourth.inredningBefintligtBadrum.badkar']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-tvattmaskin1-', req.body['fourth.inredningBefintligtBadrum.tvattmaskin']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-tarkskap1-', req.body['fourth.inredningBefintligtBadrum.torkskap']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-ovrigt1-', req.body['fourth.ovrigt']));
-      //
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaVaggVatrumsmatta2-', req.body['fifth.ytskiktVaggNyaBadrummet.vatrumsmatta']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaVaggVatrumsskivor2-', req.body['fifth.ytskiktVaggNyaBadrummet.vatrumsskivor']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaVaggKakel2-', req.body['fifth.ytskiktVaggNyaBadrummet.kakel']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaVagg2Annat-', req.body['fifth.ytskiktVaggNyaBadrummet.annatytskikt']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaGolvVatrumsmatta2-', req.body['fifth.ytskiktGolvNyaBadrummet.vatrumsmattagolv']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaGolvKlinker2-', req.body['fifth.ytskiktGolvNyaBadrummet.klinker']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaGolvAnnat2-', req.body['fifth.ytskiktGolvNyaBadrummet.annat']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-golvvarme2-', req.body['fifth.golvvarmeNyaBadrummet']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-elementLrHanddukstorkElement-', req.body['fifth.elementHanddukstorkNyaBadrummet.element']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-elementLrHanddukstorkHandduk-', req.body['fifth.elementHanddukstorkNyaBadrummet.handdukstork']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-elementLrHanddukstorkEjElement-', req.body['fifth.elementHanddukstorkNyaBadrummet.ejelement']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-elementLrHanddukstorkEjHandduk-', req.body['fifth.elementHanddukstorkNyaBadrummet.ejhanddukstork']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaVaggTapet1-', req.body['third.ytskiktVaggBefintligtBadrum.tapet']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaVaggKakel1-', req.body['third.ytskiktVaggBefintligtBadrum.kakel']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaVaggAnnat1-', req.body['third.ytskiktVaggBefintligtBadrum.annatytskikt']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaGolvVatrumsmatta1-', req.body['third.ytskiktGolvBefintligtBadrum.vatrumsmatta']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaGolvKlinker1-', req.body['third.ytskiktGolvBefintligtBadrum.klinker']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaGolvAnnat1-', req.body['third.ytskiktGolvBefintligtBadrum.annat']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-golvVarme1-', req.body['third.golvvarme']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-handdukstorkElburet1-', req.body['third.handdukstorkElementBefintligtBadrum.elementelburet']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-handdukstorkVattenburet1-', req.body['third.handdukstorkElementBefintligtBadrum.elementvattenburet']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-handdukstorkHanddukstork1-', req.body['third.handdukstorkElementBefintligtBadrum.handdukstork']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-handdukstorkIngenH1-', req.body['third.handdukstorkElementBefintligtBadrum.ingenhanddukstork']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-handdukstork1IngetE-', req.body['third.handdukstorkElementBefintligtBadrum.ingetelement']));
+    //
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-WCStol1-', req.body['fourth.inredningBefintligtBadrum.wcstol']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-duschplats1-', req.body['fourth.inredningBefintligtBadrum.duschplats']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-tvattstall1-', req.body['fourth.inredningBefintligtBadrum.tvattstall']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-torktumlare1-', req.body['fourth.inredningBefintligtBadrum.torktumlare']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-tvattbank1-', req.body['fourth.inredningBefintligtBadrum.tvattbank']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-bide1-', req.body['fourth.inredningBefintligtBadrum.bide']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-badkar1-', req.body['fourth.inredningBefintligtBadrum.badkar']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-tvattmaskin1-', req.body['fourth.inredningBefintligtBadrum.tvattmaskin']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-tarkskap1-', req.body['fourth.inredningBefintligtBadrum.torkskap']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-ovrigt1-', req.body['fourth.ovrigt']));
+    //
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaVaggVatrumsmatta2-', req.body['fifth.ytskiktVaggNyaBadrummet.vatrumsmatta']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaVaggVatrumsskivor2-', req.body['fifth.ytskiktVaggNyaBadrummet.vatrumsskivor']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaVaggKakel2-', req.body['fifth.ytskiktVaggNyaBadrummet.kakel']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaVagg2Annat-', req.body['fifth.ytskiktVaggNyaBadrummet.annatytskikt']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaGolvVatrumsmatta2-', req.body['fifth.ytskiktGolvNyaBadrummet.vatrumsmattagolv']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaGolvKlinker2-', req.body['fifth.ytskiktGolvNyaBadrummet.klinker']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-ytskiktPaGolvAnnat2-', req.body['fifth.ytskiktGolvNyaBadrummet.annat']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-golvvarme2-', req.body['fifth.golvvarmeNyaBadrummet']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-elementLrHanddukstorkElement-', req.body['fifth.elementHanddukstorkNyaBadrummet.element']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-elementLrHanddukstorkHandduk-', req.body['fifth.elementHanddukstorkNyaBadrummet.handdukstork']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-elementLrHanddukstorkEjElement-', req.body['fifth.elementHanddukstorkNyaBadrummet.ejelement']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-elementLrHanddukstorkEjHandduk-', req.body['fifth.elementHanddukstorkNyaBadrummet.ejhanddukstork']));
 
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-WCStol2-', req.body['sixth.onskadInredningNyaBadrummet.wcstol']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-duschplats2-', req.body['sixth.onskadInredningNyaBadrummet.duschplats']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-tvattstall2-', req.body['sixth.onskadInredningNyaBadrummet.tvattstall']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-torktumlare2-', req.body['sixth.onskadInredningNyaBadrummet.torktumlare']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-tvattmaskin2-', req.body['sixth.onskadInredningNyaBadrummet.tvattmaskin']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-torkskap2-', req.body['sixth.onskadInredningNyaBadrummet.torkskap']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-bide2-', req.body['sixth.onskadInredningNyaBadrummet.bide']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-badkar2-', req.body['sixth.onskadInredningNyaBadrummet.badkar']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-tvattstall2-', req.body['sixth.onskadInredningNyaBadrummet.tvattstall']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-torktumlare2-', req.body['sixth.onskadInredningNyaBadrummet.torktumlare']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-tvattbank2-', req.body['sixth.onskadInredningNyaBadrummet.tvattbank']));
-      // mail.personalizations[0].addSubstitution(new helper.Substitution('-ovrigt2-', req.body['sixth.ovrigtNyaBadrummet']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-WCStol2-', req.body['sixth.onskadInredningNyaBadrummet.wcstol']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-duschplats2-', req.body['sixth.onskadInredningNyaBadrummet.duschplats']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-tvattstall2-', req.body['sixth.onskadInredningNyaBadrummet.tvattstall']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-torktumlare2-', req.body['sixth.onskadInredningNyaBadrummet.torktumlare']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-tvattmaskin2-', req.body['sixth.onskadInredningNyaBadrummet.tvattmaskin']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-torkskap2-', req.body['sixth.onskadInredningNyaBadrummet.torkskap']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-bide2-', req.body['sixth.onskadInredningNyaBadrummet.bide']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-badkar2-', req.body['sixth.onskadInredningNyaBadrummet.badkar']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-tvattstall2-', req.body['sixth.onskadInredningNyaBadrummet.tvattstall']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-torktumlare2-', req.body['sixth.onskadInredningNyaBadrummet.torktumlare']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-tvattbank2-', req.body['sixth.onskadInredningNyaBadrummet.tvattbank']));
+    // mail.personalizations[0].addSubstitution(new helper.Substitution('-ovrigt2-', req.body['sixth.ovrigtNyaBadrummet']));
 
-      //Attach file
-      // var attachment = new helper.Attachment();
-      // var file = fs.readFileSync('my_file.txt');
-      // var base64File = new Buffer(file).toString('base64');
-      // attachment.setContent(base64File);
-      // attachment.setType('application/text');
-      // attachment.setFilename('my_file.txt');
-      // attachment.setDisposition('attachment');
-      // mail.addAttachment(attachment);
+    //Attach file
+    // var attachment = new helper.Attachment();
+    // var file = fs.readFileSync('my_file.txt');
+    // var base64File = new Buffer(file).toString('base64');
+    // attachment.setContent(base64File);
+    // attachment.setType('application/text');
+    // attachment.setFilename('my_file.txt');
+    // attachment.setDisposition('attachment');
+    // mail.addAttachment(attachment);
 
-      mail.setTemplateId(process.env.SENDGRID_TEMPLATE_PRISKALKYL);
+    mail.setTemplateId(process.env.SENDGRID_TEMPLATE_PRISKALKYL);
 
-      var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
-      var request = sg.emptyRequest({
-        method: 'POST',
-        path: '/v3/mail/send',
-        body: mail.toJSON(),
-      });
-
-      sg.API(request, function(error, response) {
-        console.log(response.statusCode);
-        console.log(response.body);
-        console.log(response.headers);
-      });
+    var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+    var request = sg.emptyRequest({
+      method: 'POST',
+      path: '/v3/mail/send',
+      body: mail.toJSON(),
     });
 
-  app.get("*", function(req, res) {
-   res.sendFile(path.resolve(__dirname, 'dist/index.html'))
-  })
+    sg.API(request, function(error, response) {
+      console.log(response.statusCode);
+      console.log(response.body);
+      console.log(response.headers);
+    });
+  });
+
+app.get("*", function(req, res) {
+ res.sendFile(path.resolve(__dirname, 'dist/index.html'))
+})

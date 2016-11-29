@@ -3,6 +3,8 @@ import axios from 'axios'
 import cookie from 'react-cookie'
 import { browserHistory } from 'react-router'
 
+import Payment from './Payment'
+
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as firebaseActions from '../../actions/firebaseActions'
@@ -19,7 +21,8 @@ class Checkout extends Component {
       products: [],
       radioButtonValue: 'store',
       deliveryCost: 0,
-      nrOfProductsLoaded: 0
+      nrOfProductsLoaded: 0,
+      showKlarnaDiv: false
     }
 
     this.fetchShoppingcartProducts()
@@ -147,7 +150,17 @@ check(element) {
 }
 
 toPayment() {
-  browserHistory.push('/webshop/payment')
+  let data = this.state.products.map( (product) => {
+                  return [product.productName, product.articleNr, product.price /*,product.quantity*/]
+                 })
+  data.push(['Frakkostnad', 1, this.state.deliveryCost /*,1*/])
+
+  this.setState({
+    data,
+    showKlarnaDiv: true
+    }
+  )
+  //browserHistory.push('/webshop/payment')
 }
 
 render() {
@@ -213,7 +226,7 @@ Känn dig säker med Stripe!
           checked={this.state.radioButtonValue == 'store' ? true : false}
           onChange={this.handleRadioButton.bind(this)}
           />
-        <p>Hämta i butik</p>
+        <p>Hämta i butik, 0:-</p>
       </div>
 
       <div>
@@ -228,8 +241,10 @@ Känn dig säker med Stripe!
     </div>
 
     <div onClick={this.toPayment.bind(this)}>
-      Till betalning ->
+      Betalning
     </div>
+
+    {this.state.showKlarnaDiv? <Payment data={this.state.data}/> : ''}
 
   </section>
 </div>
