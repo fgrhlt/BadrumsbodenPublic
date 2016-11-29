@@ -2,7 +2,7 @@
 #formFields {
   /* The react-tooltip div */
   & .show {
-    font-size:16pt;
+    font-size:12pt;
     color:#666;
   }
 
@@ -40,7 +40,7 @@
       /* The submit button in the end */
       & button {
         float:right;
-        font-size:12pt;
+        font-size:10pt;
       }
       /* The wrapper holding the three columns of fields */
       & .fieldWrapper.three {
@@ -56,7 +56,6 @@
           & h4 {
             margin-bottom:5px;
             float:left;
-            font-size:14pt;
 
             & span {
               font-size:12pt;

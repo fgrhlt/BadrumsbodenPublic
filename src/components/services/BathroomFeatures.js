@@ -22,7 +22,7 @@ export default class BathroomFeatures extends Component {
               <img src="assets/icons/services/pricecalc.svg" className="bathroomIcon" />
               <h3>Priskalkyl</h3>
               <p>
-                Vi är de enda i branschen som erbjuder en <br/>
+                Vi är de enda i branschen som erbjuder en
                 priskalkyl innan du bestämt dig om offert!
               </p>
             </div>

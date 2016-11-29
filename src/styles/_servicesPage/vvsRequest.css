@@ -1,9 +1,9 @@
 @import '../global.css';
 
 #vvsRequest {
-  min-height:550px;
+  min-height:400px;
   background-repeat: no-repeat;
-  padding:100px 0 30px 0;
+  padding:60px 0 20px 0;
   box-sizing: border-box;
 
     & section {
@@ -29,8 +29,11 @@
 
               & textarea {
                 padding-right:130px;
-                min-height:275px;
+                min-height:210px;
               }
+            }
+            & h4 {
+              margin-bottom:8px;
             }
           }
         }
@@ -47,11 +50,10 @@
           background:url(../../assets/icons/services/orange_btn_arrow.svg)
                      no-repeat right color(#FD551F alpha(80%));
           background-size: auto 100%;
-          font-size:20pt;
-          padding-right:65px;
+          font-size:14pt;
           float:right;
-          margin-top:10px;
-          width:320px;
+          width:250px;
+          padding-right:40px;
         }
 
         & #send:hover {

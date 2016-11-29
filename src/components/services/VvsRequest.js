@@ -54,19 +54,19 @@ export default class VVSRequest extends Component {
           <div>
             <form onSubmit={this.submitForm.bind(this)} name="vvsRequest">
               <div>
-                <h3>Namn*</h3>
+                <h4>Namn*</h4>
                 <input type="text" ref="namn" required="true"/>
 
-                <h3>Telefonnummer*</h3>
+                <h4>Telefonnummer*</h4>
                 <input type="text" ref="telefonNummer" required="true"/>
 
-                <h3>E-post*</h3>
+                <h4>E-post*</h4>
                 <input type="text" ref="epost" required="true"/>
               </div>
 
               <div>
                 <div className="circle">Svar<br /> inom 24h!</div>
-                <h3>Meddelande*</h3>
+                <h4>Meddelande*</h4>
                   <textarea ref="meddelande" required="true"/>
                   <input type="submit" className="btn" id="send" value="Skicka förfrågan"/>
               </div>
