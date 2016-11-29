@@ -5,9 +5,9 @@
   background-repeat:no-repeat;
   background-size: cover;
   background-position: center;
-  height:550px;
+  height:450px;
   box-sizing:border-box;
-  padding:100px 5% 0 5%;
+  padding:70px 5% 0 5%;
 
   & .lostWrapper {
     width:100%;
@@ -15,7 +15,7 @@
 
     /* Lost items, first is the heading and description */
     & > div {
-      height:400px;
+      height:330px;
       lost-column:8/10 0;
       & h1 {
         margin-bottom:20pt;

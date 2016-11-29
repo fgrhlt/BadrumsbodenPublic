@@ -14,6 +14,7 @@
       background-color: lightgrey;
       border: none;
       width:100%;
+      height:40px;
     }
   }
 
@@ -21,8 +22,8 @@
     lost-column:1/10 0 0;
     & figure {
       background: url('../../assets/buttons/search_button.svg') no-repeat;
-      width:62px;
-      height: 38px;
+      width:65px;
+      height: 40px;
     }
     & figure:hover {
       background: url('../../assets/buttons/search_button_h.svg') no-repeat;
