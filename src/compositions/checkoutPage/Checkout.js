@@ -3,9 +3,6 @@ import axios from 'axios'
 import cookie from 'react-cookie'
 import { browserHistory } from 'react-router'
 
-import Payment from './Payment'
-import Modal from 'react-modal'
-
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as firebaseActions from '../../actions/firebaseActions'
@@ -23,8 +20,6 @@ class Checkout extends Component {
       radioButtonValue: 'store',
       deliveryCost: 0,
       nrOfProductsLoaded: 0,
-      showKlarnaDiv: false,
-      modalIsOpen: false
     }
 
     this.fetchShoppingcartProducts()
@@ -55,17 +50,6 @@ class Checkout extends Component {
 
     this.setState({
       items: arr,
-    })
-  }
-
-  /* Posts a payment request to the node-server with the customers information
-  * Amount is always in Öre (swedish cents) 1 kr = 100 öre */
-  postRequest = (token) => {
-    let amount = 10000
-    axios({
-      method: 'post',
-      url: 'https://shrouded-plateau-50284.herokuapp.com/payment',
-      data: {token, amount}
     })
   }
 
@@ -120,7 +104,7 @@ class Checkout extends Component {
     }, () => {
       this.props.actions.shoppingcartActions.removeFromShoppingcart(product, price)
       this.fetchShoppingcartProducts()
-    })//.bind(this)
+    })
     this.collectData()
   }
 
@@ -160,45 +144,6 @@ class Checkout extends Component {
 
   check(element) {
     return element == 12
-  }
-
-
-
-  toPayment() {
-    let data = this.state.products.map( (product) => {
-      return [product.productName, product.articleNr, product.price ,product.quantity]
-    })
-    data.push(['Frakt', 1, this.state.deliveryCost, 1])
-
-
-
-    // this.setState({
-    //   data,
-    //   showKlarnaDiv: true
-    //   }
-    // )
-    //this.openModal()
-    //browserHistory.push('/webshop/payment')
-  }
-
-  openModal() {
-
-    const customStyles = {
-      content : {
-        top                   : '50%',
-        left                  : '50%'
-      }
-    }
-
-    //https://github.com/reactjs/react-modal
-
-    this.setState({
-      modalIsOpen: true
-    })
-  }
-
-  closeModal() {
-    this.setState({modalIsOpen: false})
   }
 
   render() {
