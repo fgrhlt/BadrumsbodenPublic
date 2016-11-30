@@ -146,6 +146,11 @@ class Checkout extends Component {
     return element == 12
   }
 
+  goToProduct(product) {
+    const { category, subcategory, articleNr } = product
+    browserHistory.push('/webshop/'+category+'/'+subcategory+'/'+articleNr)
+  }
+
   render() {
     const { products, summary, deliveryCost } = this.state
     let sum = 0
@@ -161,11 +166,11 @@ class Checkout extends Component {
 
               return (
                 <div className="item" key={i}>
-                  <div className="image">
-                    <figure style={{backgroundImage:'url('+product.imageUrl+')'}} />
+                  <div className="image" style={{paddingLeft:'10px', paddingRight:'10px'}} onClick={this.goToProduct.bind(this, product)}>
+                    <figure style={{backgroundImage:'url('+product.url+')'}} />
                   </div>
 
-                  <div className="info">
+                  <div className="info" onClick={this.goToProduct.bind(this, product)}>
                     <h4>{product.productName}</h4>
                     <span>Artikelnr: {product.articleNr}</span>
                   </div>
