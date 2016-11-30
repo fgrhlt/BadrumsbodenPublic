@@ -3,7 +3,6 @@
 #adminGallery {
 
   & #container {
-
     /* The sections holding each gallery category "kök, badrum" */
     & > section:nth-of-type(odd) {
       background:var(--lightGray);
@@ -12,27 +11,37 @@
       background:var(--mediumGray);
     }
     & > section {
-      padding:60px 5%;
+      padding:40px 5%;
       box-sizing: border-box;
       clear:fix;
       & h3 {
         font-weight: bold;
         margin-bottom:15px;
       }
-      & button {
-        float:right;
+      & p {
+        margin-bottom:10px;
+      }
+      & #imageUploadContainer {
+        width:40%;
+        margin-bottom:20px;
+      }
+      & .infoText {
+        font-size:12pt;
+        text-align: center;
+        margin-bottom:20px;
       }
 
       & .lostContainer {
-        lost-utility:clearfix;
-        margin-bottom:30px;
+        margin:0 0 30px -20px;
         border-bottom: 1px solid #ccc;
         padding-bottom:40px;
         /* All the images in the gallery */
+
         & > div {
-          lost-waffle:1/8;
+          display:inline-block;
           box-sizing: border-box;
           position: relative;
+          margin-left:20px;
           & figure {
             width:170px;
             height:170px;
@@ -58,6 +67,5 @@
         }
       }
     }
-
   }
 }
