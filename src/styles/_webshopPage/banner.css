@@ -28,3 +28,33 @@
     }
   }
 }
+
+@media (width <= 600px) {
+  #banner {
+    min-height:100px;
+    & > div {
+      padding-top:27px;
+      & h2 {
+        font-size: 14pt;
+      }
+      & p {
+        font-size: 12pt;
+      }
+    }
+  }
+}
+
+@media (width <= 400px) {
+  #banner {
+    min-height:100px;
+    & > div {
+      padding-top:27px;
+      & h2 {
+        font-size: 12pt;
+      }
+      & p {
+        font-size: 10pt;
+      }
+    }
+  }
+}

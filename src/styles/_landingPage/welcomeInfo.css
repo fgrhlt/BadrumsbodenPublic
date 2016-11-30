@@ -4,7 +4,7 @@
   min-height:500px;
   background:url('../../assets/images/landingPage/badrum1_1.jpg') no-repeat center;
   background-size: cover;
-  padding:40px 5% 40px 5%;
+  padding:40px 0 60px 0;
   box-sizing: border-box;
 
   & h3 {
@@ -12,7 +12,7 @@
     margin-bottom:35px;
   }
   & section {
-    lost-center:80%;
+    lost-center:70%;
 
     & .heading {
       box-sizing: border-box;
@@ -164,9 +164,44 @@
     }
   }
 }
-
-@media (width <= 500px) {
+@media (width >= 1300px) {
   #welcomeInfo {
-    display:none;
+    & section {
+      lost-center:60%;
+    }
+  }
+}
+@media (width <= 1000px) {
+  #welcomeInfo {
+    & section {
+      lost-center:90%;
+    }
+  }
+}
+@media (width <= 800px) {
+  #welcomeInfo {
+    & section {
+      & > div {
+        lost-waffle:1;
+      }
+    }
+  }
+}
+@media (width <= 400px) {
+  #welcomeInfo {
+    & section {
+      & > div {
+        & .content {
+          & .arrowButton {
+            width:100%;
+            padding:6px 55px 6px 10px;
+            & h3 {
+              margin-top:5px;
+              font-size:12pt;
+            }
+          }
+        }
+      }
+    }
   }
 }

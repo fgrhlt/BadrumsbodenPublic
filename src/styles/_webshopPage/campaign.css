@@ -5,12 +5,12 @@
   background-repeat:no-repeat;
   background-size: cover;
   background-position: center;
-  height:450px;
+  min-height:450px;
   box-sizing:border-box;
-  padding:70px 5% 0 5%;
+  padding:70px 0 50px 0;
 
   & .lostWrapper {
-    width:100%;
+    lost-center:90%;
     lost-utility:clearfix;
 
     /* Lost items, first is the heading and description */

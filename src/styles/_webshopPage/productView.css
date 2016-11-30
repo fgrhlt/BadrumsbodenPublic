@@ -19,7 +19,7 @@
 
     /* Lost columns */
     & > section {
-      lost-column: 1/2 0;
+      lost-column: 1/2 0 30px;
       overflow:hidden;
     }
 
@@ -54,18 +54,17 @@
 }
 
 /* Responsive */
-@media (width <= 1200px) {
+@media (width <= 800px) {
     #productView {
 
         & > section:nth-of-type(1) {
-          lost-column:1/2 2;
+          lost-waffle:1;
+          & figure {
+            height:200px;
+          }
         }
         & > section:nth-of-type(2) {
-          lost-column:1/2 2;
-          margin-bottom:40px;
-        }
-        & > section:nth-of-type(3) {
-          lost-column:1;
+          lost-waffle:1;
         }
     }
 }

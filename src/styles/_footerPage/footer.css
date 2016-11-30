@@ -131,10 +131,9 @@
       margin-bottom:30px;
       width:170px;
     }
-  }
-
-  #footer figure {
-    margin:auto;
+    & figure {
+      margin:auto;
+    }
   }
 
   #footer span {
