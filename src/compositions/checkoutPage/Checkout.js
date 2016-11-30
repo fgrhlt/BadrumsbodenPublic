@@ -19,10 +19,12 @@ class Checkout extends Component {
       products: [],
       radioButtonValue: 'store',
       deliveryCost: 0,
-      nrOfProductsLoaded: 0,
+      nrOfProductsLoaded: 0
     }
 
     this.fetchShoppingcartProducts()
+    setTimeout(() => {this.collectData()}, 2500) //Tills vidare
+
   }
 
   collectData() {
@@ -72,7 +74,6 @@ class Checkout extends Component {
         products: stateProducts,
         nrOfProductsLoaded: this.state.nrOfProductsLoaded+1
       })
-      this.collectData()
     }
   }
 
@@ -135,15 +136,6 @@ class Checkout extends Component {
     }, () => {
       this.collectData()
     })
-  }
-
-  /* Returns true if there are products in the product array */
-  checkIfProducts() {
-    return this.state.products.length > 0
-  }
-
-  check(element) {
-    return element == 12
   }
 
   goToProduct(product) {

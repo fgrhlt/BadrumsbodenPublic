@@ -21,6 +21,7 @@ export default class Checkoutpage extends Component {
   }
 
   collectData(data) {
+    console.log('data',data);
     this.setState({
       data
     })
