@@ -51,23 +51,16 @@ app.post("/payment", function(req, res) {
   var payson = new PaysonPayment.Payson(vendorId, apiKey);
 
   // create a checkout
-  var checkout = new PaysonPayment.Checkout('someId', 'https://www.example.com', 'https://www.example.com', 'https://www.example.com/api/incoming/payment', 'https://www.example.com/terms');
+  var checkout = new PaysonPayment.Checkout('someId', 'http://localhost:5000/faq', 'https://www.example.com', 'https://www.example.com/api/incoming/payment', 'http://localhost:5000/webshop');
 
   /**
-  * Create item
+  * Create items
   * @type {PaysonPayment}
   */
-  var items2 = [
-    ['123123', 'abc123', 125],
-    ['123112', '2abc123', 225]
-  ]
-  console.log('itemsFunkar', items2);
   let items = req.body.data
-  console.log('itemsNy', items);
-
   items.forEach(function(item) {
     // create item
-    var item = new PaysonPayment.OrderItem(item[0], item[1], item[2])
+    var item = new PaysonPayment.OrderItem(item[0], item[1], item[2], item[3])
     //add item to checkout
     checkout.addItem(item);
   })

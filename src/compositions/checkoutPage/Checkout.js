@@ -154,9 +154,9 @@ check(element) {
 
 toPayment() {
   let data = this.state.products.map( (product) => {
-                  return [product.productName, product.articleNr, product.price /*,product.quantity*/]
+                  return [product.productName, product.articleNr, product.price ,product.quantity]
                  })
-  data.push(['Frakkostnad', 1, this.state.deliveryCost /*,1*/])
+  data.push(['Frakt', 1, this.state.deliveryCost, 1])
 
   this.setState({
     data,
@@ -175,6 +175,8 @@ openModal() {
       left                  : '50%'
     }
   }
+
+  //https://github.com/reactjs/react-modal
 
   this.setState({
     modalIsOpen: true
@@ -270,7 +272,19 @@ Känn dig säker med Stripe!
       isOpen={this.state.modalIsOpen}
       onRequestClose={this.closeModal}
       contentLabel="Example Modal"
-      style={{overlay: {'height': '630px', 'width': '800px'}}}>
+      style={{
+        content: {
+          'top': '20px',
+          'height': '800px',
+          'width': '950px',
+          backgroundColor: 'rgba(255, 255, 255, 1)'
+        },
+        overlay: {
+          'top': '20px',
+          'height': '800px',
+          'width': '950px',
+          backgroundColor: 'rgba(255, 255, 255, 1)'}
+         }}>
 
         <button onClick={this.closeModal.bind(this)}>Stäng ruta</button>
         <Payment data={this.state.data}/>
