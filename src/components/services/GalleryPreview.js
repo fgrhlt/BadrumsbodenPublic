@@ -12,22 +12,26 @@ class GalleryPreview extends Component {
   componentWillMount() {
     const { fetchFirebaseData } = this.props
 
-    fetchFirebaseData('gallery', 'category', 'badrum')
     fetchFirebaseData('gallery', 'category', 'kok')
+    fetchFirebaseData('gallery', 'category', 'badrum')
 
     this.state = {
       imagesBadrum: [],
-      imagesKok: []
+      imagesKok: [],
+      urlsBadrum: '',
+      urlsKok: ''
     }
   }
+
 
   componentWillReceiveProps(nextProps) {
     const { firebaseData } = nextProps
 
     this.setState({
       imagesBadrum: firebaseData['gallery/badrum'] ? firebaseData['gallery/badrum'].items : [],
-      imagesKok: firebaseData['gallery/kok'] ? firebaseData['gallery/kok'].items : [],
+      imagesKok: firebaseData['gallery/kok'] ? firebaseData['gallery/kok'].items : []
     })
+
 
     let urlsBadrum = this.state.imagesBadrum.map( (item) => {
       return item.url
@@ -49,9 +53,6 @@ class GalleryPreview extends Component {
   render() {
   const { urlsBadrum, urlsKok } = this.state
 
-  let urlsKok1 = urlsKok ? urlsKok : ''
-  let urlsBadrum1 = urlsBadrum ? urlsBadrum : ''
-
     return (
       <div id="galleryPreview">
         <div id="lostGrid" onClick={this.onClickGallery.bind(this)}>
@@ -59,28 +60,28 @@ class GalleryPreview extends Component {
           <h2>Låt dig inspireras av bilder från våra projekt</h2>
           <section>
             <div>
-              <div><figure style={{backgroundImage: 'url('+ urlsKok1[0]+')' }} /></div>
+              <div><figure style={{backgroundImage: 'url('+ urlsKok[0]+')' }} /></div>
             </div>
 
             <div>
-              <div><figure style={{backgroundImage: 'url('+ urlsKok1[1]+')'}} /></div>
-              <div><figure style={{backgroundImage: 'url('+ urlsKok1[2]+')'}} /></div>
-              <div><figure style={{backgroundImage: 'url('+ urlsKok1[3]+')'}} /></div>
+              <div><figure style={{backgroundImage: 'url('+ urlsKok[1]+')'}} /></div>
+              <div><figure style={{backgroundImage: 'url('+ urlsKok[2]+')'}} /></div>
+              <div><figure style={{backgroundImage: 'url('+ urlsKok[3]+')'}} /></div>
             </div>
           </section>
 
           <section>
-            <figure style={{backgroundImage: 'url('+ urlsBadrum1[0]+')'}} />
+            <figure style={{backgroundImage: 'url('+ urlsBadrum[0]+')'}} />
           </section>
 
           <section>
             <div>
-              <div><figure style={{backgroundImage: 'url('+ urlsBadrum1[1]+')'}} /></div>
-              <div><figure style={{backgroundImage: 'url('+ urlsBadrum1[2]+')'}} /></div>
+              <div><figure style={{backgroundImage: 'url('+ urlsBadrum[1]+')'}} /></div>
+              <div><figure style={{backgroundImage: 'url('+ urlsBadrum[2]+')'}} /></div>
             </div>
 
             <div>
-              <div><figure style={{backgroundImage: 'url('+ urlsBadrum1[3]+')'}} /></div>
+              <div><figure style={{backgroundImage: 'url('+ urlsBadrum[3]+')'}} /></div>
             </div>
           </section>
         </div>
@@ -92,7 +93,6 @@ class GalleryPreview extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('state',state);
   return {
     firebaseData: state.firebaseReducer.firebaseData
   }
