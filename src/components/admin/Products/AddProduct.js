@@ -94,7 +94,7 @@ export default class AddProduct extends Component {
   render() {
     return (
       <div id="addProduct">
-        <h3>Lägg till produkter</h3>
+        <h3>Lägg till produkter i: <span>/{this.props.param.category || ''}/{this.props.param.subcategory || ''}</span></h3>
 
         <form onSubmit={this.submitForm.bind(this)}>
           <div className="addProductField">

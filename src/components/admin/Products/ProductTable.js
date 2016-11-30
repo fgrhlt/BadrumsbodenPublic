@@ -26,9 +26,9 @@ class ProductTable extends Component {
 
     let subcat = replaceSpecialCharactersURLs(this.props.param.subcategory)
     if (this.props.param.category=='toppsäljare') {
-      this.props.fetchFirebaseData('products', 'starred', true)
+      this.props.fetchFirebaseDataAdmin('products', 'starred', true)
     } else {
-      this.props.fetchFirebaseData('products', 'subcategory', subcat)
+      this.props.fetchFirebaseDataAdmin('products', 'subcategory', subcat)
     }
 
     this.state = {
@@ -47,9 +47,9 @@ class ProductTable extends Component {
 
     if (subcategory != this.props.param.subcategory) {
       if (category=='toppsäljare') {
-        fetchFirebaseData('products', 'starred', true)
+        fetchFirebaseDataAdmin('products', 'starred', true)
       } else {
-        fetchFirebaseData('products', 'subcategory', subcat)
+        fetchFirebaseDataAdmin('products', 'subcategory', subcat)
       }
     }
 
@@ -107,7 +107,7 @@ class ProductTable extends Component {
               </Cell>
             )}
             flexGrow={1}
-            width={50}
+            width={80}
             />
 
           <Column
@@ -128,7 +128,7 @@ class ProductTable extends Component {
               </Cell>
             )}
             flexGrow={1}
-            width={300}
+            width={280}
             />
           <Column
             header={<Cell>{this.state.columns[3]}</Cell>}
@@ -138,7 +138,7 @@ class ProductTable extends Component {
               </Cell>
             )}
             flexGrow={1}
-            width={300}
+            width={270}
             />
           <Column
             header={<Cell>{this.state.columns[4]}</Cell>}
@@ -160,7 +160,7 @@ class ProductTable extends Component {
             )}
 
             flexGrow={1}
-            width={60}
+            width={100}
             />
         </FittedTable>
 

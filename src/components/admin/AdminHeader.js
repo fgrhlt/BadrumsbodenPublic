@@ -37,11 +37,11 @@ export default class AdminHeader extends Component {
           </div>
 
           <div className={this.props.param=='webshop'?'yellow':'passive'} onClick={this.handleClick.bind(this)}>
-            <h2>Webshop</h2>
+            <h3>Webshop</h3>
           </div>
 
           <div className={this.props.param=='tjanster'?'bluegreen':'passive'} onClick={this.handleClick.bind(this)}>
-            <h2>Tjänster</h2>
+            <h3>Tjänster</h3>
           </div>
         </section>
       </div>

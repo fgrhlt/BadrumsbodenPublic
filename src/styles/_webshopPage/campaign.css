@@ -48,6 +48,32 @@
 /* responsive */
 @media (width <= 1280px) {
   #campaign {
-    height:400px;
+    min-height:400px;
+  }
+}
+
+@media (width <= 450px) {
+  #campaign {
+    padding-top:40px;
+    min-height:200px;
+
+    & .lostWrapper {
+      & > div {
+        min-height:250px;
+        & h1 {
+          font-size: 20pt;
+        }
+        & p {
+          width:auto;
+          font-size: responsive;
+        }
+      }
+      & > div:nth-of-type(2) {
+        & .btn {
+          font-size:10pt;
+          padding:10px 20px;
+        }
+      }
+    }
   }
 }

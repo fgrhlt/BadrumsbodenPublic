@@ -10,24 +10,25 @@
         & > div {
           lost-column:1/4 0 0;
           box-sizing:border-box;
-          padding:30px;
+          padding:25px;
           text-align:center;
 
-            & h2 {
+            & h3 {
               font-style:normal;
               color:white;
+              margin:0;
             }
         }
 
         /* First lost item, the badrumsboden-logo */
         & > div:nth-of-type(1) {
           lost-column:2/4 0 0;
-          padding:40px 0 0 0;
+          padding:28px 0 0 0;
 
           & button {
             font-size:9pt;
-            padding:10px 20px;
-            margin:-6px 20px 0 5%;
+            padding:8px 20px;
+            margin:-3px 20px 0 5%;
             float:left;
           }
           & #logo {

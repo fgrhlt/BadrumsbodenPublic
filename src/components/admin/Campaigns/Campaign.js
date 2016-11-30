@@ -28,7 +28,6 @@ class Campaign extends Component {
     const { campaign } = firebaseData
     const { items } = campaign
 
-    console.log("nextProps: ", nextProps)
     this.setState({
       campaignItem: items[0] ? items[0] : [],
     })
@@ -78,12 +77,16 @@ class Campaign extends Component {
       })
     }
     else {
+      let fileName = this.state.campaignItem.filename
+      let urlName = this.state.campaignItem.url
       firebase.database().ref().child('campaign/')
       .set({
         heading,
         description,
         articleNr,
-        color
+        color,
+        filename: fileName,
+        url: urlName
       })
 
       this.setState({
@@ -125,7 +128,6 @@ class Campaign extends Component {
     let campaignImg = {
       backgroundImage: 'url('+this.state.campaignItem.url+')'
     }
-    console.log("stateeeee!!!: ", this.state.campaignItem)
     return (
       <div id="adminCampaign">
         <section className="campaignImg" style={campaignImg}>
@@ -197,7 +199,6 @@ class Campaign extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("mapStateToProps", state);
   return {
     firebaseData: state.firebaseReducer.firebaseData
   }

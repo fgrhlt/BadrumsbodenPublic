@@ -11,26 +11,12 @@
       & .listHead {
         lost-utility:clearfix;
 
-        /* The clickable div with the text 8/9 if you want the pencil icon on the right */
         & > div {
           lost-column:9/9 0 0;
-          font-size:14pt;
+          font-size:12pt;
           color:#fff;
           padding:7px 20px;
           box-sizing: border-box;
-        }
-        /* The div holding the edit icon */
-        & figure {
-          lost-column:1/9 0 0;
-          /*background: url('../../../assets/icons/admin/pencil_w.svg') no-repeat;*/
-          background-color:var(--adminMenuDarkBlue);
-          background-size:12px 12px;
-          height:45px;
-          background-position:center;
-          cursor:pointer;
-        }
-        & figure:hover {
-          background-color:var(--adminMenuDarkBlueHover);
         }
       }
 
@@ -76,17 +62,17 @@
     }
 
     /* The yellow top sellers menu item */
-    & #yellow {
-      & > div:first-of-type {
+    & > div:last-of-type > div {
+      & > div {
+        margin-top:30px;
+        
         background:#EAD168;
         color:#666;
-        margin:80px 0 40px 0;
-        padding:7px 20px;
         & h4 {
           margin:0;
         }
       }
-      & > div:first-of-type:hover {
+      & > div:hover {
         background:#CEB85D;
       }
     }

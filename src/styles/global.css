@@ -134,14 +134,15 @@ input[type=checkbox]:checked + label:before {
 .picUpload + label {
   display:inline-block;
   cursor:pointer;
-  font-size:12pt;
+  font-size:10pt;
   font-weight: bold;
   background:var(--darkBlue);
-  height:40px;
-  padding:10px 20px;
+  height:35px;
+  padding:10px 16px;
   box-sizing:border-box;
   text-align:center;
   color:white;
+  width:30%;
 }
 .picUpload + label:hover {
   background: var(--darkBlueHover);
@@ -151,9 +152,11 @@ input[type=checkbox]:checked + label:before {
 }
 /* The holder of the file name */
 .fileHolder {
-  height:40px;
+  height:35px;
   box-sizing: padding-box;
   padding-left:15px;
+  display: inline-block;
+  width:70%;
 }
 
 .btn {

@@ -8,7 +8,7 @@
       padding-top:35px;
       & input {
         color:#808080;
-        font-size:22pt;
+        font-size:20pt;
         font-weight:bold;
         font-style:italic;
         padding-left:10px;
@@ -28,7 +28,7 @@
       }
       & input:nth-of-type(3) {
         margin-top:15px;
-        font-size: 16pt;
+        font-size: 14pt;
         font-weight: normal;
       }
     }
