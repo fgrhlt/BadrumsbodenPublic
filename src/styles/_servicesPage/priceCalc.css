@@ -46,8 +46,8 @@
   }
 }
 
-@media (width <= 800px) {
+@media (width <= 760px) {
   #priceCalc {
-    display:none;
+    display: none;
   }
 }

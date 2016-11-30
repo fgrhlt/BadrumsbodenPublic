@@ -81,16 +81,12 @@
   }
 
   #vvsRequest section > div {
-    lost-column:1/2 0;
+    lost-column:1;
   }
 }
 
 @media (width <= 600px) {
-  #vvsRequest section > div {
-    lost-column:1;
-  }
-
-  #vvsRequest section > div:last-of-type {
-    lost-column:1;
+  #vvsRequest {
+    display:none;
   }
 }

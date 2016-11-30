@@ -17,6 +17,7 @@
     & span {
       font-size:10pt;
       margin-bottom:10px;
+      display: inline-block;
     }
     & span:hover {
       color:#000;
@@ -30,8 +31,8 @@
       background: url('../../assets/arrows/small_backarrow.svg') no-repeat;
       width:6px;
       height:11px;
-      float:left;
       margin:2px 7px 0 0;
+      display: inline-block;
     }
     & .alone {
       margin-top:25px;
@@ -179,11 +180,9 @@
 @media (width <= 500px) {
   #header {
     & #left {
+      text-align: center;
       & #logo {
         margin:auto;
-      }
-      & span {
-        text-align:center;
       }
     }
     & #right {

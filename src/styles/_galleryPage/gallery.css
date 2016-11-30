@@ -46,8 +46,14 @@
 }
 
 @media (max-width: 435px) {
-  section > div {
-    lost-column:1;
+  #gallery {
+    & .container {
+      & section {
+        & > div{
+          lost-column:1;
+        }
+      }
+    }
   }
 }
 

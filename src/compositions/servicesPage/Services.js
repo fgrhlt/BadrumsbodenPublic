@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Header from '../../components/services/Header'
+import MobileServicePage from '../../components/services/MobileServicePage'
 import ServiceSelector from '../../components/services/ServiceSelector'
 import PriceCalculator from '../../components/services/PriceCalculator'
 import VVSRequest from '../../components/services/VvsRequest'
@@ -47,6 +48,7 @@ export default class Services extends Component {
     return (
       <div id="services">
         <Header />
+        <MobileServicePage />
         <ServiceSelector
           displayCalculators={this.displayCalculators.bind(this)}
           hideCalculators={this.hideCalculators.bind(this)}

@@ -90,7 +90,7 @@
     }
 
     & a {
-      font-size:18pt;
+      font-size:16pt;
       float:right;
       margin:20px 5% 0 0;
       display: block;
@@ -126,5 +126,23 @@
       & figure {
         max-height:200px;
       }
+  }
+}
+
+@media (width <= 400px) {
+  #galleryPreview #lostGrid {
+    & > section:nth-of-type(1) {
+      & > div:nth-of-type(2) {
+        & div {
+          lost-waffle:1;
+        }
+      }
+    }
+    & > section:nth-of-type(2) {
+      display:none;
+    }
+    & > section:nth-of-type(3) {
+      display:none;
+    }
   }
 }
