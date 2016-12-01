@@ -6,7 +6,8 @@ export default class Payment extends Component {
 
   componentWillMount() {
     this.state = {
-      url: ''
+      url: '',
+      status: 'Laddar...'
     }
   }
 
@@ -20,7 +21,7 @@ export default class Payment extends Component {
       let splittedUrl = url.split(' ')
       let formattedURL = splittedUrl[3].slice(5, -15)
 
-      this.setState({ url: formattedURL })
+      this.setState({ url: formattedURL, status: null })
     }.bind(this))
     .catch(function (error) {
       console.log(error);
@@ -32,6 +33,7 @@ export default class Payment extends Component {
       <div>
         <section>
           <h2>Betalning</h2>
+          {this.state.status? this.state.status : ''}
           <iframe
             frameBorder="0"
             id="paysonIframe"

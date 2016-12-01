@@ -13,19 +13,21 @@ export default class Checkoutpage extends Component {
     }
   }
 
-  toggleView() {
+  showPayment() {
     this.setState({
-      showCheckout: !this.state.showCheckout,
-      showPayment: !this.state.showPayment
+      showCheckout: false,
+      showPayment: true
     })
   }
 
-  collectData(data) {
-    console.log('data',data);
+  showCheckout() {
     this.setState({
-      data
+      showCheckout: true,
+      showPayment: false
     })
   }
+
+  collectData(data) { this.state = {data} }
 
   render() {
     return (
@@ -47,7 +49,7 @@ export default class Checkoutpage extends Component {
           {this.state.showCheckout?
             <div>
               <Checkout collectData={this.collectData.bind(this)}/>
-              <div onClick={this.toggleView.bind(this)}>
+              <div onClick={this.showPayment.bind(this)}>
                 Till betalning ->
               </div>
             </div>
@@ -55,7 +57,7 @@ export default class Checkoutpage extends Component {
 
           {this.state.showPayment?
             <div>
-              <div onClick={this.toggleView.bind(this)}>
+              <div onClick={this.showCheckout.bind(this)}>
                 Tillbaka (avbryt betalning)
               </div>
               <Payment data={this.state.data}/>

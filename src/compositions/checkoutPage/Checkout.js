@@ -23,8 +23,12 @@ class Checkout extends Component {
     }
 
     this.fetchShoppingcartProducts()
-    setTimeout(() => {this.collectData()}, 2500) //Tills vidare
+  }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState!=this.state) {
+      this.collectData()
+    }
   }
 
   collectData() {
@@ -106,7 +110,6 @@ class Checkout extends Component {
       this.props.actions.shoppingcartActions.removeFromShoppingcart(product, price)
       this.fetchShoppingcartProducts()
     })
-    this.collectData()
   }
 
   _updateQuantity(i, product, quantity) {
@@ -121,7 +124,6 @@ class Checkout extends Component {
         products: stateProducts
       })
     }
-    this.collectData()
   }
 
   handleRadioButton(e) {
@@ -133,8 +135,6 @@ class Checkout extends Component {
     this.setState({
       radioButtonValue: e.target.value,
       deliveryCost: deliveryValue
-    }, () => {
-      this.collectData()
     })
   }
 
