@@ -27,9 +27,12 @@ function handleError(res, reason, message, code) {
 }
 
               //-------ROUTING------
-//payson test
+/* "/payment"
+* POST: Return the checkout object
+*/
 app.post("/payment", function(req, res) {
-  console.log('payment');
+  console.log('req', req);
+  console.log('res', res);
   var util = require('./lib/utils');
   /**
   * require the conctructor
@@ -115,6 +118,9 @@ app.post("/email/VVSRequest", function(req, res) {
   * POST: Send email to specified address
   */
 
+/* "/email/priskalkyl"
+* POST: Send email to specified address
+*/
 app.post("/email/priskalkyl", function(req, res) {
   console.log(req.body);
 
@@ -224,6 +230,11 @@ app.post("/email/priskalkyl", function(req, res) {
     });
   });
 
+/* "*"
+* GET: All other routes
+*/
 app.get("*", function(req, res) {
+ console.log('req', req);
+ console.log('res', res);
  res.sendFile(path.resolve(__dirname, 'dist/index.html'))
 })
