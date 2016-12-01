@@ -5,8 +5,15 @@ import Products from './Products'
 import Campaigns from './Campaigns'
 import Banner from '../../components/admin/Campaigns/Banner'
 import AdminServices from './AdminServices'
+import { browserHistory } from 'react-router'
+
 
 export default class Admin extends Component {
+
+  componentWillMount() {
+    browserHistory.push('/admin/webshop/produkter')
+  }
+
   render() {
     let site = this.props.params.site
     let section = this.props.params.section

@@ -129,10 +129,10 @@ export function fetchSingleFirebaseItem(path) {
   }
 }
 
-export function deleteFirebaseElement(path, article) {
+export function deleteFirebaseElement(type, article) {
   var ref
 
-  if(path=='products'){
+  if(type=='products'){
     ref = firebase.database()
     .ref()
     .child('webshop/produkter/'+article.key)
@@ -147,7 +147,7 @@ export function deleteFirebaseElement(path, article) {
 
       console.log('Storage: deleted!')
     })
-  } else if(path=='gallery'){
+  } else if(type=='gallery'){
     ref = firebase.database()
     .ref()
     .child('gallery/'+article.key)

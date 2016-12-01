@@ -73,7 +73,7 @@ class ProductTable extends Component {
   /* Removes the article from firebase */
   removeArticle(rowIndex) {
     let product = this.state.products[rowIndex][5]
-    this.props.deleteFirebaseElement(product)
+    this.props.deleteFirebaseElement('products', product)
   }
 
   /* Sets the selected product as a favorite product, which displays onn the
