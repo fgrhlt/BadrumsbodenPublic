@@ -48,7 +48,7 @@ class Products extends Component {
       subcatItems: firebaseData['categories/'+category] ? firebaseData['categories/'+category].items : [],
       paginatedProducts: firebaseData.products ? firebaseData[productCat].items.slice(0, this.state.productsPerPage) : [],
     })
-    
+
     if (this.props.params.subcategory !== subcategory) {
       if (category=='search') {
         fetchFirebaseData('search', 'productName', subcategory)
@@ -101,7 +101,6 @@ class Products extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     firebaseData: state.firebaseReducer.firebaseData
   }

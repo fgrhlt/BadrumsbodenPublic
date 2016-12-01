@@ -17,6 +17,12 @@ export default class SearchBar extends Component {
     })
   }
 
+  onKey(event) {
+    if (event.keyCode==13) {
+      this.searchProducts()
+    }
+  }
+
   searchProducts() {
     if (this.state.inputText.length>0) {
       browserHistory.push('/webshop/search/'+this.state.inputText)
@@ -30,6 +36,7 @@ export default class SearchBar extends Component {
           <input
             value={this.state.inputText}
             onChange={this.onChange.bind(this)}
+            onKeyUp={this.onKey.bind(this)}
             type="text"
             placeholder="Vad söker du efter?">
           </input>
