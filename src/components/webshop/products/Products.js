@@ -24,7 +24,7 @@ class Products extends Component {
     }
 
     if (category=='search') {
-      fetchFirebaseData('products', 'productName', subcategory)
+      fetchFirebaseData('search', 'productName', subcategory)
       fetchFirebaseData('categories', 'parent', 0)
     }
     else if (subcategory==undefined) {
@@ -41,16 +41,17 @@ class Products extends Component {
     const { params, firebaseData } = nextProps
     const { subcategory, category } = params
     const { fetchFirebaseData } = this.props
+    let productCat = category=='search' ? 'search' : 'products'
 
     this.setState({
       productItems: firebaseData.products ? firebaseData.products.items : [],
       subcatItems: firebaseData['categories/'+category] ? firebaseData['categories/'+category].items : [],
-      paginatedProducts: firebaseData.products ? firebaseData.products.items.slice(0, this.state.productsPerPage) : [],
+      paginatedProducts: firebaseData.products ? firebaseData[productCat].items.slice(0, this.state.productsPerPage) : [],
     })
-
+    
     if (this.props.params.subcategory !== subcategory) {
       if (category=='search') {
-        fetchFirebaseData('products', 'productName', subcategory)
+        fetchFirebaseData('search', 'productName', subcategory)
         fetchFirebaseData('categories', 'parent', 0)
       }
       else if (subcategory==undefined) {
@@ -100,6 +101,7 @@ class Products extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(state);
   return {
     firebaseData: state.firebaseReducer.firebaseData
   }

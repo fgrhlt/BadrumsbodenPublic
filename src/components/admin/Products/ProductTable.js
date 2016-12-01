@@ -41,7 +41,7 @@ class ProductTable extends Component {
   componentWillReceiveProps(nextProps) {
     const { param, firebaseData } = nextProps
     const { subcategory, category } = param
-    const { fetchFirebaseData } = this.props
+    const { fetchFirebaseDataAdmin } = this.props
 
     let subcat = replaceSpecialCharactersURLs(subcategory)
 

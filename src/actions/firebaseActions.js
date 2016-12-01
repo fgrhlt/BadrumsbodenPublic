@@ -13,6 +13,13 @@ export function fetchFirebaseData(path, query, searchString) {
     .orderByChild(query)
     .equalTo(searchString)
   }
+  else if(path=='search'){
+    ref = firebase.database()
+    .ref()
+    .child('webshop/produkter')
+    .orderByChild(query)
+    .startAt(searchString).endAt(searchString+'\uf8ff')  
+  }
   else if(path=='categories'){
     ref = firebase.database()
     .ref()

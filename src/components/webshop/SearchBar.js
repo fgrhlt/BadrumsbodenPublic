@@ -12,19 +12,14 @@ export default class SearchBar extends Component {
   }
 
   onChange(event) {
-
-    this.state = {
+    this.setState({
       inputText: event.target.value
-    }
-
-    this.searchProducts()
+    })
   }
 
   searchProducts() {
     if (this.state.inputText.length>0) {
       browserHistory.push('/webshop/search/'+this.state.inputText)
-    }else {
-      browserHistory.push('/webshop/search/'+'0')
     }
   }
 
