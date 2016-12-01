@@ -80,6 +80,7 @@ class Products extends Component {
   render() {
     const { productItems, productsPerPage, paginatedProducts, subcatItems} = this.state
     let totalPages = Math.ceil(productItems.length / productsPerPage)
+
     return (
       <div>
         <div id="products">
@@ -88,11 +89,11 @@ class Products extends Component {
           </section>
 
           <section>
-            {<ProductElements
+            {paginatedProducts.length>0? <ProductElements
               items={paginatedProducts}
               handlePagination={this.handlePagination.bind(this)}
               totalPages={totalPages}
-              />}
+              />: 'Tyvärr hittades inga produkter!'}
           </section>
         </div>
       </div>
