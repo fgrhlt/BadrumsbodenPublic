@@ -32,16 +32,19 @@
       text-align: center;
 
       /* The inner content */
-      & #webshop {
-        padding-top:40px;
-      }
       & .content {
         padding:30px 40px 40px 40px;
         box-sizing: border-box;
         background: color(#fff alpha(90%));
         color:var(--darkGray);
         line-height: 1.2;
-
+        & .text {
+          height:230px;
+          box-sizing: border-box;
+        }
+        & .webshopText {
+          padding-top:20px;
+        }
         & .subHeading {
           clear:fix;
           margin-bottom:5px;

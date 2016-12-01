@@ -31,7 +31,7 @@ export default class Checkoutpage extends Component {
 
   render() {
     return (
-      <div  id="checkout">
+      <div id="checkout">
         <section>
           Dina uppgifter är trygga, säkra och krypterade.<br /><br />
 
@@ -40,25 +40,27 @@ export default class Checkoutpage extends Component {
           vardagar 08-12 & 13-16.<br />
           info@badrumsboden.se<br /><br />
 
-          Vi använder Stripe som samarbetspartner vid betalningar. <br />
-          Stripe erbjuder en full service vid lagring av adressuppgifter och kontokort.<br /><br />
-          Känn dig säker med Stripe!
+          Vi använder Payson som samarbetspartner vid betalningar. <br />
+          Payson erbjuder en full service vid lagring av adressuppgifter och kontokort.<br /><br />
+          Känn dig säker med Payson!
         </section>
 
         <section>
           {this.state.showCheckout?
             <div>
               <Checkout collectData={this.collectData.bind(this)}/>
-              <div onClick={this.showPayment.bind(this)}>
-                Till betalning ->
+              <div className="arrowButton forward" onClick={this.showPayment.bind(this)}>
+                <h3>Till Betalning</h3>
+                <div><figure /></div>
               </div>
             </div>
           :''}
 
           {this.state.showPayment?
             <div>
-              <div onClick={this.showCheckout.bind(this)}>
-                Tillbaka (avbryt betalning)
+              <div className="arrowButton back" onClick={this.showCheckout.bind(this)}>
+                <div><figure /></div>
+                <h3>Tillbaka (avbryt betalning)</h3>
               </div>
               <Payment data={this.state.data}/>
             </div>

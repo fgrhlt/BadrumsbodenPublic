@@ -148,7 +148,6 @@ class Checkout extends Component {
     let sum = 0
 
     return (
-      <div>
         <section>
           <h2>Varukorg</h2>
 
@@ -156,60 +155,62 @@ class Checkout extends Component {
             {this.state.products.map(function(product, i) {
               sum = sum + parseInt(product.price)*parseInt(product.quantity)
 
-              return (
-                <div className="item" key={i}>
-                  <div className="image" style={{paddingLeft:'10px', paddingRight:'10px'}} onClick={this.goToProduct.bind(this, product)}>
-                    <figure style={{backgroundImage:'url('+product.url+')'}} />
-                  </div>
+            return (
+              <div className="item" key={i}>
+                <div className="imageInfo" onClick={this.goToProduct.bind(this, product)}>
+                  <figure style={{backgroundImage:'url('+product.url+')'}} />
 
                   <div className="info" onClick={this.goToProduct.bind(this, product)}>
+                    <p>{product.supplier}</p>
                     <h4>{product.productName}</h4>
                     <span>Artikelnr: {product.articleNr}</span>
                   </div>
+                </div>
 
+                <div className="quantityInfo">
                   <div className="quantity">
                     <p>Antal: {product.quantity}</p>
-                    <span onClick={this._updateQuantity.bind(this, i, product, -1)}>-</span>
-                    <span onClick={this._updateQuantity.bind(this, i, product, 1)}>+</span>
+                    <div onClick={this._updateQuantity.bind(this, i, product, -1)}>-</div>
+                    <div onClick={this._updateQuantity.bind(this, i, product, 1)}>+</div>
                   </div>
+
                   <div className="price">
-                    <h4>{product.price}:-</h4>
+                    <h3>{product.price}:-</h3>
                   </div>
 
                   <div className="trash">
                     <figure onClick={this.deleteProduct.bind(this, product, product.price, i)}/>
                   </div>
                 </div>
-              )}, this)}
-              <h4 className="total">Summa: {sum+parseInt(deliveryCost)}:-</h4>
-            </div>
-
-            <div id="delivery">
-              <h2>Leveranssätt</h2>
-              <div>
-                <input
-                  type="radio"
-                  value="store"
-                  checked={this.state.radioButtonValue == 'store' ? true : false}
-                  onChange={this.handleRadioButton.bind(this)}
-                  />
-                <p>Hämta i butik, 0:-</p>
               </div>
-
-              <div>
-                <input
-                  type="radio"
-                  value="schenker"
-                  checked={this.state.radioButtonValue == 'schenker' ? true : false}
-                  onChange={this.handleRadioButton.bind(this)}
-                  />
-                <p>Postpaket Schenker, 159:-</p>
-              </div>
-            </div>
-            </section>
+            )}, this)}
+            <h4 className="total">Summa: {sum+parseInt(deliveryCost)}:-</h4>
           </div>
-        )
-      }
+
+          <div id="delivery">
+            <h2>Leveranssätt</h2>
+            <div>
+              <input
+                type="radio"
+                value="store"
+                checked={this.state.radioButtonValue == 'store' ? true : false}
+                onChange={this.handleRadioButton.bind(this)}
+                />
+              <p>Hämta i butik, Umeå, 0:-</p>
+            </div>
+
+            <div>
+              <input
+                type="radio"
+                value="schenker"
+                checked={this.state.radioButtonValue == 'schenker' ? true : false}
+                onChange={this.handleRadioButton.bind(this)}
+                />
+              <p>Postpaket Schenker, 159:-</p>
+            </div>
+          </div>
+        </section>
+      )}
     }
 
     function mapStateToProps(state) {
