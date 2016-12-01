@@ -223,10 +223,7 @@ app.post("/email/priskalkyl", function(req, res) {
       console.log(response.headers);
     });
   });
-//google135f1ae3ff3278da.html
-app.get('/google135f1ae3ff3278da.html', function(req, res) {
- res.sendFile(path.resolve(__dirname, 'google135f1ae3ff3278da.html'))
-})
+
 app.get("*", function(req, res) {
  res.sendFile(path.resolve(__dirname, 'dist/index.html'))
 })
