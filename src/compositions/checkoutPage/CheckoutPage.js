@@ -58,11 +58,11 @@ export default class Checkoutpage extends Component {
 
           {this.state.showPayment?
             <div>
+              <Payment data={this.state.data}/>
               <div className="arrowButton back" onClick={this.showCheckout.bind(this)}>
                 <div><figure /></div>
                 <h3>Tillbaka (avbryt betalning)</h3>
               </div>
-              <Payment data={this.state.data}/>
             </div>
           :''}
         </section>

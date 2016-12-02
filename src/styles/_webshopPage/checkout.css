@@ -10,7 +10,7 @@
     /* First column contains some info text */
     & > section:nth-of-type(1) {
       lost-column:1/4;
-      margin-top:90px;
+      margin-top:75px;
       line-height: 1.7;
         & h4 {
           font-weight: bold;
@@ -209,7 +209,7 @@
         width:350px;
         padding:6px 20px 6px 70px;
         background-color:var(--lightGreen);
-        margin:-30px 0 30px 0;
+        margin:30px 0 0 0;
         & h3 {
           & span {
             font-size:12pt;
