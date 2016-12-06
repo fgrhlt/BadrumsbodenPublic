@@ -5,7 +5,7 @@ var bodyParser = require("body-parser");
 var app = express();
 var cors = require('cors');
 
-//app.use(cors({origin: 'http://localhost:8000'}));// use it before all route definitions
+app.use(cors({origin: 'http://badrumsboden.herokuapp.com'}));// use it before all route definitions
 //app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname+'/dist'))
 
@@ -27,17 +27,10 @@ function handleError(res, reason, message, code) {
 }
 
               //-------ROUTING------
-let baseURL = 'badrumsboden.herokuapp.com/'
-
-
-router.use(function(req, res, next) {
-  console.log('%s %s %s', req.method, req.url, req.path);
-  next();
-});
 /* "/payment"
 * POST: Return the checkout object
 */
-app.post(baseURL+"payment", function(req, res) {
+app.post("/payment", function(req, res) {
   console.log('req', req);
   console.log('res', res);
   var util = require('./lib/utils');
@@ -90,7 +83,7 @@ app.post(baseURL+"payment", function(req, res) {
 /* "/email/VVSRequest"
 * POST: Send email to specified address
 */
-app.post(baseURL+"email/VVSRequest", function(req, res) {
+app.post("/email/VVSRequest", function(req, res) {
 
   var helper = require('sendgrid').mail;
   var from_email = new helper.Email('test@example.com'); //TODO: byt ut
@@ -128,7 +121,7 @@ app.post(baseURL+"email/VVSRequest", function(req, res) {
 /* "/email/priskalkyl"
 * POST: Send email to specified address
 */
-app.post(baseURL+"email/priskalkyl", function(req, res) {
+app.post("/email/priskalkyl", function(req, res) {
   console.log(req.body);
 
   var helper = require('sendgrid').mail;
@@ -240,7 +233,7 @@ app.post(baseURL+"email/priskalkyl", function(req, res) {
 /* "*"
 * GET: All other routes
 */
-app.get(baseURL+"*", function(req, res) {
+app.get("*", function(req, res) {
  console.log('req', req);
  console.log('res', res);
  res.sendFile(path.resolve(__dirname, 'dist/index.html'))
