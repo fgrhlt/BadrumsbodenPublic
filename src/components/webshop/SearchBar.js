@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
-import Dropdown from 'react-dropdown'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
