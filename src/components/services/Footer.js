@@ -30,6 +30,13 @@ export default class Footer extends Component {
                 Genom att fortsätta använda vår webplats förutsätter vi att du
                 godkänner detta. <a href="">Läs mer här</a>.
               </span>
+
+              <a title="Payson internetbetalningar" href="https://www.payson.se/" target="_blank">
+                <img src="https://www.payson.se/sites/all/files/images/external/payson150x55_n.png"
+                  alt="Payson logo"
+                  className="paysonLogo">
+                </img>
+              </a>
             </div>
 
             <div>

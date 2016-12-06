@@ -9,7 +9,6 @@ import * as firebaseActions from '../../actions/firebaseActions'
 import * as shoppingcartActions from '../../actions/shoppingcartActions'
 
 require('styles/_checkoutPage/checkout.css')
-require('styles/_checkoutPage/delivery.css')
 
 class Checkout extends Component {
 

@@ -61,6 +61,9 @@
         & button:hover {
           color:var(--darkGray);
         }
+        & .paysonLogo {
+          margin-top:20px;
+        }
       }
     }
 

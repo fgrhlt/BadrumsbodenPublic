@@ -3,7 +3,12 @@
 #adminCampaign {
   lost-utility:clearfix;
   background-color: var(--lightGray);
-
+  & .warning {
+    color:red;
+    text-align: center;
+    width:100%;
+    margin-top:10px;
+  }
   & .campaignImg {
     lost-column:3/4 0 0;
     background-repeat: no-repeat;
@@ -11,7 +16,7 @@
     background-position: center;
     box-sizing:border-box;
     color:white;
-    padding:40px 3%;
+    padding:20px 3% 40px 3%;
     margin-top:30px;
 
     /* The first section with the campaign */
@@ -25,16 +30,19 @@
       }
       & input {
         font-size: 22pt;
+        font-weight: bold;
         display:block;
         margin-bottom:20px;
         padding:5px 15px;
-        min-width:40%;
+        min-width:35%;
       }
       & textarea {
         font-size:10pt;
-        width:40%;
-        max-width: 40%;
-        min-width:40%;
+        font-weight: bold;
+        line-height: 1.8;
+        width:35%;
+        max-width: 35%;
+        min-width:35%;
         min-height:190px;
         padding:10px;
       }

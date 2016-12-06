@@ -19,10 +19,13 @@
       lost-column:8/10 0;
       & h1 {
         margin-bottom:20pt;
+        font-weight: bold;
         text-transform: capitalize;
       }
       & p {
         width:450px;
+        line-height: 2;
+        font-weight: bold;
       }
       & .black {
         color:var(--darkGray);
