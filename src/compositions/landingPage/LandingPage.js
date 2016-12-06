@@ -12,7 +12,7 @@ import * as firebaseActions from '../../actions/firebaseActions'
  class LandingPage extends Component {
 
   componentWillMount() {
-    this.props.fetchFirebaseData('campaign')
+    this.props.fetchSingleFirebaseItem('campaign')
   }
 
   render() {

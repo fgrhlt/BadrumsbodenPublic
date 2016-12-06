@@ -64,7 +64,8 @@ export default class ServiceSelector extends Component {
 
   render() {
     let containerStyle = {
-      backgroundImage: 'url(assets/images/services/service_bg.jpg)',
+      backgroundImage: 'url(assets/images/landingPage/badrum1_1.jpg)',
+      backgroundPosition:'center'
     }
 
     return (
