@@ -23,26 +23,24 @@ class GalleryPreview extends Component {
     }
   }
 
-
   componentWillReceiveProps(nextProps) {
     const { firebaseData } = nextProps
 
     this.setState({
       imagesBadrum: firebaseData['gallery/badrum'] ? firebaseData['gallery/badrum'].items : [],
       imagesKok: firebaseData['gallery/kok'] ? firebaseData['gallery/kok'].items : []
-    })
-
-
-    let urlsBadrum = this.state.imagesBadrum.map( (item) => {
-      return item.url
-    })
-    let urlsKok = this.state.imagesKok.map( (item) => {
-      return item.url
-    })
-
-    this.setState({
-      urlsBadrum,
-      urlsKok
+    }, () => {
+      let urlsBadrum = this.state.imagesBadrum.map( (item) => {
+        return item.url
+      })
+      let urlsKok = this.state.imagesKok.map( (item) => {
+        return item.url
+      })
+      
+      this.setState({
+        urlsBadrum,
+        urlsKok
+      })
     })
   }
 
@@ -51,7 +49,7 @@ class GalleryPreview extends Component {
   }
 
   render() {
-  const { urlsBadrum, urlsKok } = this.state
+    const { urlsBadrum, urlsKok } = this.state
 
     return (
       <div id="galleryPreview">
