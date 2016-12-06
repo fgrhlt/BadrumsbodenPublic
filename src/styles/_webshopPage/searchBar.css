@@ -7,7 +7,7 @@
 
   & div:nth-of-type(1) {
     lost-column:9/10 0 0;
-
+    position:relative;
     & input {
       box-sizing: border-box;
       padding: 10px 15px;
