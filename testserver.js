@@ -27,7 +27,7 @@ function handleError(res, reason, message, code) {
 }
 
               //-------ROUTING------
-let baseURL = 'https://badrumsboden.herokuapp.com/'
+let baseURL = 'badrumsboden.herokuapp.com/'
 /* "/payment"
 * POST: Return the checkout object
 */
