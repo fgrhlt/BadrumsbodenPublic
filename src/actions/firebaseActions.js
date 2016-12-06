@@ -1,5 +1,6 @@
 const FETCH_FIREBASE_DATA = 'FETCH_FIREBASE_DATA'
 const DELETE_FIREBASE_DATA = 'DELETE_FIREBASE_DATA'
+const SELECT_TYPE = 'SELECT_TYPE'
 
 import firebase from 'firebase/app'
 
@@ -18,7 +19,7 @@ export function fetchFirebaseData(path, query, searchString) {
     .ref()
     .child('webshop/produkter')
     .orderByChild(query)
-    .startAt(searchString).endAt(searchString+'\uf8ff')  
+    .startAt(searchString).endAt(searchString+'\uf8ff')
   }
   else if(path=='categories'){
     ref = firebase.database()
@@ -177,5 +178,12 @@ export function deleteFirebaseElement(type, article) {
       folder: article.folder,
       productName: article.productName
     })
+  }
+}
+
+export function selectSearchType(type) {
+  return {
+    type: SELECT_TYPE,
+    searchType: type
   }
 }

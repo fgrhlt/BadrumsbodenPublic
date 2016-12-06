@@ -4,6 +4,7 @@ import { loadFirebaseData } from '../actions/firebaseActions'
 const FETCH_FIREBASE_DATA = 'FETCH_FIREBASE_DATA'
 const DELETE_FIREBASE_DATA = 'DELETE_FIREBASE_DATA'
 const UPLOAD_FILES = 'UPLOAD_FILES'
+const SELECT_TYPE = 'SELECT_TYPE'
 
 const initialState = Immutable({})
 
@@ -18,6 +19,9 @@ export default function firebaseReducer(state = initialState, action) {
     case UPLOAD_FILES:
       return state
         .set('firebaseDataStatus', uploadLog(action))
+    case SELECT_TYPE:
+      return state
+        .set('type', action.searchType)
   }
   return state
 }

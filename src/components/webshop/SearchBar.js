@@ -1,13 +1,22 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
+import Dropdown from 'react-dropdown'
+
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as firebaseActions from '../../actions/firebaseActions'
+
 
 require('styles/_webshopPage/searchBar.css')
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
 
   componentWillMount() {
+    this.props.selectSearchType('productName')
+
     this.state = {
-      inputText: ''
+      inputText: '',
+      searchType: 'productName', //or: articleNr
     }
   }
 
@@ -24,7 +33,8 @@ export default class SearchBar extends Component {
   }
 
   searchProducts() {
-    if (this.state.inputText.length>0) {
+    const { inputText } = this.state
+    if (inputText.length>0) {
       browserHistory.push('/webshop/search/'+this.state.inputText.toLowerCase())
     }
   }
@@ -49,3 +59,15 @@ export default class SearchBar extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    firebaseData: state.firebaseReducer.firebaseData
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(firebaseActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar)

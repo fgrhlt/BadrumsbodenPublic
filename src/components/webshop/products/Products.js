@@ -13,7 +13,7 @@ require('../../../styles/_webshopPage/products.css')
 class Products extends Component {
 
   componentWillMount() {
-    const { params, fetchFirebaseData } = this.props
+    const { params, fetchFirebaseData, type } = this.props
     const { subcategory, category } = params
 
     this.state = {
@@ -25,7 +25,8 @@ class Products extends Component {
     }
 
     if (category=='search') {
-      fetchFirebaseData('search', 'productName', subcategory)
+      console.log('fetchFirebaseData search', type, subcategory)
+      fetchFirebaseData('search', type, subcategory)
       fetchFirebaseData('categories', 'parent', 0)
     }
     else if (subcategory==undefined) {
@@ -41,12 +42,12 @@ class Products extends Component {
   componentWillReceiveProps(nextProps) {
     const { params, firebaseData } = nextProps
     const { subcategory, category } = params
-    const { fetchFirebaseData } = this.props
+    const { fetchFirebaseData, type } = this.props
     let productCat = category=='search' ? 'search' : 'products'
     let currentCategory = this.props.params.category
 
     if (currentCategory!=category && category=='search') {
-      fetchFirebaseData('search', 'productName', subcategory)
+      fetchFirebaseData('search', type, subcategory)
       fetchFirebaseData('categories', 'parent', 0)
       return
     }
@@ -111,6 +112,7 @@ class Products extends Component {
 
 function mapStateToProps(state) {
   return {
+    type: state.firebaseReducer.type,
     firebaseData: state.firebaseReducer.firebaseData
   }
 }
