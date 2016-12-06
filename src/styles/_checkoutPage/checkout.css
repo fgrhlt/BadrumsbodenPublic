@@ -10,7 +10,7 @@
     /* First column contains some info text */
     & > section:nth-of-type(1) {
       lost-column:1/4;
-      margin-top:75px;
+      margin-top:55px;
       line-height: 1.7;
         & h4 {
           font-weight: bold;
@@ -24,7 +24,7 @@
 
         & #cart {
           lost-utility:clearfix;
-          margin:40px 0;
+          margin:20px 0;
 
           /* The items of the shopping cart, contains 4 lost columns */
           & .item {
@@ -134,7 +134,7 @@
         lost-utility:clearfix;
         background:#F2F2F2;
         padding:20px;
-        margin:40px 0 20px 0;
+        margin:20px 0 20px 0;
         & .optionWrapper {
           lost-column:2/3 0 20px;
 
@@ -201,7 +201,7 @@
         box-shadow: 0 2px 5px #888;
         border-radius: 8px;
         cursor:pointer;
-        margin-top:80px;
+        margin-top:60px;
       }
       & .paysonBtn:active {
         background:url('../../assets/buttons/payson-btn_a.svg') no-repeat;
