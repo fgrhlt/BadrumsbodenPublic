@@ -25,10 +25,17 @@ function handleError(res, reason, message, code) {
 /* "/payment"
 * POST: Return the checkout object
 */
+<<<<<<< afbcb962ff72123c80ca2b00ba8412b199517ef5
 app.post("/payment", function(req, res) {
   console.log('req', req)
   console.log('res', res)
   var util = require('./lib/utils')
+=======
+app.post(("/payment", function(req, res) {
+  console.log('req', req);
+  console.log('res', res);
+  var util = require('./lib/utils');
+>>>>>>> fixat betlaningsknapp
   /**
   * require the conctructor
   * @type {Constructor}
@@ -78,7 +85,11 @@ app.post("/payment", function(req, res) {
 /* "/email/VVSRequest"
 * POST: Send email to specified address
 */
+<<<<<<< afbcb962ff72123c80ca2b00ba8412b199517ef5
 app.post("/email/VVSRequest", function(req, res) {
+=======
+app.post(("/email/VVSRequest", function(req, res) {
+>>>>>>> fixat betlaningsknapp
 
   var helper = require('sendgrid').mail
   var from_email = new helper.Email('test@example.com') //TODO: byt ut
@@ -116,8 +127,13 @@ app.post("/email/VVSRequest", function(req, res) {
 /* "/email/priskalkyl"
 * POST: Send email to specified address
 */
+<<<<<<< afbcb962ff72123c80ca2b00ba8412b199517ef5
 app.post("/email/priskalkyl", function(req, res) {
   console.log(req.body)
+=======
+app.post(("/email/priskalkyl", function(req, res) {
+  console.log(req.body);
+>>>>>>> fixat betlaningsknapp
 
   var helper = require('sendgrid').mail
   var from_email = new helper.Email('test@example.com')
@@ -228,8 +244,14 @@ app.post("/email/priskalkyl", function(req, res) {
 /* "*"
 * GET: All other routes
 */
+<<<<<<< afbcb962ff72123c80ca2b00ba8412b199517ef5
 app.get("*", function(req, res) {
  console.log('req', req)
  console.log('res', res)
+=======
+app.get(("*", function(req, res) {
+ console.log('req', req);
+ console.log('res', res);
+>>>>>>> fixat betlaningsknapp
  res.sendFile(path.resolve(__dirname, 'dist/index.html'))
 })

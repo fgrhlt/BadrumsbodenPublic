@@ -159,86 +159,29 @@
           }
         }
       }
-      & .arrowButton {
+      & .paysonBtn {
+        background:url('../../assets/buttons/payson-btn.svg') no-repeat;
+        width:239px;
+        height:46px;
+        box-shadow: 0 2px 5px #888;
+        border-radius: 8px;
         cursor:pointer;
-        height:40px;
-        text-align: center;
-        position: relative;
-        user-select:none;
-        box-shadow: 0 2px 10px #CCC;
-        color:white;
-        padding:6px 80px 6px 30px;
-        box-sizing: border-box;
-        background:var(--lightYellow);
-
-        /* The box area containing the arrow */
-        & > div {
-          background: color(#EAD168 alpha(80%) shade(10%));
-          width:55px;
-          height:40px;
-          box-sizing: border-box;
-          padding:5px 18px;
-
-          /* The arrow */
-          & figure {
-            background:url(../../assets/arrows/yellow_btn_arrow.svg) no-repeat;
-            width:25px;
-            height:32px;
-          }
-        }
+        margin-top:40px;
       }
-      & .forward {
-        float:right;
-        & > div {
-          position: absolute 0 0 auto auto;
-        }
+      & .paysonBtn:active {
+        background:url('../../assets/buttons/payson-btn_a.svg') no-repeat;
       }
-      & .forward:hover {
-        background:color(#EAD168 alpha(80%) shade(5%));
-        & > div {
-          background: color(#EAD168 alpha(80%) shade(15%));
-        }
+      & .paysonBtnBack {
+        background:url('../../assets/buttons/payson-btn-back.svg') no-repeat;
+        width:280px;
+        height:46px;
+        box-shadow: 0 2px 5px #888;
+        border-radius: 8px;
+        cursor:pointer;
+        margin-top:20px;
       }
-      & .forward:active {
-        background:color(#EAD168 alpha(80%) shade(10%));
-        & > div {
-          background: color(#EAD168 alpha(80%) shade(20%));
-        }
-      }
-      & .back {
-        width:350px;
-        padding:6px 20px 6px 70px;
-        background-color:var(--lightGreen);
-        margin:30px 0 0 0;
-        & h3 {
-          & span {
-            font-size:12pt;
-          }
-        }
-        & > div {
-          position: absolute;
-          left:0;
-          top:0;
-          padding:3px 14px;
-          background: color(#A7D49B alpha(80%) shade(7%));
-
-          & figure {
-            transform: rotate(180deg);
-            background:url(../../assets/arrows/green_btn_arrow.svg) no-repeat;
-          }
-        }
-      }
-      & .back:hover {
-        background:color(#A7D49B shade(10%));
-        & > div {
-          background: color(#A7D49B alpha(80%) shade(12%));
-        }
-      }
-      & .back:active {
-        background:color(#A7D49B shade(15%));
-        & > div {
-          background: color(#A7D49B alpha(80%) shade(20%));
-        }
+      & .paysonBtnBack:active {
+        background:url('../../assets/buttons/payson-btn-back_a.svg') no-repeat;
       }
     }
 }

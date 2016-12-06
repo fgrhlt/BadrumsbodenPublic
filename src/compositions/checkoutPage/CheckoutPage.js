@@ -49,9 +49,7 @@ export default class Checkoutpage extends Component {
           {this.state.showCheckout?
             <div>
               <Checkout collectData={this.collectData.bind(this)}/>
-              <div className="arrowButton forward" onClick={this.showPayment.bind(this)}>
-                <h3>Till Betalning</h3>
-                <div><figure /></div>
+              <div className="paysonBtn" onClick={this.showPayment.bind(this)}>
               </div>
             </div>
           :''}
@@ -59,9 +57,7 @@ export default class Checkoutpage extends Component {
           {this.state.showPayment?
             <div>
               <Payment data={this.state.data}/>
-              <div className="arrowButton back" onClick={this.showCheckout.bind(this)}>
-                <div><figure /></div>
-                <h3>Tillbaka (avbryt betalning)</h3>
+              <div className="paysonBtnBack" onClick={this.showCheckout.bind(this)}>
               </div>
             </div>
           :''}
