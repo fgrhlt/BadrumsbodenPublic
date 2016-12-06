@@ -16,7 +16,7 @@ class SearchBar extends Component {
 
     this.state = {
       inputText: '',
-      searchType: 'productName', //or: articleNr
+      searchType: 'productName'
     }
   }
 
@@ -28,6 +28,9 @@ class SearchBar extends Component {
 
   onKey(event) {
     if (event.keyCode==13) {
+      if (!isNaN(this.state.inputText[0])) {
+        this.props.selectSearchType('articleNr')
+      }
       this.searchProducts()
     }
   }
