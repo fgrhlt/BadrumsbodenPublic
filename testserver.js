@@ -28,6 +28,12 @@ function handleError(res, reason, message, code) {
 
               //-------ROUTING------
 let baseURL = 'badrumsboden.herokuapp.com/'
+
+
+router.use(function(req, res, next) {
+  console.log('%s %s %s', req.method, req.url, req.path);
+  next();
+});
 /* "/payment"
 * POST: Return the checkout object
 */
