@@ -30,7 +30,7 @@ function handleError(res, reason, message, code) {
 /* "/payment"
 * POST: Return the checkout object
 */
-app.post("/payment", function(req, res) {
+app.post((__dirname+"/payment", function(req, res) {
   console.log('req', req);
   console.log('res', res);
   var util = require('./lib/utils');
@@ -83,7 +83,7 @@ app.post("/payment", function(req, res) {
 /* "/email/VVSRequest"
 * POST: Send email to specified address
 */
-app.post("/email/VVSRequest", function(req, res) {
+app.post((__dirname+"/email/VVSRequest", function(req, res) {
 
   var helper = require('sendgrid').mail;
   var from_email = new helper.Email('test@example.com'); //TODO: byt ut
@@ -121,7 +121,7 @@ app.post("/email/VVSRequest", function(req, res) {
 /* "/email/priskalkyl"
 * POST: Send email to specified address
 */
-app.post("/email/priskalkyl", function(req, res) {
+app.post((__dirname+"/email/priskalkyl", function(req, res) {
   console.log(req.body);
 
   var helper = require('sendgrid').mail;
@@ -233,7 +233,7 @@ app.post("/email/priskalkyl", function(req, res) {
 /* "*"
 * GET: All other routes
 */
-app.get("*", function(req, res) {
+app.get((__dirname+"*", function(req, res) {
  console.log('req', req);
  console.log('res', res);
  res.sendFile(path.resolve(__dirname, 'dist/index.html'))
