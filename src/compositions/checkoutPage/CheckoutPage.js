@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-require('styles/_webshopPage/infoBank.css')
+require('styles/_webshopPage/faq.css')
 
 import Checkout from './Checkout'
 import Payment from './Payment'

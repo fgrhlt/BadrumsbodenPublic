@@ -1,0 +1,23 @@
+#infoBank {
+  lost-center:60%;
+  margin:120px auto 20px auto;
+  line-height: 1.5;
+  & > div {
+    margin-bottom:60px;
+  }
+  & .info {
+    margin:30px 0 0 30px;
+    & h4 {
+      font-size:14pt;
+      margin:30px 0 10px 0;
+      font-weight: bold;
+    }
+    & h4:first-of-type {
+      margin-top:0;
+    }
+    & span {
+      font-weight: bold;
+    }
+  }
+
+}

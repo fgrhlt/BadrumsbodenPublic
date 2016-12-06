@@ -2,43 +2,9 @@ import React, { Component } from 'react'
 import Header from '../../components/faq/Header'
 import Footer from '../../components/webshop/Footer'
 import axios from 'axios'
-require('styles/_webshopPage/infoBank.css')
+require('styles/_webshopPage/faq.css')
 
 export default class Faq extends Component {
-
-  onClick() {
-
-    var instance = axios.create({
-      baseURL: ' https://api.payson.se/1.0/',
-      timeout: 1000,
-      headers: {
-        'PAYSON-SECURITY-USERID': 1521,
-        'PAYSON-SECURITY-PASSWORD': '03bdcce4-5b50-4ecf-b53f-ff6891a0af34',
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    })
-
-    instance.post('Pay/', {
-        returnUrl: 'blocket.se',
-        cancelUrl: 'blocket.se',
-        memo: 'hej!',
-        senderEmail: '00badrumsboden@gmail.com',
-        senderFirstName: 'Alfred',
-        senderLastName: 'Ödling',
-        Description: 'Order item 1. Blue jeans',
-        UnitPrice: '899',
-        Quantity: '1',
-        TaxPercentage: '0,25',
-        Sku: 'N123456',
-      })
-      .then(function (response) {
-        // https://www.payson.se/paySecure/?token={response.TOKEN}
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-  }
 
   render() {
     return (
@@ -47,18 +13,25 @@ export default class Faq extends Component {
         <div id="infoBank">
           <div>
             <h2>Vanliga frågor</h2>
-              <button type="button" name="button" onClick={this.onClick}>hej</button>
+            <div className="info">
+              <h4>Har ni en fysisk butik?</h4>
+              <p>
+                I vår butik på Västerslätt, Kabelvägen 8 (E4 västra länken),
+                hittar du en utställning med badrumsmöbler, kakel och klinker,
+                våtrumsmatta och våtrumsskivor.
+                Här kan du se och känna på produkter för att få inspiration.<br/>
+                <br />
+                <span>Öppettider:</span><br/>
+                Vardagar: 11.00 - 17.00<br/>
+                Lördagar: 11.00 - 14.00<br/><br/>
+                Under 1/12 - 31/3 är butiken stängd lördagar
+              </p>
 
-            <p>
-              Lorem Ipsum är en utfyllnadstext från tryck- och förlagsindustrin.
-              Lorem ipsum har varit standard ända sedan 1500-talet, när en okänd
-              boksättare tog att antal bokstäver och blandade dem för att göra ett
-              provexemplar av en bok. Lorem ipsum har inte bara överlevt fem
-              århundraden, utan även övergången till elektronisk typografi utan större
-              förändringar. Det blev allmänt känt på 1960-talet i samband med
-              lanseringen av Letraset-ark med avsnitt av Lorem Ipsum, och senare
-              med mjukvaror som Aldus PageMaker.
-            </p>
+              <h4>Kan jag returnera en vara?</h4>
+              <p>
+                Ja det tar oftast 5 arbetsdagar
+              </p>
+            </div>
           </div>
 
           <div>
