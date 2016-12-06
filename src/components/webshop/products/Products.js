@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ProductElements from './ProductElements'
 import SubCategoryList from './SubCategoryList'
+import { browserHistory } from 'react-router'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -42,6 +43,13 @@ class Products extends Component {
     const { subcategory, category } = params
     const { fetchFirebaseData } = this.props
     let productCat = category=='search' ? 'search' : 'products'
+    let currentCategory = this.props.params.category
+
+    if (currentCategory!=category && category=='search') {
+      fetchFirebaseData('search', 'productName', subcategory)
+      fetchFirebaseData('categories', 'parent', 0)
+      return
+    }
 
     this.setState({
       productItems: firebaseData.products ? firebaseData.products.items : [],

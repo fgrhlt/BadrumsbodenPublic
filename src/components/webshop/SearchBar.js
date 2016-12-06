@@ -25,7 +25,7 @@ export default class SearchBar extends Component {
 
   searchProducts() {
     if (this.state.inputText.length>0) {
-      browserHistory.push('/webshop/search/'+this.state.inputText)
+      browserHistory.push('/webshop/search/'+this.state.inputText.toLowerCase())
     }
   }
 
