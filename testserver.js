@@ -22,6 +22,11 @@ function handleError(res, reason, message, code) {
   res.status(code || 5000).json({"error": message})
 }
 
+app.use(function (req, res, next) {
+  console.log('req11, res!!', req, res);
+  res.status(404).send('Sorry cant find that!')
+})
+
               //-------ROUTING------
 /* "/payment"
 * POST: Return the checkout object
