@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import * as firebaseActions from '../../actions/firebaseActions'
 import * as shoppingcartActions from '../../actions/shoppingcartActions'
 
-require('styles/_webshopPage/checkout.css')
+require('styles/_checkoutPage/checkout.css')
 
 class Checkout extends Component {
 
@@ -138,6 +138,16 @@ class Checkout extends Component {
     })
   }
 
+  activateRadioButton(id) {
+    let deliveryValue = 0
+    if(id == 'schenker') {
+      deliveryValue = 159
+    }
+    this.setState({
+      radioButtonValue: id,
+      deliveryCost: deliveryValue
+    })
+  }
   goToProduct(product) {
     const { category, subcategory, articleNr } = product
     browserHistory.push('/webshop/'+category+'/'+subcategory+'/'+articleNr)
@@ -146,7 +156,6 @@ class Checkout extends Component {
   render() {
     const { products, summary, deliveryCost } = this.state
     let sum = 0
-
     return (
         <section>
           <h2>Varukorg</h2>
@@ -184,31 +193,57 @@ class Checkout extends Component {
                 </div>
               </div>
             )}, this)}
-            <h4 className="total">Summa: {sum+parseInt(deliveryCost)}:-</h4>
+            <h4 className="total">Produkter: <span>{sum}:-</span></h4>
           </div>
+
+          <h2>Leveranssätt</h2>
 
           <div id="delivery">
-            <h2>Leveranssätt</h2>
-            <div>
-              <input
-                type="radio"
-                value="store"
-                checked={this.state.radioButtonValue == 'store' ? true : false}
-                onChange={this.handleRadioButton.bind(this)}
+            <div className="optionWrapper">
+              <div className="selection" onClick={this.activateRadioButton.bind(this,'store')}>
+                <input
+                  type="radio"
+                  value="store"
+                  checked={this.state.radioButtonValue == 'store' ? true : false}
+                  onChange={this.handleRadioButton.bind(this)}
                 />
-              <p>Hämta i butik, Umeå, 0:-</p>
+                <div>
+                  <p><span>Hämta i butik</span>, Umeå</p>
+                  <p>0:-</p>
+                </div>
+              </div>
+              <div className="selection" onClick={this.activateRadioButton.bind(this,'schenker')}>
+                <input
+                  type="radio"
+                  value="schenker"
+                  checked={this.state.radioButtonValue == 'schenker' ? true : false}
+                  onChange={this.handleRadioButton.bind(this)}
+                />
+                <div>
+                  <p><span>Postpaket Schenker</span></p>
+                  <p>159:-</p>
+                </div>
+              </div>
             </div>
-
-            <div>
-              <input
-                type="radio"
-                value="schenker"
-                checked={this.state.radioButtonValue == 'schenker' ? true : false}
-                onChange={this.handleRadioButton.bind(this)}
-                />
-              <p>Postpaket Schenker, 159:-</p>
+            <div className="infoWrapper">
+              <div>
+                <h4>Leveransinformation</h4>
+                {this.state.radioButtonValue == 'store' ?
+                <p>
+                  Hämta i vår butik på Kabelvägen 8, 901 33 Umeå.<br/><br />
+                  <span>Öppettider</span><br/>
+                  Vardagar: 11.00 - 17.00<br/>
+                  Lördagar: Stängt
+                </p>
+                :
+                <p>
+                  Skickas med Schenker, normalt 2-3 arbetsdagar i frakttid
+                </p>
+                }
+              </div>
             </div>
           </div>
+          <h4 className="total">Totalt: <span>{sum+parseInt(deliveryCost)}:-</span></h4>
         </section>
       )}
     }

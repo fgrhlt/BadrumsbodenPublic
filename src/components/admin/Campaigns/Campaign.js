@@ -130,6 +130,7 @@ class Campaign extends Component {
     }
     return (
       <div id="adminCampaign">
+        <div className="warning">Obs. ha inte större bilder än 2000 px i bredd!</div>
         <section className="campaignImg" style={campaignImg}>
           <div className="lostWrapper">
             <input

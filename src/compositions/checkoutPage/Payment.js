@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-require('styles/_webshopPage/infoBank.css')
+require('styles/_webshopPage/faq.css')
 
 export default class Payment extends Component {
 
