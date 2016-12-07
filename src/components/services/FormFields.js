@@ -411,11 +411,11 @@ export default class FormFields extends Component {
     if(this.state.complete == true) {
       console.log("Skicka detta i mail", flat(this.state.formSet))
 
-      // axios({
-      //   method: 'post',
-      //   url: 'https://shrouded-plateau-50284.herokuapp.com/email/priskalkyl',
-      //   data: flat(this.state.formSet)
-      // })
+      axios({
+        method: 'post',
+        url: 'https://badrumsboden.herokuapp.com/email/priskalkyl',
+        data: flat(this.state.formSet)
+      })
     }
   }
 

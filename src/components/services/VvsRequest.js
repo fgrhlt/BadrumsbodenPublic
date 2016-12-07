@@ -21,7 +21,7 @@ export default class VVSRequest extends Component {
 
     axios({
       method: 'post',
-      url: 'https://badrumsboden.herokuapp.com.com/email/VVSRequest',
+      url: 'https://badrumsboden.herokuapp.com/email/VVSRequest',
       data: inputValues
     })
 
