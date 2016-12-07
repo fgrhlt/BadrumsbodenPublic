@@ -6,6 +6,8 @@ var app = express()
 
 app.use(require('prerender-node'))
 //app.use(express.static(__dirname+'/dist'))
+app.use(express.static(path.join(__dirname, 'dist')))
+console.log('--dirrname', __dirname);
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
@@ -21,12 +23,6 @@ function handleError(res, reason, message, code) {
   console.log("ERROR: " + reason)
   res.status(code || 5000).json({"error": message})
 }
-
-app.use(function (req, res, next) {
-  console.log('req11, res!!', req, res);
-  res.status(404).send('Sorry cant find that!')
-})
-
               //-------ROUTING------
 /* "/payment"
 * POST: Return the checkout object
@@ -233,13 +229,11 @@ app.post("/email/priskalkyl", function(req, res) {
 /* "*"
 * GET: All other routes
 */
-app.get("*", function(req, res) {
- console.log('req', req)
- console.log('res', res)
- res.sendFile(path.resolve(__dirname, 'dist/index.html'))
-})
+// app.get("*", function(req, res) {
+//  console.log('req', req)
+//  console.log('res', res)
+//  res.sendFile(path.resolve(__dirname, 'dist/index.html'))
+// })
 
-app.use(function (req, res, next) {
-  console.log('req, res!!', req, res);
-  res.status(404).send('Sorry cant find that!')
-})
+// app.use('*', express.static(path.join(__dirname + '/public')));
+app.use('*', express.static(path.join(__dirname, 'dist')))
