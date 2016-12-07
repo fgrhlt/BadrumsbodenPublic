@@ -79,7 +79,7 @@ app.post("/payment", function(req, res) {
 * POST: Send email to specified address
 */
 app.post("/email/VVSRequest", function(req, res) {
-
+console.log('/email/VVSRequest req, res', req, res);
   var helper = require('sendgrid').mail
   var from_email = new helper.Email('test@example.com') //TODO: byt ut
   var to_email = new helper.Email('00badrumsboden@gmail.com')
