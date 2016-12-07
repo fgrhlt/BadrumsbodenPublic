@@ -8,6 +8,7 @@ app.use(require('prerender-node'))
 app.use(express.static(__dirname+'/dist'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(app.router)
 
 // Initialize the app.
 var server = app.listen(process.env.PORT || 5000, function () {
