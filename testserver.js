@@ -228,7 +228,7 @@ app.post("/email/priskalkyl", function(req, res) {
 /* "*"
 * GET: All other routes
 */
-app.get("*", function(req, res) {
+app.get("/*", function(req, res) {
  console.log('req', req)
  console.log('res', res)
  res.sendFile(path.resolve(__dirname, 'dist/index.html'))
