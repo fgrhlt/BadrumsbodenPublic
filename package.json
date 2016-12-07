@@ -20,7 +20,7 @@
     "serve:dist": "node server.js --env=dist",
     "start:dev": "node server.js --env=dev",
     "start:test": "node testserver.js",
-    "start": "node distserver.js",
+    "start": "node testserver.js",
     "postinstall": "npm run dist",
     "test": "karma start",
     "test:watch": "karma start --autoWatch=true --singleRun=false"
