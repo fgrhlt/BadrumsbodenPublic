@@ -233,3 +233,8 @@ app.get("*", function(req, res) {
  console.log('res', res)
  res.sendFile(path.resolve(__dirname, 'dist/index.html'))
 })
+
+app.use(function (req, res, next) {
+  console.log('req, res!!', req, res);
+  res.status(404).send('Sorry cant find that!')
+})
