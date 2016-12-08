@@ -412,7 +412,7 @@ export default class FormFields extends Component {
     /* If the last button is pressed and the form is complete, send to the admin email */
     if(this.state.complete == true) {
       console.log("Skicka detta i mail", flat(this.state.formSet))
-/*
+
       axios({
         method: 'post',
         url: 'https://badrumsboden.herokuapp.com/email/priskalkyl',
@@ -422,7 +422,7 @@ export default class FormFields extends Component {
       })
       .catch(function (error) {
         console.log(error);
-      }); */
+      });
     }
   }
 
