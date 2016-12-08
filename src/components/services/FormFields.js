@@ -12,7 +12,7 @@ class FirstSet extends Component {
     return (
       <div className="fieldWrapper three">
         <div>
-          <h4>Namn*</h4>
+          <h4>För- och efternamn*</h4>
           <input
             ref="namn"
             defaultValue={this.props.form.namn}
