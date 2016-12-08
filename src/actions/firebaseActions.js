@@ -30,7 +30,7 @@ export function fetchFirebaseData(path, query, searchString) {
 
     path = path+'/'+searchString
   }
-  else if(path=='categories2'){
+  else if(path=='allCategories'){
     ref = firebase.database()
     .ref()
     .child('webshop/categories')

@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
+import * as firebaseActions from '../../../actions/firebaseActions'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { replaceSpecialCharactersURLs } from '../../../utils/Utils'
 
 require('../../../styles/_adminSimon/_products/productMenu.css')
 
@@ -19,9 +23,8 @@ class CategoryItem extends Component {
           <div onClick={this.handleClick.bind(this)}>
             {this.props.name}
           </div>
-          {/*{<figure />}*/}
         </div>
-        {this.state.clicked ? <SubListItems showProductTable={this.props.showProductTable} categories={this.props}/> : ''}
+        {this.state.clicked ? <SubListItems showProductTable={this.props.showProductTable} categories={this.props} url={this.props.url}/> : ''}
       </div>
     );
   }
@@ -29,18 +32,18 @@ class CategoryItem extends Component {
 
 class SubListItems extends Component {
   handleClick(subcategory, category) {
-    browserHistory.push('/admin/webshop/produkter/' + category.toLowerCase() + '/' + subcategory.toLowerCase())
+    browserHistory.push('/admin/webshop/produkter/' + category + '/' + subcategory)
     this.props.showProductTable()
   }
 
   render() {
-    let category = this.props.categories.name
+    let category = this.props.url
     return (
       <div>
         <ul>
           {this.props.categories.subCategories.map(function(subcategory, i) {
             return (
-              <li key={i} onClick={this.handleClick.bind(this, subcategory, category)}>{subcategory}</li>
+              <li key={i} onClick={this.handleClick.bind(this, subcategory.item, category)}>{subcategory.name}</li>
           )}, this)}
         </ul>
       </div>
@@ -48,43 +51,83 @@ class SubListItems extends Component {
   }
 }
 
-export default class ProductMenu extends Component {
+export class ProductMenu extends Component {
   componentWillMount() {
-    /* Contains all the product menu items from the db */
+    const { fetchFirebaseData } = this.props
+
     this.state = {
-      categories: [
-        {
-          name: 'Badrumsinredning',
-          subCategories: ['Aggregat', 'Bastudörrar', 'Lampor', 'Batterier'],
-          key:'1'
-        },
-        {
-          name: 'Dusch och badkar',
-          subCategories: ['Duschar', 'badkar', 'stora', 'små'],
-          key:'2'
-        },
-        {
-          name: 'Toppsäljare',
-          subCategories: ['Alla toppsäljare'],
-          key:'3'
-        },
-      ]
+      categories: {},
     }
+    fetchFirebaseData('allCategories', 'parent')
+  }
+  componentWillReceiveProps(nextProps) {
+    const { firebaseData } = nextProps
+    let categoryItems = firebaseData ? firebaseData['allCategories'].items : []
+    let mainCategories = []
+    let allCategories = {}
+
+    categoryItems.map( (item) => {
+      // Get all the main categories
+      if(item.parent == 0)
+      {
+        mainCategories.push(item.key)
+        allCategories[item.key] = {
+          "name": item.name,
+          "subcategories": []
+        }
+      }
+      // Get all the sub categories
+      else {
+        mainCategories.map((category) => {
+          if(item.parent == category) {
+            let subcat = {}
+            subcat.item = item.key
+            subcat.name = item.name
+            allCategories[category]["subcategories"].push(subcat)
+          }
+        })
+      }
+    })
+
+    // main categories and subcategories are now in state
+    this.setState({
+      categories: allCategories
+    })
+  }
+  handleClick() {
+    browserHistory.push('/admin/webshop/produkter/toppsaljare/allatoppsaljare')
+    this.props.showProductTable()
   }
 
   render() {
-    /* Spits out all the product menu's and then a yellow menu item with the top-sellers */
+    const { categories } = this.state
+    const { showProductTable } = this.props
     return (
       <div id="productMenu">
-        {this.state.categories.map((category) => {
-          return (
-          <CategoryItem id="yellow"
-            key={category.key}
-            name={category.name}
-            subCategories={category.subCategories}
-            showProductTable={this.props.showProductTable}/>
-        )})}
+        {
+          Object.keys(categories).map(function(category, index) {
+            return <CategoryItem key={index} name={categories[category].name} url={category} subCategories={categories[category].subcategories} showProductTable={showProductTable} />
+          })
+        }
+        <div>
+          <div className="listHead" onClick={this.handleClick.bind(this)}>
+            <div>
+              Toppsäljare
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
 }
+function mapStateToProps(state) {
+  return {
+    firebaseData: state.firebaseReducer.firebaseData
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(firebaseActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductMenu)

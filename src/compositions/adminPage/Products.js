@@ -30,7 +30,7 @@ showProductTable() {
         />
 
       <div id="container">
-          <ProductMenu showProductTable={this.showProductTable.bind(this)}/>
+          <ProductMenu showProductTable={this.showProductTable.bind(this)} />
           { this.state.showProductTable? <ProductTable param={this.props.param} /> : ''}
         </div>
       </div>

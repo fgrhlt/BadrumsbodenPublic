@@ -325,7 +325,7 @@ export class Checkbox extends Component {
           type="checkbox"
           id={name}
           onChange={this.toggleCheckbox.bind(this)}
-          defaultChecked={this.state.isChecked}
+          defaultChecked={this.state.isChecked == "true"}
           />
         <label htmlFor={name}>{this.props.name}</label>
       </div>
@@ -395,7 +395,7 @@ export default class FormFields extends Component {
             if(checkboxes[checkbox].firstChild != null) {
 
               let checkboxId = checkboxes[checkbox].firstChild.id
-              checkboxValues[checkboxId] = checkboxes[checkbox].firstChild.checked
+              checkboxValues[checkboxId] = checkboxes[checkbox].firstChild.checked.toString()
             }
           }
           inputValues[inputField] = checkboxValues

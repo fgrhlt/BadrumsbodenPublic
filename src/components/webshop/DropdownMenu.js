@@ -15,70 +15,67 @@ require('../../styles/_webshopPage/dropdownMenu.css')
     this.state = {
       categories: {},
     }
-    fetchFirebaseData('categories2', 'parent')
+    fetchFirebaseData('allCategories', 'parent')
   }
 
   componentWillReceiveProps(nextProps) {
     const { firebaseData } = nextProps
-    let categoryItems = firebaseData['categories2'] ? firebaseData['categories2'].items : []
+    let categoryItems = firebaseData['allCategories'] ? firebaseData['allCategories'].items : []
     let mainCategories = []
     let allCategories = {}
 
     categoryItems.map( (item) => {
-      // Get all the main allCategories
+      // Get all the main categories
       if(item.parent == 0)
       {
         mainCategories.push(item.key)
-        allCategories[item.key] = []
+        allCategories[item.key] = {
+          "name": item.name,
+          "subcategories": []
+        }
       }
-      // Get all the suballCategories
+      // Get all the sub categories
       else {
         mainCategories.map((category) => {
           if(item.parent == category) {
-            allCategories[category].push(item.key)
+            let subcat = {}
+            subcat.item = item.key
+            subcat.name = item.name
+            allCategories[category]["subcategories"].push(subcat)
           }
         })
       }
     })
 
-    this.state = {
+    // main categories and subcategories are now in state
+    this.setState({
       categories: allCategories
-    }
+    })
   }
 
   clickHandler(e) {
-    let category = e.target.parentNode.id+'/'
-    let category2 = e.target.id
+    let category = e.target.parentNode.id
+    let subcategory = e.target.id
 
-    if (!category2=='') {
-      browserHistory.push('/webshop/'+category2)
-    }else {
-      let subcategory = e.target.textContent
-      subcategory = replaceSpecialCharactersURLs(subcategory)
-      browserHistory.push('/webshop/'+category+subcategory)
+    if (category == 'menu') {
+      browserHistory.push('/webshop/'+subcategory)
     }
-  }
-
-  renderDivs(subcatItems) {
-  /*  let list = this.state[subcatItems].map( (item, key) => {
-                return <div key={key}>{item.key}</div>
-              })
-    return list*/
+    else {
+      browserHistory.push('/webshop/'+category+'/'+subcategory)
+    }
   }
 
   render() {
     const paramCategory = this.props.params.category
     const { categories } = this.state
-    console.log("state", categories)
     return (
       <div id="menu" onClick={this.clickHandler.bind(this)}>
-        {Object.keys(categories).map(function(category, index) {
-          return
-            <div id={replaceSpecialCharactersURLs(category)} className={paramCategory==category ? 'active' : ''} key={index}>
-              {category}
-              <section id={replaceSpecialCharactersURLs(category)}>
-                {categories[category].map(function(subCategory, index) {
-                  return <div key={index}>{subCategory}</div>
+      {Object.keys(categories).map(function(category, index) {
+          return <div id={category} className={paramCategory==category ? 'active' : ''} key={index}>
+              {categories[category].name}
+              <section id={category}>
+                {categories[category]["subcategories"].map(function(subCategory, index) {
+                  return <div key={index} id={subCategory.item}>{subCategory.name}</div>
                 })}
               </section>
             </div>
@@ -89,7 +86,6 @@ require('../../styles/_webshopPage/dropdownMenu.css')
 }
 
 function mapStateToProps(state) {
-  console.log("mapstate", state)
   return {
     firebaseData: state.firebaseReducer.firebaseData
   }

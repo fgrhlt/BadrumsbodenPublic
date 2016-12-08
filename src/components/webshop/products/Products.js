@@ -89,7 +89,6 @@ class Products extends Component {
   render() {
     const { productItems, productsPerPage, paginatedProducts, subcatItems} = this.state
     let totalPages = Math.ceil(productItems.length / productsPerPage)
-
     return (
       <div>
         <div id="products">

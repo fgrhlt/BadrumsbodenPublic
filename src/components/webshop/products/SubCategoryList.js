@@ -7,8 +7,6 @@ require('../../../styles/_webshopPage/subCategoryList.css')
 export default class SubCategoryList extends Component {
 
   onClick(subcategory, category) {
-
-      subcategory = replaceSpecialCharactersURLs(subcategory)
       browserHistory.push('/webshop/'+category+'/'+subcategory)
   }
 
@@ -22,7 +20,7 @@ export default class SubCategoryList extends Component {
               onClick={this.onClick.bind(this, item.key, item.parent)}
               key={key}
               className={subcat == replaceSpecialCharactersURLs(item.key) ? "active" : null}>
-              {capitalizeFirstLetter(item.key)}</li>
+              {item.name}</li>
           })}
         </ul>
       </div>

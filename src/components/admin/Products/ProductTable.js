@@ -25,7 +25,7 @@ class ProductTable extends Component {
   componentWillMount() {
 
     let subcat = replaceSpecialCharactersURLs(this.props.param.subcategory)
-    if (this.props.param.category=='toppsäljare') {
+    if (this.props.param.category=='toppsaljare') {
       this.props.fetchFirebaseDataAdmin('products', 'starred', true)
     } else {
       this.props.fetchFirebaseDataAdmin('products', 'subcategory', subcat)
@@ -46,7 +46,7 @@ class ProductTable extends Component {
     let subcat = replaceSpecialCharactersURLs(subcategory)
 
     if (subcategory != this.props.param.subcategory) {
-      if (category=='toppsäljare') {
+      if (category=='toppsaljare') {
         fetchFirebaseDataAdmin('products', 'starred', true)
       } else {
         fetchFirebaseDataAdmin('products', 'subcategory', subcat)
@@ -164,7 +164,9 @@ class ProductTable extends Component {
             />
         </FittedTable>
 
+        {this.props.param.category != "toppsaljare" ?
         <AddProduct param={this.props.param} />
+        : '' }
       </div>
     )
   }
