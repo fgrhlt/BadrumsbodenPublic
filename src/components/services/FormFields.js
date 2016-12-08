@@ -378,9 +378,12 @@ export default class FormFields extends Component {
       id = formSet
       /* Each input field in set */
       for (let inputField in this.refs[formSet].refs) {
-
         let inputFields = this.refs[formSet].refs
         inputValues[inputField] = inputFields[inputField].value
+
+        if(inputField == "file") {
+          inputValues[inputField] = inputFields[inputField].files[0]
+        }
 
         if(inputFields[inputField].className == 'checkboxes') {
           checkboxValues = {}
@@ -409,12 +412,17 @@ export default class FormFields extends Component {
     /* If the last button is pressed and the form is complete, send to the admin email */
     if(this.state.complete == true) {
       console.log("Skicka detta i mail", flat(this.state.formSet))
-
+/*
       axios({
         method: 'post',
         url: 'https://badrumsboden.herokuapp.com/email/priskalkyl',
         data: flat(this.state.formSet)
+      }).then(function (response) {
+        console.log(response);
       })
+      .catch(function (error) {
+        console.log(error);
+      }); */
     }
   }
 
