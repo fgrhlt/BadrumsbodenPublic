@@ -30,7 +30,7 @@ class FirstSet extends Component {
           <input
             ref="epost"
             defaultValue={this.props.form.epost}
-            type="email"
+            type="text"
             />
         </div>
 
@@ -376,7 +376,6 @@ export default class FormFields extends Component {
     /* The form set active (firstSet, secondSet ...) */
     for (let formSet in this.refs) {
       id = formSet
-
       /* Each input field in set */
       for (let inputField in this.refs[formSet].refs) {
 
