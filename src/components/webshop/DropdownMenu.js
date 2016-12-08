@@ -7,39 +7,43 @@ import { connect } from 'react-redux'
 import * as firebaseActions from '../../actions/firebaseActions'
 
 require('../../styles/_webshopPage/dropdownMenu.css')
-
   class DropdownMenu extends Component {
 
   componentWillMount() {
     const { fetchFirebaseData } = this.props
 
     this.state = {
-      subcatItems1: [],
-      subcatItems2: [],
-      subcatItems3: [],
-      subcatItems4: [],
-      subcatItems5: [],
-      subcatItems6: []
+      categories: {},
     }
-
-    fetchFirebaseData('categories', 'parent', 'badrumsinredning')
-    fetchFirebaseData('categories', 'parent', 'duschochbadkar')
-    // fetchFirebaseData('categories', 'parent', 'blandare')
-    // fetchFirebaseData('categories', 'parent', 'bastu')
-    // fetchFirebaseData('categories', 'parent', 'vvs')
-    // fetchFirebaseData('categories', 'parent', 'varmeochpumpar')
+    fetchFirebaseData('categories2', 'parent')
   }
 
   componentWillReceiveProps(nextProps) {
     const { firebaseData } = nextProps
+    let categoryItems = firebaseData['categories2'] ? firebaseData['categories2'].items : []
+    let mainCategories = []
+    let allCategories = {}
+
+    categoryItems.map( (item) => {
+      // Get all the main allCategories
+      if(item.parent == 0)
+      {
+        mainCategories.push(item.key)
+        allCategories[item.key] = []
+      }
+      // Get all the suballCategories
+      else {
+        mainCategories.map((category) => {
+          if(item.parent == category) {
+            allCategories[category].push(item.key)
+          }
+        })
+      }
+    })
+
     this.state = {
-      subcatItems1: firebaseData['categories/badrumsinredning'] ? firebaseData['categories/badrumsinredning'].items : [],
-      subcatItems2: firebaseData['categories/duschochbadkar'] ? firebaseData['categories/duschochbadkar'].items : [],
-    // subcatItems3: firebaseData.products ? firebaseData.products.items : [],
-    //   subcatItems4: firebaseData.products ? firebaseData.products.items : [],
-    //   subcatItems5: firebaseData.products ? firebaseData.products.items : [],
-    //   subcatItems6: firebaseData.products ? firebaseData.products.items : []
-     }
+      categories: allCategories
+    }
   }
 
   clickHandler(e) {
@@ -56,78 +60,36 @@ require('../../styles/_webshopPage/dropdownMenu.css')
   }
 
   renderDivs(subcatItems) {
-    let list = this.state[subcatItems].map( (item, key) => {
+  /*  let list = this.state[subcatItems].map( (item, key) => {
                 return <div key={key}>{item.key}</div>
               })
-    return list
+    return list*/
   }
 
   render() {
     const paramCategory = this.props.params.category
+    const { categories } = this.state
+    console.log("state", categories)
     return (
       <div id="menu" onClick={this.clickHandler.bind(this)}>
-          <div id="badrumsinredning" className={paramCategory=='badrumsinredning' ? 'active' : ''}>
-            Badrumsinredning
-            <section id="badrumsinredning">
-              {this.renderDivs('subcatItems1')}
-            </section>
-          </div>
-
-          <div id="duschochbadkar" className={paramCategory=='duschochbadkar' ? 'active' : ''}>
-            Dusch och badkar
-            <section id="duschochbadkar">
-              <div>Aggregat</div>
-              <div>Bastudörrar</div>
-              <div>Lampor</div>
-              <div>Batterier</div>
-            </section>
-          </div>
-
-          <div id="blandare" className={paramCategory=='blandare' ? 'active' : ''}>
-            Blandare
-            <section id="blandare">
-              <div>Aggregat</div>
-              <div>Bastudörrar</div>
-              <div>Lampor</div>
-              <div>Batterier</div>
-            </section>
-          </div>
-
-          <div id="bastu" className={paramCategory=='bastu' ? 'active' : ''}>
-            Bastu
-            <section id="bastu">
-              <div>Aggregat</div>
-              <div>Bastudörrar</div>
-              <div>Lampor</div>
-              <div>Batterier</div>
-            </section>
-          </div>
-
-          <div id="vvs" className={paramCategory=='vvs' ? 'active' : ''}>
-            VVS
-            <section id="VVS">
-              <div>Aggregat</div>
-              <div>Bastudörrar</div>
-              <div>Lampor</div>
-              <div>Batterier</div>
-            </section>
-          </div>
-
-          <div id="varmeochpumpar" className={paramCategory=='varmeochpumpar' ? 'active' : ''}>
-            Värme och pumpar
-            <section id="varmeochpumpar">
-              <div>Aggregat</div>
-              <div>Bastudörrar</div>
-              <div>Lampor</div>
-              <div>Batterier</div>
-            </section>
-          </div>
+        {Object.keys(categories).map(function(category, index) {
+          return
+            <div id={replaceSpecialCharactersURLs(category)} className={paramCategory==category ? 'active' : ''} key={index}>
+              {category}
+              <section id={replaceSpecialCharactersURLs(category)}>
+                {categories[category].map(function(subCategory, index) {
+                  return <div key={index}>{subCategory}</div>
+                })}
+              </section>
+            </div>
+        })}
       </div>
     )
   }
 }
 
 function mapStateToProps(state) {
+  console.log("mapstate", state)
   return {
     firebaseData: state.firebaseReducer.firebaseData
   }

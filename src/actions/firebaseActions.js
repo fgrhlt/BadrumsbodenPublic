@@ -30,6 +30,12 @@ export function fetchFirebaseData(path, query, searchString) {
 
     path = path+'/'+searchString
   }
+  else if(path=='categories2'){
+    ref = firebase.database()
+    .ref()
+    .child('webshop/categories')
+    .orderByChild(query)
+  }
   else if(path=='gallery'){
     ref = firebase.database()
     .ref()

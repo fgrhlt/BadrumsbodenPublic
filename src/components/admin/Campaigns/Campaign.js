@@ -4,13 +4,11 @@ import ComponentTitle from '../ComponentTitle'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as firebaseActions from '../../../actions/firebaseActions'
-
 import firebase from 'firebase/app'
 
 require('../../../styles/_adminSimon/_campaigns/campaigns.css')
 
 class Campaign extends Component {
-
   componentWillMount() {
     const { fetchSingleFirebaseItem } = this.props
 
