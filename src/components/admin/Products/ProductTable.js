@@ -24,7 +24,7 @@ class ProductTable extends Component {
 
   componentWillMount() {
 
-    let subcat = replaceSpecialCharactersURLs(this.props.param.subcategory)
+    let subcat = this.props.param.subcategory
     if (this.props.param.category=='toppsaljare') {
       this.props.fetchFirebaseDataAdmin('products', 'starred', true)
     } else {
@@ -33,7 +33,7 @@ class ProductTable extends Component {
 
     this.state = {
       products: [],
-      columns: []
+      columns: [],
     }
   }
 
@@ -43,22 +43,20 @@ class ProductTable extends Component {
     const { subcategory, category } = param
     const { fetchFirebaseDataAdmin } = this.props
 
-    let subcat = replaceSpecialCharactersURLs(subcategory)
-
     if (subcategory != this.props.param.subcategory) {
       if (category=='toppsaljare') {
         fetchFirebaseDataAdmin('products', 'starred', true)
       } else {
-        fetchFirebaseDataAdmin('products', 'subcategory', subcat)
+        fetchFirebaseDataAdmin('products', 'subcategory', subcategory)
       }
     }
 
     let fbData = nextProps.firebaseData.products ? nextProps.firebaseData.products.items : []
-    let arrr = fbData.map( (product) => {
+    let productArray = fbData.map( (product) => {
       return [product.articleNr, product.supplier, product.productName, product.description, product.filename, product, product.starred]
     })
     this.state = {
-      products: arrr,
+      products: productArray,
       columns: [
         ['Artikelnr.'],
         ['Leverantör'],
@@ -66,7 +64,7 @@ class ProductTable extends Component {
         ['Beskrivning'],
         ['Bild'],
         ['starred']
-      ]
+      ],
     }
   }
 

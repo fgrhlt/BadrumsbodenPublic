@@ -1,14 +1,31 @@
 import React, { Component } from 'react'
 import firebase from 'firebase/app'
-
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import * as firebaseActions from '../../../actions/firebaseActions'
 require('../../../styles/_adminSimon/_products/addProduct.css')
 
-export default class AddProduct extends Component {
+export class AddProduct extends Component {
   componentWillMount() {
+    this.props.fetchProductId()
+
+    /* The id tells which id the last product had, so the next can be incremented */
     this.state = {
       infoText: "Väntar på uppladdning...",
-      color: "LimeGreen"
+      color: "LimeGreen",
+      currentId: 0
     }
+  }
+
+  /* Receive data from firebase */
+  componentWillReceiveProps(nextProps) {
+    const { param, firebaseData } = nextProps
+    const { subcategory, category } = param
+    const { fetchProductId } = this.props
+
+    this.setState({
+      currentId: firebaseData.productId ? firebaseData.productId.items.id : 0
+    })
   }
 
   /* Takes the values from the form and puts in the state when submitted */
@@ -21,6 +38,7 @@ export default class AddProduct extends Component {
     let description = this.refs.description.value;
     let price = this.refs.price.value;
     let file = this.refs.bild.files[0]
+    let id = this.state.currentId+1
 
     /* Check if any form fields are empty */
     if(articleNr=='' || supplier=='' || productName=='' || bild=='' || description=='') {
@@ -37,7 +55,7 @@ export default class AddProduct extends Component {
     }
     else {
       var storageRef = firebase.storage().ref().child('webshop/produkter/'+file.name)
-      //Upload file to storageRef
+      // Upload file to storageRef
       let task = storageRef.put(file)
 
       task.on('state_changed', () => {
@@ -71,7 +89,8 @@ export default class AddProduct extends Component {
           description,
           price,
           category: this.props.param.category,
-          subcategory: this.props.param.subcategory
+          subcategory: this.props.param.subcategory,
+          id
         })
         // Reset inputtext
         this.refs.fileHolder.value = ''
@@ -92,6 +111,7 @@ export default class AddProduct extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div id="addProduct">
         <h3>Lägg till produkter i: <span>/{this.props.param.category || ''}/{this.props.param.subcategory || ''}</span></h3>
@@ -148,3 +168,15 @@ export default class AddProduct extends Component {
     )
   }
 }
+function mapStateToProps(state) {
+  console.log("mapstate", state)
+  return {
+    firebaseData: state.firebaseReducer.firebaseData
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(firebaseActions, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddProduct)

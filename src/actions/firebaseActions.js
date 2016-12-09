@@ -14,6 +14,13 @@ export function fetchFirebaseData(path, query, searchString) {
     .orderByChild(query)
     .equalTo(searchString)
   }
+  if(path=='lastProduct'){
+    ref = firebase.database()
+    .ref()
+    .child('webshop/produkter')
+    .orderByChild(query)
+    .equalTo(searchString)
+  }
   else if(path=='search'){
     ref = firebase.database()
     .ref()
@@ -66,6 +73,22 @@ export function fetchFirebaseData(path, query, searchString) {
       dispatch({
         type: FETCH_FIREBASE_DATA,
         folder: path,
+        items
+      })
+    })
+  }
+}
+
+/* Fetches the last product Id that was added */
+export function fetchProductId() {
+  let ref = firebase.database().ref('webshop/produkter').endAt().limitToLast(1)
+
+  return (dispatch) => {
+    ref.on('child_added', (snapshot) => {
+      let items = snapshot.val()
+      dispatch({
+        type: FETCH_FIREBASE_DATA,
+        folder:'productId',
         items
       })
     })
