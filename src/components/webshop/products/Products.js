@@ -25,7 +25,6 @@ class Products extends Component {
     }
 
     if (category=='search') {
-      console.log('fetchFirebaseData search', type, subcategory)
       fetchFirebaseData('search', type, subcategory)
       fetchFirebaseData('categories', 'parent', 0)
     }
@@ -58,7 +57,7 @@ class Products extends Component {
       paginatedProducts: firebaseData.products ? firebaseData[productCat].items.slice(0, this.state.productsPerPage) : [],
     })
 
-    if (this.props.params.subcategory !== subcategory) {
+    if (this.props.params.subcategory !== subcategory || this.props.type !== nextProps.type) {
       if (category=='search') {
         fetchFirebaseData('search', 'productName', subcategory)
         fetchFirebaseData('categories', 'parent', 0)

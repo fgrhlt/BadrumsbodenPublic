@@ -11,11 +11,8 @@ require('styles/_webshopPage/searchBar.css')
 class SearchBar extends Component {
 
   componentWillMount() {
-    this.props.selectSearchType('productName')
-
     this.state = {
-      inputText: '',
-      searchType: 'productName'
+      inputText: ''
     }
   }
 
@@ -27,18 +24,18 @@ class SearchBar extends Component {
 
   onKey(event) {
     if (event.keyCode==13) {
-      if (!isNaN(this.state.inputText[0])) {
-        this.props.selectSearchType('articleNr')
-      }
       this.searchProducts()
     }
   }
 
   searchProducts() {
     const { inputText } = this.state
-    if (inputText.length>0) {
-      browserHistory.push('/webshop/search/'+this.state.inputText.toLowerCase())
+    if (inputText.length>0 && this.state.inputText.match(/[0-9]/g)) {
+      this.props.selectSearchType('articleNr')
+    }else if (inputText.length>0){
+      this.props.selectSearchType('productName')
     }
+    browserHistory.push('/webshop/search/'+this.state.inputText.toLowerCase())
   }
 
   render() {
