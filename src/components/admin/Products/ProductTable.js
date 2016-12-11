@@ -83,7 +83,7 @@ class ProductTable extends Component {
     let starred = this.state.products[rowIndex][6] ? {starred: false} : {starred: true}
 
     var databaseRef = firebase.database()
-    .ref('webshop/produkter/'+product.key)
+    .ref('webshop/products/'+product.key)
     .update(starred)
 
     console.log('Storage: '+product.folder+'/'+product.filename, 'updated!')
@@ -163,7 +163,11 @@ class ProductTable extends Component {
         </FittedTable>
 
         {this.props.param.category != "toppsaljare" ?
-        <AddProduct param={this.props.param} />
+        <div>
+          <p>Produktnamn</p>
+          <input type="text" ref="productName2"/>
+          <AddProduct param={this.props.param} />
+        </div>
         : '' }
       </div>
     )

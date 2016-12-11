@@ -23,6 +23,11 @@ class Products extends Component {
       productsPerPage: 16,
       totalPages: 0,
     }
+    this.fetchData(category, subcategory, type)
+  }
+
+  fetchData(category, subcategory, type) {
+    const { fetchFirebaseData } = this.props
 
     if (category=='search') {
       fetchFirebaseData('search', type, subcategory)
@@ -45,31 +50,21 @@ class Products extends Component {
     let productCat = category=='search' ? 'search' : 'products'
     let currentCategory = this.props.params.category
 
-    if (currentCategory!=category && category=='search') {
-      fetchFirebaseData('search', type, subcategory)
-      fetchFirebaseData('categories', 'parent', 0)
+    this.setState({
+      productItems: firebaseData[productCat] ? firebaseData[productCat].items : [],
+      subcatItems: firebaseData['categories/'+category] ? firebaseData['categories/'+category].items : [],
+      paginatedProducts: firebaseData[productCat] ? firebaseData[productCat].items.slice(0, this.state.productsPerPage) : [],
+    })
+
+    //om man är inne på en produkt och söker eller om man skiftar typ
+    if (currentCategory!=category && category=='search' || nextProps.type != type) {
+      this.fetchData(category, subcategory, nextProps.type)
       return
     }
 
-    this.setState({
-      productItems: firebaseData.products ? firebaseData.products.items : [],
-      subcatItems: firebaseData['categories/'+category] ? firebaseData['categories/'+category].items : [],
-      paginatedProducts: firebaseData.products ? firebaseData[productCat].items.slice(0, this.state.productsPerPage) : [],
-    })
-
-    if (this.props.params.subcategory !== subcategory || this.props.type !== nextProps.type) {
-      if (category=='search') {
-        fetchFirebaseData('search', 'productName', subcategory)
-        fetchFirebaseData('categories', 'parent', 0)
-      }
-      else if (subcategory==undefined) {
-        fetchFirebaseData('products', 'category', category)
-        fetchFirebaseData('categories', 'parent', category)
-      }
-      else {
-        fetchFirebaseData('products', 'subcategory', subcategory)
-        fetchFirebaseData('categories', 'parent', category)
-      }
+    //om man byter subcategory
+    if (this.props.params.subcategory !== subcategory) {
+      this.fetchData(category, subcategory, type)
     }
   }
 
@@ -88,6 +83,7 @@ class Products extends Component {
   render() {
     const { productItems, productsPerPage, paginatedProducts, subcatItems} = this.state
     let totalPages = Math.ceil(productItems.length / productsPerPage)
+
     return (
       <div>
         <div id="products">
@@ -109,6 +105,7 @@ class Products extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log('state.firebaseReducer.firebaseData',state.firebaseReducer.firebaseData);
   return {
     type: state.firebaseReducer.type,
     firebaseData: state.firebaseReducer.firebaseData

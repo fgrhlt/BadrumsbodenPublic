@@ -10,21 +10,21 @@ export function fetchFirebaseData(path, query, searchString) {
   if(path=='products'){
     ref = firebase.database()
     .ref()
-    .child('webshop/produkter')
+    .child('webshop/products')
     .orderByChild(query)
     .equalTo(searchString)
   }
-  if(path=='lastProduct'){
+  else if(path=='lastProduct'){
     ref = firebase.database()
     .ref()
-    .child('webshop/produkter')
+    .child('webshop/products')
     .orderByChild(query)
     .equalTo(searchString)
   }
   else if(path=='search'){
     ref = firebase.database()
     .ref()
-    .child('webshop/produkter')
+    .child('webshop/products')
     .orderByChild(query)
     .startAt(searchString).endAt(searchString+'\uf8ff')
   }
@@ -81,7 +81,7 @@ export function fetchFirebaseData(path, query, searchString) {
 
 /* Fetches the last product Id that was added */
 export function fetchProductId() {
-  let ref = firebase.database().ref('webshop/produkter').endAt().limitToLast(1)
+  let ref = firebase.database().ref('webshop/products').endAt().limitToLast(1)
 
   return (dispatch) => {
     ref.on('child_added', (snapshot) => {
@@ -101,7 +101,7 @@ export function fetchFirebaseDataAdmin(path, query, searchString) {
   if(path=='products'){
     ref = firebase.database()
     .ref()
-    .child('webshop/produkter')
+    .child('webshop/products')
     .orderByChild(query)
     .equalTo(searchString)
   }
@@ -172,14 +172,14 @@ export function deleteFirebaseElement(type, article) {
   if(type=='products'){
     ref = firebase.database()
     .ref()
-    .child('webshop/produkter/'+article.key)
+    .child('webshop/products/'+article.key)
     .remove()
 
     .then(() => {
       console.log('Database: deleted!')
       var storageRef = firebase.storage()
       .ref()
-      .child('webshop/produkter/'+article.filename)
+      .child('webshop/products/'+article.filename)
       .delete()
 
       console.log('Storage: deleted!')

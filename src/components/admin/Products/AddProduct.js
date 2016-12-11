@@ -33,7 +33,7 @@ export class AddProduct extends Component {
     e.preventDefault()
     let articleNr = this.refs.articleNr.value;
     let supplier = this.refs.supplier.value;
-    let productName = this.refs.productName.value;
+    let productName = this.refs.productName.value.toLowerCase();
     let bild = this.refs.bild.value;
     let description = this.refs.description.value;
     let price = this.refs.price.value;
@@ -54,14 +54,14 @@ export class AddProduct extends Component {
       })
     }
     else {
-      var storageRef = firebase.storage().ref().child('webshop/produkter/'+file.name)
+      var storageRef = firebase.storage().ref().child('webshop/products/'+file.name)
       // Upload file to storageRef
       let task = storageRef.put(file)
 
       task.on('state_changed', () => {
         // Observe state change events such as progress, pause, and resume
         // See below for more detail
-        console.log('Uploading file', file.name, 'to', 'webshop/produkter/')
+        console.log('Uploading file', file.name, 'to', 'webshop/products/')
         this.setState({
           infoText: 'Laddar upp till databasen...',
           color: "LimeGreen"
@@ -79,7 +79,7 @@ export class AddProduct extends Component {
           color: "LimeGreen"
         })
 
-        firebase.database().ref().child('webshop/produkter/')
+        firebase.database().ref().child('webshop/products')
         .push({
           url: task.snapshot.downloadURL,
           filename: file.name,
@@ -169,7 +169,6 @@ export class AddProduct extends Component {
   }
 }
 function mapStateToProps(state) {
-  console.log("mapstate", state)
   return {
     firebaseData: state.firebaseReducer.firebaseData
   }
