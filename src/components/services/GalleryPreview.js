@@ -1,46 +1,37 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
-
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import * as firebaseActions from '../../actions/firebaseActions'
-
+import axios from 'axios'
 require('../../styles/_servicesPage/galleryPreview.css')
 
-class GalleryPreview extends Component {
-
+export default class GalleryPreview extends Component {
   componentWillMount() {
-    const { fetchFirebaseData } = this.props
-
-    fetchFirebaseData('gallery', 'category', 'kok')
-    fetchFirebaseData('gallery', 'category', 'badrum')
-
     this.state = {
-      imagesBadrum: [],
-      imagesKok: [],
-      urlsBadrum: '',
-      urlsKok: ''
+      itemsbadrum: [],
+      itemskok: []
     }
+
+    this.fetchData('badrum')
+    this.fetchData('kok')
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { firebaseData } = nextProps
+  fetchData(type) {
+    let path = 'items'+type
 
-    this.setState({
-      imagesBadrum: firebaseData['gallery/badrum'] ? firebaseData['gallery/badrum'].items : [],
-      imagesKok: firebaseData['gallery/kok'] ? firebaseData['gallery/kok'].items : []
-    }, () => {
-      let urlsBadrum = this.state.imagesBadrum.map( (item) => {
+    axios.get('/gallery/'+type)
+    .then(function (response) {
+      console.log('res', response);
+      console.log(' response.data',  response.data);
+
+      let urls = response.data.map( (item) => {
         return item.url
       })
-      let urlsKok = this.state.imagesKok.map( (item) => {
-        return item.url
-      })
-      
+
       this.setState({
-        urlsBadrum,
-        urlsKok
+        [path]: urls
       })
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
     })
   }
 
@@ -49,7 +40,7 @@ class GalleryPreview extends Component {
   }
 
   render() {
-    const { urlsBadrum, urlsKok } = this.state
+    const { itemsbadrum, itemskok } = this.state
 
     return (
       <div id="galleryPreview">
@@ -58,28 +49,28 @@ class GalleryPreview extends Component {
           <h2>Låt dig inspireras av bilder från våra projekt</h2>
           <section>
             <div>
-              <div><figure style={{backgroundImage: 'url('+ urlsKok[0]+')' }} /></div>
+              <div><figure style={{backgroundImage: 'url('+ itemskok[0]+')' }} /></div>
             </div>
 
             <div>
-              <div><figure style={{backgroundImage: 'url('+ urlsKok[1]+')'}} /></div>
-              <div><figure style={{backgroundImage: 'url('+ urlsKok[2]+')'}} /></div>
-              <div><figure style={{backgroundImage: 'url('+ urlsKok[3]+')'}} /></div>
+              <div><figure style={{backgroundImage: 'url('+ itemskok[1]+')'}} /></div>
+              <div><figure style={{backgroundImage: 'url('+ itemskok[2]+')'}} /></div>
+              <div><figure style={{backgroundImage: 'url('+ itemskok[3]+')'}} /></div>
             </div>
           </section>
 
           <section>
-            <figure style={{backgroundImage: 'url('+ urlsBadrum[0]+')'}} />
+            <figure style={{backgroundImage: 'url('+ itemsbadrum[0]+')'}} />
           </section>
 
           <section>
             <div>
-              <div><figure style={{backgroundImage: 'url('+ urlsBadrum[1]+')'}} /></div>
-              <div><figure style={{backgroundImage: 'url('+ urlsBadrum[2]+')'}} /></div>
+              <div><figure style={{backgroundImage: 'url('+ itemsbadrum[1]+')'}} /></div>
+              <div><figure style={{backgroundImage: 'url('+ itemsbadrum[2]+')'}} /></div>
             </div>
 
             <div>
-              <div><figure style={{backgroundImage: 'url('+ urlsBadrum[3]+')'}} /></div>
+              <div><figure style={{backgroundImage: 'url('+ itemsbadrum[3]+')'}} /></div>
             </div>
           </section>
         </div>
@@ -89,15 +80,3 @@ class GalleryPreview extends Component {
     )
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    firebaseData: state.firebaseReducer.firebaseData
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(firebaseActions, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(GalleryPreview)

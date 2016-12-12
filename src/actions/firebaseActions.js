@@ -170,20 +170,20 @@ export function deleteFirebaseElement(type, article) {
   var ref
 
   if(type=='products'){
-    ref = firebase.database()
-    .ref()
-    .child('webshop/products/'+article.key)
-    .remove()
-
-    .then(() => {
-      console.log('Database: deleted!')
+    // ref = firebase.database()
+    // .ref()
+    // .child('webshop/products/'+article.key)
+    // .remove()
+    //
+    // .then(() => {
+      //console.log('Database: deleted!')
       var storageRef = firebase.storage()
       .ref()
       .child('webshop/products/'+article.filename)
       .delete()
 
       console.log('Storage: deleted!')
-    })
+    //})
   } else if(type=='gallery'){
     ref = firebase.database()
     .ref()

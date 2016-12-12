@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import cookie from 'react-cookie'
 import { browserHistory } from 'react-router'
 

@@ -1,34 +1,28 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 import { createLineBreak } from '../../utils/Utils'
+import axios from 'axios'
 require('../../styles/_webshopPage/campaign.css')
 
 export default class Campaign extends Component {
 
-  componentWillMount() {
-    this.state = {
-      campaignItem: []
-    }
+  onClick() {
+    this.fetchProduct(this.props.item.articleNr)
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { items } = nextProps
-
-    this.setState({
-      campaignItem: items[0] ? items[0] : []
+  fetchProduct(articleNr) {
+    axios.get('/products/articleNr/'+articleNr)
+    .then(function (response) {
+      browserHistory.push('/webshop/'+response.data.category+'/'+response.data.subcategory+'/'+response.data.articleNr)
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
     })
   }
 
-  onClick() {
-    const { campaignItem } = this.state
-    const { category, subcategory, articleNr } = campaignItem
-
-    browserHistory.push('/webshop/'+category+'/'+subcategory+'/'+articleNr)
-  }
-
   render() {
-    const { campaignItem } = this.state
-    const { url, heading, description, color } = campaignItem
+    const { item } = this.props
+    const { url, heading, description, color } = item
 
     return (
       <div id="campaign" style={{backgroundImage: 'url(' + url + ')'}}>

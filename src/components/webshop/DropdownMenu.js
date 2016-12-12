@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
+
 import { browserHistory } from 'react-router'
 import { replaceSpecialCharactersURLs } from '../../utils/Utils'
-
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import * as firebaseActions from '../../actions/firebaseActions'
+import axios from 'axios'
 
 require('../../styles/_webshopPage/dropdownMenu.css')
-  class DropdownMenu extends Component {
+export default class DropdownMenu extends Component {
 
   componentWillMount() {
     const { fetchFirebaseData } = this.props
@@ -15,43 +13,111 @@ require('../../styles/_webshopPage/dropdownMenu.css')
     this.state = {
       categories: {},
     }
-    fetchFirebaseData('allCategories', 'parent')
+    //fetchFirebaseData('allCategories', 'parent')
+    this.fetchData()
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { firebaseData } = nextProps
-    let categoryItems = firebaseData['allCategories'] ? firebaseData['allCategories'].items : []
-    let mainCategories = []
-    let allCategories = {}
+  fetchData() {
+    axios.get('/categories')
+    .then(function (response) {
+      console.log('res', response);
+      console.log(' response.data', response.data[0]);
 
-    categoryItems.map( (item) => {
-      // Get all the main categories
-      if(item.parent == 0)
-      {
-        mainCategories.push(item.key)
-        allCategories[item.key] = {
-          "name": item.name,
-          "subcategories": []
-        }
-      }
-      // Get all the sub categories
-      else {
-        mainCategories.map((category) => {
-          if(item.parent == category) {
-            let subcat = {}
-            subcat.item = item.key
-            subcat.name = item.name
-            allCategories[category]["subcategories"].push(subcat)
+      let categoryItems = response.data[0]
+      let mainCategories = []
+      let allCategories = {}
+
+      for (var item in categoryItems) {
+        let objItem = categoryItems[item]
+          // Get all the main categories
+          if(objItem.parent == 0)
+          {
+            mainCategories.push(objItem.key)
+            allCategories[objItem.key] = {
+              "name": objItem.name,
+              "subcategories": []
+            }
           }
-        })
-      }
-    })
+          // Get all the sub categories
+          else {
+            mainCategories.map((category) => {
+              if(item.parent == category) {
+                let subcat = {}
+                subcat.item = item.key
+                subcat.name = item.name
+                allCategories[category]["subcategories"].push(subcat)
+              }
+            })
+          }
+        }
 
-    // main categories and subcategories are now in state
-    this.setState({
-      categories: allCategories
+      // categoryItems.map( (item) => {
+      //   // Get all the main categories
+      //   if(item.parent == 0)
+      //   {
+      //     mainCategories.push(item.key)
+      //     allCategories[item.key] = {
+      //       "name": item.name,
+      //       "subcategories": []
+      //     }
+      //   }
+      //   // Get all the sub categories
+      //   else {
+      //     mainCategories.map((category) => {
+      //       if(item.parent == category) {
+      //         let subcat = {}
+      //         subcat.item = item.key
+      //         subcat.name = item.name
+      //         allCategories[category]["subcategories"].push(subcat)
+      //       }
+      //     })
+      //   }
+      // })
+
+      //main categories and subcategories are now in state
+      this.setState({
+        categories: allCategories
+      })
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
     })
   }
+
+  // componentWillReceiveProps(nextProps) {
+  //   const { firebaseData } = nextProps
+  //   //let categoryItems = firebaseData['allCategories'] ? firebaseData['allCategories'].items : []
+  //   let mainCategories = []
+  //   let allCategories = {}
+  //
+  //   categoryItems.map( (item) => {
+  //     // Get all the main categories
+  //     if(item.parent == 0)
+  //     {
+  //       mainCategories.push(item.key)
+  //       allCategories[item.key] = {
+  //         "name": item.name,
+  //         "subcategories": []
+  //       }
+  //     }
+  //     // Get all the sub categories
+  //     else {
+  //       mainCategories.map((category) => {
+  //         if(item.parent == category) {
+  //           let subcat = {}
+  //           subcat.item = item.key
+  //           subcat.name = item.name
+  //           allCategories[category]["subcategories"].push(subcat)
+  //         }
+  //       })
+  //     }
+  //   })
+
+    //main categories and subcategories are now in state
+  //   this.setState({
+  //     categories: allCategories
+  //   })
+  // }
 
   clickHandler(e) {
     let category = e.target.parentNode.id
@@ -68,6 +134,7 @@ require('../../styles/_webshopPage/dropdownMenu.css')
   render() {
     const paramCategory = this.props.params.category
     const { categories } = this.state
+    console.log('staet', this.state);
     return (
       <div id="menu" onClick={this.clickHandler.bind(this)}>
       {Object.keys(categories).map(function(category, index) {
@@ -84,15 +151,3 @@ require('../../styles/_webshopPage/dropdownMenu.css')
     )
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    firebaseData: state.firebaseReducer.firebaseData
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(firebaseActions, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DropdownMenu)

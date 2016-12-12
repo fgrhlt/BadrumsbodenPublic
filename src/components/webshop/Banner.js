@@ -4,31 +4,14 @@ require('../../styles/_webshopPage/banner.css')
 
 export default class Banner extends Component {
 
-  componentWillMount() {
-    this.state = {
-      bannerItemBlueheading: '',
-      bannerItemHeading: '',
-      bannerItemDescription: ''
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { item  } = nextProps
-
-    this.setState({
-      bannerItemBlueheading: item ? item.blueHeading : '',
-      bannerItemHeading: item ? item.heading : '',
-      bannerItemDescription: item ? item.description : ''
-    })
-  }
-
   render() {
-    const { bannerItemHeading, bannerItemBlueheading, bannerItemDescription } = this.state
+    const { item } = this.props
+    const { heading, blueHeading, description } = item
     return (
       <div id="banner">
         <div>
-          <h2>{bannerItemHeading} <span>{bannerItemBlueheading}</span></h2>
-          <p>{bannerItemDescription}</p>
+          <h2>{heading || ''}<span>{blueHeading || ''}</span></h2>
+          <p>{description || ''}</p>
         </div>
       </div>
     )

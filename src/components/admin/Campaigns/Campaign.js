@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ComponentTitle from '../ComponentTitle'
 
+import axios from 'axios'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as firebaseActions from '../../../actions/firebaseActions'
@@ -12,24 +13,40 @@ class Campaign extends Component {
   componentWillMount() {
     const { fetchSingleFirebaseItem } = this.props
 
-    fetchSingleFirebaseItem("campaign")
+    //fetchSingleFirebaseItem("campaign")
 
     this.state = {
       campaignItem: [],
       infoText: 'Väntar på uppladdning...',
       infoColor: 'LimeGreen',
     }
+
+    this.fetchData()
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { firebaseData } = nextProps
-    const { campaign } = firebaseData
-    const { items } = campaign
-
-    this.setState({
-      campaignItem: items[0] ? items[0] : [],
+  fetchData() {
+    axios.get('/campaign/'+'campaign')
+    .then(function (response) {
+      console.log('res', response);
+      console.log(' response.data',  response.data);
+      this.setState({
+        campaignItem: response.data[0]
+      })
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
     })
   }
+
+  // componentWillReceiveProps(nextProps) {
+  //   const { firebaseData } = nextProps
+  //   const { campaign } = firebaseData
+  //   const { items } = campaign
+  //
+  //   this.setState({
+  //     campaignItem: items[0] ? items[0] : [],
+  //   })
+  // }
 
   submitForm(e) {
     e.preventDefault()
@@ -56,19 +73,26 @@ class Campaign extends Component {
         })
       }, () => {
         // Handle successful uploads on complete
-        this.setState({
-          infoText: "Uppladdningen lyckades med bild: " + file.name,
-          infoColor: 'limeGreen'
-        })
+        axios.post('/campaign/'+'campaign', {
+            url: task.snapshot.downloadURL,
+            filename: file.name,
+            heading,
+            description,
+            articleNr,
+            color,
+            type: 'campaign'
+         })
+        .then(function (response) {
+          console.log('res', response);
+          this.fetchData()
 
-        firebase.database().ref().child('campaign/')
-        .set({
-          url: task.snapshot.downloadURL,
-          filename: file.name,
-          heading,
-          description,
-          articleNr,
-          color
+          this.setState({
+            infoText: "Uppladdningen lyckades med bild: " + file.name,
+            infoColor: 'limeGreen'
+          })
+        }.bind(this))
+        .catch(function (error) {
+          console.log(error);
         })
         //Reset placeholder inputtext
         this.refs.fileHolder.value = ''
@@ -77,19 +101,26 @@ class Campaign extends Component {
     else {
       let fileName = this.state.campaignItem.filename
       let urlName = this.state.campaignItem.url
-      firebase.database().ref().child('campaign/')
-      .set({
-        heading,
-        description,
-        articleNr,
-        color,
-        filename: fileName,
-        url: urlName
-      })
 
-      this.setState({
-        infoText: "Uppladdningen lyckades utan bild",
-        infoColor: 'limeGreen'
+      axios.post('/campaign/'+'campaign', {
+          heading,
+          description,
+          articleNr,
+          color,
+          filename: fileName,
+          url: urlName,
+          type: 'campaign'
+       })
+      .then(function (response) {
+        console.log('res', response);
+        this.fetchData()
+        this.setState({
+          infoText: "Uppladdningen lyckades utan bild",
+          infoColor: 'limeGreen'
+        })
+      }.bind(this))
+      .catch(function (error) {
+        console.log(error);
       })
     }
   }
@@ -123,6 +154,7 @@ class Campaign extends Component {
   }
 
   render() {
+    console.log('staet', this.state);
     let campaignImg = {
       backgroundImage: 'url('+this.state.campaignItem.url+')'
     }

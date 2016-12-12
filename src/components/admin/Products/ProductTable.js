@@ -3,6 +3,7 @@ import {Table, Column, Cell} from 'fixed-data-table';
 import FittedTable from './ResponsiveFittedTable';
 import AddProduct from './AddProduct';
 
+import axios from 'axios'
 import firebase from 'firebase/app'
 
 import { replaceSpecialCharactersURLs } from '../../../utils/Utils'
@@ -23,12 +24,12 @@ require('../../../styles/_fixedDataTable/fixed-data-table.css')
 class ProductTable extends Component {
 
   componentWillMount() {
-
     let subcat = this.props.param.subcategory
+
     if (this.props.param.category=='toppsaljare') {
-      this.props.fetchFirebaseDataAdmin('products', 'starred', true)
+      this.fetchData('starred', true)
     } else {
-      this.props.fetchFirebaseDataAdmin('products', 'subcategory', subcat)
+      this.fetchData('subcategory', subcat)
     }
 
     this.state = {
@@ -37,41 +38,75 @@ class ProductTable extends Component {
     }
   }
 
-  /* Receive data from firebase */
   componentWillReceiveProps(nextProps) {
     const { param, firebaseData } = nextProps
     const { subcategory, category } = param
-    const { fetchFirebaseDataAdmin } = this.props
 
     if (subcategory != this.props.param.subcategory) {
       if (category=='toppsaljare') {
-        fetchFirebaseDataAdmin('products', 'starred', true)
+        this.fetchData('starred', true)
       } else {
-        fetchFirebaseDataAdmin('products', 'subcategory', subcategory)
+        this.fetchData('subcategory', subcategory)
       }
     }
-
-    let fbData = nextProps.firebaseData.products ? nextProps.firebaseData.products.items : []
-    let productArray = fbData.map( (product) => {
-      return [product.articleNr, product.supplier, product.productName, product.description, product.filename, product, product.starred]
-    })
-    this.state = {
-      products: productArray,
-      columns: [
-        ['Artikelnr.'],
-        ['Leverantör'],
-        ['Namn'],
-        ['Beskrivning'],
-        ['Bild'],
-        ['starred']
-      ],
-    }
   }
+
+  fetchData(query, value) {
+    console.log('query, value', query, value);
+    axios.get('/products/'+query+'/'+value)
+    .then(function (response) {
+      console.log('res', response);
+
+      let productArray = response.data.map( (product) => {
+        return [product.articleNr, product.supplier, product.productName, product.description, product.filename, product, product.starred]
+      })
+      this.setState({
+        products: productArray,
+        columns: [
+          ['Artikelnr.'],
+          ['Leverantör'],
+          ['Namn'],
+          ['Beskrivning'],
+          ['Bild'],
+          ['starred']
+        ]
+      })
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
+  deleteElement(id) {
+    axios.delete('/products/'+id)
+    .then(function (response) {
+      console.log('res', response);
+
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
+  starElement(id, starred) {
+    axios.put('/products/'+id, {starred})
+    .then(function (response) {
+      console.log('res', response);
+
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
 
   /* Removes the article from firebase */
   removeArticle(rowIndex) {
     let product = this.state.products[rowIndex][5]
     this.props.deleteFirebaseElement('products', product)
+    this.deleteElement(product._id)
+    let subcat = this.props.param.subcategory
+    this.fetchData('subcategory', subcat)
   }
 
   /* Sets the selected product as a favorite product, which displays onn the
@@ -82,9 +117,13 @@ class ProductTable extends Component {
 
     let starred = this.state.products[rowIndex][6] ? {starred: false} : {starred: true}
 
-    var databaseRef = firebase.database()
-    .ref('webshop/products/'+product.key)
-    .update(starred)
+    // var databaseRef = firebase.database()
+    // .ref('webshop/products/'+product.key)
+    // .update(starred)
+
+    this.starElement(product._id, starred.starred)
+    let subcat = this.props.param.subcategory
+    this.fetchData('subcategory', subcat)
 
     console.log('Storage: '+product.folder+'/'+product.filename, 'updated!')
   }
@@ -164,9 +203,13 @@ class ProductTable extends Component {
 
         {this.props.param.category != "toppsaljare" ?
         <div>
-          <p>Produktnamn</p>
-          <input type="text" ref="productName2"/>
-          <AddProduct param={this.props.param} />
+          //TODO: sök
+          <div onClick={this.fetchData.bind(this)}>
+            <p>Produktnamn</p>
+            <input type="text" ref="productName2"/>
+          </div>
+
+          <AddProduct fetchData={this.fetchData.bind(this)} param={this.props.param} />
         </div>
         : '' }
       </div>

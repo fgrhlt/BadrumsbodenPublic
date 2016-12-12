@@ -6,7 +6,7 @@ export default class GalleryElement extends Component {
 
     return (
       <figure>
-        <img src={this.props.item.url} alt="" />
+        <img src={this.props.item} alt="" />
       </figure>
     )
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import SubCategoryList from './SubCategoryList'
-
+import axios from 'axios'
 import { browserHistory } from 'react-router'
 
 import { bindActionCreators } from 'redux'
@@ -14,23 +14,25 @@ require('../../../styles/_webshopPage/productView.css')
 class Product extends Component {
 
   componentWillMount() {
-    const { params, actions } = this.props
-    const { firebaseActions } = actions
-    const { fetchFirebaseData } = firebaseActions
+    const { params } = this.props
     const { product } = params
 
     this.state = {
       productItem: [],
       subcatItems: []
     }
-    fetchFirebaseData('products', 'articleNr', product)
+    this.fetchProduct(product)
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { firebaseData } = nextProps
-
-    this.setState({
-      productItem: firebaseData.products ? firebaseData.products.items[0] : [],
+  fetchProduct(articleNr) {
+    axios.get('/products/articleNr/'+articleNr)
+    .then(function (response) {
+      this.setState({
+        productItem: response.data
+      })
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
     })
   }
 

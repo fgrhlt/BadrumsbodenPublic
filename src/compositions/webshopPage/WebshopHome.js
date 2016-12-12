@@ -1,60 +1,72 @@
 import React, { Component } from 'react'
-
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import * as firebaseActions from '../../actions/firebaseActions'
+import axios from 'axios'
 
 import Campaign from '../../components/webshop/Campaign'
 import TopSellers from '../../components/webshop/topSellers/TopSellers'
 import Banner from '../../components/webshop/Banner'
 import Features from '../../components/webshop/Features'
 
-class WebshopHome extends Component {
+export default class WebshopHome extends Component {
 
   componentWillMount() {
-    this.props.fetchSingleFirebaseItem('campaign')
-    this.props.fetchSingleFirebaseItem('banner')
-    this.props.fetchFirebaseData('products', 'starred', true)
 
     this.state = {
-      campaignItems: [],
-      bannerItems: [],
-      toppsellerItems: []
+      banner: [],
+      campaign: [],
+      starred: []
     }
+
+    this.fetchDataBanner()
+    this.fetchDataCampaign()
+    this.fetchDataStarred()
   }
 
-  componentWillReceiveProps(nextProps) {
+  fetchDataBanner() {
+    axios.get('/campaign/banner')
+    .then(function (response) {
+      this.setState({
+        banner: response.data[0]
+      })
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
 
-    const { firebaseData } = nextProps
-    this.setState({
-      campaignItems: firebaseData.campaign ? firebaseData.campaign.items : [],
-      bannerItem: firebaseData.banner ? firebaseData.banner.items[0] : [],
-      toppsellerItems: firebaseData.products ? firebaseData.products.items : [],
+  fetchDataCampaign() {
+    axios.get('/campaign/campaign')
+    .then(function (response) {
+      this.setState({
+        campaign: response.data[0]
+      })
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
+  fetchDataStarred() {
+    axios.get('/products/starred/true')
+    .then(function (response) {
+      this.setState({
+        starred: response.data
+      })
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
     })
   }
 
   render() {
-    const { campaignItems, toppsellerItems, bannerItem } = this.state
+    const { banner, campaign, starred } = this.state
 
     return (
       <div>
-        <Campaign items={ campaignItems }/>
-        <TopSellers items={ toppsellerItems }/>
-        <Banner item={ bannerItem }></Banner>
+        <Campaign item={ campaign }/>
+        <TopSellers items={ starred }/>
+        <Banner item={ banner }></Banner>
         <Features></Features>
       </div>
     )
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    firebaseData: state.firebaseReducer.firebaseData
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(firebaseActions, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(WebshopHome)

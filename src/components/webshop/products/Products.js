@@ -3,6 +3,8 @@ import ProductElements from './ProductElements'
 import SubCategoryList from './SubCategoryList'
 import { browserHistory } from 'react-router'
 
+import axios from 'axios'
+
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as firebaseActions from '../../../actions/firebaseActions'
@@ -14,7 +16,7 @@ class Products extends Component {
 
   componentWillMount() {
     const { params, fetchFirebaseData, type } = this.props
-    const { subcategory, category } = params
+    const { subcategory, category, product} = params
 
     this.state = {
       productItems: [],
@@ -23,48 +25,73 @@ class Products extends Component {
       productsPerPage: 16,
       totalPages: 0,
     }
-    this.fetchData(category, subcategory, type)
+    this.fetchData(category, subcategory)
   }
 
-  fetchData(category, subcategory, type) {
-    const { fetchFirebaseData } = this.props
+  fetchDataCategory(category) {
+    axios.get('/products/category/'+category)
+    .then(function (response) {
+      this.setState({
+        productItems: response.data,
+        paginatedProducts: response.data.slice(0, this.state.productsPerPage)
+      })
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
 
+  fetchDataSubcat(subcategory) {
+    axios.get('/products/subcategory/'+subcategory)
+    .then(function (response) {
+      this.setState({
+        productItems: response.data,
+        paginatedProducts: response.data.slice(0, this.state.productsPerPage)
+      })
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
+  fetchDataSearch(value) {
+    axios.get('/products/search/'+value)
+    .then(function (response) {
+      console.log('seracr', response);
+      this.setState({
+        productItems: response.data,
+        paginatedProducts: response.data.slice(0, this.state.productsPerPage)
+      })
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
+  fetchData(category, subcategory) {
     if (category=='search') {
-      fetchFirebaseData('search', type, subcategory)
-      fetchFirebaseData('categories', 'parent', 0)
+      this.fetchDataSearch(subcategory)
+      //fetchFirebaseData('categories', 'parent', 0)
     }
     else if (subcategory==undefined) {
-      fetchFirebaseData('products', 'category', category)
-      fetchFirebaseData('categories', 'parent', category)
+      this.fetchDataCategory(category)
+      // fetchFirebaseData('categories', 'parent', category)
     }
     else {
-      fetchFirebaseData('products', 'subcategory', subcategory)
-      fetchFirebaseData('categories', 'parent', category)
+      this.fetchDataSubcat(subcategory)
+      //fetchFirebaseData('categories', 'parent', category)
     }
   }
 
   componentWillReceiveProps(nextProps) {
     const { params, firebaseData } = nextProps
     const { subcategory, category } = params
-    const { fetchFirebaseData, type } = this.props
-    let productCat = category=='search' ? 'search' : 'products'
     let currentCategory = this.props.params.category
+    let currentCubcat = this.props.params.subcategory
 
-    this.setState({
-      productItems: firebaseData[productCat] ? firebaseData[productCat].items : [],
-      subcatItems: firebaseData['categories/'+category] ? firebaseData['categories/'+category].items : [],
-      paginatedProducts: firebaseData[productCat] ? firebaseData[productCat].items.slice(0, this.state.productsPerPage) : [],
-    })
-
-    //om man är inne på en produkt och söker eller om man skiftar typ
-    if (currentCategory!=category && category=='search' || nextProps.type != type) {
-      this.fetchData(category, subcategory, nextProps.type)
-      return
-    }
-
-    //om man byter subcategory
-    if (this.props.params.subcategory !== subcategory) {
-      this.fetchData(category, subcategory, type)
+    //eller om man byter subcategory eller category
+    if (currentCategory!=category || currentCubcat!=subcategory) {
+      this.fetchData(category, subcategory)
     }
   }
 
@@ -72,7 +99,6 @@ class Products extends Component {
     let perPage = this.state.productsPerPage
     let offset = Math.ceil(data.selected * perPage)
     let limit = offset + perPage
-
     let pagProductArr = this.state.productItems.slice(offset, limit)
 
     this.setState({
@@ -105,7 +131,6 @@ class Products extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('state.firebaseReducer.firebaseData',state.firebaseReducer.firebaseData);
   return {
     type: state.firebaseReducer.type,
     firebaseData: state.firebaseReducer.firebaseData

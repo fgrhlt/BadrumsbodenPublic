@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ComponentTitle from '../ComponentTitle'
+import axios from 'axios'
 
 import firebase from 'firebase/app'
 
@@ -12,25 +13,35 @@ require('../../../styles/_adminSimon/_services/adminGallery.css')
 class AdminGallery extends Component {
   componentWillMount() {
     const { fetchFirebaseDataAdmin } = this.props
-
-    fetchFirebaseDataAdmin('gallery', 'category', 'badrum')
-    fetchFirebaseDataAdmin('gallery', 'category', 'kok')
-
+    // fetchFirebaseDataAdmin('gallery', 'category', 'badrum')
+    // fetchFirebaseDataAdmin('gallery', 'category', 'kok')
     this.state = {
       imagesBadrum: [],
       imagesKok: [],
+      itemsbadrum: [],
+      itemskok: [],
       file: '',
       infoText: 'Väntar på uppladdning...',
       infoColor: 'limeGreen'
     }
+    
+    this.fetchData('badrum')
+    this.fetchData('kok')
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { firebaseData } = nextProps
+  fetchData(type) {
+    let path = 'items'+type
 
-    this.setState({
-      imagesBadrum: firebaseData['gallery/badrum'] ? firebaseData['gallery/badrum'].items : [],
-      imagesKok: firebaseData['gallery/kok'] ? firebaseData['gallery/kok'].items : [],
+    axios.get('/gallery/'+type)
+    .then(function (response) {
+      console.log('res', response);
+      console.log(' response.data',  response.data);
+      this.setState({
+        [path]: response.data
+      })
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
     })
   }
 
@@ -58,12 +69,19 @@ class AdminGallery extends Component {
           infoColor: 'limeGreen'
         })
 
-        firebase.database().ref().child('gallery/')
-        .push({
+        axios.post('/gallery', {
           url: task.snapshot.downloadURL,
           filename: file.name,
-          category: category,
+          type: category
+         })
+        .then(function (response) {
+          console.log('res', response);
+          this.fetchData(category)
+        }.bind(this))
+        .catch(function (error) {
+          console.log(error);
         })
+
         //Reset placeholder inputtext
         this.refs.fileHolder.value = ''
         this.refs.fileHolder2.value = ''
@@ -96,7 +114,17 @@ class AdminGallery extends Component {
   }
 
   removeArticle(item) {
+    axios.delete('/gallery/'+item._id)
+    .then(function (response) {
+      console.log('res', response);
+
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
+    })
+    this.fetchData(item.type)
     this.props.deleteFirebaseElement('gallery', item)
+
   }
 
   render() {
@@ -112,7 +140,7 @@ class AdminGallery extends Component {
             <div className="infoText" style={{color:this.state.infoColor}}>{this.state.infoText}</div>
             <h3>Badrum</h3>
             <div className="lostContainer">
-              {this.state.imagesBadrum.map((item, i) => (
+              {this.state.itemsbadrum.map((item, i) => (
                 <div key={i}>
                   <figure style={{backgroundImage: 'url('+item.url+')'}} />
                   <button
@@ -135,7 +163,7 @@ class AdminGallery extends Component {
           <section>
             <h3>Kök</h3>
             <div className="lostContainer">
-              {this.state.imagesKok.map((item, i) => (
+              {this.state.itemskok.map((item, i) => (
                 <div key={i}>
                   <figure style={{backgroundImage: 'url('+item.url+')'}} />
                   <button className="btn redButton delete" onClick={this.removeArticle.bind(this, item)}>Ta bort</button>

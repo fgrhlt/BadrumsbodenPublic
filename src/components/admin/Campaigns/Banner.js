@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ComponentTitle from '../ComponentTitle'
 require('../../../styles/_adminSimon/_campaigns/banner.css')
+import axios from 'axios'
 
 import firebase from 'firebase/app'
 
@@ -11,33 +12,46 @@ import * as firebaseActions from '../../../actions/firebaseActions'
 class Banner extends Component {
 
   componentWillMount() {
-    const { fetchSingleFirebaseItem } = this.props
-
-    fetchSingleFirebaseItem('banner')
     this.state = {
       bannerItem: [],
     }
+
+    this.fetchData()
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { firebaseData } = nextProps
-
-    this.setState({
-      bannerItem: firebaseData.banner ? firebaseData.banner.items[0] : []
+  fetchData() {
+    axios.get('/campaign/banner')
+    .then(function (response) {
+      console.log('res', response);
+      console.log(' response.data',  response.data);
+      this.setState({
+        bannerItem: response.data[0]
+      })
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
     })
   }
 
   submitForm(e) {
-      e.preventDefault()
-      let heading = this.state.bannerItem.heading
-      let blueHeading = this.state.bannerItem.blueHeading
-      let description = this.state.bannerItem.description
-      firebase.database().ref().child('banner/')
-      .set({
-        heading,
-        description,
-        blueHeading
-      })
+    e.preventDefault()
+    let heading = this.state.bannerItem.heading
+    let blueHeading = this.state.bannerItem.blueHeading
+    let description = this.state.bannerItem.description
+
+    axios.post('/campaign/'+'banner', {
+      heading,
+      description,
+      blueHeading,
+      type: 'banner'
+     })
+    .then(function (response) {
+      console.log('res', response);
+      this.fetchData()
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
+    })
   }
 
   /* Updates state depending on where you write */
