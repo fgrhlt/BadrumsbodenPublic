@@ -62,7 +62,7 @@ export class ProductMenu extends Component {
   }
   componentWillReceiveProps(nextProps) {
     const { firebaseData } = nextProps
-    let categoryItems = firebaseData ? firebaseData['allCategories'].items : []
+    let categoryItems = firebaseData['allCategories'] ? firebaseData['allCategories'].items : []
     let mainCategories = []
     let allCategories = {}
 

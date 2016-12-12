@@ -47,17 +47,17 @@ module.exports = {
         ]
     },
     postcss: function () {
-        return [
-                require('postcss-cssnext')({
-                    features: {
-                      customProperties: {
-                        preserve: true,
-                        appendVariables: true
-                      },
-                    }
-                }),
-                require('lost'),
-                require('rucksack-css'),
-                ];
-    }
+      return [
+        require('postcss-cssnext')({
+            features: {
+              customProperties: {
+                preserve: true,
+                appendVariables: true
+              },
+            }
+        }),
+        require('lost'),
+        require('rucksack-css'),
+        ];
+    },
   };

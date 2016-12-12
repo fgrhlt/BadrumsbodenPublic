@@ -72,7 +72,8 @@ export default class Footer extends Component {
                 <a>Betalning</a><br />
                 <a>Frakt och leverans</a><br />
                 <a>Retur och ångerrätt</a><br />
-                <a>Garanti, reklamation</a><br />
+                <a>Garanti och reklamation</a><br />
+                <a>Cookies</a><br />
               </p>
             </div>
 

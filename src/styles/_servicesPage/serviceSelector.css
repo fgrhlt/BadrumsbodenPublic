@@ -139,7 +139,7 @@
     }
 
     & .expanded {
-      width:100%;
+      width:99%;
     }
     & .minimized {
       width:20%;
@@ -153,7 +153,7 @@
     & .left.minimized {
       background-color:rgba(#8CB5AE, 0.8);
       & figure {
-        margin:170px auto 0 auto;
+        margin:150px auto 0 auto;
         background: url(../../assets/arrows/expandArrowRight.svg) no-repeat;
       }
     }
@@ -167,7 +167,7 @@
     & .right.minimized {
       background-color:rgba(#8FAF84,0.8);
       & figure {
-        margin:190px auto 0 auto;
+        margin:170px auto 0 auto;
         background: url(../../assets/arrows/expandArrowLeft.svg) no-repeat;
       }
     }

@@ -71,11 +71,12 @@ p {
 
 a {
   cursor:pointer;
+  color:var(--darkGray);
   text-decoration: none;
-  color:#111111;
+  color:black;
 }
 a:hover {
-  color:#666;
+  color:#999;
 }
 
 figure {
