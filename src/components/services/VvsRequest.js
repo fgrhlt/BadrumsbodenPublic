@@ -43,11 +43,8 @@ export default class VVSRequest extends Component {
           <div>
             <h2>Kontakta oss för VVS och värmejobb!</h2>
             <p>
-              Har du problem med vattnet eller övrig vvs?
-              Låt oss utföra servicearbetet, alltid till fast pris.<br /><br />
-              Boka så utför vi arbetet inom 5 arbetsdagar.
-              För större arbeten skickar du ett meddelande så blir du
-              kontaktad inom en arbetsdag.
+              Skriv ditt meddelande till oss med din VVS-förfrågan, så svarar vi så fort vi kan.<br /><br />
+              Du kan kontakta oss om all form av VVS-arbeten och värmejobb.
             </p>
           </div>
 

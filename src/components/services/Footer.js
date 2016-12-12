@@ -28,7 +28,7 @@ export default class Footer extends Component {
                 med lagen om elektronisk kommunikation.<br /><br />
 
                 Genom att fortsätta använda vår webplats förutsätter vi att du
-                godkänner detta. <a href="">Läs mer här</a>.
+                godkänner detta. <a onClick={this.onClickFaq.bind(this)}>Läs mer här</a>.
               </span>
 
               <a title="Payson internetbetalningar" href="https://www.payson.se/" target="_blank">

@@ -14,7 +14,6 @@ export default class BathroomFeatures extends Component {
               <h3>Garanti</h3>
               <p>
                 Vi lämnar alltid garanti på det vi gör.<br/>
-                10 år på badrum, 2 år på VVS
               </p>
             </div>
 

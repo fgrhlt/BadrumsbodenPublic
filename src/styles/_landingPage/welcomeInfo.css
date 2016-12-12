@@ -39,7 +39,7 @@
         color:var(--darkGray);
         line-height: 1.2;
         & .text {
-          height:230px;
+          min-height:240px;
           box-sizing: border-box;
         }
         & .webshopText {

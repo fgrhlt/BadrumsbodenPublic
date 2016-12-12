@@ -23,8 +23,7 @@ export default class VVSFeatures extends Component {
 
               <h3>Alltid fast pris</h3>
               <p>
-                Har du problem med vattnet eller övrig vvs?
-                Låt oss utföra servicearbetet, alltid till fast pris.
+                Vi har alltid fast pris på våra VVS-arbeten. Skicka ett mail och få ett pris.
               </p>
             </div>
 

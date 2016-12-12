@@ -35,15 +35,22 @@
       /* The inner content div */
       & > div:nth-of-type(1) {
         transform: skew(20deg);
-        margin-top:80px;
         user-select:none;
         lost-utility:clearfix;
         & h4 {
-          padding:10px 20%;
+          padding:10px 20% 0 20%;
         }
         & span {
           display:inline-block;
           margin-top:20px;
+        }
+        & #mainInfo {
+          display: table;
+          height:350px;
+          & > div {
+            display: table-cell;
+            vertical-align: middle;
+          }
         }
       }
       & .expandedInnerContent {
@@ -54,7 +61,13 @@
         /* The inner content second column */
         & #description {
           lost-column:2/5 0 0;
-          margin-top:-25px;
+          display:table;
+          height:350px;
+          font-size:12pt;
+          & > div {
+            display:table-cell;
+            vertical-align: middle;
+          }
           & button {
             margin:30px auto 0 auto;
             font-size:10pt;
@@ -112,7 +125,9 @@
       background-color:rgba(#77936F, 0.8);
       margin-right:-10%;
       padding-right: 6%;
-
+      & h2 {
+        letter-spacing: 3px;
+      }
       & .border {
         background-color:rgba(#72876C,0.8);
         left: 0;
@@ -138,6 +153,11 @@
       }
     }
 
+    & .standard {
+      & #mainInfo {
+        width:100%;
+      }
+    }
     & .expanded {
       width:99%;
     }
@@ -183,27 +203,11 @@
     }
 }
 
-/* responsive */
-@media (width <= 1200px) {
-  .serviceSelector {
-    & > div {
-      & .expandedInnerContent {
-        & #description {
-          margin-top:-5px;
-          & p {
-            font-size:10pt;
-          }
-        }
-      }
-    }
-  }
-}
 @media (width <= 1024px) {
   .serviceSelector {
     & > div {
       & .expandedInnerContent {
         & #description {
-          margin-top:-25px;
           & p {
             font-size:responsive;
           }
@@ -226,30 +230,12 @@
           }
         }
         & #description {
-          margin-top:-35px;
           & p {
             font-size:10pt;
           }
           & button {
             padding:8px 15px;
           }
-        }
-      }
-    }
-  }
-}
-
-@media (width <= 1024px) {
-  .serviceSelector {
-    & > div {
-      & .expandedInnerContent {
-        & #mainInfo {
-          display:none;
-        }
-        & #description {
-          lost-column:1;
-          width:80%;
-          margin:-30px 60px 0 60px;
         }
       }
     }

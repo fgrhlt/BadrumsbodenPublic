@@ -76,31 +76,32 @@ export default class ServiceSelector extends Component {
 
           <div className={this.state.left.innerContent}>
               <div id="mainInfo">
-                <figure name="wrench" />
-                <h2>Badrumsrenovering</h2>
-                <h4>
-                  Låt våra badrumsproffs med lång erfarenhet
-                  utföra din badrumsrenovering.<br/>
-                </h4>
+                <div>
+                  <figure name="wrench" />
+                  <h2>Badrumsrenovering</h2>
+                  <h4>
+                    Här kan du utföra en priskalkyl på vad din badrumsrenovering kan kosta.<br/>
+                    Få ett pris utan att vi besöker dig!
+                  </h4>
+                </div>
               </div>
 
               <div className={this.state.left.description} id="description">
-                <p>
-                  Låt våra badrumsproffs med lång erfarenhet utföra din badrumsrenovering.
-                  Vi följer alla tillämpbara branschregler och håller oss löpande
-                  uppdaterade om alla nya regler och rekommendationer som utkommer.
-                  <br /><br />
-                  Om du lämnar ditt badrum i våra händer kan du känna dig trygg.
-                  Fyll i underlaget på sidana Offertförfrågan så återkopplar vi
-                  inom kort med vad just din renovering kommer att kosta.
-                  Vi gör naturligtvis inte bara kaklade badrum.
-                  Du väljer kakel, matta eller våtrumsskivor.
-                </p>
-                <button
-                  className="btn"
-                  onClick={this.handleClick.bind(this, "left")}>
-                  Beräkna din kostnad
-                </button>
+                <div>
+                  <p>
+                    Klicka på knappen nedan för att börja din priskalkyl. Allt du behöver
+                    göra är att fylla i fälten så noggrant som möjligt så återkopplar vi
+                    inom kort med vad just din renovering kommer att kosta.<br/><br/>
+                    Om du lämnar ditt badrum i våra händer kan du känna dig trygg.
+                    Vi gör naturligtvis inte bara kaklade badrum.
+                    Du väljer kakel, matta eller våtrumsskivor.
+                  </p>
+                  <button
+                    className="btn"
+                    onClick={this.handleClick.bind(this, "left")}>
+                    Beräkna din kostnad
+                  </button>
+                </div>
               </div>
           </div>
           <div className="border" />
@@ -111,30 +112,29 @@ export default class ServiceSelector extends Component {
 
           <div className={this.state.right.innerContent}>
             <div className={this.state.right.description} id="description">
-              <p>
-                Låt våra badrumsproffs med lång erfarenhet utföra din badrumsrenovering.
-                Vi följer alla tillämpbara branschregler och håller oss löpande
-                uppdaterade om alla nya regler och rekommendationer som utkommer.
-                <br /><br />
-                Om du lämnar ditt badrum i våra händer kan du känna dig trygg.
-                Fyll i underlaget på sidana Offertförfrågan så återkopplar vi
-                inom kort med vad just din renovering kommer att kosta.
-                Vi gör naturligtvis inte bara kaklade badrum.
-                Du väljer kakel, matta eller våtrumsskivor.
-              </p>
-              <button
-                className="btn"
-                onClick={this.handleClick.bind(this, "right")}>
-                Kontakt för VVS-service
-              </button>
+              <div>
+                <p>
+                  Har du problem med vattnet, värmepumpen eller övrig vvs? Låt oss utföra servicearbetet,
+                  alltid till fast pris. Boka så utför vi arbetet inom 5 arbetsdagar.<br/><br/>
+                  För större arbeten skickar du ett meddelande så blir du kontaktad inom en arbetsdag.<br/><br/>
+                  Klicka på knappen nedan för att få fram kontaktformuläret
+                </p>
+                <button
+                  className="btn"
+                  onClick={this.handleClick.bind(this, "right")}>
+                  Kontakt för VVS-service
+                </button>
+              </div>
             </div>
             <div id="mainInfo">
-              <figure name="tap"/>
-              <h2>VVS</h2>
-              <h4>
-                Kontakta oss för att utföra VVS-service.<br/>
-                Vi utför snabb service inom 5 arbetsdagar.
-              </h4>
+              <div>
+                <figure name="tap"/>
+                <h2>VVS</h2>
+                <h4>
+                  Här kan du kontakta oss för att utföra VVS-service.<br/>
+                  Vi utför snabb service inom 5 arbetsdagar.
+                </h4>
+              </div>
             </div>
           </div>
           <div className="border" />
