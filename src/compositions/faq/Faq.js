@@ -8,13 +8,13 @@ export default class Faq extends Component {
   handleClick(e) {
     let infoDiv = e.target.parentNode.childNodes[2]
     let figure = e.target.parentNode.childNodes[1]
-    if(infoDiv.style.display == "" || infoDiv.style.display == "none") {
-      infoDiv.style.display = "block";
-      figure.style.transform = "rotate(180deg)"
+    if(infoDiv.style.display == '' || infoDiv.style.display == 'none') {
+      infoDiv.style.display = 'block'
+      figure.style.transform = 'rotate(180deg)'
     }
     else {
-      infoDiv.style.display = "none";
-      figure.style.transform = "rotate(0)"
+      infoDiv.style.display = 'none'
+      figure.style.transform = 'rotate(0)'
     }
   }
   render() {

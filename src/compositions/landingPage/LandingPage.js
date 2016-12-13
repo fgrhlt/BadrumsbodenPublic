@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import LandingPageHeader from '../../components/landingPage/LandingPageHeader'
 import WelcomeInfo from '../../components/landingPage/WelcomeInfo'
-import DepartmentPicker from '../../components/landingPage/DepartmentPicker'
 import LandingPageFeatures from '../../components/landingPage/LandingPageFeatures'
 import LandingPageFooter from '../../components/landingPage/LandingPageFooter'
 

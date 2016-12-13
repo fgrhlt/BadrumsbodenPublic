@@ -297,8 +297,8 @@ class SixthSet extends Component {
               />
             <textarea className="half" ref="ovrigtNyaBadrummet" defaultValue={this.props.form.ovrigtNyaBadrummet} />
 
-            <h4>Filuppladdning</h4>
-            <input type="file" ref="file" />
+            {/*<h4>Filuppladdning</h4>*/}
+            {/*<input type="file" ref="file" />*/}
           </div>
         </div>
       );

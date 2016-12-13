@@ -33,7 +33,7 @@
             background:#fff;
           }
           & li:nth-of-type(even) {
-            background:var(--adminListLightGrey);
+            background:var(--adminListLightGray);
           }
           & li:hover {
             background: #ccc;

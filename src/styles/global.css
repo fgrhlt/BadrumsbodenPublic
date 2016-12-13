@@ -1,32 +1,6 @@
 @import '../../node_modules/normalize.css/normalize.css';
 
-/* Set the global colors for the Badrumsboden */
-:global :root {
-  --orange: #FD551F;
-  --orangeHover: #A0251C;
-  --orangeClick: #751715;
-  --lightBlue: #A9DDD6;
-  --lightGreen: #A7D49B;
-  --lightYellow: #EAD168;
-  --lightGray:#F2F2F2;
-  --mediumGray:#E6E6E6;
-  --darkGray:#4D4D4D;
-  --darkGreen: #019A3F;
-  --darkRed: #D6211D;
-  --darkRedHover: #A31717;
-  --darkRedClick: #821212;
-  --darkBlue: #106189;
-  --darkBlueHover: #0D526D;
-  --darkBlueActive: #0B4359;
-  --adminListLightGray: #f6f7f8;
-  --adminMenuBlueOdd: #56696D;
-  --adminMenuBlueEven: #677F89;
-  --adminMenuBlueHover: #435254;
-  --adminMenuDarkBlue: #435254;
-  --adminMenuDarkBlueHover:#323E3F;
-  --defaultShadow: 0 2px 10px #ccc;
-  --headerShadow: 0 3px 15px #ccc;
-}
+
 
 @font-face {
   font-family: 'Open Sans Light';

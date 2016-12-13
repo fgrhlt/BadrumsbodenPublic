@@ -3,7 +3,7 @@
 #mobileServicePage {
   lost-center:100%;
   background: url('../../assets/images/landingPage/badrum1_1.jpg') no-repeat center;
-  background-size: contain;
+  background-size: cover;
   & > div {
     lost-column:1;
     text-align: center;

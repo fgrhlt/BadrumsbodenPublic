@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ProductElements from './ProductElements'
 import SubCategoryList from './SubCategoryList'
-import { browserHistory } from 'react-router'
 
 import axios from 'axios'
 
