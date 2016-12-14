@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import * as firebaseActions from '../../../actions/firebaseActions'
 import firebase from 'firebase/app'
 
-require('../../../styles/_adminSimon/_campaigns/campaigns.css')
+require('../../../styles/_admin/_campaigns/campaigns.css')
 
 class Campaign extends Component {
   componentWillMount() {

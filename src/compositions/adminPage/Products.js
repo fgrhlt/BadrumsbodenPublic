@@ -3,7 +3,7 @@ import ComponentTitle from '../../components/admin/ComponentTitle'
 import ProductMenu from '../../components/admin/Products/ProductMenu'
 import ProductTable from '../../components/admin/Products/ProductTable'
 
-require('styles/_adminSimon/_products/products.css')
+require('styles/_admin/_products/products.css')
 
 export default class Products extends Component {
 

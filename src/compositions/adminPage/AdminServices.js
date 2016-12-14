@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import AdminGallery from '../../components/admin/Services/AdminGallery'
 
-require('styles/_adminSimon/_services/adminServices.css')
+require('styles/_admin/_services/adminServices.css')
 
 export default class AdminServices extends Component {
   render() {

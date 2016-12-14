@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import firebase from 'firebase/app'
-require('../../../styles/_adminSimon/_products/addProduct.css')
+require('../../../styles/_admin/_products/addProduct.css')
 import axios from 'axios'
 
 export default class AddProduct extends Component {

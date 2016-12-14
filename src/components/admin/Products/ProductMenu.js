@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { replaceSpecialCharactersURLs } from '../../../utils/Utils'
 
-require('../../../styles/_adminSimon/_products/productMenu.css')
+require('../../../styles/_admin/_products/productMenu.css')
 
 /* CategoryItem is the main category, which contains sub categories in it */
 class CategoryItem extends Component {

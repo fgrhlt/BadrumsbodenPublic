@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
 
-require('../../styles/_adminSimon/adminWebshopMenu.css')
+require('../../styles/_admin/adminWebshopMenu.css')
 
 export default class AdminWebshopMenu extends Component {
 

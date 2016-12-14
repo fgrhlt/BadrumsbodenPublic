@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-require('../../../styles/_adminSimon/_campaigns/campaignChooser.css')
+require('../../../styles/_admin/_campaigns/campaignChooser.css')
 
 /* Each thumbnail which contains an image and can be clicked on */
 class Thumbnail extends Component {

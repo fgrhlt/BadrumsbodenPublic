@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {createLineBreak} from '../../utils/Utils'
 
-require('../../styles/_adminSimon/componentTitle.css')
+require('../../styles/_admin/componentTitle.css')
 
 export default class ComponentTitle extends Component {
 

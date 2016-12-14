@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ComponentTitle from '../ComponentTitle'
-require('../../../styles/_adminSimon/_campaigns/banner.css')
+require('../../../styles/_admin/_campaigns/banner.css')
 import axios from 'axios'
 
 import firebase from 'firebase/app'

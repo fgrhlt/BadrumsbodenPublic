@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as firebaseActions from '../../../actions/firebaseActions'
 
-require('../../../styles/_adminSimon/_services/adminGallery.css')
+require('../../../styles/_admin/_services/adminGallery.css')
 
 class AdminGallery extends Component {
   componentWillMount() {
