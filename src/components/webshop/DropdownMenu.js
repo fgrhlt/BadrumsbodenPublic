@@ -32,8 +32,8 @@ export default class DropdownMenu extends Component {
           // Get all the main categories
           if(objItem.parent == 0)
           {
-            mainCategories.push(objItem.key)
-            allCategories[objItem.key] = {
+            mainCategories.push(item)
+            allCategories[item] = {
               "name": objItem.name,
               "subcategories": []
             }
@@ -41,10 +41,10 @@ export default class DropdownMenu extends Component {
           // Get all the sub categories
           else {
             mainCategories.map((category) => {
-              if(item.parent == category) {
+              if(objItem.parent == category) {
                 let subcat = {}
-                subcat.item = item.key
-                subcat.name = item.name
+                subcat.item = item
+                subcat.name = objItem.name
                 allCategories[category]["subcategories"].push(subcat)
               }
             })
