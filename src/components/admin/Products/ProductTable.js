@@ -4,15 +4,8 @@ import FittedTable from './ResponsiveFittedTable';
 import AddProduct from './AddProduct';
 
 import axios from 'axios'
-import firebase from 'firebase/app'
-
 import { replaceSpecialCharactersURLs } from '../../../utils/Utils'
-
 import { browserHistory } from 'react-router'
-
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import * as firebaseActions from '../../../actions/firebaseActions'
 
 require('../../../styles/_admin/_products/productTable.css')
 require('../../../styles/_fixedDataTable/fixed-data-table.css')
@@ -21,7 +14,7 @@ require('../../../styles/_fixedDataTable/fixed-data-table.css')
 * fixed-data-table, and it's responsive. In the table there is six columns
 * with data from the database. Then comes the AddProduct component
 */
-class ProductTable extends Component {
+export default class ProductTable extends Component {
 
   componentWillMount() {
     let subcat = this.props.param.subcategory
@@ -39,7 +32,7 @@ class ProductTable extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { param, firebaseData } = nextProps
+    const { param } = nextProps
     const { subcategory, category } = param
 
     if (subcategory != this.props.param.subcategory) {
@@ -52,11 +45,8 @@ class ProductTable extends Component {
   }
 
   fetchData(query, value) {
-    console.log('query, value', query, value);
     axios.get('/products/'+query+'/'+value)
     .then(function (response) {
-      console.log('res', response);
-
       let productArray = response.data.map( (product) => {
         return [product.articleNr, product.supplier, product.productName, product.description, product.filename, product, product.starred]
       })
@@ -77,11 +67,17 @@ class ProductTable extends Component {
     })
   }
 
-  deleteElement(id) {
-    axios.delete('/products/'+id)
+  deleteElement(product) {
+    //delete from DB
+    axios.delete('/products/'+product._id)
     .then(function (response) {
-      console.log('res', response);
-
+      //delete image
+      axios.delete('/image/'+product.img_id)
+      .then(function (response) {
+      }.bind(this))
+      .catch(function (error) {
+        console.log(error);
+      })
     }.bind(this))
     .catch(function (error) {
       console.log(error);
@@ -91,7 +87,6 @@ class ProductTable extends Component {
   starElement(id, starred) {
     axios.put('/products/'+id, {starred})
     .then(function (response) {
-      console.log('res', response);
 
     }.bind(this))
     .catch(function (error) {
@@ -100,11 +95,9 @@ class ProductTable extends Component {
   }
 
 
-  /* Removes the article from firebase */
   removeArticle(rowIndex) {
     let product = this.state.products[rowIndex][5]
-    this.props.deleteFirebaseElement('products', product)
-    this.deleteElement(product._id)
+    this.deleteElement(product)
     let subcat = this.props.param.subcategory
     this.fetchData('subcategory', subcat)
   }
@@ -114,12 +107,7 @@ class ProductTable extends Component {
   */
   setFavorite(rowIndex) {
     let product = this.state.products[rowIndex][5]
-
     let starred = this.state.products[rowIndex][6] ? {starred: false} : {starred: true}
-
-    // var databaseRef = firebase.database()
-    // .ref('webshop/products/'+product.key)
-    // .update(starred)
 
     this.starElement(product._id, starred.starred)
     let subcat = this.props.param.subcategory
@@ -216,15 +204,3 @@ class ProductTable extends Component {
     )
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    firebaseData: state.firebaseReducer.firebaseData
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(firebaseActions, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductTable)

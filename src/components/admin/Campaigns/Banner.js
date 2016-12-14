@@ -3,13 +3,7 @@ import ComponentTitle from '../ComponentTitle'
 require('../../../styles/_admin/_campaigns/banner.css')
 import axios from 'axios'
 
-import firebase from 'firebase/app'
-
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import * as firebaseActions from '../../../actions/firebaseActions'
-
-class Banner extends Component {
+export default class Banner extends Component {
 
   componentWillMount() {
     this.state = {
@@ -22,8 +16,6 @@ class Banner extends Component {
   fetchData() {
     axios.get('/campaign/banner')
     .then(function (response) {
-      console.log('res', response);
-      console.log(' response.data',  response.data);
       this.setState({
         bannerItem: response.data[0]
       })
@@ -46,7 +38,6 @@ class Banner extends Component {
       type: 'banner'
      })
     .then(function (response) {
-      console.log('res', response);
       this.fetchData()
     }.bind(this))
     .catch(function (error) {
@@ -101,15 +92,3 @@ class Banner extends Component {
     )
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    firebaseData: state.firebaseReducer.firebaseData
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(firebaseActions, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Banner)

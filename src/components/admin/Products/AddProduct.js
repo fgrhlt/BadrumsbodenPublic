@@ -37,58 +37,58 @@ export default class AddProduct extends Component {
       })
     }
     else {
-      var storageRef = firebase.storage().ref().child('webshop/products/'+file.name)
-      // Upload file to storageRef
-      let task = storageRef.put(file)
+      //Image upload
+      var filedata = new FormData();
+      filedata.append('file', file);
 
-      task.on('state_changed', () => {
-        // Observe state change events such as progress, pause, and resume
-        // See below for more detail
-        console.log('Uploading file', file.name, 'to', 'webshop/products/')
-        this.setState({
-          infoText: 'Laddar upp till databasen...',
-          color: "LimeGreen"
-        })
-      }, (error) => {
-        // Handle unsuccessful uploads
-        this.setState({
-          infoText: error,
-          color: "red"
-        })
-      }, () => {
-        /* Successful uploads */
-        this.setState({
-          infoText: 'Lyckades ladda upp!',
-          color: "LimeGreen"
-        })
+      this.setState({
+        infoText: 'Laddar upp till databasen...',
+        color: "LimeGreen"
+      })
 
+      axios.post('/image', filedata)
+      .then(function (res) {
         axios.post('/products', {
-            url: task.snapshot.downloadURL,
-            filename: file.name,
-            articleNr,
-            supplier,
-            productName,
-            description,
-            price,
-            category: this.props.param.category,
-            subcategory: this.props.param.subcategory
-         })
+          url: res.data.url,
+          filename: file.name,
+          img_id: res.data.img_id,
+          articleNr,
+          supplier,
+          productName,
+          description,
+          price,
+          category: this.props.param.category,
+          subcategory: this.props.param.subcategory
+        })
         .then(function (response) {
-          console.log('res', response);
+          /* Successful uploads */
+          // Reset inputtext
+          this.refs.fileHolder.value = ''
+          this.refs.articleNr.value = ''
+          this.refs.supplier.value = ''
+          this.refs.productName.value = ''
+          this.refs.bild.value = ''
+          this.refs.description.value = ''
+          this.refs.price.value = ''
+
+          this.setState({
+            infoText: 'Lyckades ladda upp!',
+            color: "LimeGreen"
+          })
+
           let subcat = this.props.param.subcategory
           this.props.fetchData('subcategory', subcat)
         }.bind(this))
         .catch(function (error) {
           console.log(error);
         })
-        // Reset inputtext
-        this.refs.fileHolder.value = ''
-        this.refs.articleNr.value = ''
-        this.refs.supplier.value = ''
-        this.refs.productName.value = ''
-        this.refs.bild.value = ''
-        this.refs.description.value = ''
-        this.refs.price.value = ''
+      }.bind(this))
+      .catch(function (err) {
+        // Handle unsuccessful uploads
+        this.setState({
+          infoText: error,
+          color: "red"
+        })
       })
     }
   }
