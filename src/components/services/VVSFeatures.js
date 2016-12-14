@@ -9,7 +9,7 @@ export default class VVSFeatures extends Component {
       <div id="features">
           <section id="three">
             <div>
-              <img src="assets/icons/services/fastservice.svg" className="gauge" />
+              <img src="../../assets/icons/services/fastservice.svg" className="gauge" />
 
               <h3>Snabb service</h3>
               <p>
@@ -19,7 +19,7 @@ export default class VVSFeatures extends Component {
             </div>
 
             <div>
-              <img src="assets/icons/services/pricetag.svg" className="tag" />
+              <img src="../../assets/icons/services/pricetag.svg" className="tag" />
 
               <h3>Alltid fast pris</h3>
               <p>
@@ -28,7 +28,7 @@ export default class VVSFeatures extends Component {
             </div>
 
             <div>
-              <img src="assets/icons/services/medkit.svg" />
+              <img src="../../assets/icons/services/medkit.svg" />
 
               <h3>Akutservice</h3>
               <p>

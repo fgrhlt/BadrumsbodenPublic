@@ -22,13 +22,12 @@ export default class WelcomeInfo extends Component {
               <div className="text webshopText">
                 <p>
                   Vi erbjuder webbshop med produkter för hemmafixaren och proffset.
-                  Här hittar ni exempelvis badkar, blandare, bastuprodukter och vvs-artiklar.
-                  Glöm inte att titta in våra kampanjer.
+                  Här hittar ni exempelvis badrumsinredning, blandare, dusch- och badprodukter och VVS-artiklar.
+                  Vi levererar inom 5 arbetsdagar och snabbare inom Umeå.
                 </p>
-                <br />
-                <p>Vi levererar inom 5 arbetsdagar och snabbare inom Umeå.</p>
-                <br />
-                <p>Välkommen in för att se om ni hittar något som passar er!</p>
+                <br /><br />
+                <p>
+                Välkommen in i vår webbshop för att se om ni hittar något som passar er!</p>
               </div>
 
               <div className="arrowButton webshop" onClick={this.goWebshop.bind(this)}>

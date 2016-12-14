@@ -10,6 +10,10 @@
 
       & h2 {
         margin-bottom:20px;
+        cursor:pointer;
+      }
+      & h2:hover {
+        color:#999;
       }
 
       & > section {

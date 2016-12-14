@@ -84,7 +84,7 @@ export default class ServiceSelector extends Component {
               <div className={this.state.left.description} id="description">
                 <div>
                   <p>
-                    Klicka på knappen nedan för att börja din priskalkyl. Allt du behöver
+                    Klicka på knappen nedan för att beräkna din priskalkyl. Allt du behöver
                     göra är att fylla i fälten så noggrant som möjligt så återkopplar vi
                     inom kort med vad just din renovering kommer att kosta.<br/><br/>
                     Om du lämnar ditt badrum i våra händer kan du känna dig trygg.
@@ -109,8 +109,8 @@ export default class ServiceSelector extends Component {
             <div className={this.state.right.description} id="description">
               <div>
                 <p>
-                  Har du problem med vattnet, värmepumpen eller övrig vvs? Låt oss utföra servicearbetet,
-                  alltid till fast pris. Boka så utför vi arbetet inom 5 arbetsdagar.<br/><br/>
+                  Har du problem med vattnet, värmepumpen eller övrig VVS? Låt oss utföra servicearbetet,
+                  alltid till fast pris. Boka så utför vi arbetet inom 5 arbetsdagar.
                   För större arbeten skickar du ett meddelande så blir du kontaktad inom en arbetsdag.<br/><br/>
                   Klicka på knappen nedan för att få fram kontaktformuläret
                 </p>
@@ -126,7 +126,7 @@ export default class ServiceSelector extends Component {
                 <figure name="tap"/>
                 <h2>VVS</h2>
                 <h4>
-                  Här kan du kontakta oss för att utföra VVS-service.<br/>
+                  Här kan du kontakta oss för att boka VVS-service.<br/>
                   Vi utför snabb service inom 5 arbetsdagar.
                 </h4>
               </div>

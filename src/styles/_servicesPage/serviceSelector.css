@@ -1,6 +1,8 @@
 @import '../global.css';
 
 .serviceSelector {
+  background: url(../../assets/images/landingPage/badrum1_1.jpg) no-repeat;
+  background-position:center;
   height:350px;
   background-repeat:no-repeat;
   background-size:cover;
