@@ -20,9 +20,6 @@ export default class DropdownMenu extends Component {
   fetchData() {
     axios.get('/categories')
     .then(function (response) {
-      console.log('res', response);
-      console.log(' response.data', response.data[0]);
-
       let categoryItems = response.data[0]
       let mainCategories = []
       let allCategories = {}
@@ -134,7 +131,7 @@ export default class DropdownMenu extends Component {
   render() {
     const paramCategory = this.props.params.category
     const { categories } = this.state
-    console.log('staet', this.state);
+    
     return (
       <div id="menu" onClick={this.clickHandler.bind(this)}>
       {Object.keys(categories).map(function(category, index) {

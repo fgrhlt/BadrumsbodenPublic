@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ComponentTitle from '../ComponentTitle'
 import axios from 'axios'
-require('../../../styles/_adminSimon/_services/adminGallery.css')
+require('../../../styles/_admin/_services/adminGallery.css')
 
 export default class AdminGallery extends Component {
   componentWillMount() {
