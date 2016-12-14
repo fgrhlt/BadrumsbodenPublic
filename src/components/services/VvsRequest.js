@@ -1,11 +1,15 @@
-import React, { Component } from 'react'
 import axios from 'axios'
+import OverlayMessages from './OverlayMessages'
+import React, { Component } from 'react'
+
 require('../../styles/_servicesPage/vvsRequest.css')
 
 export default class VVSRequest extends Component {
   componentWillMount() {
     this.state = {
-      form: {}
+      form: {},
+      response: 'error',
+      overlay: true,
     }
   }
 
@@ -19,18 +23,29 @@ export default class VVSRequest extends Component {
       inputValues[input] = this.refs[input].value
     }
 
-    axios({
-      method: 'post',
-      url: 'https://badrumsboden.herokuapp.com/email/VVSRequest',
-      data: inputValues
-    })
+    // axios({
+    //   method: 'post',
+    //   url: 'https://badrumsboden.herokuapp.com/email/VVSRequest',
+    //   data: inputValues
+    // })
+    axios.post('/email/VVSRequest', inputValues)
+      .then(function (res) {
+        console.log("response", res)
+      })
+      .catch(function (err) {
+        console.log("error", err)
+      })
 
     this.setState({
       form: {}
     })
-
   }
 
+  exitOverlay() {
+    this.setState({
+      overlay:false
+    })
+  }
   render() {
     var styleVar = {
       backgroundImage: 'url(assets/images/services/vvs_green_bg.svg)',
@@ -39,6 +54,11 @@ export default class VVSRequest extends Component {
 
     return (
       <div className="serviceForm" id="vvsRequest" style={styleVar}>
+        {this.state.overlay ?
+          <OverlayMessages response={this.state.response} exitOverlay={this.exitOverlay.bind(this)}/>
+           :''}
+
+
         <section>
           <div>
             <h2>Kontakta oss för VVS och värmejobb!</h2>
