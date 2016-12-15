@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import cookie from 'react-cookie'
 import { browserHistory } from 'react-router'
+import axios from 'axios'
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as firebaseActions from '../../actions/firebaseActions'
 import * as shoppingcartActions from '../../actions/shoppingcartActions'
 
 require('styles/_checkoutPage/checkout.css')
@@ -40,35 +40,29 @@ class Checkout extends Component {
   }
 
   fetchShoppingcartProducts() {
-    const { actions } = this.props
-    const { firebaseActions } = actions
-    const { fetchFirebaseData } = firebaseActions
     let cookies = []
-
     Object.keys(cookie.select(/^product.*/i)).forEach(name => cookies.push((cookie.load(name))))
     let arr = []
 
     cookies.forEach(function(item, i) {
       arr[i] = item
-      fetchFirebaseData('products', 'articleNr', item.articleNr)
-    })
+      this.fetchData('articleNr', item.articleNr)
+    }.bind(this))
 
     this.setState({
       items: arr,
     })
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { reducer } = nextProps
-    const { firebaseReducer } = reducer
-    const { firebaseData } = firebaseReducer
-    let nrOfProducts = Object.keys(this.state.items).length
-    let nrOfProductsLoaded = this.state.nrOfProductsLoaded
+  fetchData(query, value) {
+    axios.get('/products/'+query+'/'+value)
+    .then(function (response) {
+      let nrOfProducts = Object.keys(this.state.items).length
+      let nrOfProductsLoaded = this.state.nrOfProductsLoaded
 
-    //Ifall firebaseData.products har laddats && inte pushat alla produkter, pusha till state
-    if (firebaseData.products && nrOfProductsLoaded < nrOfProducts) {
+      if (nrOfProductsLoaded < nrOfProducts) {
       let stateProducts = this.state.products
-      let product = Object.assign({}, firebaseData.products.items[0])
+      let product = Object.assign({}, response.data)
 
       product['quantity'] = this.getQuantity(product.articleNr)
       stateProducts.push(product)
@@ -78,6 +72,10 @@ class Checkout extends Component {
         nrOfProductsLoaded: this.state.nrOfProductsLoaded+1
       })
     }
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
+    })
   }
 
   getQuantity(articleNr) {
@@ -106,7 +104,7 @@ class Checkout extends Component {
       products: newArr,
       items: {}
     }, () => {
-      this.props.actions.shoppingcartActions.removeFromShoppingcart(product, price)
+      this.props.shoppingcartActions.removeFromShoppingcart(product, price)
       this.fetchShoppingcartProducts()
     })
   }
@@ -116,7 +114,7 @@ class Checkout extends Component {
     let newQuantity = parseInt(stateProducts[i].quantity) + parseInt(quantity)
 
     if (newQuantity>0) {
-      this.props.actions.shoppingcartActions.updateQuantity(i, product, quantity)
+      this.props.shoppingcartActions.updateQuantity(i, product, quantity)
 
       stateProducts[i].quantity = newQuantity
       this.setState({
@@ -147,6 +145,7 @@ class Checkout extends Component {
       deliveryCost: deliveryValue
     })
   }
+
   goToProduct(product) {
     const { category, subcategory, articleNr } = product
     browserHistory.push('/webshop/'+category+'/'+subcategory+'/'+articleNr)
@@ -154,6 +153,7 @@ class Checkout extends Component {
 
   render() {
     const { products, summary, deliveryCost } = this.state
+
     let sum = 0
     return (
         <section>
@@ -249,19 +249,13 @@ class Checkout extends Component {
 
     function mapStateToProps(state) {
       return {
-        reducer: {
-          firebaseReducer: state.firebaseReducer,
-          shoppingcartReducer: state.shoppingcartReducer
-        }
+        shoppingcartReducer: state.shoppingcartReducer
       }
     }
 
     function mapDispatchToProps(dispatch) {
       return {
-        actions: {
-          firebaseActions: bindActionCreators(firebaseActions, dispatch),
-          shoppingcartActions: bindActionCreators(shoppingcartActions, dispatch)
-        }
+        shoppingcartActions: bindActionCreators(shoppingcartActions, dispatch)
       }
     }
 
