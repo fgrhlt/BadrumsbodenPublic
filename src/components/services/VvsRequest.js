@@ -8,8 +8,8 @@ export default class VVSRequest extends Component {
   componentWillMount() {
     this.state = {
       form: {},
-      response: 'error',
-      overlay: true,
+      responseType: '',
+      overlay: false,
     }
   }
 
@@ -30,14 +30,23 @@ export default class VVSRequest extends Component {
     // })
     axios.post('/email/VVSRequest', inputValues)
       .then(function (res) {
-        console.log("response", res)
-      })
+        console.log("responseType", res)
+        this.setResponseType('message')
+      }.bind(this))
       .catch(function (err) {
         console.log("error", err)
-      })
+        this.setResponseType('error')
+      }.bind(this))
 
     this.setState({
       form: {}
+    })
+  }
+  /* Sets the response type of this component */
+  setResponseType(response) {
+    this.setState({
+      responseType: response,
+      overlay:true
     })
   }
 
@@ -55,7 +64,10 @@ export default class VVSRequest extends Component {
     return (
       <div className="serviceForm" id="vvsRequest" style={styleVar}>
         {this.state.overlay ?
-          <OverlayMessages response={this.state.response} exitOverlay={this.exitOverlay.bind(this)}/>
+          <OverlayMessages
+            responseType={this.state.responseType}
+            exitOverlay={this.exitOverlay.bind(this)}
+            errorMessage={"Försök igen eller skicka ett mail till info@badrumsboden.se med din förfrågan"} />
            :''}
 
 

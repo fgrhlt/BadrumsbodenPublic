@@ -20,6 +20,7 @@
 	}
 
 	& .serviceForm {
+		position: relative;
 	  box-sizing:border-box;
 	  background-color:var(--mediumGray);
 	  background-repeat: no-repeat;

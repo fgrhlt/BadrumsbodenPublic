@@ -9,7 +9,7 @@ export default class BathroomFeatures extends Component {
       <div id="features">
           <section id="three">
             <div>
-              <img src="../../assets/icons/services/10year.svg" className="bathroomIcon"/>
+              <figure className="icon tenYear"/>
 
               <h3>Garanti</h3>
               <p>
@@ -18,7 +18,7 @@ export default class BathroomFeatures extends Component {
             </div>
 
             <div>
-              <img src="../../assets/icons/services/pricecalc.svg" className="bathroomIcon" />
+              <figure className="icon priceCalc" />
               <h3>Priskalkyl</h3>
               <p>
                 Vi är de enda i branschen som erbjuder en
@@ -27,7 +27,7 @@ export default class BathroomFeatures extends Component {
             </div>
 
             <div>
-              <img src="../../assets/icons/services/GVK.svg" className="bathroomIcon"/>
+              <figure className="icon GVK"/>
 
               <h3>GVK-auktoriserade</h3>
               <p>

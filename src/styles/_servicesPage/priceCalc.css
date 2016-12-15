@@ -1,12 +1,16 @@
 @import '../global.css';
 
 #priceCalc {
+    & #overlay {
+      & > div {
+        margin-top:150px;
+      }
+    }
     /* Top section, the progressbar and the circle */
     & section:first-of-type {
       padding:40px 5% 50px 5%;
       box-sizing: border-box;
       lost-utility:clearfix;
-
         /* The circle */
         & > div:nth-of-type(1) {
           float:left;

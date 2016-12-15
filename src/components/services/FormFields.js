@@ -411,18 +411,29 @@ export default class FormFields extends Component {
 
     /* If the last button is pressed and the form is complete, send to the admin email */
     if(this.state.complete == true) {
-      console.log("Skicka detta i mail", flat(this.state.formSet))
-
-      axios({
-        method: 'post',
-        url: 'https://badrumsboden.herokuapp.com/email/priskalkyl',
-        data: flat(this.state.formSet)
-      }).then(function (response) {
-        console.log(response);
+      this.setState({
+        complete:false
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      let first = this.state.formSet.first
+      if(first.namn == '' && first.epost == '' && first.telefon == '' && first.adress == '') {
+        this.props.setResponseType('error', 'Du måste fylla i namn, telefonnummer, epost och adress för att kunna skicka en priskalkyl')
+      }
+      else {
+        console.log("Skicka detta i mail", flat(this.state.formSet))
+
+        axios({
+          method: 'post',
+          url: 'https://badrumsboden.herokuapp.com/email/priskalkyl',
+          data: flat(this.state.formSet)
+        }).then(function (response) {
+          console.log(response);
+          this.props.setResponseType('message')
+        }.bind(this))
+        .catch(function (error) {
+          console.log(error);
+          this.props.setResponseType('error', 'Försök igen eller hör av dig till oss på info@badrumsboden.se')
+        }.bind(this));
+      }
     }
   }
 

@@ -1,5 +1,5 @@
 @import '../global.css';
-#formFields {
+#formFields {  
   /* The react-tooltip div */
   & .show {
     font-size:12pt;

@@ -80,6 +80,10 @@
   & .landingThree {
     margin-bottom:20px;
   }
+  & .icon {
+    height:70px;
+    margin:0 auto 15px auto;
+  }
   & .thumb {
      background:url('../../assets/icons/landing_page/thumb_orange.svg') no-repeat;
      width:65px;
@@ -98,17 +102,35 @@
     height:58px;
     margin:5px auto 25px auto;
   }
-  & img {
-    margin-bottom:15px;
-    height: 55px;
+  & .tenYear {
+    background: url("../../assets/icons/services/10year.svg") no-repeat;
+    width:60px;
+  }
+  & .priceCalc {
+    background: url("../../assets/icons/services/pricecalc.svg") no-repeat;
+    width:50px;
+  }
+  & .GVK {
+    background: url("../../assets/icons/services/GVK.svg") no-repeat;
+    width:70px;
   }
   & .gauge {
-    height:45px;
-    margin-bottom:20px;
+    height:58px;
+    width:100px;
+    margin-top:10px;
+    background:url("../../assets/icons/services/fastservice.svg") no-repeat;
   }
-  & .bathroomIcon {
-    height:70px;
+  & .tag {
+    background:url("../../assets/icons/services/pricetag.svg") no-repeat;
+    width:70px;
   }
+  & .medkit {
+    background:url("../../assets/icons/services/medkit.svg") no-repeat;
+    width:76px;
+    height:65px;
+    margin-top:5px;
+  }
+
   & .circle {
     background:#fff;
     height:140px;
