@@ -4,16 +4,7 @@ import WelcomeInfo from '../../components/landingPage/WelcomeInfo'
 import LandingPageFeatures from '../../components/landingPage/LandingPageFeatures'
 import LandingPageFooter from '../../components/landingPage/LandingPageFooter'
 
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import * as firebaseActions from '../../actions/firebaseActions'
-
- class LandingPage extends Component {
-
-  componentWillMount() {
-    this.props.fetchSingleFirebaseItem('campaign')
-  }
-
+export default class LandingPage extends Component {
   render() {
     return (
       <div>
@@ -25,15 +16,3 @@ import * as firebaseActions from '../../actions/firebaseActions'
     )
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    firebaseData: state.firebaseReducer.firebaseData
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(firebaseActions, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(LandingPage)

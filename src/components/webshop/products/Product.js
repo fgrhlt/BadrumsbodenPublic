@@ -62,12 +62,12 @@ class Product extends Component {
       </div>
 
       <section>
-        <figure style={{backgroundImage: 'url(' + url + ')'}} />
+        <figure style={{padding:'5px', backgroundImage: 'url(' + url + ')'}} />
       </section>
 
       <section>
         <h2>{productName}</h2>
-        <p>Artikelnummer:{ articleNr}</p>
+        <p>Artikelnummer: {articleNr}</p>
 
         <p>{description}</p>
         <p>Antal</p>

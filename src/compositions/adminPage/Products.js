@@ -9,7 +9,7 @@ export default class Products extends Component {
 
 componentWillMount() {
   this.state = {
-    showProductTable: false
+    showProductTable: true
   }
 }
 
@@ -29,9 +29,9 @@ showProductTable() {
                 'genom att trycka på stjärnan i produktlistan.'}
         />
 
-      <div id="container">
+        <div id="container">
           <ProductMenu showProductTable={this.showProductTable.bind(this)} />
-          { this.state.showProductTable? <ProductTable param={this.props.param} /> : ''}
+          <ProductTable param={this.props.param} />
         </div>
       </div>
     )

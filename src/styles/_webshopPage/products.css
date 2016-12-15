@@ -32,8 +32,14 @@
         & p {
           margin:0 10px;
           height:70px;
-          font-size:12pt;
+          font-size:10pt;
+          font-style:italic;
           overflow:hidden;
+        }
+        & > span {
+          font-size:12pt;
+          font-weight:bold;
+          margin:0 10px 10px 10px;
         }
         & figure {
           width:100%;

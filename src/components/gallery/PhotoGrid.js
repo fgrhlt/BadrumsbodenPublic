@@ -23,9 +23,6 @@ export default  class PhotoGrid extends Component {
 
       axios.get('/gallery/'+type)
       .then(function (response) {
-        console.log('res', response);
-        console.log(' response.data',  response.data);
-
         let urls = response.data.map( (item) => {
           return item.url
         })

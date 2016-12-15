@@ -39,9 +39,13 @@ export default class Campaign extends Component {
         var filedata = new FormData();
         filedata.append('file', file);
 
+        this.setState({
+          infoText: 'Laddar upp till databasen...',
+          color: "LimeGreen"
+        })
+
         axios.post('/image', filedata)
         .then(function (res) {
-          // Handle successful uploads on complete
           axios.post('/campaign/'+'campaign', {
             url: res.data.url,
             img_id: res.data.img_id,
@@ -53,17 +57,21 @@ export default class Campaign extends Component {
             type: 'campaign'
           })
           .then(function (response) {
+            /* Successful uploads */
             this.setState({
               infoText: "Uppladdningen lyckades med bild: " + file.name,
               infoColor: 'limeGreen'
-            }, () => {
-              this.fetchData()
             })
+            this.fetchData()
           }.bind(this))
           .catch(function (error) {
+            this.setState({
+              infoText: error,
+              infoColor: 'red'
+            })
             console.log(error);
-          })
-        })
+          }.bind(this))
+        }.bind(this))
         //Reset placeholder inputtext
         this.refs.fileHolder.value = ''
       } else {
@@ -126,7 +134,6 @@ export default class Campaign extends Component {
       }
       return (
         <div id="adminCampaign">
-          <div className="warning">Obs. ha inte större bilder än 2000 px i bredd!</div>
           <section className="campaignImg" style={campaignImg}>
             <div className="lostWrapper">
               <input

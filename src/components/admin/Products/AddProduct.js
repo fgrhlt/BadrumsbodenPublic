@@ -80,8 +80,12 @@ export default class AddProduct extends Component {
           this.props.fetchData('subcategory', subcat)
         }.bind(this))
         .catch(function (error) {
+          this.setState({
+            infoText: error,
+            infoColor: 'red'
+          })
           console.log(error);
-        })
+        }.bind(this))
       }.bind(this))
       .catch(function (err) {
         // Handle unsuccessful uploads

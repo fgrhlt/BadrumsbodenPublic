@@ -48,29 +48,6 @@ export default class DropdownMenu extends Component {
           }
         }
 
-      // categoryItems.map( (item) => {
-      //   // Get all the main categories
-      //   if(item.parent == 0)
-      //   {
-      //     mainCategories.push(item.key)
-      //     allCategories[item.key] = {
-      //       "name": item.name,
-      //       "subcategories": []
-      //     }
-      //   }
-      //   // Get all the sub categories
-      //   else {
-      //     mainCategories.map((category) => {
-      //       if(item.parent == category) {
-      //         let subcat = {}
-      //         subcat.item = item.key
-      //         subcat.name = item.name
-      //         allCategories[category]["subcategories"].push(subcat)
-      //       }
-      //     })
-      //   }
-      // })
-
       //main categories and subcategories are now in state
       this.setState({
         categories: allCategories
@@ -131,7 +108,7 @@ export default class DropdownMenu extends Component {
   render() {
     const paramCategory = this.props.params.category
     const { categories } = this.state
-    
+
     return (
       <div id="menu" onClick={this.clickHandler.bind(this)}>
       {Object.keys(categories).map(function(category, index) {

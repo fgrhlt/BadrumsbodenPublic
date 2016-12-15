@@ -21,7 +21,7 @@
     /* Second column contains the shopping cart and payment info */
     & > section:nth-of-type(2) {
       lost-column:3/4;
-
+      position:relative;
         & #cart {
           lost-utility:clearfix;
           margin:20px 0;
@@ -189,7 +189,7 @@
       }
       & .total {
         float:right;
-        margin-right:4%;
+        margin:0 4% 100px 0;
         & span {
           font-weight: bold;
         }
@@ -201,7 +201,9 @@
         box-shadow: 0 2px 5px #888;
         border-radius: 8px;
         cursor:pointer;
-        margin-top:60px;
+        position:absolute;
+        right:0;
+        bottom:0;
       }
       & .paysonBtn:active {
         background:url('../../assets/buttons/payson-btn_a.svg') no-repeat;

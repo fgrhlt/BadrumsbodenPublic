@@ -13,13 +13,14 @@ export default class ProductPreview extends Component {
 
   render() {
     const { item } = this.props
-    const { articleNr, price, description, productName, supplier, url } = item
+    const { articleNr, supplier, price, productName, url } = item
 
     return (
       <div onClick={this.onClick.bind(this)}>
         <figure style={{backgroundImage: 'url(' + url + ')'}} />
         <h4>{productName}</h4>
-        <p>{description}</p>
+        <span>{supplier}</span>
+        <p>Art.nr: {articleNr}</p>
         <div className="buy-btn">
           <span>{price}:-</span>
           <span>Mer info</span>

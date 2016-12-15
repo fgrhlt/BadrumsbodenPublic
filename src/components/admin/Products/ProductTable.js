@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import {Table, Column, Cell} from 'fixed-data-table';
 import FittedTable from './ResponsiveFittedTable';
 import AddProduct from './AddProduct';
-
 import axios from 'axios'
 import { replaceSpecialCharactersURLs } from '../../../utils/Utils'
 import { browserHistory } from 'react-router'
@@ -28,6 +27,7 @@ export default class ProductTable extends Component {
     this.state = {
       products: [],
       columns: [],
+      inputText: ''
     }
   }
 
@@ -116,91 +116,123 @@ export default class ProductTable extends Component {
     console.log('Storage: '+product.folder+'/'+product.filename, 'updated!')
   }
 
+  onChange(event) {
+    this.setState({
+      inputText: event.target.value
+    })
+  }
+
+  onKey(event) {
+    if (event.keyCode==13) {
+      this.searchProducts()
+    }
+  }
+
+  searchProducts() {
+    if (this.state.inputText.length>0) {
+      this.fetchData('search', this.state.inputText)
+    }else {
+      let subcat = this.props.param.subcategory
+      this.fetchData('subcategory', subcat)
+    }
+  }
+
   render() {
     return (
-      <div id="productTable">
-        <FittedTable
-          rowHeight={50}
-          rowsCount={this.state.products.length}
-          headerHeight={50}
-          >
-          <Column
-            header={<Cell>{this.state.columns[0]}</Cell>}
-            cell={({rowIndex, ...props}) => (
-              <Cell {...props}>
-                {this.state.products[rowIndex][0]}
-              </Cell>
-            )}
-            flexGrow={1}
-            width={80}
-            />
-
-          <Column
-            header={<Cell>{this.state.columns[1]}</Cell>}
-            cell={({rowIndex, ...props}) => (
-              <Cell {...props}>
-                {this.state.products[rowIndex][1]}
-              </Cell>
-            )}
-            flexGrow={1}
-            width={150}
-            />
-          <Column
-            header={<Cell>{this.state.columns[2]}</Cell>}
-            cell={({rowIndex, ...props}) => (
-              <Cell {...props}>
-                {this.state.products[rowIndex][2]}
-              </Cell>
-            )}
-            flexGrow={1}
-            width={280}
-            />
-          <Column
-            header={<Cell>{this.state.columns[3]}</Cell>}
-            cell={({rowIndex, ...props}) => (
-              <Cell {...props}>
-                {this.state.products[rowIndex][3]}
-              </Cell>
-            )}
-            flexGrow={1}
-            width={270}
-            />
-          <Column
-            header={<Cell>{this.state.columns[4]}</Cell>}
-            cell={({rowIndex, ...props}) => (
-              <Cell {...props}>
-                {this.state.products[rowIndex][4]}
-              </Cell>
-            )}
-            flexGrow={1}
-            width={100}
-            />
-
-          <Column
-            cell={({rowIndex, ...props}) => (
-              <Cell {...props}>
-                <figure className={this.state.products[rowIndex][6] ? "star filled" : "star"} onClick={this.setFavorite.bind(this, rowIndex)}/>
-                <figure className="trash" onClick={this.removeArticle.bind(this, rowIndex)}/>
-              </Cell>
-            )}
-
-            flexGrow={1}
-            width={100}
-            />
-        </FittedTable>
-
-        {this.props.param.category != "toppsaljare" ?
-        <div>
-          //TODO: sök
-          <div onClick={this.fetchData.bind(this)}>
-            <p>Produktnamn</p>
-            <input type="text" ref="productName2"/>
+      <div>
+        <div id="searchBar">
+          <div>
+            <input
+              value={this.state.inputText}
+              onChange={this.onChange.bind(this)}
+              onKeyUp={this.onKey.bind(this)}
+              type="text"
+              placeholder="Vad söker du efter?">
+            </input>
           </div>
 
-          <AddProduct fetchData={this.fetchData.bind(this)} param={this.props.param} />
+          <div>
+            <figure onClick={this.searchProducts.bind(this)}/>
+          </div>
         </div>
-        : '' }
-      </div>
-    )
+
+        <div id="productTable">
+          <FittedTable
+            rowHeight={50}
+            rowsCount={this.state.products.length}
+            headerHeight={50}
+            >
+            <Column
+              header={<Cell>{this.state.columns[0]}</Cell>}
+              cell={({rowIndex, ...props}) => (
+                <Cell {...props}>
+                  {this.state.products[rowIndex][0]}
+                </Cell>
+              )}
+              flexGrow={1}
+              width={80}
+              />
+
+            <Column
+              header={<Cell>{this.state.columns[1]}</Cell>}
+              cell={({rowIndex, ...props}) => (
+                <Cell {...props}>
+                  {this.state.products[rowIndex][1]}
+                </Cell>
+              )}
+              flexGrow={1}
+              width={150}
+              />
+            <Column
+              header={<Cell>{this.state.columns[2]}</Cell>}
+              cell={({rowIndex, ...props}) => (
+                <Cell {...props}>
+                  {this.state.products[rowIndex][2]}
+                </Cell>
+              )}
+              flexGrow={1}
+              width={280}
+              />
+            <Column
+              header={<Cell>{this.state.columns[3]}</Cell>}
+              cell={({rowIndex, ...props}) => (
+                <Cell {...props}>
+                  {this.state.products[rowIndex][3]}
+                </Cell>
+              )}
+              flexGrow={1}
+              width={270}
+              />
+            <Column
+              header={<Cell>{this.state.columns[4]}</Cell>}
+              cell={({rowIndex, ...props}) => (
+                <Cell {...props}>
+                  {this.state.products[rowIndex][4]}
+                </Cell>
+              )}
+              flexGrow={1}
+              width={100}
+              />
+
+            <Column
+              cell={({rowIndex, ...props}) => (
+                <Cell {...props}>
+                  <figure className={this.state.products[rowIndex][6] ? "star filled" : "star"} onClick={this.setFavorite.bind(this, rowIndex)}/>
+                  <figure className="trash" onClick={this.removeArticle.bind(this, rowIndex)}/>
+                </Cell>
+              )}
+
+              flexGrow={1}
+              width={100}
+              />
+          </FittedTable>
+
+          {this.props.param.category != "toppsaljare" ?
+              <AddProduct fetchData={this.fetchData.bind(this)} param={this.props.param} />
+            : '' }
+          </div>
+        </div>
+
+      )
+    }
   }
-}

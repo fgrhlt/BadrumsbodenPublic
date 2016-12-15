@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
-import * as firebaseActions from '../../../actions/firebaseActions'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import { replaceSpecialCharactersURLs } from '../../../utils/Utils'
+import axios from 'axios'
 
 require('../../../styles/_admin/_products/productMenu.css')
 
@@ -51,49 +49,56 @@ class SubListItems extends Component {
   }
 }
 
-export class ProductMenu extends Component {
+export default class ProductMenu extends Component {
   componentWillMount() {
-    const { fetchFirebaseData } = this.props
-
     this.state = {
       categories: {},
     }
-    fetchFirebaseData('allCategories', 'parent')
-  }
-  componentWillReceiveProps(nextProps) {
-    const { firebaseData } = nextProps
-    let categoryItems = firebaseData['allCategories'] ? firebaseData['allCategories'].items : []
-    let mainCategories = []
-    let allCategories = {}
 
-    categoryItems.map( (item) => {
-      // Get all the main categories
-      if(item.parent == 0)
-      {
-        mainCategories.push(item.key)
-        allCategories[item.key] = {
-          "name": item.name,
-          "subcategories": []
-        }
-      }
-      // Get all the sub categories
-      else {
-        mainCategories.map((category) => {
-          if(item.parent == category) {
-            let subcat = {}
-            subcat.item = item.key
-            subcat.name = item.name
-            allCategories[category]["subcategories"].push(subcat)
+    this.fetchData()
+  }
+
+  fetchData() {
+    axios.get('/categories')
+    .then(function (response) {
+      let categoryItems = response.data[0]
+      let mainCategories = []
+      let allCategories = {}
+
+      for (var item in categoryItems) {
+        let objItem = categoryItems[item]
+          // Get all the main categories
+          if(objItem.parent == 0)
+          {
+            mainCategories.push(item)
+            allCategories[item] = {
+              "name": objItem.name,
+              "subcategories": []
+            }
           }
-        })
-      }
-    })
+          // Get all the sub categories
+          else {
+            mainCategories.map((category) => {
+              if(objItem.parent == category) {
+                let subcat = {}
+                subcat.item = item
+                subcat.name = objItem.name
+                allCategories[category]["subcategories"].push(subcat)
+              }
+            })
+          }
+        }
 
-    // main categories and subcategories are now in state
-    this.setState({
-      categories: allCategories
+      //main categories and subcategories are now in state
+      this.setState({
+        categories: allCategories
+      })
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
     })
   }
+
   handleClick() {
     browserHistory.push('/admin/webshop/produkter/toppsaljare/allatoppsaljare')
     this.props.showProductTable()
@@ -120,14 +125,3 @@ export class ProductMenu extends Component {
     )
   }
 }
-function mapStateToProps(state) {
-  return {
-    firebaseData: state.firebaseReducer.firebaseData
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(firebaseActions, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductMenu)
