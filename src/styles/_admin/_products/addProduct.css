@@ -70,9 +70,9 @@
 
             & .infoText {
               background: #444;
-              min-height:40px;
+              min-height:35px;
               box-sizing: border-box;
-              padding:13px;
+              padding:12px;
               font-size:10pt;
               font-weight: bold;
             }

@@ -7,7 +7,7 @@ export default class Campaign extends Component {
   componentWillMount() {
     this.state = {
       campaignItem: [],
-      infoText: 'Väntar på uppladdning...',
+      infoText: '',
       infoColor: 'LimeGreen',
     }
 

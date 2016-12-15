@@ -7,7 +7,7 @@ export default class AddProduct extends Component {
   componentWillMount() {
     /* The id tells which id the last product had, so the next can be incremented */
     this.state = {
-      infoText: "Väntar på uppladdning...",
+      infoText: "",
       color: "LimeGreen"
     }
   }
@@ -140,7 +140,7 @@ export default class AddProduct extends Component {
                 </div>
 
                 <div>
-                  <p>Status uppladdning</p>
+                  <p>Status för uppladdning</p>
                   <div className="infoText" style={{color: this.state.color}}>
                     {this.state.infoText}
                   </div>

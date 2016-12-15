@@ -68,20 +68,20 @@ export default class ProductTable extends Component {
   }
 
   deleteElement(product) {
-    //delete from DB
-    axios.delete('/products/'+product._id)
-    .then(function (response) {
-      //delete image
-      axios.delete('/image/'+product.img_id)
+    let c = confirm("Är du säker på att du vill ta bort denna produkt?")
+    if(c) {
+      //delete from DB
+      axios.delete('/products/'+product._id)
       .then(function (response) {
-      }.bind(this))
-      .catch(function (error) {
-        console.log(error);
-      })
-    }.bind(this))
-    .catch(function (error) {
-      console.log(error);
-    })
+        //delete image
+        axios.delete('/image/'+product.img_id)
+        .then(function (response) {
+        }.bind(this))
+        .catch(function (error) {
+          console.log(error);
+        })
+      }
+    }
   }
 
   starElement(id, starred) {

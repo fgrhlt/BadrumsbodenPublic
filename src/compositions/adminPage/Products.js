@@ -29,8 +29,8 @@ showProductTable() {
                 'genom att trycka på stjärnan i produktlistan.'}
         />
 
-        <div id="container">
-          <ProductMenu showProductTable={this.showProductTable.bind(this)} />
+      <div id="container">
+          <ProductMenu showProductTable={this.showProductTable.bind(this)} param={this.props.param}/>
           <ProductTable param={this.props.param} />
         </div>
       </div>

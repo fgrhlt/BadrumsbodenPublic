@@ -22,7 +22,7 @@ class CategoryItem extends Component {
             {this.props.name}
           </div>
         </div>
-        {this.state.clicked ? <SubListItems showProductTable={this.props.showProductTable} categories={this.props} url={this.props.url}/> : ''}
+        {this.state.clicked ? <SubListItems showProductTable={this.props.showProductTable} categories={this.props} url={this.props.url} param={this.props.param}/> : ''}
       </div>
     );
   }
@@ -36,12 +36,16 @@ class SubListItems extends Component {
 
   render() {
     let category = this.props.url
+    let subcat = this.props.param.subcategory
     return (
       <div>
         <ul>
           {this.props.categories.subCategories.map(function(subcategory, i) {
             return (
-              <li key={i} onClick={this.handleClick.bind(this, subcategory.item, category)}>{subcategory.name}</li>
+              <li
+                key={i}
+                onClick={this.handleClick.bind(this, subcategory.item, category)}
+                className={subcat == subcategory.item ? 'active' : ''}>{subcategory.name}</li>
           )}, this)}
         </ul>
       </div>
@@ -106,12 +110,12 @@ export default class ProductMenu extends Component {
 
   render() {
     const { categories } = this.state
-    const { showProductTable } = this.props
+    const { showProductTable, param } = this.props
     return (
       <div id="productMenu">
         {
           Object.keys(categories).map(function(category, index) {
-            return <CategoryItem key={index} name={categories[category].name} url={category} subCategories={categories[category].subcategories} showProductTable={showProductTable} />
+            return <CategoryItem key={index} name={categories[category].name} url={category} subCategories={categories[category].subcategories} showProductTable={showProductTable} param={param}/>
           })
         }
         <div>

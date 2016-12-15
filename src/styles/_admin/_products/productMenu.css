@@ -38,6 +38,12 @@
           & li:hover {
             background: #ccc;
           }
+          & li:nth-of-type(odd).active {
+            background:#ccc;
+          }
+          & li:nth-of-type(even).active {
+            background:#ccc;
+          }
       }
     }
 
