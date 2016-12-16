@@ -19,7 +19,8 @@ class Product extends Component {
 
     this.state = {
       productItem: [],
-      subcatItems: []
+      subcatItems: [],
+      clickedBuy: false
     }
     this.fetchProduct(product)
   }
@@ -38,6 +39,10 @@ class Product extends Component {
 
   clickedBuyBtn() {
     this.props.actions.shoppingcartActions.addToShoppingcart(this.state.productItem, this.refs.quantity.value)
+
+    setState({
+      clickedBuy: !this.state.clickedBuy
+    })
   }
 
   clickHandler(category, subcategory) {
@@ -88,6 +93,8 @@ class Product extends Component {
           <span>{price}:-</span>
           <span><figure /></span>
         </div>
+
+        {this.state.clickedBuy ? <h5 style={{fontStyle='italic'}}>Produkt tillagd!</h5> :''}
       </section>
     </div>
     )
