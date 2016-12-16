@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import Header from '../../components/faq/Header'
-import Footer from '../../components/webshop/Footer'
 import axios from 'axios'
 require('styles/_webshopPage/faq.css')
 
@@ -20,7 +18,6 @@ export default class Faq extends Component {
   render() {
     return (
       <div>
-        <Header/>
         <div id="infoBank">
           <h1>Informationsbank</h1>
           <div>
@@ -178,7 +175,6 @@ export default class Faq extends Component {
             </div>
           </div>
         </div>
-        <Footer/>
       </div>
     )
   }

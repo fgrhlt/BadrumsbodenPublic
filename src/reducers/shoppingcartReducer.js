@@ -1,7 +1,5 @@
 import Immutable from 'seamless-immutable'
 
-import { addToShoppingcart, createShoppingCart } from '../actions/shoppingcartActions'
-
 const CREATE_SHOPPING_CART = 'CREATE_SHOPPING_CART'
 const ADD_PRODUCT = 'ADD_PRODUCT'
 const DELETE_PRODUCT = 'DELETE_PRODUCT'

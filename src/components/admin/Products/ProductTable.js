@@ -156,6 +156,10 @@ export default class ProductTable extends Component {
           </div>
         </div>
 
+        {this.props.param.category == "toppsaljare" ?
+          <h5 style={{fontStyle: 'italic'}}>För att hemsidan ska visas korrekt bör antalet toppsäljare vara fem</h5>
+        : ''}
+
         <div id="productTable">
           <FittedTable
             rowHeight={50}

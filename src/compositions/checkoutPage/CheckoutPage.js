@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 require('styles/_webshopPage/faq.css')
+import { browserHistory } from 'react-router'
 
 import Checkout from './Checkout'
 import Payment from './Payment'
@@ -14,17 +15,22 @@ export default class Checkoutpage extends Component {
   }
 
   showPayment() {
-    this.setState({
-      showCheckout: false,
-      showPayment: true
-    })
+    browserHistory.push('/webshop/payment')
+
+    // this.setState({
+    //   showCheckout: false,
+    //   showPayment: true
+    // })
+
   }
 
   showCheckout() {
-    this.setState({
-      showCheckout: true,
-      showPayment: false
-    })
+    browserHistory.push('/webshop/checkout')
+
+    // this.setState({
+    //   showCheckout: true,
+    //   showPayment: false
+    // })
   }
 
   collectData(data) { this.state = {data} }

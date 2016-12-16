@@ -67,18 +67,33 @@ class Products extends Component {
     })
   }
 
+  fetchDataCategories() {
+    axios.get('/categories')
+    .then(function (response) {
+      this.setState({
+        subcatItems: response.data,
+      })
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
   fetchData(category, subcategory) {
     if (category=='search') {
       this.fetchDataSearch(subcategory)
-      //fetchFirebaseData('categories', 'parent', 0)
+
+      this.setState({
+        subcatItems: []
+      })
     }
     else if (subcategory==undefined) {
       this.fetchDataCategory(category)
-      // fetchFirebaseData('categories', 'parent', category)
+      this.fetchDataCategories()
     }
     else {
       this.fetchDataSubcat(subcategory)
-      //fetchFirebaseData('categories', 'parent', category)
+      this.fetchDataCategories()
     }
   }
 

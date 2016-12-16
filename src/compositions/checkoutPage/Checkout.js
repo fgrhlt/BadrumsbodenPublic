@@ -2,23 +2,22 @@ import React, { Component } from 'react'
 import cookie from 'react-cookie'
 import { browserHistory } from 'react-router'
 import axios from 'axios'
+require('styles/_checkoutPage/checkout.css')
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import paymentActions from '../../actions/paymentActions'
 import * as shoppingcartActions from '../../actions/shoppingcartActions'
-
-require('styles/_checkoutPage/checkout.css')
 
 class Checkout extends Component {
 
   componentWillMount() {
     this.state = {
       data: [],
-      summary: '',
       products: [],
       radioButtonValue: 'store',
       deliveryCost: 0,
-      nrOfProductsLoaded: 0
+      nrOfProductsLoaded: 0,
     }
 
     this.fetchShoppingcartProducts()
@@ -35,8 +34,7 @@ class Checkout extends Component {
       return [product.productName, product.articleNr, product.price ,product.quantity]
     })
     data.push(['Frakt', 1, this.state.deliveryCost, 1])
-
-    this.props.collectData(data)
+    this.props.paymentActions(data)
   }
 
   fetchShoppingcartProducts() {
@@ -151,11 +149,30 @@ class Checkout extends Component {
     browserHistory.push('/webshop/'+category+'/'+subcategory+'/'+articleNr)
   }
 
-  render() {
-    const { products, summary, deliveryCost } = this.state
+  toPayment() {
+    browserHistory.push('/webshop/payment')
+  }
 
+  render() {
+    const { products, deliveryCost } = this.state
     let sum = 0
+
     return (
+      <div id="checkout">
+
+      <section>
+        Dina uppgifter är trygga, säkra och krypterade.<br /><br />
+
+        <h4>Kontakt</h4>
+        Telefon: 08-72 00 797<br/>
+        vardagar 08-12 & 13-16.<br />
+        info@badrumsboden.se<br /><br />
+
+        Vi använder Payson som samarbetspartner vid betalningar. <br />
+        Payson erbjuder en full service vid lagring av adressuppgifter och kontokort.<br /><br />
+        Känn dig säker med Payson!
+      </section>
+
         <section>
           <h2>Varukorg</h2>
 
@@ -243,19 +260,24 @@ class Checkout extends Component {
             </div>
           </div>
           <h4 className="total">Totalt: <span>{sum+parseInt(deliveryCost)}:-</span></h4>
+
+        {this.state.nrOfProductsLoaded>0 ? <div className="paysonBtn" onClick={this.toPayment.bind(this)}/> :[]}
         </section>
+      </div>
       )}
     }
 
     function mapStateToProps(state) {
       return {
-        shoppingcartReducer: state.shoppingcartReducer
+        paymentReducer: state.paymentReducer,
+        shoppingcartReducer: state.shoppingcartReducer,
       }
     }
 
     function mapDispatchToProps(dispatch) {
       return {
-        shoppingcartActions: bindActionCreators(shoppingcartActions, dispatch)
+        shoppingcartActions: bindActionCreators(shoppingcartActions, dispatch),
+        paymentActions: bindActionCreators(paymentActions, dispatch)
       }
     }
 

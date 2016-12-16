@@ -11,17 +11,30 @@ export default class SubCategoryList extends Component {
   }
 
   render() {
-    const subcat = this.props.params ? this.props.params.subcategory : null
+    const { params, subcatItems } = this.props
+    const subcat = params ? params.subcategory : null
+    console.log('subcatItems', subcatItems);
+    // {
+    //   this.props.subcatItems.map((item, key) => {
+    //     return <li
+    //       onClick={this.onClick.bind(this, item.key, item.parent)}
+    //       key={key}
+    //       className={subcat == replaceSpecialCharactersURLs(item.key) ? "active" : null}>
+    //       {item.name}</li>
+    //     })
+    // }
     return (
       <div id="subCategoryList">
         <ul>
-          {this.props.subcatItems.map((item, key) => {
-            return <li
-              onClick={this.onClick.bind(this, item.key, item.parent)}
-              key={key}
-              className={subcat == replaceSpecialCharactersURLs(item.key) ? "active" : null}>
-              {item.name}</li>
-          })}
+          {
+            subcatItems.forEach((item, key) => {
+              return <li
+                onClick={this.onClick.bind(this, item, item.parent)}
+                key={key}
+                className={subcat == replaceSpecialCharactersURLs(item) ? "active" : null}>
+                {item.name}</li>
+            })
+          }
         </ul>
       </div>
     )
