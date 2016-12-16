@@ -80,7 +80,7 @@ export default class ProductTable extends Component {
         .catch(function (error) {
           console.log(error);
         })
-      }
+      })
     }
   }
 
