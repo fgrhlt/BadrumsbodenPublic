@@ -14,15 +14,15 @@ export default class WelcomeInfo extends Component {
     return (
       <div id="welcomeInfo">
         <h3>Välkommen till Badrumsboden!</h3>
-
+        <p className="headP">Låt våra specialister med lång erfarenhet och brett kunnande utföra din badrumsrenovering eller VVS-service.<br/>
+        Vi erbjuder även webbshop med produkter för hemmafixaren och proffset!</p>
         <section name="lostContainer">
           <div>
             <div className="heading" onClick={this.goWebshop.bind(this)}><h2>Webbshop</h2></div>
             <div className="content" id="webshop">
               <div className="text webshopText">
                 <p>
-                  Vi erbjuder webbshop med produkter för hemmafixaren och proffset.
-                  Här hittar ni exempelvis badrumsinredning, blandare, dusch- och badprodukter och VVS-artiklar.
+                  Här hittar ni exempelvis badrumsinredning, blandare, dusch och VVS-artiklar.
                   Vi levererar inom 5 arbetsdagar och snabbare inom Umeå.
                 </p>
                 <br /><br />
@@ -43,13 +43,12 @@ export default class WelcomeInfo extends Component {
               <div className="text">
                 <div className="subHeading"><figure /><h4>Badrumsrenovering</h4></div>
                 <p>
-                  Låt våra proffs med lång erfarenhet och brett kunnande utföra din badrumsrenovering.
-                  Hos oss kan du beräkna vad en renovering kan kosta utan att vi är på plats.
-                </p><br/><br/>
+                  Hos oss kan du beräkna vad en badrumsrenovering kan kosta utan att vi är på plats!
+                </p><br/>
 
                 <div className="subHeading"><figure className="green" /><h4>VVS-service</h4></div>
                 <p>
-                  Har du problem med vattnet eller värmen? VVS-service inom 5 arbetsdagar. Akutservice, åtgärdas på dagen. All service till fasta priser.
+                  VVS-service inom 5 arbetsdagar. Akutservice, åtgärdas på dagen. All service till fasta priser.
                 </p>
               </div>
 
