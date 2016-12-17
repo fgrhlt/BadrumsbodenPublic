@@ -52,7 +52,7 @@ export default class PriceCalculator extends Component {
 
   render() {
     let styleVar = {
-      backgroundImage: 'url(assets/images/services/pricecalc_blue_bg.svg)',
+      backgroundImage: 'url(../../assets/images/services/pricecalc_blue_bg.svg)',
       backgroundPosition: 'right center'
     }
     console.log(this.state)
@@ -75,6 +75,13 @@ export default class PriceCalculator extends Component {
             <p>
               Välkommen att fylla i formuläret,
               så är du ett steg närmare dina drömmars badrum.
+
+            </p>
+            <br/>
+
+            <p style={{fontStyle:'italic', fontSize:'98%'}}>
+              <br/>
+              Fält som är markerade med * är obligatoriska fält.
             </p>
           </div>
 

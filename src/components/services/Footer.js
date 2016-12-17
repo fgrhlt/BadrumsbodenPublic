@@ -7,7 +7,7 @@ require('../../styles/_footerPage/footer.css')
 
 export default class Footer extends Component {
   onClickFaq() {
-    browserHistory.push('/faq')
+    browserHistory.push('/services/faq')
   }
   handleClick() {
     ReactTooltip.show(this.refs.emailClick)

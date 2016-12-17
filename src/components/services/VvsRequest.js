@@ -57,7 +57,7 @@ export default class VVSRequest extends Component {
   }
   render() {
     var styleVar = {
-      backgroundImage: 'url(assets/images/services/vvs_green_bg.svg)',
+      backgroundImage: 'url(../../assets/images/services/vvs_green_bg.svg)',
       backgroundPosition: 'left center'
     }
 
@@ -76,7 +76,12 @@ export default class VVSRequest extends Component {
             <h2>Kontakta oss för VVS och värmejobb!</h2>
             <p>
               Skriv ditt meddelande till oss med din VVS-förfrågan, så svarar vi så fort vi kan.<br /><br />
-              Du kan kontakta oss om all form av VVS-arbeten och värmejobb.
+            Du kan kontakta oss om all form av VVS-arbeten och värmejobb. <br/>
+            </p>
+
+            <p style={{fontStyle:'italic', fontSize:'98%'}}>
+              <br/>
+              Fält som är markerade med * är obligatoriska fält.
             </p>
           </div>
 

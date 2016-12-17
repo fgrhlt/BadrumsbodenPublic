@@ -7,25 +7,26 @@ require('../../styles/_headerPage/header.css')
 
 export default class Header extends Component {
 
+  onClickLandingpage() {
+    browserHistory.push('/')
+  }
   handleClick() {
     ReactTooltip.show(this.refs.emailClick)
   }
   handleMouseOut() {
     ReactTooltip.hide(this.refs.emailClick)
   }
-  toHome() {
-    browserHistory.push('/services')
-  }
+
   render() {
     let clipboard= new Clipboard('.copyBtn');
     return (
       <div id="servicePageHeader">
         <div id="header">
             <div id="left">
-              <span onClick={this.toHome.bind(this)}>
-                <figure id="backArrow"/> Tillbaka till föregående sida
+              <span onClick={this.onClickLandingpage.bind(this)}>
+                <figure id="backArrow"/> Tillbaka till portalen
               </span>
-              <figure onClick={this.toHome.bind(this)} id="logo" />
+              <figure id="logo" />
             </div>
 
             <div id="right">

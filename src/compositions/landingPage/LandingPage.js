@@ -5,6 +5,11 @@ import LandingPageFeatures from '../../components/landingPage/LandingPageFeature
 import LandingPageFooter from '../../components/landingPage/LandingPageFooter'
 
 export default class LandingPage extends Component {
+
+  componentWillMount() {
+    window.scrollTo(0, 0)
+  }
+
   render() {
     return (
       <div>

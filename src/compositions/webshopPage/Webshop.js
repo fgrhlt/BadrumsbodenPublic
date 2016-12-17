@@ -5,7 +5,6 @@ import DropdownMenu from '../../components/webshop/DropdownMenu'
 import Footer from '../../components/webshop/Footer'
 
 export default class Webshop extends Component {
-
   render() {
     return (
       <div>

@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 require('../../styles/_servicesPage/serviceSelector.css')
+import { browserHistory } from 'react-router'
+import GalleryPreview from '../../components/services/GalleryPreview'
+import HeaderServices from '../../components/services/HeaderServices'
+import Footer from '../../components/services/Footer'
 
 export default class ServiceSelector extends Component {
 
@@ -56,14 +60,22 @@ export default class ServiceSelector extends Component {
 
   /* Tells the parent which service to display: left or right */
   handleClick(userChoice) {
-    this.props.displayCalculators(userChoice)
+    //this.props.displayCalculators(userChoice)
+    let url = ''
+    if (userChoice=='left') {
+      url = 'services/badrumsrenovering'
+    }else {
+      url = 'services/VVSservice'
+    }
 
-    //var element = document.getElementById('features');
-    //element.scrollIntoView();
+    browserHistory.push(url)
   }
 
   render() {
     return (
+      <div>
+      <HeaderServices />
+
       <div className="serviceSelector">
 
         <div ref="left" className={this.state.left.name} onClick={this.toggleService.bind(this)}>
@@ -124,7 +136,7 @@ export default class ServiceSelector extends Component {
             <div id="mainInfo">
               <div>
                 <figure name="tap"/>
-                <h2>VVS</h2>
+                <h2>VVS-service</h2>
                 <h4>
                   Här kan du kontakta oss för att boka VVS-service.<br/>
                   Vi utför snabb service inom 5 arbetsdagar.
@@ -134,6 +146,9 @@ export default class ServiceSelector extends Component {
           </div>
           <div className="border" />
         </div>
+       </div>
+       <GalleryPreview />
+       <Footer />
       </div>
     )
   }

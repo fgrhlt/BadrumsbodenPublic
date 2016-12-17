@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 require('styles/_webshopPage/faq.css')
 
 export default class Faq extends Component {
+
   handleClick(e) {
     let infoDiv = e.target.parentNode.childNodes[2]
     let figure = e.target.parentNode.childNodes[1]
@@ -79,6 +79,35 @@ export default class Faq extends Component {
                 <li>Vid försening har kunden rätt att häva köpet.</li>
                 <li>Vid leveranser till orter på svårframkommliga ställen är det ej garanterat att leverans kan ske fram till dörren.</li>
               </ul>
+            </div>
+          </div>
+
+          <div>
+            <h2 onClick={this.handleClick.bind(this)}>Priskalkyl</h2>
+            <figure />
+            <div className="info">
+              <p>
+                Med en priskalkyl kan du snabbt få ett svar på hur mycket en badrumsrenovering kommer att kosta.
+                OBS! Det behöver ej vara en badrumsrenovering med kakel och klinker utan det går lika bra med
+                våtrumsmatta eller våtrumsskivor. VVS-arbetet ingår också. <br/>
+
+                Det kan även vara någon annan tjänst du vill få utförd, t ex byte av parkettgolv,
+                plastmatta eller sättning av kökskakel.
+                Fyll bara i formuläret om vad det är för typ av tjänst du vill köpa så kommer en kalkyl.
+                Du får svar inom en arbetsdag om inte sjukdom eller annat hindrar.<br/>
+
+                Kalkylen är ej ett fast pris utan en uppskattning som görs efter de uppgifter du har lämnat.
+                Tycker du att kalkylen är intressant går vi vidare med ett hembesök,
+                därefter får du en offert där du får ett fast pris för arbetet.
+                För att priset skall vara så nära verkligheten som möjligt
+
+                är det viktigt att du fyller i alla uppgifter så noggrant det går.<br/>
+                Det är många frågor att besvara men tänk då på att en
+                badrumsrenovering både är ett stort ingrepp i fastigheten
+                och en stor investering så det är bra om allt blir rätt på en gång.
+
+                Det är dessutom många regler som styr både renovering och VVS-arbetet.<br/>
+              </p>
             </div>
           </div>
 

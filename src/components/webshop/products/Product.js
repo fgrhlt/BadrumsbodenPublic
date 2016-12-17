@@ -21,7 +21,6 @@ class Product extends Component {
     this.state = {
       productItem: [],
       subcatItems: [],
-      clickedBuy: false
     }
     this.fetchProduct(product)
   }
