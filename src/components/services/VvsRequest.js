@@ -50,9 +50,12 @@ export default class VVSRequest extends Component {
     this.setState({
       overlay:false
     })
-    browserHistory.push('/services')
+
+    if(this.state.responseType=='message') {
+      browserHistory.push('/services')
+    }
   }
-  
+
   render() {
     var styleVar = {
       backgroundImage: 'url(../../assets/images/services/vvs_green_bg.svg)',
