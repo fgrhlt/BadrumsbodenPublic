@@ -52,6 +52,17 @@
           & > div {
             display: table-cell;
             vertical-align: middle;
+            text-align: center;
+            /* the read more text */
+            & > div {
+              background-color:color(#9FC5C1 alpha(-20%) shade(20%));
+              padding:5px 0;
+              width:150px;
+              display:inline-block;
+            }
+            & .right {
+              background-color:color(#9FC198 alpha(-20%) shade(20%));
+            }
           }
         }
       }
@@ -128,7 +139,10 @@
       margin-right:-10%;
       padding-right: 6%;
       & h2 {
-        letter-spacing: 3px;
+        letter-spacing: 2px;
+        & span {
+          letter-spacing: normal;
+        }
       }
       & .border {
         background-color:rgba(#72876C,0.8);
@@ -144,13 +158,6 @@
           width:60px;
           height:75px;
           margin:0 auto 30px auto;
-        }
-        /* The link */
-        & span {
-          color:#637C5C;
-        }
-        & span:hover {
-          color:#364432;
         }
       }
     }

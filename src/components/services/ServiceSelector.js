@@ -90,6 +90,7 @@ export default class ServiceSelector extends Component {
                     Här kan du utföra en priskalkyl på vad din badrumsrenovering kan kosta.<br/>
                     Få ett pris utan att vi besöker dig!
                   </h4>
+                  {this.state.left.description != 'visible' ? <div>Klicka för att läsa mer</div> : '' }
                 </div>
               </div>
 
@@ -136,11 +137,12 @@ export default class ServiceSelector extends Component {
             <div id="mainInfo">
               <div>
                 <figure name="tap"/>
-                <h2>VVS-service</h2>
+                <h2>VVS-<span>Service</span></h2>
                 <h4>
                   Här kan du kontakta oss för att boka VVS-service.<br/>
                   Vi utför snabb service inom 5 arbetsdagar.
                 </h4>
+                {this.state.right.description != 'visible' ? <div className="right">Klicka för att läsa mer</div> : '' }
               </div>
             </div>
           </div>

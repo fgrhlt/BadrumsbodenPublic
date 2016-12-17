@@ -13,6 +13,9 @@
         /* The text field */
         & > div:first-of-type {
           lost-column:3/9 0 5%;
+          & span {
+            letter-spacing: 1px;
+          }
         }
 
         /* The input fields */
