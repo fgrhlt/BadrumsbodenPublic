@@ -40,6 +40,7 @@ export default class PriceCalculator extends Component {
       overlay:false,
       errorMessage: ''
     })
+    browserHistory.push('/services')
   }
   /* Sets the response type of this component, the action is called from formFields */
   setResponseType(response, message) {

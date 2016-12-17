@@ -1,6 +1,7 @@
 import axios from 'axios'
 import OverlayMessages from './OverlayMessages'
 import React, { Component } from 'react'
+import { browserHistory } from 'react-router'
 
 require('../../styles/_servicesPage/vvsRequest.css')
 
@@ -26,6 +27,7 @@ export default class VVSRequest extends Component {
     axios.post('/email/VVSRequest', inputValues)
       .then(function (res) {
         this.setResponseType('message')
+
       }.bind(this))
       .catch(function (err) {
         console.log("error", err)
@@ -48,7 +50,9 @@ export default class VVSRequest extends Component {
     this.setState({
       overlay:false
     })
+    browserHistory.push('/services')
   }
+  
   render() {
     var styleVar = {
       backgroundImage: 'url(../../assets/images/services/vvs_green_bg.svg)',
