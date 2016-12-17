@@ -47,7 +47,7 @@
         color:var(--darkGray);
         line-height: 1.2;
         & .text {
-          min-height:150px;
+          min-height:155px;
           box-sizing: border-box;
         }
         & .webshopText {
@@ -180,7 +180,7 @@
 @media (width >= 1300px) {
   #welcomeInfo {
     & section {
-      lost-center:60%;
+      lost-center:70%;
     }
   }
 }
