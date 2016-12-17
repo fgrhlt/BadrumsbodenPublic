@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ProgressBar from './ProgressBar'
 import FormFields from './FormFields'
 import OverlayMessages from './OverlayMessages'
+import { browserHistory } from 'react-router'
 
 require('../../styles/_servicesPage/priceCalc.css')
 
@@ -42,7 +43,6 @@ export default class PriceCalculator extends Component {
   }
   /* Sets the response type of this component, the action is called from formFields */
   setResponseType(response, message) {
-    console.log("resp", response, message)
     this.setState({
       responseType: response,
       overlay:true,
@@ -50,12 +50,16 @@ export default class PriceCalculator extends Component {
     })
   }
 
+  onClickFaq() {
+    browserHistory.push('/services/faq')
+  }
+
   render() {
     let styleVar = {
       backgroundImage: 'url(../../assets/images/services/pricecalc_blue_bg.svg)',
       backgroundPosition: 'right center'
     }
-    console.log(this.state)
+
     return (
       <div className="serviceForm" id="priceCalc" style={styleVar}>
         {this.state.overlay ?
@@ -78,6 +82,12 @@ export default class PriceCalculator extends Component {
 
             </p>
             <br/>
+            <br/>
+
+            <p style={{fontSize:'98%'}}>
+              <br/>
+              Mer information finner du under rubriken Priskalkyl i <span onClick={this.onClickFaq.bind(this)} style={{fontWeight:'900', color: 'darkblue', cursor: 'pointer'}}>informationsbanken</span>
+            </p>
 
             <p style={{fontStyle:'italic', fontSize:'98%'}}>
               <br/>

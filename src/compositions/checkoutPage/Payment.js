@@ -53,13 +53,19 @@ class Payment extends Component {
 
         <section>
           <h2>Betalning</h2>
-          {this.state.status? this.state.status : ''}
+          {this.state.status?
+            <div>
+              <h4>Laddar...</h4>
+              <img src="http://res.cloudinary.com/hp6ev6aut/image/upload/c_scale,w_800/v1481975092/Ska%CC%88rmavbild_2016-12-17_kl._12.09.28_pu7ucx.png" alt="" />
+            </div>
+            :
           <iframe
             frameBorder="0"
             id="paysonIframe"
             style={{'height':'600px', 'width': '800px'}}
             src={this.state.url}>
           </iframe>
+          }
 
           <div className="paysonBtnBack" onClick={this.goBack.bind(this)}/>
         </section>

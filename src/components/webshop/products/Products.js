@@ -56,7 +56,6 @@ class Products extends Component {
   fetchDataSearch(value) {
     axios.get('/products/search/'+value)
     .then(function (response) {
-      console.log('seracr', response);
       this.setState({
         productItems: response.data,
         paginatedProducts: response.data.slice(0, this.state.productsPerPage)
