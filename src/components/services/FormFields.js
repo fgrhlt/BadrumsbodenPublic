@@ -263,7 +263,14 @@ class FifthSet extends Component {
     );
   }
 }
+
 class SixthSet extends Component {
+
+  setFile(e) {
+    let file = e.target.files[0]
+    this.props.getFile(file)
+  }
+
   render() {
     let form = this.props.form
     let inredning = form.onskadInredningNyaBadrummet
@@ -299,6 +306,12 @@ class SixthSet extends Component {
 
             {/*<h4>Filuppladdning</h4>*/}
             {/*<input type="file" ref="file" />*/}
+          </div>
+
+          <div id="imageUploadContainer">
+            <input disabled="disabled" ref="fileHolder" id="fileHolder" className="fileHolder" />
+            <input type="file" ref="bild" id="picUpload" className="picUpload" onChange={this.setFile.bind(this)} />
+            <label htmlFor="picUpload">Välj bild</label>
           </div>
         </div>
       );
@@ -419,8 +432,17 @@ export default class FormFields extends Component {
         this.props.setResponseType('error', 'Du måste fylla i namn, telefonnummer, epost och adress för att kunna skicka en priskalkyl')
       }
       else {
+      var filedata = new FormData();
       let data = flat(this.state.formSet)
-      axios.post('/email/priskalkyl', data)
+      let file = this.state.file
+
+      if(file != '') {
+        filedata.append('file', file);
+      }
+      var formattedData = JSON.stringify(data);
+      filedata.append('data', formattedData);
+
+      axios.post('/email/priskalkyl', filedata)
       .then(function (response) {
         console.log('response', response);
           this.props.setResponseType('message')
@@ -454,6 +476,10 @@ export default class FormFields extends Component {
     }
   }
 
+  getFile(file) {
+    this.setState({ file })
+  }
+
   render() {
     return(
       <div id="formFields">
@@ -472,7 +498,7 @@ export default class FormFields extends Component {
               {this.props.counter == 5 ? <FifthSet ref="fifth" form={this.state.formSet['fifth']}/>: null}
               {this.props.counter == 6 ?
                 <div>
-                  <SixthSet ref="sixth" form={this.state.formSet['sixth']}/>
+                  <SixthSet ref="sixth" getFile={this.getFile.bind(this)} form={this.state.formSet['sixth']}/>
                   <button className="btn orangeButton" onClick={this.clickSubmitButton.bind(this, "last")}>Skicka priskalkyl</button>
                 </div>
                 : null}
