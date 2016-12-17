@@ -9,6 +9,8 @@ import { connect } from 'react-redux'
 class Payment extends Component {
 
   componentWillMount() {
+    window.scrollTo(0, 0)
+
     this.state = {
       url: '',
       status: 'Laddar...'
@@ -53,14 +55,14 @@ class Payment extends Component {
 
         <section>
           <h2>Betalning</h2>
-          {this.state.status? this.state.status :
+          {this.state.status? this.state.status : ''}
 
           <iframe
             frameBorder="0"
             id="paysonIframe"
             style={{'height':'600px', 'width': '800px'}}
             src={this.state.url}>
-          </iframe>}
+          </iframe>
 
           <div className="paysonBtnBack" onClick={this.goBack.bind(this)}/>
         </section>
