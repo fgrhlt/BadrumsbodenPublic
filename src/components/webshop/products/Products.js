@@ -70,7 +70,7 @@ class Products extends Component {
     axios.get('/categories')
     .then(function (response) {
       this.setState({
-        subcatItems: response.data,
+        subcatItems: response.data[0],
       })
     }.bind(this))
     .catch(function (error) {

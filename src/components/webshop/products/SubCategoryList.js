@@ -10,74 +10,33 @@ export default class SubCategoryList extends Component {
       browserHistory.push('/webshop/'+category+'/'+subcategory)
   }
 
-  renderDivs(subcatItems) {
+  renderDivs(subcatItems, subcat, category) {
 
-    // var names = ['Jake', 'Jon', 'Thruster'];
-    //
-    // var namesList = names.map(function(name){
-    //                 return <li>{name}</li>;
-    //               })
-    //
-    // return  <ul>{ namesList }</ul>
-
-      for (var item in subcatItems[0]) {
-        console.log('itemss', item);
-        console.log('itemss2234', subcatItems[0][item]);
-
-        return <li
-          onClick={this.onClick.bind(this, item, subcatItems[0][item].parent)}
-          key={key}
-          className={subcat == replaceSpecialCharactersURLs(item) ? "active" : null}>
-          {subcatItems[0][item].name}</li>
+    let categoryList = []
+    for (var item in subcatItems) {
+      if (item != '_id') {
+        if (subcatItems[item].parent==category) {
+          categoryList.push(<li
+                              onClick={this.onClick.bind(this, item, subcatItems[item].parent)}
+                              key={item}
+                              className={subcat == replaceSpecialCharactersURLs(item) ? "active" : null}>
+                              {subcatItems[item].name}
+                            </li>)
+        }
       }
-
-      // subcatItems.forEach((item, key) => {
-      //   let objkey = Object.keys(item)
-      //   console.log('objs', objkey);
-      //   console.log('item', item);
-      //   console.log('sdfs', item[objkey]);
-      //
-      //   return <li
-      //     onClick={this.onClick.bind(this, objkey, item[objkey].parent)}
-      //     key={key}
-      //     className={subcat == replaceSpecialCharactersURLs(objkey) ? "active" : null}>
-      //     {item[objkey].name}</li>
-      // })
+    }
+    return categoryList
   }
 
   render() {
     const { params, subcatItems } = this.props
-    const subcat = params ? params.subcategory : null
-    //item.key => aggregat
-    //item.parent => bastu
-    //item.name => Aggregat
+    const { subcategory, category } = params
+    const subcat = params ? subcategory : null
 
-    // {
-    //   this.props.subcatItems.map((item, key) => {
-    //     return <li
-    //       onClick={this.onClick.bind(this, item.key, item.parent)}
-    //       key={key}
-    //       className={subcat == replaceSpecialCharactersURLs(item.key) ? "active" : null}>
-    //       {item.name}</li>
-    //     })
-    // }
-
-    // subcatItems.forEach((item, key) => {
-    //   let objkey = Object.keys(item)
-    //   console.log('objs', objkey);
-    //   console.log('item', item);
-    //   console.log('sdfs', item[objkey]);
-    //
-    //   return <li
-    //     onClick={this.onClick.bind(this, objkey, item[objkey].parent)}
-    //     key={key}
-    //     className={subcat == replaceSpecialCharactersURLs(objkey) ? "active" : null}>
-    //     {item[objkey].name}</li>
-    // })
     return (
       <div id="subCategoryList">
       <ul>
-        {this.renderDivs(subcatItems)}
+        {this.renderDivs(subcatItems, subcat, category)}
       </ul>
       </div>
     )
