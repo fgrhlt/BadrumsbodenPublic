@@ -16,7 +16,12 @@
           & span {
             letter-spacing: 1px;
           }
+          & .small {
+            font-style: italic;
+            font-size:10pt;
+          }
         }
+
 
         /* The input fields */
         & > div {

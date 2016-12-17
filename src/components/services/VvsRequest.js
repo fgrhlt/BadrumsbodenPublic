@@ -73,16 +73,14 @@ export default class VVSRequest extends Component {
 
         <section>
           <div>
-            <h2>Kontakta oss för VVS och värmejobb!</h2>
+            <h2>Kontakta oss för <span>VVS</span> och värmejobb!</h2>
             <p>
-              Skriv ditt meddelande till oss med din VVS-förfrågan, så svarar vi så fort vi kan.<br /><br />
-            Du kan kontakta oss om all form av VVS-arbeten och värmejobb. <br/>
+              Skriv ditt meddelande till oss med din <span>VVS</span>-förfrågan, så svarar vi så fort vi kan.<br /><br />
+            Du kan kontakta oss om all form av <span>VVS</span>-arbeten och värmejobb. <br/>
             </p>
+            <br/>
 
-            <p style={{fontStyle:'italic', fontSize:'98%'}}>
-              <br/>
-              Fält som är markerade med * är obligatoriska fält.
-            </p>
+            <p className="small">Fält markerade med * är obligatoriska fält</p>
           </div>
 
           <div>

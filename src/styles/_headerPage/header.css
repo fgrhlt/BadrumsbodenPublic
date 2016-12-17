@@ -1,14 +1,14 @@
 @import '../global.css';
 
 #header {
-  min-height: 95px;
+  height: 80px;
   lost-center:90%;
   box-sizing: border-box;
 
   /* The left side contains the logo */
   & #left {
     lost-column:1/5 0 0;
-    padding-top:10px;
+    padding-top:8px;
 
     & span, & #logo {
       display: block;
@@ -16,7 +16,7 @@
     }
     & span {
       font-size:10pt;
-      margin-bottom:10px;
+      margin-bottom:8px;
       display: inline-block;
     }
     & span:hover {
@@ -24,8 +24,8 @@
     }
     & #logo {
       background:url("../../assets/logo/logo.svg") no-repeat;
-      width:194px;
-      height:23px;
+      width:184px;
+      height:22px;
     }
     & #backArrow {
       background: url('../../assets/arrows/small_backarrow.svg') no-repeat;
@@ -53,29 +53,33 @@
       }
     }
     & figure {
-      margin:23px 25px 25px 0;
+      margin:20px 25px 25px 0;
     }
 
     & #emailDiv {
       margin-left:0;
       text-align:left;
+      font-size:9pt;
       & > div {
-        padding-top:5px;
+        margin-top:4px;
+      }
+      & h4 {
+        font-size: 12pt;
       }
       & figure {
         background: url('../../assets/icons/header/email_icon.svg') no-repeat;
-        width:35px;
-        height:26px;
+        width:30px;
+        height:22px;
       }
     }
     & #phoneDiv {
       & > div {
-        padding-top:22px;
+        padding-top:18px;
       }
       & figure {
         background: url('../../assets/icons/header/phone_icon.svg') no-repeat;
-        width:30px;
-        height:30px;
+        width:27px;
+        height:27px;
       }
     }
     & #shoppingCartDiv {
@@ -96,8 +100,8 @@
       }
       & figure {
         background: url('../../assets/icons/header/shoppingCart.svg') no-repeat;
-        width: 35px;
-        height: 32px;
+        width: 32px;
+        height: 29px;
         margin-top:0px;
       }
     }
@@ -127,7 +131,7 @@
   }
 }
 #webshopHeader, #landingPageHeader, #servicePageHeader, #galleryPageHeader {
-  padding-top:15px;
+  padding-top:10px;
 }
 #landingPageHeader, #servicePageHeader, #galleryPageHeader {
   box-shadow: 0 2px 15px #CCC;
