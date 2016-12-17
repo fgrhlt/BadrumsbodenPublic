@@ -10,7 +10,7 @@ export default class Banner extends Component {
     return (
       <div id="banner">
         <div>
-          <h2>{heading || ''}<span>{blueHeading || ''}</span></h2>
+          <h2>{heading || ''}<span>{ blueHeading || ''}</span></h2>
           <p>{description || ''}</p>
         </div>
       </div>

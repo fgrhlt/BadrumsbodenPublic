@@ -20,7 +20,7 @@ export default class ProductPreview extends Component {
         <figure style={{backgroundImage: 'url(' + url + ')'}} />
         <h4>{productName}</h4>
         <span>{supplier}</span>
-        <p>Art.nr: {articleNr}</p>
+        <p>Art. {articleNr}</p>
         <div className="buy-btn">
           <span>{price}:-</span>
           <span>Mer info</span>

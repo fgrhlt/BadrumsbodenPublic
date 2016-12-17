@@ -23,15 +23,12 @@ export default class VVSRequest extends Component {
       inputValues[input] = this.refs[input].value
     }
 
-    // axios({
-    //   method: 'post',
-    //   url: 'https://badrumsboden.herokuapp.com/email/VVSRequest',
-    //   data: inputValues
-    // })
     axios.post('/email/VVSRequest', inputValues)
       .then(function (res) {
         console.log("responseType", res)
-        this.setResponseType('message')
+        if (res=='202') {
+          this.setResponseType('message')
+        }
       }.bind(this))
       .catch(function (err) {
         console.log("error", err)

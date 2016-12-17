@@ -419,13 +419,9 @@ export default class FormFields extends Component {
         this.props.setResponseType('error', 'Du måste fylla i namn, telefonnummer, epost och adress för att kunna skicka en priskalkyl')
       }
       else {
-        console.log("Skicka detta i mail", flat(this.state.formSet))
-
-        axios({
-          method: 'post',
-          url: 'https://badrumsboden.herokuapp.com/email/priskalkyl',
-          data: flat(this.state.formSet)
-        }).then(function (response) {
+      let data = flat(this.state.formSet)
+      axios.post('/email/priskalkyl', data)
+      .then(function (response) {
           console.log(response);
           this.props.setResponseType('message')
         }.bind(this))
