@@ -25,9 +25,7 @@ export default class VVSRequest extends Component {
 
     axios.post('/email/VVSRequest', inputValues)
       .then(function (res) {
-        if (res=='Accepted') {
-          this.setResponseType('message')
-        }
+        this.setResponseType('message')
       }.bind(this))
       .catch(function (err) {
         console.log("error", err)

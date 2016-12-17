@@ -423,9 +423,7 @@ export default class FormFields extends Component {
       axios.post('/email/priskalkyl', data)
       .then(function (response) {
         console.log('response', response);
-          if (response=='Accepted') {
-            this.props.setResponseType('message')
-          }
+          this.props.setResponseType('message')
         }.bind(this))
         .catch(function (error) {
           console.log(error);
