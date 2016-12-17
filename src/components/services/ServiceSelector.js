@@ -3,6 +3,7 @@ require('../../styles/_servicesPage/serviceSelector.css')
 import { browserHistory } from 'react-router'
 import GalleryPreview from '../../components/services/GalleryPreview'
 import HeaderServices from '../../components/services/HeaderServices'
+import MobileServicePage from '../../components/services/MobileServicePage'
 import Footer from '../../components/services/Footer'
 
 export default class ServiceSelector extends Component {
@@ -22,6 +23,7 @@ export default class ServiceSelector extends Component {
         description: 'hidden'
       }
     }
+    window.scrollTo(0, 0);
   }
 
   /* Toggles the service field back and forth. Depending if you click left or right,
@@ -75,7 +77,7 @@ export default class ServiceSelector extends Component {
     return (
       <div>
       <HeaderServices />
-
+      <MobileServicePage />
       <div className="serviceSelector">
 
         <div ref="left" className={this.state.left.name} onClick={this.toggleService.bind(this)}>
