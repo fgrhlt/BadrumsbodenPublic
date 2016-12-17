@@ -3,6 +3,7 @@ import SubCategoryList from './SubCategoryList'
 import axios from 'axios'
 import { browserHistory } from 'react-router'
 
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as firebaseActions from '../../../actions/firebaseActions'
@@ -37,12 +38,15 @@ class Product extends Component {
     })
   }
 
+  /* Sends the product to actions and displays a message "product added" with a timeout */
   clickedBuyBtn() {
     this.props.actions.shoppingcartActions.addToShoppingcart(this.state.productItem, this.refs.quantity.value)
-
-    setState({
+    this.setState({
       clickedBuy: !this.state.clickedBuy
     })
+    setTimeout(function() {
+      this.setState({clickedBuy: !this.state.clickedBuy})
+    }.bind(this), 1500);
   }
 
   clickHandler(category, subcategory) {
@@ -89,12 +93,18 @@ class Product extends Component {
           <option>10</option>
         </select>
 
+        <p className="cart">Lägg till i varukorg:</p>
         <div onClick={this.clickedBuyBtn.bind(this)} className="buy-btn">
           <span>{price}:-</span>
           <span><figure /></span>
         </div>
 
-        {this.state.clickedBuy ? <h5 style={{fontStyle='italic'}}>Produkt tillagd!</h5> :''}
+        <ReactCSSTransitionGroup
+          transitionName="fadeIn"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+          {this.state.clickedBuy ? <p className="added">Produkt tillagd!</p> : ''}
+        </ReactCSSTransitionGroup>
       </section>
     </div>
     )

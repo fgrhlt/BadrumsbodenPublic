@@ -46,10 +46,10 @@
       box-sizing:border-box;
       lost-column: 1/2 0 0;
       float:left;
-      background-color: rgba(30,30,30,0.8);
+      background-color: rgba(30,30,30,0.9);
     }
     & section > div:hover {
-      background-color: rgba(10,10,10,0.8);
+      background-color: rgba(10,10,10,0.9);
     }
     & .active {
       background:color(#FD551F shade(20%));
