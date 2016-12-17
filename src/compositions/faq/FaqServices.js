@@ -17,7 +17,6 @@ export default class Faq extends Component {
     }
   }
   render() {
-    window.scrollTo(0, 0);
     return (
       <div>
         <Header/>

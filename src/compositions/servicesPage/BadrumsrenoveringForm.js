@@ -7,11 +7,6 @@ import Footer from '../../components/services/Footer'
 require('../../styles/_servicesPage/services.css')
 
 export default class BadrumsrenoveringForm extends Component {
-
-  componentWillMount() {
-    window.scrollTo(0, 0)
-  }
-  
   render() {
     return (
       <div id="services">

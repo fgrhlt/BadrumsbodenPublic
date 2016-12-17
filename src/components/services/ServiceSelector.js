@@ -23,7 +23,6 @@ export default class ServiceSelector extends Component {
         description: 'hidden'
       }
     }
-    window.scrollTo(0, 0);
   }
 
   /* Toggles the service field back and forth. Depending if you click left or right,
@@ -40,7 +39,6 @@ export default class ServiceSelector extends Component {
         left: {name:'left standard', innerContent:'', description:'hidden', arrow:'hidden'},
         right: {name:'right standard', innerContent:'', description:'hidden', arrow:'hidden'}
       })
-      this.props.hideCalculators()
     }
 
     /* If you clicked the left box, expand it and minimize the right */

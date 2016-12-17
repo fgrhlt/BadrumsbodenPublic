@@ -90,7 +90,7 @@ export default class Campaign extends Component {
         .then(function (response) {
           this.fetchData()
           this.setState({
-            infoText: "Uppladdningen lyckades utan bild",
+            infoText: "Uppladdningen lyckades!",
             infoColor: 'limeGreen'
           })
         }.bind(this))

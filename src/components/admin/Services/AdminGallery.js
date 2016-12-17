@@ -9,7 +9,7 @@ export default class AdminGallery extends Component {
       itemsbadrum: [],
       itemskok: [],
       file: '',
-      infoText: 'Väntar på uppladdning...',
+      infoText: '',
       infoColor: 'limeGreen'
     }
 

@@ -7,12 +7,6 @@ import Footer from '../../components/services/Footer'
 require('../../styles/_servicesPage/services.css')
 
 export default class VVSserviceForm extends Component {
-
-  componentWillMount() {
-    console.log(window);
-    window.scrollTo(0, 0)
-  }
-
   render() {
     return (
       <div id="services">
