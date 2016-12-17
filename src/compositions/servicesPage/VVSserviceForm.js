@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Header from '../../components/services/Header'
 import VVSFeatures from '../../components/services/VVSFeatures'
-import VVSRequest from '../../components/services/VVSRequest'
+import VvsRequest from '../../components/services/VvsRequest'
 import MobileServicePage from '../../components/services/MobileServicePage'
 import Footer from '../../components/services/Footer'
 require('../../styles/_servicesPage/services.css')
@@ -12,7 +12,7 @@ export default class VVSserviceForm extends Component {
       <div id="services">
         <Header />
         <MobileServicePage />
-        <VVSRequest />
+        <VvsRequest />
         <VVSFeatures />
         <Footer />
       </div>
