@@ -304,14 +304,12 @@ class SixthSet extends Component {
               />
             <textarea className="half" ref="ovrigtNyaBadrummet" defaultValue={this.props.form.ovrigtNyaBadrummet} />
 
-            {/*<h4>Filuppladdning</h4>*/}
-            {/*<input type="file" ref="file" />*/}
-          </div>
-
-          <div id="imageUploadContainer">
-            <input disabled="disabled" ref="fileHolder" id="fileHolder" className="fileHolder" />
-            <input type="file" ref="bild" id="picUpload" className="picUpload" onChange={this.setFile.bind(this)} />
-            <label htmlFor="picUpload">Välj bild</label>
+            <h4>Filuppladdning</h4>
+            <div id="imageUploadContainer">
+              <input disabled="disabled" ref="fileHolder" id="fileHolder" className="fileHolder" />
+              <input type="file" ref="bild" id="picUpload" className="picUpload" onChange={this.setFile.bind(this)} />
+              <label htmlFor="picUpload">Välj bild</label>
+            </div>
           </div>
         </div>
       );
@@ -439,6 +437,9 @@ export default class FormFields extends Component {
       if(file != '') {
         filedata.append('file', file);
       }
+      //Loading notification
+      this.props.setResponseType('Var god vänta..')
+
       var formattedData = JSON.stringify(data);
       filedata.append('data', formattedData);
 

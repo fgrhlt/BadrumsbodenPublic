@@ -18,6 +18,7 @@ export default class VVSRequest extends Component {
   submitForm(e) {
     e.preventDefault()
     let inputValues = {}
+    this.props.setResponseType('Var god vänta..')
 
     // Get all input fields
     for(let input in this.refs) {
