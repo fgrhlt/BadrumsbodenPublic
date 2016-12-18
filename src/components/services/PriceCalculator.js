@@ -94,6 +94,7 @@ export default class PriceCalculator extends Component {
 
             <p style={{fontStyle:'italic', fontSize:'98%'}}>
               <br/>
+              <br/>
               Fält som är markerade med * är obligatoriska fält.
             </p>
           </div>
