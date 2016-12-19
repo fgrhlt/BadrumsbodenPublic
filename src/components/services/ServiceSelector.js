@@ -138,7 +138,7 @@ export default class ServiceSelector extends Component {
             <div id="mainInfo">
               <div>
                 <figure name="tap"/>
-                <h2>VVS-<span>Service</span></h2>
+                <h2>V<span>VS-Service</span></h2>
                 <h4>
                   Här kan du kontakta oss för att boka VVS-service.<br/>
                   Vi utför snabb service inom 5 arbetsdagar.
