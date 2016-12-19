@@ -58,13 +58,8 @@ export default class PriceCalculator extends Component {
   }
 
   render() {
-    let styleVar = {
-      backgroundImage: 'url(../../assets/images/services/pricecalc_blue_bg.svg)',
-      backgroundPosition: 'right center'
-    }
-
     return (
-      <div className="serviceForm" id="priceCalc" style={styleVar}>
+      <div className="serviceForm" id="priceCalc">
         {this.state.overlay ?
           <OverlayMessages
             responseType={this.state.responseType}

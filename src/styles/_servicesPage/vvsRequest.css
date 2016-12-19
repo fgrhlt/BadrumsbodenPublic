@@ -2,7 +2,8 @@
 
 #vvsRequest {
   min-height:400px;
-  background-repeat: no-repeat;
+  background: url('../../assets/images/services/vvs_green_bg.svg') no-repeat;
+  background-position: left center;
   padding:60px 0 20px 0;
   box-sizing: border-box;
 

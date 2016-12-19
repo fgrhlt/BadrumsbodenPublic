@@ -1,6 +1,9 @@
 @import '../global.css';
 
 #priceCalc {
+    background: url('../../assets/images/services/pricecalc_blue_bg.svg') no-repeat;
+    background-position: right center;
+
     & #overlay {
       & > div {
         margin-top:150px;

@@ -58,13 +58,8 @@ export default class VVSRequest extends Component {
   }
 
   render() {
-    var styleVar = {
-      backgroundImage: 'url(../../assets/images/services/vvs_green_bg.svg)',
-      backgroundPosition: 'left center'
-    }
-
     return (
-      <div className="serviceForm" id="vvsRequest" style={styleVar}>
+      <div className="serviceForm" id="vvsRequest">
         {this.state.overlay ?
           <OverlayMessages
             responseType={this.state.responseType}
