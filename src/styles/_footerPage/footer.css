@@ -5,7 +5,7 @@
   box-sizing:border-box;
   background:#eee;
   padding:80px 0 40px 0;
-  box-shadow: var(--defaultInsetShadow);
+  box-shadow: 0 5px 15px -6px rgba(0,0,0,0.1) inset;
 
     /* Lost container */
     & section {

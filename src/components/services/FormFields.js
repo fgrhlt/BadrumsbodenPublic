@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import flat from 'flat'
 
-import {replaceSpecialCharacters, createLineBreak} from '../../utils/Utils'
+import {replaceSpecialCharactersCheckbox, replaceSpecialCharacters, createLineBreak} from '../../utils/Utils'
 import ReactTooltip from 'react-tooltip'
 
 require('../../styles/_servicesPage/formFields.css')
@@ -14,22 +14,22 @@ class FirstSet extends Component {
         <div>
           <h4>För- och efternamn*</h4>
           <input
-            ref="namn"
-            defaultValue={this.props.form.namn}
+            ref="Namn"
+            defaultValue={this.props.form.Namn}
             type="text"
             />
 
           <h4>Telefon*</h4>
           <input
-            ref="telefon"
-            defaultValue={this.props.form.telefon}
+            ref="Telefon"
+            defaultValue={this.props.form.Telefon}
             type="text"
             />
 
           <h4>E-post*</h4>
           <input
-            ref="epost"
-            defaultValue={this.props.form.epost}
+            ref="Epost"
+            defaultValue={this.props.form.Epost}
             type="text"
             />
         </div>
@@ -37,22 +37,22 @@ class FirstSet extends Component {
         <div>
           <h4>Adress <span>för arbetet*</span></h4>
           <input
-            ref="adress"
-            defaultValue={this.props.form.adress}
+            ref="Adress"
+            defaultValue={this.props.form.Adress}
             type="text"
             />
 
           <h4>Huset byggår*</h4>
           <input
-            ref="byggar"
-            defaultValue={this.props.form.byggar}
+            ref="Byggår"
+            defaultValue={this.props.form.Byggår}
             type="text"
             />
 
           <h4>Rummets bredd*</h4>
           <input
-            ref="bredd"
-            defaultValue={this.props.form.bredd}
+            ref="Bredd"
+            defaultValue={this.props.form.Bredd}
             type="text"
             />
         </div>
@@ -60,22 +60,22 @@ class FirstSet extends Component {
         <div>
           <h4>Rummets längd*</h4>
           <input
-            ref="langd"
-            defaultValue={this.props.form.langd}
+            ref="Längd"
+            defaultValue={this.props.form.Längd}
             type="text"
             />
 
           <Tooltip heading="Takhöjd*" tooltip="Vid snedtak, ange högsta och lägsta punkt" />
           <input
-            ref="takhojd"
-            defaultValue={this.props.form.takhojd}
+            ref="Takhöjd"
+            defaultValue={this.props.form.Takhöjd}
             type="text"
             />
 
           <h4>Ev. fönster <span>Bredd x Höjd</span></h4>
           <input
-            ref="fonster"
-            defaultValue={this.props.form.fonster}
+            ref="Fönster"
+            defaultValue={this.props.form.Fönster}
             type="text"
             />
         </div>
@@ -86,47 +86,47 @@ class FirstSet extends Component {
 class SecondSet extends Component {
   render() {
     let form = this.props.form
-    let vagg = form.vaggmaterialBefintligtBadrum
-    let golv = form.golvmaterialBefintligtBadrum
+    let vagg = form.VäggmaterialBefintligtBadrum
+    let golv = form.GolvmaterialBefintligtBadrum
     return (
       <div className="fieldWrapper">
         <div>
           <h4>Antal brunnar* <span>I det befintliga badrummet</span></h4>
           <input
-            ref="brunnar"
-            defaultValue={form.brunnar}
+            ref="Brunnar"
+            defaultValue={form.Brunnar}
             type="text"
             />
 
           <h4>Läge i fastigheten*</h4>
-          <select ref="lage" defaultValue={form.lage}>
-            <option value="kallare">Källare</option>
-            <option value="bottenvaning">Bottenvåning</option>
-            <option value="overvaning">Övervåning</option>
-            <option value="hyreshus">Hyreshus med flera våningar</option>
+          <select ref="Läge" defaultValue={form.Läge}>
+            <option value="Källare">Källare</option>
+            <option value="Bottenvåning">Bottenvåning</option>
+            <option value="Övervåning">Övervåning</option>
+            <option value="Hyreshus">Hyreshus med flera våningar</option>
           </select>
 
           <h4>Vattenrör*</h4>
-          <select ref="vattenror" defaultValue={form.lage}>
-            <option value="synliga">Synliga</option>
-            <option value="franVagg">Kommer ut från vägg (osynliga)</option>
+          <select ref="Vattenrör" defaultValue={form.Vattenrör}>
+            <option value="Synliga">Synliga</option>
+            <option value="Osynliga">Kommer ut från vägg (osynliga)</option>
           </select>
         </div>
 
         <div>
           <h4>Väggmaterial <span>bakom ytskikt*</span></h4>
-          <div className="checkboxes" ref="vaggmaterialBefintligtBadrum" required>
-            <Checkbox name="Betong" checked={vagg ? vagg.betong:null}/>
-            <Checkbox name="Gipsskivor" checked={vagg ? vagg.gipsskivor:null}/>
-            <Checkbox name="Murad vägg" checked={vagg ? vagg.muradvagg:null}/>
-            <Checkbox name="Annat väggmaterial" checked={vagg ? vagg.annatvaggmaterial:null}/>
+          <div className="checkboxes" ref="VäggmaterialBefintligtBadrum" required>
+            <Checkbox name="Betong" checked={vagg ? vagg.Betong:null}/>
+            <Checkbox name="Gipsskivor" checked={vagg ? vagg.Gipsskivor:null}/>
+            <Checkbox name="Murad vägg" checked={vagg ? vagg.Murad_vägg:null}/>
+            <Checkbox name="Annat väggmaterial" checked={vagg ? vagg.Annat_väggmaterial:null}/>
           </div>
 
           <h4>Golvmaterial <span>bakom ytskikt*</span></h4>
-          <div className="checkboxes" ref="golvmaterialBefintligtBadrum">
-            <Checkbox name="Träbjälklag" checked={golv ? golv.trabjalklag:null}/>
-            <Checkbox name="Betonggolv" checked={golv ? golv.betonggolv:null} />
-            <Checkbox name="Annat" checked={golv ? golv.annat:null}/>
+          <div className="checkboxes" ref="GolvmaterialBefintligtBadrum">
+            <Checkbox name="Träbjälklag" checked={golv ? golv.Träbjälklag:null}/>
+            <Checkbox name="Betonggolv" checked={golv ? golv.Betonggolv:null} />
+            <Checkbox name="Annat" checked={golv ? golv.Annat:null}/>
           </div>
         </div>
       </div>
@@ -136,43 +136,43 @@ class SecondSet extends Component {
 class ThirdSet extends Component {
   render() {
     let form = this.props.form
-    let vagg = form.ytskiktVaggBefintligtBadrum
-    let golv = form.ytskiktGolvBefintligtBadrum
-    let handdukstork = form.handdukstorkElementBefintligtBadrum
+    let vagg = form.YtskiktVÄggBefintligtBadrum
+    let golv = form.YtskiktGolvBefintligtBadrum
+    let handdukstork = form.HanddukstorkElementBefintligtBadrum
 
     return (
       <div className="fieldWrapper">
         <div>
           <Tooltip heading="Ytskikt på vägg*" tooltip="I det befintliga badrummet" />
-          <div className="checkboxes" ref="ytskiktVaggBefintligtBadrum">
-            <Checkbox name="Tapet" checked={vagg ? vagg.tapet:null}/>
-            <Checkbox name="Kakel" checked={vagg ? vagg.kakel:null}/>
-            <Checkbox name="Annat Ytskikt" checked={vagg ? vagg.annatytskikt:null} />
+          <div className="checkboxes" ref="YtskiktVÄggBefintligtBadrum">
+            <Checkbox name="Tapet" checked={vagg ? vagg.Tapet:null}/>
+            <Checkbox name="Kakel" checked={vagg ? vagg.Kakel:null}/>
+            <Checkbox name="Annat ytskikt" checked={vagg ? vagg.Annat_ytskikt:null} />
           </div>
 
           <Tooltip heading="Ytskikt på golv*" tooltip="I det befintliga badrummet" />
-          <div className="checkboxes" ref="ytskiktGolvBefintligtBadrum">
-            <Checkbox name="Våtrumsmatta" checked={golv ? golv.vatrumsmatta:null} />
-            <Checkbox name="Klinker" checked={golv ? golv.klinker:null} />
-            <Checkbox name="Annat" checked={golv ? golv.annat:null} />
+          <div className="checkboxes" ref="YtskiktGolvBefintligtBadrum">
+            <Checkbox name="Våtrumsmatta" checked={golv ? golv.Våtrumsmatta:null} />
+            <Checkbox name="Klinker" checked={golv ? golv.Klinker:null} />
+            <Checkbox name="Annat" checked={golv ? golv.Annat:null} />
           </div>
         </div>
 
         <div>
           <Tooltip heading="Golvvärme*" tooltip="I det befintliga badrummet" />
-          <select ref="golvvarme" defaultValue={form.golvvarme}>
-            <option value="elburen">Ja det finns, el-buren</option>
-            <option value="vattenburen">Ja det finns, vatten-buren</option>
-            <option value="ingen">Nej det finns ej</option>
+          <select ref="Golvvärme" defaultValue={form.Golvvärme}>
+            <option value="Elburen">Ja det finns, el-buren</option>
+            <option value="Vattenburen">Ja det finns, vatten-buren</option>
+            <option value="Ingen">Nej det finns ej</option>
           </select>
 
           <Tooltip heading="Handdukstork*" span=" eller element" tooltip="I det befintliga badrummet" />
-          <div className="checkboxes" ref="handdukstorkElementBefintligtBadrum">
-            <Checkbox name="Element, elburet" checked={handdukstork ? handdukstork.elementelburet:null} />
-            <Checkbox name="Element, vattenburet" checked={handdukstork ? handdukstork.elementvattenburet:null} />
-            <Checkbox name="Inget element" checked={handdukstork ? handdukstork.ingetelement:null} />
-            <Checkbox name="Handdukstork" checked={handdukstork ? handdukstork.handdukstork:null}/>
-            <Checkbox name="Ingen handdukstork" checked={handdukstork ? handdukstork.ingenhanddukstork:null} />
+          <div className="checkboxes" ref="HanddukstorkElementBefintligtBadrum">
+            <Checkbox name="Element, elburet" checked={handdukstork ? handdukstork.Element_elburet:null} />
+            <Checkbox name="Element, vattenburet" checked={handdukstork ? handdukstork.Element_vattenburet:null} />
+            <Checkbox name="Inget element" checked={handdukstork ? handdukstork.Inget_element:null} />
+            <Checkbox name="Handdukstork" checked={handdukstork ? handdukstork.Handdukstork:null}/>
+            <Checkbox name="Ingen handdukstork" checked={handdukstork ? handdukstork.Ingen_handdukstork:null} />
           </div>
         </div>
       </div>
@@ -182,21 +182,21 @@ class ThirdSet extends Component {
 class FourthSet extends Component {
   render() {
     let form = this.props.form
-    let inredning = form.inredningBefintligtBadrum
+    let inredning = form.InredningBefintligtBadrum
     return (
       <div className="fieldWrapper">
         <div>
           <h4>Inredning <span>i det befintliga badrummet</span></h4>
-          <div className="checkboxes" ref="inredningBefintligtBadrum">
-            <Checkbox name="WC stol" checked={inredning ? inredning.wcstol:null}/>
-            <Checkbox name="Bidé" checked={inredning ? inredning.bide:null}/>
-            <Checkbox name="Duschplats" checked={inredning ? inredning.duschplats:null} />
-            <Checkbox name="Badkar" checked={inredning ? inredning.badkar:null}/>
-            <Checkbox name="Tvättställ" checked={inredning ? inredning.tvattstall:null}/>
-            <Checkbox name="Tvättmaskin" checked={inredning ? inredning.tvattmaskin:null}/>
-            <Checkbox name="Torktumlare" checked={inredning ? inredning.torktumlare:null}/>
-            <Checkbox name="Torkskåp" checked={inredning ? inredning.torkskap:null}/>
-            <Checkbox name="Tvättbänk" checked={inredning ? inredning.tvattbank:null}/>
+          <div className="checkboxes" ref="InredningBefintligtBadrum">
+            <Checkbox name="WC stol" checked={inredning ? inredning.WC_stol:null}/>
+            <Checkbox name="Bidé" checked={inredning ? inredning.Bidé:null}/>
+            <Checkbox name="Duschplats" checked={inredning ? inredning.Duschplats:null} />
+            <Checkbox name="Badkar" checked={inredning ? inredning.Badkar:null}/>
+            <Checkbox name="Tvättställ" checked={inredning ? inredning.Tvättställ:null}/>
+            <Checkbox name="Tvättmaskin" checked={inredning ? inredning.Tvättmaskin:null}/>
+            <Checkbox name="Torktumlare" checked={inredning ? inredning.Torktumlare:null}/>
+            <Checkbox name="Torkskåp" checked={inredning ? inredning.Torkskåp:null}/>
+            <Checkbox name="Tvättbänk" checked={inredning ? inredning.Tvättbänk:null}/>
           </div>
         </div>
 
@@ -205,7 +205,7 @@ class FourthSet extends Component {
             heading="Övrigt"
             tooltip={'Skriv här om det är något du vill informera \nom angående de besvarade frågorna'}
             />
-          <textarea ref="ovrigt" defaultValue={form.ovrigt}/>
+          <textarea ref="Övrigt" defaultValue={form.Övrigt}/>
         </div>
       </div>
     );
@@ -214,25 +214,25 @@ class FourthSet extends Component {
 class FifthSet extends Component {
   render() {
     let form = this.props.form
-    let vagg = form.ytskiktVaggNyaBadrummet
-    let golv = form.ytskiktGolvNyaBadrummet
-    let element = form.elementHanddukstorkNyaBadrummet
+    let vagg = form.YtskiktVäggNyaBadrummet
+    let golv = form.YtskiktGolvNyaBadrummet
+    let element = form.ElementHanddukstorkNyaBadrummet
     return (
       <div className="fieldWrapper">
         <div>
           <h4>Ytskikt på vägg* <span>i det nya badrummet</span></h4>
-          <div className="checkboxes" ref="ytskiktVaggNyaBadrummet">
-            <Checkbox name="Våtrumsmatta" checked={vagg ? vagg.vatrumsmatta:null}/>
-            <Checkbox name="Kakel" checked={vagg ? vagg.kakel:null}/>
-            <Checkbox name="Våtrumsskivor" checked={vagg ? vagg.vatrumsskivor:null}/>
-            <Checkbox name="Annat ytskikt" checked={vagg ? vagg.annatytskikt:null}/>
+          <div className="checkboxes" ref="YtskiktVäggNyaBadrummet">
+            <Checkbox name="Våtrumsmatta" checked={vagg ? vagg.Våtrumsmatta:null}/>
+            <Checkbox name="Kakel" checked={vagg ? vagg.Kakel:null}/>
+            <Checkbox name="Våtrumsskivor" checked={vagg ? vagg.Våtrumsskivor:null}/>
+            <Checkbox name="Annat ytskikt" checked={vagg ? vagg.Annat_ytskikt:null}/>
           </div>
 
           <h4>Ytskikt på golv* <span>i det nya badrummet</span></h4>
-          <div className="checkboxes" ref="ytskiktGolvNyaBadrummet">
-            <Checkbox name="Våtrumsmatta golv" checked={golv ? golv.vatrumsmattagolv:null}/>
-            <Checkbox name="Klinker" checked={golv ? golv.klinker:null}/>
-            <Checkbox name="Annat" checked={golv ? golv.annat:null}/>
+          <div className="checkboxes" ref="YtskiktGolvNyaBadrummet">
+            <Checkbox name="Våtrumsmatta golv" checked={golv ? golv.Våtrumsmatta_golv:null}/>
+            <Checkbox name="Klinker" checked={golv ? golv.Klinker:null}/>
+            <Checkbox name="Annat" checked={golv ? golv.Annat:null}/>
           </div>
         </div>
 
@@ -242,21 +242,21 @@ class FifthSet extends Component {
             span="i det nya badrummet"
             tooltip="OBS! fungerar även med våtrumsmatta"
             />
-          <select ref="golvvarmeNyaBadrummet" defaultValue={form.golvvarmeNyaBadrummet}>
-            <option value="elburen">Ja det finns, el-buren</option>
-            <option value="vattenburen">Ja det finns, vattenburen</option>
-            <option value="ingen">Nej det finns ej</option>
+          <select ref="GolvvärmeNyaBadrummet" defaultValue={form.GolvvärmeNyaBadrummet}>
+            <option value="Elburen">Ja det finns, el-buren</option>
+            <option value="Vattenburen">Ja det finns, vattenburen</option>
+            <option value="Ingen">Nej det finns ej</option>
           </select>
 
           <Tooltip
             heading="Element eller handdukstork*"
             tooltip="I det nya badrummet"
             />
-          <div className="checkboxes" ref="elementHanddukstorkNyaBadrummet">
-            <Checkbox name="Element" checked={element ? element.element:null}/>
-            <Checkbox name="Handdukstork" checked={element ? element.handdukstork:null}/>
-            <Checkbox name="Ej element" checked={element ? element.ejelement:null} />
-            <Checkbox name="Ej handdukstork"  checked={element ? element.ejhanddukstork:null}/>
+          <div className="checkboxes" ref="ElementHanddukstorkNyaBadrummet">
+            <Checkbox name="Element" checked={element ? element.Element:null}/>
+            <Checkbox name="Handdukstork" checked={element ? element.Handdukstork:null}/>
+            <Checkbox name="Ej element" checked={element ? element.Ej_element:null} />
+            <Checkbox name="Ej handdukstork"  checked={element ? element.Ej_handdukstork:null}/>
           </div>
         </div>
       </div>
@@ -273,7 +273,7 @@ class SixthSet extends Component {
 
   render() {
     let form = this.props.form
-    let inredning = form.onskadInredningNyaBadrummet
+    let inredning = form.ÖnskadInredningNyaBadrummet
     return (
       <div className="fieldWrapper">
         <div>
@@ -282,17 +282,17 @@ class SixthSet extends Component {
             span="i det nya badrummet"
             tooltip= {'I kalkylen lämnas inget förslag på inredning \nmen det är viktigt att veta vad som önskas av dig'}
             />
-          <div className="checkboxes" ref="onskadInredningNyaBadrummet">
-            <Checkbox name="WC stol" checked={inredning ? inredning.wcstol:null}/>
-            <Checkbox name="Bidé" checked={inredning? inredning.bide:null}/>
-            <Checkbox name="Duschplats" checked={inredning ? inredning.duschplats:null}/>
-            <Checkbox name="Badkar" checked={inredning ? inredning.badkar:null}/>
-            <Checkbox name="Tvättställ" checked={inredning ? inredning.tvattstall:null}/>
-            <Checkbox name="Tvättställ med underskåp" checked={inredning ? inredning.tvattstallmedunderskap:null}/>
-            <Checkbox name="Tvättmaskin" checked={inredning ? inredning.tvattmaskin:null}/>
-            <Checkbox name="Torktumlare" checked={inredning ? inredning.torktumlare:null}/>
-            <Checkbox name="Torkskåp" checked={inredning ? inredning.torkskap:null}/>
-            <Checkbox name="Tvättbänk" checked={inredning ? inredning.tvattbank:null}/>
+          <div className="checkboxes" ref="ÖnskadInredningNyaBadrummet">
+            <Checkbox name="WC stol" checked={inredning ? inredning.WC_stol:null}/>
+            <Checkbox name="Bidé" checked={inredning? inredning.Bidé:null}/>
+            <Checkbox name="Duschplats" checked={inredning ? inredning.Duschplats:null}/>
+            <Checkbox name="Badkar" checked={inredning ? inredning.Badkar:null}/>
+            <Checkbox name="Tvättställ" checked={inredning ? inredning.Tvättställ:null}/>
+            <Checkbox name="Tvättställ med underskåp" checked={inredning ? inredning.Tvättställ_med_underskåp:null}/>
+            <Checkbox name="Tvättmaskin" checked={inredning ? inredning.Tvättmaskin:null}/>
+            <Checkbox name="Torktumlare" checked={inredning ? inredning.Torktumlare:null}/>
+            <Checkbox name="Torkskåp" checked={inredning ? inredning.Torkskåp:null}/>
+            <Checkbox name="Tvättbänk" checked={inredning ? inredning.Tvättbänk:null}/>
           </div>
         </div>
 
@@ -302,9 +302,12 @@ class SixthSet extends Component {
             tooltip={'Beskriv allt som kan vara av vikt för oss då vi ska\n beräkna kostnaden. \n\n' +
               'Ju mer vi vet desto bättre blir kalkylens träffsäkerhet'}
               />
-            <textarea className="half" ref="ovrigtNyaBadrummet" defaultValue={this.props.form.ovrigtNyaBadrummet} />
+            <textarea className="half" ref="ÖvrigtNyaBadrummet" defaultValue={this.props.form.ÖvrigtNyaBadrummet} />
 
-            <h4>Filuppladdning</h4><br/>
+            <Tooltip
+              heading="Filuppladdning"
+              tooltip={'Du får gärna skicka med en ritning eller bilder på badrummet.\n Här kan du ladda upp en fil på skannad ritning eller bild du önskar bifoga. \n\nDu kan även maila bilder till info@badrumsboden.se'}
+                />
             <span className="fileInfo">Alla filtyper stöds, maxstorlek 15 mb </span>
             <div id="imageUploadContainer">
               <input disabled="disabled" ref="fileHolder" id="fileHolder" className="fileHolder" />
@@ -330,7 +333,7 @@ export class Checkbox extends Component {
     })
   }
   render() {
-    let name = replaceSpecialCharacters(this.props.name)
+    let name = replaceSpecialCharactersCheckbox(this.props.name)
     return (
       <div>
         <input
@@ -431,28 +434,27 @@ export default class FormFields extends Component {
         this.props.setResponseType('error', 'Du måste fylla i namn, telefonnummer, epost och adress för att kunna skicka en priskalkyl')
       }
       else {
-      var filedata = new FormData();
-      let data = flat(this.state.formSet)
-      let file = this.state.file
+        var filedata = new FormData();
+        let data = flat(this.state.formSet)
+        console.log("Skriv detta:", data)
+        let file = this.state.file
 
-      if(file != '') {
-        filedata.append('file', file);
-      }
-      //Loading notification
-      this.props.setResponseType('Var god vänta..')
+        if(file != '') {
+          filedata.append('file', file);
+        }
 
-      var formattedData = JSON.stringify(data);
-      filedata.append('data', formattedData);
+        var formattedData = JSON.stringify(data);
+        filedata.append('data', formattedData);
 
-      axios.post('/email/priskalkyl', filedata)
-      .then(function (response) {
-        console.log('response', response);
-          this.props.setResponseType('message')
-        }.bind(this))
-        .catch(function (error) {
-          console.log(error);
-          this.props.setResponseType('error', 'Försök igen eller hör av dig till oss på info@badrumsboden.se')
-        }.bind(this));
+        axios.post('/email/priskalkyl', filedata)
+        .then(function (response) {
+          console.log('response', response);
+            this.props.setResponseType('message')
+          }.bind(this))
+          .catch(function (error) {
+            console.log(error);
+            this.props.setResponseType('error', 'Försök igen eller hör av dig till oss på info@badrumsboden.se')
+          }.bind(this));
       }
     }
   }

@@ -14,6 +14,12 @@ export function replaceSpecialCharacters(inputStr) {
   return outPutStr
 }
 
+export function replaceSpecialCharactersCheckbox(inputStr) {
+  let outPutStr = inputStr.replace(/\s+/g,'_');
+  outPutStr = outPutStr.replace(/[,'´"#$&%()!?<>{}¨*/]/g,'');
+  return outPutStr
+}
+
 /* Special case for URL-strings */
 export function replaceSpecialCharactersURLs(inputStr) {
   inputStr = inputStr.toLowerCase()
