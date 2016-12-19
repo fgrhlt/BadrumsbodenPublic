@@ -111,9 +111,11 @@ export default class ProductTable extends Component {
 
     this.starElement(product._id, starred.starred)
     let subcat = this.props.param.subcategory
-    this.fetchData('subcategory', subcat)
-
-    console.log('Storage: '+product.folder+'/'+product.filename, 'updated!')
+    if (subcat=='allatoppsaljare') {
+      this.fetchData('starred', true)
+    }else {
+      this.fetchData('subcategory', subcat)
+    }
   }
 
   onChange(event) {

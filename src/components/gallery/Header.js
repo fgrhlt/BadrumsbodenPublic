@@ -25,7 +25,7 @@ export default class Header extends Component {
               <span onClick={this.onClickLandingpage.bind(this)}>
                 <figure id="backArrow"/> Tillbaka till tjänster
               </span>
-              <figure id="logo" />
+              <figure onClick={this.onClickLandingpage.bind(this)} id="logo" />
             </div>
 
             <div id="right">
