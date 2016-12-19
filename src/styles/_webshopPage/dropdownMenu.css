@@ -6,7 +6,6 @@
   text-align: center;
   cursor:pointer;
   background-color:var(--orange);
-  box-shadow: var(--headerShadow);
 
     /* the menu items */
     & > div {
