@@ -19,7 +19,7 @@
       width:25px;
       height:25px;
       box-sizing: border-box;
-      padding-top:3px;
+      padding-top:4px;
       position: absolute;
       top:10px;
       right:10px;
@@ -27,6 +27,7 @@
     }
     & .close:before {
       content: "\2573";
+      display:block;
     }
   }
 

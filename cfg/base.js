@@ -78,7 +78,7 @@ module.exports = {
                   adminMenuDarkBlueHover:"#323E3F",
                   defaultShadow: "0 2px 10px #ccc",
                   headerShadow: "0 3px 15px #ccc",
-                  defaultInsetShadow: "0px 3px 10px #eee inset",
+                  defaultInsetShadow: "0px 3px 10px rgba(0,0,0,0.1) inset",
                 }
               },
             }

@@ -16,6 +16,7 @@ export default class Faq extends Component {
     }
   }
   render() {
+    window.scrollTo(0, 0)
     return (
       <div>
         <div id="infoBank">
@@ -47,7 +48,7 @@ export default class Faq extends Component {
                 Betalning sker enkelt och säkert med Payson och du behöver inte ha ett konto hos Payson sedan tidigare.<br/><br/>
                 Payson är ett svenskt  finansiellt institut som samarbetar med Visa & MasterCard samt Swedbank, Handelsbanken, SEB, Nordea, Danske Bank och Svea Ekonomi.<br /><br/>
                 Payson håller höga säkerhetskrav och är PCI-certifierade av Trustwave som är en internationell organisation för säker e-handel.
-                Payson startade 2004 i Sverige och har sedan dess använts av miljontals personer för att betala tryggt på internet.
+                Payson startade 2004 i Sverige och har sedan dess använts av miljontals personer för att betala tryggt på internet.<br />
 
                 <a href="https://www.payson.se/sv/om-payson/">Klicka här för att läsa mer om Payson</a>
               </p>

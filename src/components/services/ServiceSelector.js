@@ -23,6 +23,7 @@ export default class ServiceSelector extends Component {
         description: 'hidden'
       }
     }
+    window.scrollTo(0, 0)
   }
 
   /* Toggles the service field back and forth. Depending if you click left or right,

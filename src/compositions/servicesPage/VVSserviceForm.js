@@ -8,6 +8,7 @@ require('../../styles/_servicesPage/services.css')
 
 export default class VVSserviceForm extends Component {
   render() {
+    window.scrollTo(0,0)
     return (
       <div id="services">
         <Header />

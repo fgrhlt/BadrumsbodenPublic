@@ -82,21 +82,13 @@ export default class PriceCalculator extends Component {
             <p>
               Välkommen att fylla i formuläret,
               så är du ett steg närmare dina drömmars badrum.
-
-            </p>
-            <br/>
-            <br/>
-
-            <p style={{fontSize:'98%'}}>
-              <br/>
-              Mer information finner du under rubriken Priskalkyl i <span onClick={this.onClickFaq.bind(this)} style={{fontWeight:'900', color: 'darkblue', cursor: 'pointer'}}>informationsbanken</span>
             </p>
 
-            <p style={{fontStyle:'italic', fontSize:'98%'}}>
-              <br/>
-              <br/>
-              Fält som är markerade med * är obligatoriska fält.
+            <p className="small">
+              Mer information finner du under rubriken Priskalkyl i <a onClick={this.onClickFaq.bind(this)}>informationsbanken</a>
             </p>
+
+            <p className="italic">Fält markerade med * är obligatoriska fält.</p>
           </div>
 
           <FormFields

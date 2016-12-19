@@ -1,5 +1,5 @@
 @import '../global.css';
-#formFields {  
+#formFields {
   /* The react-tooltip div */
   & .show {
     font-size:12pt;
@@ -64,6 +64,25 @@
           & .tooltipFormFields {
             clear:fix;
           }
+          & .fileInfo {
+            display: block;
+            clear:left;
+            font-style: italic;
+          }
+          & #imageUploadContainer {
+            margin-top:10px;
+            & #picUpload + label {
+              lost-column:1/3 0 0;
+            }
+            /* The holder of the file name */
+            & #fileHolder {
+              lost-column:2/3 0 0;
+              box-sizing: border-box;
+            }
+            & #picUpload {
+              width:100px;
+            }
+          }
           /* The tooltip question mark */
           & figure {
             background:url('../../assets/icons/services/questionmark.svg') no-repeat;
@@ -87,6 +106,7 @@
           }
           & .half {
             min-height:80px;
+            margin-bottom:10px;
           }
         }
       }

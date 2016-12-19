@@ -263,9 +263,7 @@ class FifthSet extends Component {
     );
   }
 }
-
 class SixthSet extends Component {
-
   setFile(e) {
     let fileName = e.target.files[0].name
     this.refs.fileHolder.value = fileName
@@ -306,8 +304,8 @@ class SixthSet extends Component {
               />
             <textarea className="half" ref="ovrigtNyaBadrummet" defaultValue={this.props.form.ovrigtNyaBadrummet} />
 
-            <h4>Filuppladdning</h4><br/><br/>
-            <p style={{fontStyle:'italic', fontSize:'98%'}}>Alla filtyper stöds, maxstorlek 15 mb </p>
+            <h4>Filuppladdning</h4><br/>
+            <span className="fileInfo">Alla filtyper stöds, maxstorlek 15 mb </span>
             <div id="imageUploadContainer">
               <input disabled="disabled" ref="fileHolder" id="fileHolder" className="fileHolder" />
               <input type="file" ref="bild" id="picUpload" className="picUpload" onChange={this.setFile.bind(this)} />

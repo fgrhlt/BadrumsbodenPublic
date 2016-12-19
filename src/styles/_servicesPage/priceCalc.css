@@ -31,6 +31,19 @@
         /* The first lost item with the text */
         & > div:nth-of-type(1) {
           lost-column:4/15 0 1%;
+
+          & .small {
+            font-size:10pt;
+            margin-top:30px;
+          }
+          & a {
+            text-decoration: underline;
+          }
+          & .italic {
+            font-style: italic;
+            margin-top:20px;
+            font-size:10pt;
+          }
         }
         /* The whole form field area with arrows */
         & > div:nth-of-type(2) {
