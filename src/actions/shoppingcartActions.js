@@ -58,28 +58,37 @@ export function deleteProduct(articleNr) {
 }
 
 export function updateSummary(quantity1, price) {
-  let cookieObj = cookie.load('summary')
-  if (!cookieObj) {
-    cookieObj = { quantity: 0, sum: 0 }
-  }
+  if (price=='reset') {
+    return {
+      type: FETCH_SUMMARY,
+      quantity: 0,
+      sum: 0
+    }
+  } else {
+    price = parseInt(price)
+    let cookieObj = cookie.load('summary')
+    if (!cookieObj) {
+      cookieObj = { quantity: 0, sum: 0 }
+    }
 
-  let objQuantity = parseInt(cookieObj.quantity) + quantity1
-  let objSum = parseInt(cookieObj.sum) + parseInt(price*quantity1)
+    let objQuantity = parseInt(cookieObj.quantity) + quantity1
+    let objSum = parseInt(cookieObj.sum) + parseInt(price*quantity1)
 
-  let object = {
-    quantity: objQuantity < 0 ? 0 : objQuantity,
-    sum: objSum < 0 ? 0 : objSum
-  }
+    let object = {
+      quantity: objQuantity < 0 ? 0 : objQuantity,
+      sum: objSum < 0 ? 0 : objSum
+    }
 
-  let stringObj=JSON.stringify(object)
-  var d = new Date()
-  d.setTime(d.getTime() + (2*24*60*60*1000))
-  cookie.save('summary', stringObj, { path: '/', expires: d })
+    let stringObj=JSON.stringify(object)
+    var d = new Date()
+    d.setTime(d.getTime() + (2*24*60*60*1000))
+    cookie.save('summary', stringObj, { path: '/', expires: d })
 
-  return {
-    type: FETCH_SUMMARY,
-    quantity: object.quantity,
-    sum: object.sum
+    return {
+      type: FETCH_SUMMARY,
+      quantity: object.quantity,
+      sum: object.sum
+    }
   }
 }
 
@@ -107,7 +116,7 @@ export function addToShoppingcart(product, quantity) {
 export function removeFromShoppingcart(product, price) {
   return (dispatch) => {
     dispatch( deleteProduct(product.articleNr))
-    dispatch( updateSummary(parseInt(-product.quantity), parseInt(price)))
+    dispatch( updateSummary(parseInt(-product.quantity), price))
   }
 }
 
