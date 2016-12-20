@@ -59,6 +59,16 @@ export function deleteProduct(articleNr) {
 
 export function updateSummary(quantity1, price) {
   if (price=='reset') {
+
+    let object = {
+      quantity: 0,
+      sum: 0
+    }
+    let stringObj=JSON.stringify(object)
+    var d = new Date()
+    d.setTime(d.getTime() + (2*24*60*60*1000))
+    cookie.save('summary', stringObj, { path: '/', expires: d })
+
     return {
       type: FETCH_SUMMARY,
       quantity: 0,
@@ -114,16 +124,9 @@ export function addToShoppingcart(product, quantity) {
 }
 
 export function removeFromShoppingcart(product, price) {
-  if (!product.articleNr) {
-    return (dispatch) => {
-      dispatch( deleteProduct(product))
-      dispatch( updateSummary(undefined, price))
-    }
-  } else {
-    return (dispatch) => {
-      dispatch( deleteProduct(product.articleNr))
-      dispatch( updateSummary(parseInt(-product.quantity), price))
-    }
+  return (dispatch) => {
+    dispatch( deleteProduct(product.articleNr))
+    dispatch( updateSummary(parseInt(-product.quantity), parseInt(price)))
   }
 }
 
