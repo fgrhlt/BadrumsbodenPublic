@@ -39,6 +39,7 @@
         & > span {
           font-size:12pt;
           font-weight:bold;
+          text-transform: capitalize;
           margin:0 10px 10px 10px;
         }
         & figure {
