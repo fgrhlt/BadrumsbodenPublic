@@ -120,7 +120,7 @@ export default class AdminGallery extends Component {
         <div id="adminGallery">
           <ComponentTitle
             title={"Bildgalleri"}
-            text={"Här kan man ta bort, ändra, och lägga till bilder i galleriet. \nHåll muspekaren över bilderna för att kunna ta bort bilder"}
+            text={"Här kan man ta bort, och lägga till bilder i galleriet. \nHåll muspekaren över bilderna för att kunna ta bort bilder"}
             />
 
           <div id="container">
