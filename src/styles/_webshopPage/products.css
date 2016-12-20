@@ -31,7 +31,8 @@
         }
         & p {
           margin:0 10px;
-          height:70px;
+          height: 15px;
+          margin-bottom:30px;
           font-size:10pt;
           font-style:italic;
           overflow:hidden;
