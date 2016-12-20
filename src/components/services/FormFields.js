@@ -436,7 +436,6 @@ export default class FormFields extends Component {
       else {
         var filedata = new FormData();
         let data = flat(this.state.formSet)
-        console.log("Skriv detta:", data)
         let file = this.state.file
 
         if(file != '') {
@@ -448,8 +447,10 @@ export default class FormFields extends Component {
 
         axios.post('/email/priskalkyl', filedata)
         .then(function (response) {
-          console.log('response', response);
-            this.props.setResponseType('message')
+            console.log('response', response);
+            if(response.data == "accepted") {
+              this.props.setResponseType('message')
+            }
           }.bind(this))
           .catch(function (error) {
             console.log(error);
