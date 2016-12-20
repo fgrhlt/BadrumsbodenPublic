@@ -58,7 +58,7 @@ class Product extends Component {
 
   render() {
     const { productItem, subcatItems } = this.state
-    const { articleNr, price, description, url, productName, category, subcategory } = productItem
+    const { articleNr, price, description, url, productName, category, subcategory, supplier } = productItem
     let styles = {paddingLeft: 10}
 
     return (
@@ -75,6 +75,7 @@ class Product extends Component {
 
       <section>
         <h2>{productName}</h2>
+        <p className="boldP">{supplier}</p>
         <p>Artikelnummer: {articleNr}</p>
 
         <p>{description}</p>
