@@ -1,0 +1,25 @@
+@import '../global.css';
+
+#payConfirmation {
+  background:var(--lightGray);
+  padding:30px;
+  box-sizing: border-box;
+  text-align: center;
+  & .circle {
+    width:100px;
+    height:100px;
+    border-radius: 80px;
+    background:var(--darkGreen);
+    box-sizing: border-box;
+    padding:28px 25px;
+    margin:30px auto;
+  }
+  & figure {
+    background:url(../../assets/icons/webshop/shipping.svg) no-repeat;
+    width:50px;
+    height:50px;
+  }
+  & a {
+    border-bottom:1px solid var(--darkGray);
+  }
+}

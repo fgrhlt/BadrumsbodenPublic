@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { browserHistory } from 'react-router'
 import cookie from 'react-cookie'
-require('styles/_webshopPage/faq.css')
+require('styles/_checkoutPage/confirmation.css')
 
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -35,8 +35,8 @@ class Confirmation extends Component {
     updateSummary(undefined, 'reset')
   }
 
-  goBack() {
-    browserHistory.push('/webshop/checkout')
+  handleClick() {
+    browserHistory.push('/webshop')
   }
 
   render() {
@@ -46,8 +46,8 @@ class Confirmation extends Component {
           Dina uppgifter är trygga, säkra och krypterade.<br /><br />
 
           <h4>Kontakt</h4>
-          Telefon: 08-72 00 797<br/>
-          vardagar 08-12 & 13-16.<br />
+          Telefon: 090-13 13 04<br/>
+          Vardagar 11-17<br />
           info@badrumsboden.se<br /><br />
 
           Vi använder Payson som samarbetspartner vid betalningar. <br />
@@ -55,15 +55,18 @@ class Confirmation extends Component {
           Känn dig säker med Payson!
         </section>
 
-        <section>
+        <section id="payConfirmation">
           <h2>Tack för ditt köp!</h2>
-            Payson kommer att mejla fakturan till din e-postadress när din beställning har <br/>
-            skickats från e-butiken. Logga in på Payson för att se aktuell status för din order.
-            <br/>
-            <br/>
+            <p>
+              Snart kommer en orderbekräftelse skickas till din mail med information om din order.<br />
+              Din betalning är registrerad och behandlad av Payson.
+            </p><br />
+            Vid problem kontakta oss på info@badrumsboden.se<br />
 
-            Observera att orderbekräftelse kommer att skickas separat <br/>
-            till dig från e-butiken inom kort.
+            <div className="circle">
+              <figure />
+            </div>
+            <a onClick={this.handleClick.bind(this)}>&#8592; Tillbaka till webbshopen</a>
         </section>
       </div>
     )

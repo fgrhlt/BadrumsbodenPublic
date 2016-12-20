@@ -19,6 +19,7 @@ export default class WebshopHome extends Component {
     this.fetchDataBanner()
     this.fetchDataCampaign()
     this.fetchDataStarred()
+    window.scrollTo(0,0)
   }
 
   fetchDataBanner() {
