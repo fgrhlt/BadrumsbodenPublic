@@ -114,9 +114,16 @@ export function addToShoppingcart(product, quantity) {
 }
 
 export function removeFromShoppingcart(product, price) {
-  return (dispatch) => {
-    dispatch( deleteProduct(product.articleNr))
-    dispatch( updateSummary(parseInt(-product.quantity), price))
+  if (!product.articleNr) {
+    return (dispatch) => {
+      dispatch( deleteProduct(product))
+      dispatch( updateSummary(undefined, price))
+    }
+  } else {
+    return (dispatch) => {
+      dispatch( deleteProduct(product.articleNr))
+      dispatch( updateSummary(parseInt(-product.quantity), price))
+    }
   }
 }
 

@@ -24,15 +24,15 @@ class Confirmation extends Component {
     })
   }
 
-  deleteProduct(product) {
-      this.props.shoppingcartActions.removeFromShoppingcart(product, 'reset')
+  deleteProduct(articleNr) {
+      this.props.shoppingcartActions.removeFromShoppingcart(articleNr, 'reset')
   }
 
   deleteProducts() {
     let cookies = this.state.cookies
 
     cookies.map(cookie => {
-      this.deleteProduct(cookie.product)
+      this.deleteProduct(cookie.articleNr)
     })
   }
 
