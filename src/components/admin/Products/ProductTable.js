@@ -232,10 +232,8 @@ export default class ProductTable extends Component {
               width={100}
               />
           </FittedTable>
-
-          {this.props.param.category != "toppsaljare" || !this.props.param.category ?
-              <AddProduct fetchData={this.fetchData.bind(this)} param={this.props.param} />
-            : '' }
+          {(this.props.param.category == "toppsaljare" || typeof this.props.param.category == "undefined") ?
+              '' : <AddProduct fetchData={this.fetchData.bind(this)} param={this.props.param} />}
           </div>
         </div>
 

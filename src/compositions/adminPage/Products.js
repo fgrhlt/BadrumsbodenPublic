@@ -25,7 +25,8 @@ showProductTable() {
         <ComponentTitle
           title="Produkter"
           text={'Ändra, lägg till och ta bort produkter i webbshopen. ' +
-                'Du kan även välja vilka \nprodukter som ska vara toppsäljare ' +
+                'För att lägga till produkter, klicka på kategorierna i menyn. \n' +
+                'Du kan även välja vilka produkter som ska vara toppsäljare ' +
                 'genom att trycka på stjärnan i produktlistan.'}
         />
 
