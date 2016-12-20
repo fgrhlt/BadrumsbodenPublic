@@ -164,8 +164,8 @@ class Checkout extends Component {
         Dina uppgifter är trygga, säkra och krypterade.<br /><br />
 
         <h4>Kontakt</h4>
-        Telefon: 08-72 00 797<br/>
-        vardagar 08-12 & 13-16.<br />
+        Telefon: 090-13 13 04<br/>
+        Vardagar 11-17<br />
         info@badrumsboden.se<br /><br />
 
         Vi använder Payson som samarbetspartner vid betalningar. <br />

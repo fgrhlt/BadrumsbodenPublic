@@ -70,8 +70,8 @@ handleMouseOut() {
             <div id="phoneDiv">
               <figure />
               <div>
-                070 57 43 373<br />
-                <span>Öppet 08-18</span>
+                090-13 13 04<br />
+                <span>Öppet 11-17</span>
               </div>
             </div>
 
