@@ -46,8 +46,12 @@
       & p:first-letter {
         text-transform:capitalize;
       }
-      & h2:first-letter {
+      & h2 {
         text-transform:capitalize;
+      }
+      & .boldP {
+        font-weight: bold;
+        text-transform: capitalize;
       }
       & select {
         width:100%;

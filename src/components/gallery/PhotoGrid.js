@@ -45,10 +45,9 @@ export default  class PhotoGrid extends Component {
           <div>
             <h2>Galleri</h2>
             <p>
-              Här kommer ett urval av senaste badrumsrenoveringar och installationer.
-              Vi hoppas att ni finner inspiration av dessa produkter och köper allt vi har att erbjuda.
-              Bilderna är tagna från google och är inget vi har gjort själv,
-              men vi gör förhoppningsvis någonting som är likvärdigt!
+              Låt dig inspireras av några av de badrum vi renoverat.
+              Allt är utfört av vår egen personal, såväl VVS-arbeten som kakelsättning och mattläggning.
+              Inredningen är naturligtvis från vår webbshop.
             </p>
           </div>
         </div>
