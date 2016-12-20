@@ -17,7 +17,7 @@ export default class LandingPageHeader extends Component {
       <div id="landingPageHeader">
         <div id="header">
           <div id="left">
-            <figure id="logo" className="alone" />
+            <figure id="logoLandingPage" />
           </div>
 
           <div id="right">
