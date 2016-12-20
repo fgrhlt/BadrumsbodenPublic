@@ -6,10 +6,11 @@ require('styles/_headerPage/header.css')
 export default class LandingPageHeader extends Component {
   handleClick() {
     ReactTooltip.show(this.refs.emailClick)
+    setTimeout(function() {
+      ReactTooltip.hide(this.refs.emailClick)
+    }.bind(this), 900);
   }
-  handleMouseOut() {
-    ReactTooltip.hide(this.refs.emailClick)
-  }
+
   render() {
     let clipboard= new Clipboard('.copyBtn');
     return (
@@ -20,16 +21,14 @@ export default class LandingPageHeader extends Component {
           </div>
 
           <div id="right">
-
-
             <div id="emailDiv">
               <figure />
               <div>
                 <button
                   className="copyBtn"
+                  id="copyBtn1"
                   data-clipboard-text="info@badrumsboden.se"
                   onClick={this.handleClick.bind(this)}
-                  onMouseOut={this.handleMouseOut.bind(this)}
                 />
                 <div ref="emailClick" data-tip data-for="emailCopy">
                   <h4>E-post</h4>
@@ -46,7 +45,7 @@ export default class LandingPageHeader extends Component {
                 </ReactTooltip>
               </div>
             </div>
-            
+
             <div id="phoneDiv">
               <figure />
               <div>
