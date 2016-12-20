@@ -69,29 +69,32 @@ export default class ProductMenu extends Component {
       let mainCategories = []
       let allCategories = {}
 
+      // for every item from the database (all categories)
       for (var item in categoryItems) {
         let objItem = categoryItems[item]
-          // Get all the main categories
-          if(objItem.parent == 0)
-          {
-            mainCategories.push(item)
-            allCategories[item] = {
-              "name": objItem.name,
-              "subcategories": []
-            }
-          }
-          // Get all the sub categories
-          else {
-            mainCategories.map((category) => {
-              if(objItem.parent == category) {
-                let subcat = {}
-                subcat.item = item
-                subcat.name = objItem.name
-                allCategories[category]["subcategories"].push(subcat)
-              }
-            })
+        // Get all the main categories
+        if(objItem.parent == 0) {
+          mainCategories.push(item)
+          allCategories[item] = {
+            "name": objItem.name,
+            "subcategories": []
           }
         }
+      }
+      // for every item in the database again, get all subcategories
+      for (var item in categoryItems) {
+        let objItem = categoryItems[item]
+        mainCategories.map((category) => {
+          if(objItem.parent == category) {
+            console.log("if category:", category)
+            let subcat = {}
+            subcat.item = item
+            subcat.name = objItem.name
+            console.log("Subbcakk", subcat.name)
+            allCategories[category]["subcategories"].push(subcat)
+          }
+        })
+      }
 
       //main categories and subcategories are now in state
       this.setState({

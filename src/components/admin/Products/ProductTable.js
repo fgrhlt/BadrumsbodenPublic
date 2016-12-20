@@ -233,7 +233,7 @@ export default class ProductTable extends Component {
               />
           </FittedTable>
 
-          {this.props.param.category != "toppsaljare" ?
+          {this.props.param.category != "toppsaljare" || !this.props.param.category ?
               <AddProduct fetchData={this.fetchData.bind(this)} param={this.props.param} />
             : '' }
           </div>
