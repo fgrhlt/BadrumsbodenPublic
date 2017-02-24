@@ -154,9 +154,8 @@ export default class AddProduct extends Component {
   productVariant(index){
     console.log('i:', index);
     return (
-      <div id={'index'+index}>
-        <br/>
-        <section>
+      <div id={'index'+index} className="productVariant" key={index}>
+        <h4>Produktvariant {index+1}</h4>
           <div>
             <p>Artikelnr.</p>
             <input type="text" id={'articleNr'+index} />
@@ -171,8 +170,7 @@ export default class AddProduct extends Component {
             <p>Pris</p>
             <input type="text" id={'price'+index}/>
           </div>
-        </section>
-        <input className="btn redButton" onClick={this.removeVariant.bind(this, index)} value="Ta bort variant"/>
+        <figure className="removeVariant" onClick={this.removeVariant.bind(this, index)} />
       </div>
     )
   }
@@ -239,11 +237,11 @@ export default class AddProduct extends Component {
           </div>
 
           {this.state.variantElements}
+          <div className="btn blueButton addVariantBtn" onClick={this.renderVariant.bind(this)}>Lägg till variant</div>
 
           <input type="submit" className="btn greenButton" value="Spara produkter"/>
         </form>
 
-        <input className="btn blueButton" onClick={this.renderVariant.bind(this)} value="Lägg till variant"/>
       </div>
     )
   }
