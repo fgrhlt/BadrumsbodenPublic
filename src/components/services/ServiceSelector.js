@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+
 require('../../styles/_servicesPage/serviceSelector.css')
 import { browserHistory } from 'react-router'
+import CampaignServices from '../../components/webshop/CampaignServices'
 import GalleryPreview from '../../components/services/GalleryPreview'
 import HeaderServices from '../../components/services/HeaderServices'
 import MobileServicePage from '../../components/services/MobileServicePage'
@@ -10,6 +13,7 @@ export default class ServiceSelector extends Component {
 
   componentWillMount() {
     this.state = {
+      campaign: [],
       left: {
         name: 'left standard',
         innerContent: '',
@@ -24,6 +28,20 @@ export default class ServiceSelector extends Component {
       }
     }
     window.scrollTo(0, 0)
+
+    this.fetchDataCampaign()
+  }
+
+  fetchDataCampaign() {
+    axios.get('/campaign/campaignWebshop')
+    .then(function (response) {
+      this.setState({
+        campaign: response.data[0]
+      })
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
+    })
   }
 
   /* Toggles the service field back and forth. Depending if you click left or right,
@@ -150,6 +168,7 @@ export default class ServiceSelector extends Component {
           <div className="border" />
         </div>
        </div>
+       <CampaignServices item={ this.state.campaign }/>
        <GalleryPreview />
        <Footer />
       </div>

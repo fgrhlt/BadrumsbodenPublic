@@ -4,7 +4,7 @@ import { createLineBreak } from '../../utils/Utils'
 import axios from 'axios'
 require('../../styles/_webshopPage/campaign.css')
 
-export default class Campaign extends Component {
+export default class CampaignWebshop extends Component {
 
   onClick() {
     this.fetchProduct(this.props.item.articleNr)

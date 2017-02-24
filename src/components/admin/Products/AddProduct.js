@@ -2,13 +2,16 @@ import React, { Component } from 'react'
 import firebase from 'firebase/app'
 require('../../../styles/_admin/_products/addProduct.css')
 import axios from 'axios'
+import ProductVariant from './ProductVariant'
 
 export default class AddProduct extends Component {
   componentWillMount() {
     /* The id tells which id the last product had, so the next can be incremented */
     this.state = {
       infoText: "",
-      color: "LimeGreen"
+      color: "LimeGreen",
+      hasVariants: false,
+      variantElements: []
     }
   }
 
@@ -46,6 +49,10 @@ export default class AddProduct extends Component {
         color: "LimeGreen"
       })
 
+      this.state.variantElements.forEach(function callback(currentValue, index, array) {
+        this.postVariants(index)
+      }.bind(this))
+
       axios.post('/image', filedata)
       .then(function (res) {
         axios.post('/products', {
@@ -58,7 +65,8 @@ export default class AddProduct extends Component {
           description,
           price,
           category: this.props.param.category,
-          subcategory: this.props.param.subcategory
+          subcategory: this.props.param.subcategory,
+          hasVariants: this.state.hasVariants
         })
         .then(function (response) {
           /* Successful uploads */
@@ -97,13 +105,89 @@ export default class AddProduct extends Component {
     }
   }
 
+  postVariants(i){
+    console.log('index', i);
+    let variantArticleNr = document.getElementById('articleNr'+i).value
+    let productArticleNr = this.refs.articleNr.value;
+    let productName = document.getElementById('productName'+i).value
+    let price = document.getElementById('price'+i).value
+
+    axios.post('/products', {
+      variantOf: productArticleNr,
+      articleNr: variantArticleNr,
+      productName,
+      price
+    })
+    .then(function (response) {
+      /* Successful uploads */
+
+      // Reset variants
+      this.setState({
+        variantElements: []
+      })
+
+    }.bind(this))
+    .catch(function (error) {
+      this.setState({
+        infoText: error,
+        infoColor: 'red'
+      })
+      console.log(error);
+    }.bind(this))
+  }
+
   /* Finds the filename of the uploaded file and shows it to the user */
   findFileName(e) {
     let fileName = e.target.files[0].name
     this.refs.fileHolder.value = fileName
   }
 
+  renderVariant() {
+    console.log('length of variants:', this.state.variantElements.length);
+    this.state.variantElements.push(this.productVariant(this.state.variantElements.length))
+
+    this.setState({
+      hasVariants: true
+    })
+  }
+
+  productVariant(index){
+    console.log('i:', index);
+    return (
+      <div id={'index'+index}>
+        <br/>
+        <section>
+          <div>
+            <p>Artikelnr.</p>
+            <input type="text" id={'articleNr'+index} />
+          </div>
+
+          <div>
+            <p>Produktnamn</p>
+            <input type="text" id={'productName'+index}/>
+          </div>
+
+          <div>
+            <p>Pris</p>
+            <input type="text" id={'price'+index}/>
+          </div>
+        </section>
+        <input className="btn redButton" onClick={this.removeVariant.bind(this, index)} value="Ta bort variant"/>
+      </div>
+    )
+  }
+
+  removeVariant(index) {
+    this.setState({
+      hasVariants: ((this.state.variantElements.length-1) == 0) ? false : true
+    })
+
+    console.log('splice index: ', (index))
+    this.state.variantElements.splice(index, 1)
+  }
+
   render() {
+    console.log('updated!: ', this.state)
     return (
       <div id="addProduct">
         <h3>Lägg till produkter i: <span>/{this.props.param.category || ''}/{this.props.param.subcategory || ''}</span></h3>
@@ -154,8 +238,12 @@ export default class AddProduct extends Component {
             </div>
           </div>
 
+          {this.state.variantElements}
+
           <input type="submit" className="btn greenButton" value="Spara produkter"/>
         </form>
+
+        <input className="btn blueButton" onClick={this.renderVariant.bind(this)} value="Lägg till variant"/>
       </div>
     )
   }

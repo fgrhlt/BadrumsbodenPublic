@@ -21,7 +21,11 @@ class Product extends Component {
     this.state = {
       productItem: [],
       subcatItems: [],
+      variantsArray: [],
+      showDropdown: false,
+      showBuyBtn: true
     }
+
     this.fetchProduct(product)
   }
 
@@ -29,7 +33,13 @@ class Product extends Component {
     axios.get('/products/articleNr/'+articleNr)
     .then(function (response) {
       this.setState({
-        productItem: response.data
+        productItem: response.data,
+        itemName: response.data.productName
+      },
+      ()=> {
+        if (response.data.hasVariants){
+          this.fetchVariants(response.data.articleNr)
+        }
       })
     }.bind(this))
     .catch(function (error) {
@@ -37,8 +47,76 @@ class Product extends Component {
     })
   }
 
+  fetchVariants(articleNr) {
+    axios.get('/products/variantOf/'+articleNr)
+    .then(function (response) {
+      this.setState({
+        variantsArray: response.data,
+        showDropdown: true,
+        showBuyBtn: false
+      })
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
+  selectElement(){
+    var variantsArray = this.state.variantsArray
+    let textElement = {productName: 'Välj variant (obligatoriskt)'}
+    variantsArray.unshift(textElement)
+
+    var optionList = variantsArray.map((variant) => {
+      return <option>{variant.productName}</option>
+    })
+
+    return (
+      <div>
+        <p>Variant</p>
+
+        <select id="selectElement" onChange={this.updateProduct.bind(this)} defaultValue="1">
+          {optionList}
+        </select>
+      </div>
+    )
+  }
+
+  updateProduct(){
+    //Get selected element
+    let selectedVariant = document.getElementById('selectElement').value
+
+    function matchesName(element) {
+      return element.productName == selectedVariant
+    }
+    //Find matching productvariant
+    let variantObject = this.state.variantsArray.find(matchesName)
+
+    //Update state with chosen product
+    if (variantObject) {
+      var tempProductItem = Object.assign({}, this.state.productItem)
+
+      let newProduct = {
+        articleNr: variantObject.articleNr,
+        price: variantObject.price,
+        description: tempProductItem.description,
+        url: tempProductItem.url,
+        productName: this.state.itemName+' ('+variantObject.productName+')',
+        category: tempProductItem.category,
+        subcategory: tempProductItem.subcategory,
+        supplier: tempProductItem.supplier
+      }
+      console.log('newProduct', newProduct);
+
+      this.setState({
+        productItem: newProduct,
+        showBuyBtn: true
+      })
+    }
+  }
+
   /* Sends the product to actions and displays a message "product added" with a timeout */
   clickedBuyBtn() {
+    console.log('boughtItem', this.state.productItem);
     this.props.actions.shoppingcartActions.addToShoppingcart(this.state.productItem, this.refs.quantity.value)
     this.setState({
       clickedBuy: !this.state.clickedBuy
@@ -57,56 +135,63 @@ class Product extends Component {
   }
 
   render() {
-    const { productItem, subcatItems } = this.state
+    const { productItem, subcatItems, showDropdown, showBuyBtn } = this.state
     const { articleNr, price, description, url, productName, category, subcategory, supplier } = productItem
     let styles = {paddingLeft: 10}
 
+    console.log('updated: ', this.state);
     return (
-    <div id="productView">
-      <div className="breadCrumbs">
-        <span id="1" onClick={this.clickHandler.bind(this, category)} style={styles}>{category} ></span>
-        <span id="2" onClick={this.clickHandler.bind(this, category, subcategory)} style={styles}>{subcategory} ></span>
-        <span id="3" style={styles}>{productName}</span>
-      </div>
-
-      <section>
-        <figure style={{padding:'5px', backgroundImage: 'url(' + url + ')'}} />
-      </section>
-
-      <section>
-        <h2>{productName}</h2>
-        <p className="boldP">{supplier}</p>
-        <p>Artikelnummer: {articleNr}</p>
-
-        <p>{description}</p>
-        <p>Antal</p>
-        <select ref="quantity" defaultValue="1">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
-          <option>7</option>
-          <option>8</option>
-          <option>9</option>
-          <option>10</option>
-        </select>
-
-        <p className="cart">Lägg till i varukorg:</p>
-        <div onClick={this.clickedBuyBtn.bind(this)} className="buy-btn">
-          <span>{price}:-</span>
-          <span><figure /></span>
+      <div id="productView">
+        <div className="breadCrumbs">
+          <span id="1" onClick={this.clickHandler.bind(this, category)} style={styles}>{category} ></span>
+          <span id="2" onClick={this.clickHandler.bind(this, category, subcategory)} style={styles}>{subcategory} ></span>
+          <span id="3" style={styles}>{productName}</span>
         </div>
 
-        <ReactCSSTransitionGroup
-          transitionName="fadeIn"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}>
-          {this.state.clickedBuy ? <p className="added">Produkt tillagd!</p> : ''}
-        </ReactCSSTransitionGroup>
-      </section>
-    </div>
+        <section>
+          <figure style={{padding:'5px', backgroundImage: 'url(' + url + ')'}} />
+        </section>
+
+        <section>
+          <h2>{productName}</h2>
+          <p className="boldP">{supplier}</p>
+          <p>Artikelnummer: {articleNr}</p>
+
+          <p>{description}</p>
+          <p>Antal</p>
+          <select ref="quantity" defaultValue="1">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+          </select>
+
+          { showDropdown ? this.selectElement() : [] }
+
+          { showBuyBtn ?
+            <div>
+              <p className="cart">Lägg till i varukorg:</p>
+              <div onClick={this.clickedBuyBtn.bind(this)} className="buy-btn">
+                <span>{price}:-</span>
+                <span><figure /></span>
+              </div>
+            </div> : []
+          }
+
+          <ReactCSSTransitionGroup
+            transitionName="fadeIn"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={300}>
+            {this.state.clickedBuy ? <p className="added">Produkt tillagd!</p> : ''}
+          </ReactCSSTransitionGroup>
+        </section>
+      </div>
     )
   }
 }

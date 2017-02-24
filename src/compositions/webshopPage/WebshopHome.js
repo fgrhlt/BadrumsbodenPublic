@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-
-import Campaign from '../../components/webshop/Campaign'
+import CampaignWebshop from '../../components/webshop/CampaignWebshop'
 import TopSellers from '../../components/webshop/topSellers/TopSellers'
 import Banner from '../../components/webshop/Banner'
 import Features from '../../components/webshop/Features'
@@ -35,7 +34,7 @@ export default class WebshopHome extends Component {
   }
 
   fetchDataCampaign() {
-    axios.get('/campaign/campaign')
+    axios.get('/campaign/campaignWebshop')
     .then(function (response) {
       this.setState({
         campaign: response.data[0]
@@ -63,7 +62,7 @@ export default class WebshopHome extends Component {
 
     return (
       <div>
-        <Campaign item={ campaign }/>
+        <CampaignWebshop item={ campaign }/>
         <TopSellers items={ starred }/>
         <Banner item={ banner }></Banner>
         <Features></Features>

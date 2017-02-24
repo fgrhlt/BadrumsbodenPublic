@@ -3,7 +3,7 @@ import ComponentTitle from '../ComponentTitle'
 import axios from 'axios'
 require('../../../styles/_admin/_campaigns/campaigns.css')
 
-export default class Campaign extends Component {
+export default class CampaignWebshop extends Component {
   componentWillMount() {
     this.state = {
       campaignItem: [],
@@ -15,7 +15,7 @@ export default class Campaign extends Component {
   }
 
   fetchData() {
-    axios.get('/campaign/'+'campaign')
+    axios.get('/campaign/'+'campaignWebshop')
     .then(function (response) {
       this.setState({
         campaignItem: response.data[0]
@@ -46,7 +46,7 @@ export default class Campaign extends Component {
 
         axios.post('/image', filedata)
         .then(function (res) {
-          axios.post('/campaign/'+'campaign', {
+          axios.post('/campaign/'+'campaignWebshop', {
             url: res.data.url,
             img_id: res.data.img_id,
             filename: file.name,
@@ -54,7 +54,7 @@ export default class Campaign extends Component {
             description,
             articleNr,
             color,
-            type: 'campaign'
+            type: 'campaignWebshop'
           })
           .then(function (response) {
             /* Successful uploads */
@@ -73,19 +73,19 @@ export default class Campaign extends Component {
           }.bind(this))
         }.bind(this))
         //Reset placeholder inputtext
-        this.refs.fileHolder.value = ''
+        this.refs.fileHolderWeb.value = ''
       } else {
         let fileName = this.state.campaignItem.filename
         let urlName = this.state.campaignItem.url
 
-        axios.post('/campaign/'+'campaign', {
+        axios.post('/campaign/'+'campaignWebshop', {
           heading,
           description,
           articleNr,
           color,
           filename: fileName,
           url: urlName,
-          type: 'campaign'
+          type: 'campaignWebshop'
         })
         .then(function (response) {
           this.fetchData()
@@ -103,7 +103,7 @@ export default class Campaign extends Component {
     /* Finds the filename of the uploaded file and shows it to the user */
     findFileName(e) {
       let fileName = e.target.files[0].name
-      this.refs.fileHolder.value = fileName
+      this.refs.fileHolderWeb.value = fileName
     }
 
     /* Updates state depending on where you write */
@@ -154,7 +154,7 @@ export default class Campaign extends Component {
 
           <section className="buttons">
             <div>
-              <input disabled="disabled" ref="fileHolder" id="fileHolder" className="fileHolder" />
+              <input disabled="disabled" ref="fileHolderWeb" id="fileHolder" className="fileHolder" />
               <input
                 type="file"
                 ref="imgFile"
