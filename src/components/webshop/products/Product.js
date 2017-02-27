@@ -23,7 +23,8 @@ class Product extends Component {
       subcatItems: [],
       variantsArray: [],
       showDropdown: false,
-      showBuyBtn: true
+      showBuyBtn: true,
+      firstLoad: true
     }
 
     this.fetchProduct(product)
@@ -63,8 +64,12 @@ class Product extends Component {
 
   selectElement(){
     var variantsArray = this.state.variantsArray
-    let textElement = {productName: 'Välj variant (obligatoriskt)'}
-    variantsArray.unshift(textElement)
+
+    if (this.state.firstLoad) {
+      this.state.firstLoad = false
+      let textElement = {productName: 'Välj variant (obligatoriskt)'}
+      variantsArray.unshift(textElement)
+    }
 
     var optionList = variantsArray.map((variant) => {
       return <option>{variant.productName}</option>
@@ -73,7 +78,6 @@ class Product extends Component {
     return (
       <div>
         <p>Variant</p>
-
         <select id="selectElement" onChange={this.updateProduct.bind(this)} defaultValue="1">
           {optionList}
         </select>
@@ -84,6 +88,8 @@ class Product extends Component {
   updateProduct(){
     //Get selected element
     let selectedVariant = document.getElementById('selectElement').value
+    let selectedIndex = document.getElementById('selectElement').selectedIndex
+    let tempBoolBuyBtn = true
 
     function matchesName(element) {
       return element.productName == selectedVariant
@@ -95,21 +101,28 @@ class Product extends Component {
     if (variantObject) {
       var tempProductItem = Object.assign({}, this.state.productItem)
 
+      let newName = this.state.itemName
+      if (!selectedIndex=='0') {
+        newName = newName+' ('+variantObject.productName+')'
+      }else {
+        //selectedIndex == 'Välj variant ()'
+        tempBoolBuyBtn = false
+      }
+
       let newProduct = {
         articleNr: variantObject.articleNr,
         price: variantObject.price,
         description: tempProductItem.description,
         url: tempProductItem.url,
-        productName: this.state.itemName+' ('+variantObject.productName+')',
+        productName: newName,
         category: tempProductItem.category,
         subcategory: tempProductItem.subcategory,
         supplier: tempProductItem.supplier
       }
-      console.log('newProduct', newProduct);
 
       this.setState({
         productItem: newProduct,
-        showBuyBtn: true
+        showBuyBtn: tempBoolBuyBtn
       })
     }
   }
