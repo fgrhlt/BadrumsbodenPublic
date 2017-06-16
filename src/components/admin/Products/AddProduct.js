@@ -80,6 +80,7 @@ export default class AddProduct extends Component {
           this.refs.bild.value = ''
           this.refs.description.value = ''
           this.refs.price.value = ''
+          this.refs.series.value = ''
 
           this.setState({
             infoText: 'Lyckades ladda upp!',

@@ -11,7 +11,7 @@
       padding:0;
 
       & li {
-        padding-left:20px;
+        padding-left:12px;
         word-wrap:break-word;
         cursor:pointer;
         background:#E6E6E6;
@@ -19,7 +19,7 @@
       }
       & li:nth-of-type(odd) {
         background:#F2F2F2;
-        padding-left:20px;
+        padding-left:12px;
       }
       & li:hover, & li:nth-of-type(odd):hover {
         background:#CCC;

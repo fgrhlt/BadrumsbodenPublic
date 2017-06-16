@@ -33,7 +33,7 @@ export default class ServiceSelector extends Component {
   }
 
   fetchDataCampaign() {
-    axios.get('/campaign/campaignWebshop')
+    axios.get('/campaign/campaignServices')
     .then(function (response) {
       this.setState({
         campaign: response.data[0]

@@ -7,7 +7,7 @@ export default class ComponentTitle extends Component {
 
   render() {
     return (
-      <div id="componentTitle">
+      <div style={{marginTop: '40px'}} id="componentTitle">
         <div>
           <h2>{this.props.title}</h2>
         </div>

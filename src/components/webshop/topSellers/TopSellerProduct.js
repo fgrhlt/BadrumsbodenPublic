@@ -4,18 +4,6 @@ require('../../../styles/_webshopPage/products.css')
 
 export default class TopSellerProduct extends Component {
 
-  // onClick() {
-  //   const { item } = this.props
-  //   const { articleNr, category, subcategory } = item
-  //
-  //   // let path = ''
-  //   // browserHistory.listen( (event) => {
-  //   //   path = event.pathname.replace('/newAdmin', '')
-  //   // })
-  //
-  //   browserHistory.push(path+'/'+category+'/'+subcategory+'/'+articleNr)
-  // } TODO
-
   onClick() {
     const { item } = this.props
     const { articleNr, category, subcategory } = item

@@ -129,7 +129,6 @@ class Product extends Component {
 
   /* Sends the product to actions and displays a message "product added" with a timeout */
   clickedBuyBtn() {
-    console.log('boughtItem', this.state.productItem);
     this.props.actions.shoppingcartActions.addToShoppingcart(this.state.productItem, this.refs.quantity.value)
     this.setState({
       clickedBuy: !this.state.clickedBuy
@@ -152,7 +151,6 @@ class Product extends Component {
     const { articleNr, price, description, url, productName, category, subcategory, supplier } = productItem
     let styles = {paddingLeft: 10}
 
-    console.log('updated: ', this.state);
     return (
       <div id="productView">
         <div className="breadCrumbs">
