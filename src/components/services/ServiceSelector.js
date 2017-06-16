@@ -90,6 +90,13 @@ export default class ServiceSelector extends Component {
     browserHistory.push(url)
   }
 
+  onClickFaqVVS() {
+    browserHistory.push('/webshop/tjanster/vvs-service')
+  }
+  onClickFaqBadrum() {
+    browserHistory.push('/webshop/tjanster/badrumsrenovering')
+  }
+
   render() {
     return (
       <div>
@@ -121,7 +128,11 @@ export default class ServiceSelector extends Component {
                     inom kort med vad just din renovering kommer att kosta.<br/><br/>
                     Om du lämnar ditt badrum i våra händer kan du känna dig trygg.
                     Vi gör naturligtvis inte bara kaklade badrum.
-                    Du väljer kakel, matta eller våtrumsskivor.
+                    Du väljer kakel, matta eller våtrumsskivor.<br/><br/>
+                  </p>
+                  <p className="small">
+                    En katalog över tjänsterna finner du i <a onClick={this.onClickFaqBadrum.bind(this)}>webshoppen</a>
+                    <br/>
                   </p>
                   <button
                     className="btn"
@@ -144,7 +155,14 @@ export default class ServiceSelector extends Component {
                   Har du problem med vattnet, värmepumpen eller övrig VVS? Låt oss utföra servicearbetet,
                   alltid till fast pris. Boka så utför vi arbetet inom 5 arbetsdagar.
                   För större arbeten skickar du ett meddelande så blir du kontaktad inom en arbetsdag.<br/><br/>
+                </p>
+                <p className="small">
+                  En katalog över tjänsterna finner du i <a onClick={this.onClickFaqVVS.bind(this)}>webshoppen</a>
+                  <br/><br/>
+                </p>
+                <p>
                   Klicka på knappen nedan för att få fram kontaktformuläret
+                  <br/>
                 </p>
                 <button
                   className="btn"

@@ -14,13 +14,13 @@ export default class TopSellerProduct extends Component {
   //   // })
   //
   //   browserHistory.push(path+'/'+category+'/'+subcategory+'/'+articleNr)
-  // }
+  // } TODO
 
   onClick() {
     const { item } = this.props
     const { articleNr, category, subcategory } = item
 
-    browserHistory.push('/webshop/'+category+'/'+subcategory+'/'+articleNr)
+    browserHistory.push('/webshop/'+category+'/'+subcategory+'/I/I/'+articleNr)
   }
 
   render() {

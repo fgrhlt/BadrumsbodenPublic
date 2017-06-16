@@ -4,7 +4,7 @@
   font-size:14pt;
   line-height:2;
   width:100%;
-  
+
     & ul {
       list-style-type:none;
       margin:0;
@@ -15,6 +15,7 @@
         word-wrap:break-word;
         cursor:pointer;
         background:#E6E6E6;
+        border-bottom: thin solid white;
       }
       & li:nth-of-type(odd) {
         background:#F2F2F2;

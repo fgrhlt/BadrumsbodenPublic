@@ -20,6 +20,7 @@ export default class AddProduct extends Component {
     e.preventDefault()
     let articleNr = this.refs.articleNr.value;
     let supplier = this.refs.supplier.value;
+    let series = this.refs.series.value;
     let productName = this.refs.productName.value.toLowerCase();
     let bild = this.refs.bild.value;
     let description = this.refs.description.value;
@@ -61,6 +62,7 @@ export default class AddProduct extends Component {
           img_id: res.data.img_id,
           articleNr,
           supplier,
+          series,
           productName,
           description,
           price,
@@ -106,7 +108,6 @@ export default class AddProduct extends Component {
   }
 
   postVariants(i){
-    console.log('index', i);
     let variantArticleNr = document.getElementById('articleNr'+i).value
     let productArticleNr = this.refs.articleNr.value;
     let productName = document.getElementById('productName'+i).value
@@ -143,7 +144,6 @@ export default class AddProduct extends Component {
   }
 
   renderVariant() {
-    console.log('length of variants:', this.state.variantElements.length);
     this.state.variantElements.push(this.productVariant(this.state.variantElements.length))
 
     this.setState({
@@ -152,10 +152,9 @@ export default class AddProduct extends Component {
   }
 
   productVariant(index){
-    console.log('i:', index);
     return (
       <div id={'index'+index} className="productVariant" key={index}>
-        <h4>Produktvariant {index+1}</h4>
+        <h4>Produktvariant {index}</h4>
           <div>
             <p>Artikelnr.</p>
             <input type="text" id={'articleNr'+index} />
@@ -176,16 +175,24 @@ export default class AddProduct extends Component {
   }
 
   removeVariant(index) {
-    this.setState({
-      hasVariants: ((this.state.variantElements.length-1) == 0) ? false : true
+    delete this.state.variantElements[index]
+
+    let arraySize = 0
+    this.state.variantElements.forEach((element)=> {
+      arraySize = arraySize + 1
     })
 
-    console.log('splice index: ', (index))
-    this.state.variantElements.splice(index, 1)
+    this.setState({
+      hasVariants: arraySize == 0 ? false : true
+    }, ()=> {
+      if (arraySize == 0) {
+        this.state = { variantElements: [] }
+      }
+    })
+
   }
 
   render() {
-    console.log('updated!: ', this.state)
     return (
       <div id="addProduct">
         <h3>Lägg till produkter i: <span>/{this.props.param.category || ''}/{this.props.param.subcategory || ''}</span></h3>
@@ -207,6 +214,11 @@ export default class AddProduct extends Component {
                 <div>
                   <p>Produktnamn</p>
                   <input type="text" ref="productName"/>
+                </div>
+
+                <div>
+                  <p>Serie</p>
+                  <input type="text" ref="series"/>
                 </div>
 
                 <div>

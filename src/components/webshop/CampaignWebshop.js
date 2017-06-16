@@ -13,7 +13,9 @@ export default class CampaignWebshop extends Component {
   fetchProduct(articleNr) {
     axios.get('/products/articleNr/'+articleNr)
     .then(function (response) {
-      browserHistory.push('/webshop/'+response.data.category+'/'+response.data.subcategory+'/'+response.data.articleNr)
+      const { data } = response
+      const { category, subcategory, articleNr } = data
+      browserHistory.push('/webshop/'+category+'/'+subcategory+'/I/I/'+articleNr)
     }.bind(this))
     .catch(function (error) {
       console.log(error);

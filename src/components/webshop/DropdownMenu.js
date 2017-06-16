@@ -41,11 +41,9 @@ export default class DropdownMenu extends Component {
         let objItem = categoryItems[item]
         mainCategories.map((category) => {
           if(objItem.parent == category) {
-            console.log("if category:", category)
             let subcat = {}
             subcat.item = item
             subcat.name = objItem.name
-            console.log("Subbcakk", subcat.name)
             allCategories[category]["subcategories"].push(subcat)
           }
         })

@@ -13,7 +13,9 @@ export default class CampaignServices extends Component {
   fetchProduct(articleNr) {
     axios.get('/products/articleNr/'+articleNr)
     .then(function (response) {
-      browserHistory.push('/webshop/'+response.data.category+'/'+response.data.subcategory+'/'+response.data.articleNr)
+      const { data } = response
+      const { category, subcategory, articleNr } = data
+      browserHistory.push('/webshop/'+category+'/'+subcategory+'/I/I/'+articleNr)
     }.bind(this))
     .catch(function (error) {
       console.log(error);
@@ -25,7 +27,7 @@ export default class CampaignServices extends Component {
     const { url, heading, description, color } = item
 
     return (
-      <div id="campaign" style={{backgroundImage: 'url(' + url + ')'}}>
+      <div id="campaign" style={{ margin: '20px 0 20px 0', backgroundImage: 'url(' + url + ')'}}>
         <div className="lostWrapper">
           <div>
             <h1 className={color}>{heading}</h1>

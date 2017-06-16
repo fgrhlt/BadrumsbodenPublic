@@ -15,7 +15,7 @@ class Products extends Component {
 
   componentWillMount() {
     const { params, fetchFirebaseData, type } = this.props
-    const { subcategory, category, product} = params
+    const { category, subcategory, supplier, series, product } = params
 
     this.state = {
       productItems: [],
@@ -24,7 +24,7 @@ class Products extends Component {
       productsPerPage: 16,
       totalPages: 0,
     }
-    this.fetchData(category, subcategory)
+    this.fetchData(category, subcategory, supplier, series, product)
   }
 
   fetchDataCategory(category) {
@@ -66,6 +66,32 @@ class Products extends Component {
     })
   }
 
+  fetchDataSupplier(value, value2) {
+    axios.get('/products/fetchSupplier/'+value+'/'+value2)
+    .then(function (response) {
+      this.setState({
+        productItems: response.data,
+        paginatedProducts: response.data.slice(0, this.state.productsPerPage)
+      })
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
+  fetchDataSeries(value, value2) {
+    axios.get('/products/fetchSeries/'+value+'/'+value2)
+    .then(function (response) {
+      this.setState({
+        productItems: response.data,
+        paginatedProducts: response.data.slice(0, this.state.productsPerPage)
+      })
+    }.bind(this))
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+
   fetchDataCategories() {
     axios.get('/categories')
     .then(function (response) {
@@ -78,33 +104,47 @@ class Products extends Component {
     })
   }
 
-  fetchData(category, subcategory) {
+  fetchData(category, subcategory, supplier, series, product) {
+    //Searching for single product
     if (category=='search') {
       this.fetchDataSearch(subcategory)
-
-      this.setState({
-        subcatItems: []
-      })
+      this.setState({ subcatItems: [] })
     }
-    else if (subcategory==undefined) {
+    //category
+    else if (category && subcategory==undefined) {
       this.fetchDataCategory(category)
       this.fetchDataCategories()
     }
-    else {
+    //subcategory
+    else if (subcategory && supplier==undefined) {
       this.fetchDataSubcat(subcategory)
+      this.fetchDataCategories()
+    }
+    //supplier
+    else if (supplier && series==undefined) {
+      this.fetchDataSupplier(subcategory, supplier)
+      this.fetchDataCategories()
+    }
+    //series
+    else if (series) {
+      this.fetchDataSeries(supplier, series)
       this.fetchDataCategories()
     }
   }
 
   componentWillReceiveProps(nextProps) {
     const { params, firebaseData } = nextProps
-    const { subcategory, category } = params
+    const { category, subcategory, supplier, series, product } = params
     let currentCategory = this.props.params.category
-    let currentCubcat = this.props.params.subcategory
+    let currentsubcat = this.props.params.subcategory
+    let currentsupplier = this.props.params.supplier
+    let currentSeries = this.props.params.series
+    let currentProduct = this.props.params.product
 
     //eller om man byter subcategory eller category
-    if (currentCategory!=category || currentCubcat!=subcategory) {
-      this.fetchData(category, subcategory)
+    if (currentCategory!=category || currentsubcat!=subcategory || currentsupplier!=supplier
+        || currentSeries!=series || currentProduct!=product) {
+      this.fetchData(category, subcategory, supplier, series, product)
     }
   }
 

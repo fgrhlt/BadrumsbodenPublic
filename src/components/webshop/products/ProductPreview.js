@@ -8,7 +8,7 @@ export default class ProductPreview extends Component {
     const { item } = this.props
     const { articleNr, category, subcategory } = item
 
-    browserHistory.push('/webshop/'+category+'/'+subcategory+'/'+articleNr)
+    browserHistory.push('/webshop/'+category+'/'+subcategory+'/I/I/'+articleNr)
   }
 
   render() {
