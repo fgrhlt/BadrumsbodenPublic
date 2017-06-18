@@ -27,20 +27,12 @@ export default class AddProduct extends Component {
     let price = this.refs.price.value;
     let file = this.refs.bild.files[0]
 
-    /* Check if any form fields are empty */
-    if(articleNr=='' || supplier=='' || productName=='' || bild=='' || description=='') {
-      this.setState({
-        infoText:"Alla fält måste innehålla ett värde",
-        color:"red"
-      })
-    }
-    else if(isNaN(price)) {
+    if(isNaN(price)) {
       this.setState({
         infoText:"Pris måste vara endast siffror",
         color:"red"
       })
-    }
-    else {
+    } else {
       //Image upload
       var filedata = new FormData();
       filedata.append('file', file);
@@ -109,13 +101,15 @@ export default class AddProduct extends Component {
   }
 
   postVariants(i){
-    let variantArticleNr = document.getElementById('articleNr'+i).value
+    let variantArticleNr = document.getElementById('articleNrVar'+i).value
     let productArticleNr = this.refs.articleNr.value;
-    let productName = document.getElementById('productName'+i).value
-    let price = document.getElementById('price'+i).value
+    let productOfName = this.refs.productName.value;
+    let productName = document.getElementById('productNameVar'+i).value
+    let price = document.getElementById('priceVar'+i).value
 
     axios.post('/products', {
       variantOf: productArticleNr,
+      productOfName,
       articleNr: variantArticleNr,
       productName,
       price
@@ -153,22 +147,25 @@ export default class AddProduct extends Component {
   }
 
   productVariant(index){
+    let articleNr = ''
+    if (index==0) { articleNr = this.refs.articleNr.value }
+
     return (
       <div id={'index'+index} className="productVariant" key={index}>
         <h4>Produktvariant {index}</h4>
           <div>
             <p>Artikelnr.</p>
-            <input type="text" id={'articleNr'+index} />
+            <input required defaultValue={articleNr} type="text" id={'articleNrVar'+index} />
           </div>
 
           <div>
-            <p>Produktnamn</p>
-            <input type="text" id={'productName'+index}/>
+            <p>Namn på variant</p>
+            <input required type="text" id={'productNameVar'+index}/>
           </div>
 
           <div>
             <p>Pris</p>
-            <input type="text" id={'price'+index}/>
+            <input required type="text" id={'priceVar'+index}/>
           </div>
         <figure className="removeVariant" onClick={this.removeVariant.bind(this, index)} />
       </div>
@@ -198,39 +195,39 @@ export default class AddProduct extends Component {
       <div id="addProduct">
         <h3>Lägg till produkter i: <span>/{this.props.param.category || ''}/{this.props.param.subcategory || ''}</span></h3>
 
-        <form onSubmit={this.submitForm.bind(this)}>
+        <form name="myForm" onSubmit={this.submitForm.bind(this)}>
           <div className="addProductField">
             <div id="lostContainer">
               <section>
                 <div>
                   <p>Artikelnr.</p>
-                  <input type="text" ref="articleNr" />
+                  <input required type="text" ref="articleNr" />
                 </div>
 
                 <div>
                   <p>Leverantör</p>
-                  <input type="text" ref="supplier"/>
+                  <input required type="text" ref="supplier"/>
                 </div>
 
                 <div>
                   <p>Produktnamn</p>
-                  <input type="text" ref="productName"/>
+                  <input required type="text" ref="productName"/>
                 </div>
 
                 <div>
                   <p>Serie</p>
-                  <input type="text" ref="series"/>
+                  <input required type="text" ref="series"/>
                 </div>
 
                 <div>
                   <p>Pris</p>
-                  <input type="text" ref="price"/>
+                  <input required type="text" ref="price"/>
                 </div>
 
                 <div>
                   <p>Bild</p>
                   <input disabled="disabled" ref="fileHolder" id="fileHolder" className="fileHolder" />
-                  <input type="file" ref="bild" id="picUpload" className="picUpload" onChange={this.findFileName.bind(this)} />
+                  <input required type="file" ref="bild" id="picUpload" className="picUpload" onChange={this.findFileName.bind(this)} />
                   <label htmlFor="picUpload">Välj bild</label>
                 </div>
 

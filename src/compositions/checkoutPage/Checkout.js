@@ -145,8 +145,11 @@ class Checkout extends Component {
   }
 
   goToProduct(product) {
-    const { category, subcategory, articleNr } = product
-    browserHistory.push('/webshop/'+category+'/'+subcategory+'/'+articleNr)
+    console.log('product', product);
+    const { category, subcategory, variantOf, articleNr } = product
+    let article = variantOf ? variantOf : articleNr
+
+    browserHistory.push('/webshop/'+category+'/'+subcategory+'/I/I/'+article)
   }
 
   toPayment() {
@@ -179,6 +182,7 @@ class Checkout extends Component {
           <div id="cart">
             {this.state.products.map(function(product, i) {
               sum = sum + parseInt(product.price)*parseInt(product.quantity)
+              let productname = product.productOfName ? product.productOfName+' ('+product.productName+')' : product.productName
 
             return (
               <div className="item" key={i}>
@@ -187,7 +191,7 @@ class Checkout extends Component {
 
                   <div className="info" onClick={this.goToProduct.bind(this, product)}>
                     <p>{product.supplier}</p>
-                    <h4>{product.productName}</h4>
+                    <h4>{productname}</h4>
                     <span>Artikelnr: {product.articleNr}</span>
                   </div>
                 </div>

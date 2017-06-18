@@ -70,7 +70,7 @@ export default class ProductTable extends Component {
   deleteElement(product) {
     let c = confirm("Är du säker på att du vill ta bort denna produkt?")
     if(c) {
-      //delete from DB
+      //delete product from DB
       axios.delete('/products/'+product._id)
       .then(function (response) {
         //delete image
@@ -81,6 +81,23 @@ export default class ProductTable extends Component {
           console.log(error);
         })
       })
+
+      if (product.hasVariants) {
+        //delete variants from DB
+        axios.get('/products/variantOf/'+product.articleNr)
+        .then(function (response) {
+          for (var index in response.data) {
+            let _id = response.data[index]._id
+
+            axios.delete('/products/'+_id)
+            .then(function (response) {
+            })
+            .catch(function (error) {
+              console.log(error);
+            })
+          }
+        })
+      }
     }
   }
 
