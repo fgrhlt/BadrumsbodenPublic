@@ -16,21 +16,10 @@ export default class Checkoutpage extends Component {
 
   showPayment() {
     browserHistory.push('/webshop/payment')
-
-    // this.setState({
-    //   showCheckout: false,
-    //   showPayment: true
-    // })
-
   }
 
   showCheckout() {
     browserHistory.push('/webshop/checkout')
-
-    // this.setState({
-    //   showCheckout: true,
-    //   showPayment: false
-    // })
   }
 
   collectData(data) { this.state = {data} }

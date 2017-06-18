@@ -183,11 +183,11 @@ class Checkout extends Component {
             {this.state.products.map(function(product, i) {
               sum = sum + parseInt(product.price)*parseInt(product.quantity)
               let productname = product.productOfName ? product.productOfName+' ('+product.productName+')' : product.productName
-
+              let url = product.url ? product.url : 'http://cumbrianrun.co.uk/wp-content/uploads/2014/02/default-placeholder-300x300.png'
             return (
               <div className="item" key={i}>
                 <div className="imageInfo" onClick={this.goToProduct.bind(this, product)}>
-                  <figure style={{backgroundImage:'url('+product.url+')'}} />
+                  <figure style={{backgroundImage:'url('+url+')'}} />
 
                   <div className="info" onClick={this.goToProduct.bind(this, product)}>
                     <p>{product.supplier}</p>

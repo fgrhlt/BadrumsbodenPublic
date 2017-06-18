@@ -27,6 +27,11 @@ export default class AddProduct extends Component {
     let price = this.refs.price.value;
     let file = this.refs.bild.files[0]
 
+    if (this.state.hasVariants) {
+      var x = Math.floor((Math.random() * 10000) + 1);
+      articleNr = 'f'+x
+    }
+
     if(isNaN(price)) {
       this.setState({
         infoText:"Pris måste vara endast siffror",
@@ -147,15 +152,12 @@ export default class AddProduct extends Component {
   }
 
   productVariant(index){
-    let articleNr = ''
-    if (index==0) { articleNr = this.refs.articleNr.value }
-
     return (
       <div id={'index'+index} className="productVariant" key={index}>
         <h4>Produktvariant {index}</h4>
           <div>
             <p>Artikelnr.</p>
-            <input required defaultValue={articleNr} type="text" id={'articleNrVar'+index} />
+            <input required type="text" id={'articleNrVar'+index} />
           </div>
 
           <div>
@@ -195,13 +197,13 @@ export default class AddProduct extends Component {
       <div id="addProduct">
         <h3>Lägg till produkter i: <span>/{this.props.param.category || ''}/{this.props.param.subcategory || ''}</span></h3>
 
-        <form name="myForm" onSubmit={this.submitForm.bind(this)}>
+        <form onSubmit={this.submitForm.bind(this)}>
           <div className="addProductField">
             <div id="lostContainer">
               <section>
                 <div>
                   <p>Artikelnr.</p>
-                  <input required type="text" ref="articleNr" />
+                  <input type="text" ref="articleNr" />
                 </div>
 
                 <div>
@@ -221,7 +223,7 @@ export default class AddProduct extends Component {
 
                 <div>
                   <p>Pris</p>
-                  <input required type="text" ref="price"/>
+                  <input type="text" ref="price"/>
                 </div>
 
                 <div>
