@@ -30,6 +30,7 @@ export default class AddProduct extends Component {
     if (this.state.hasVariants) {
       var x = Math.floor((Math.random() * 10000) + 1);
       articleNr = 'f'+x
+      this.setState({ productArticleNr: articleNr })
     }
 
     if(isNaN(price)) {
@@ -107,7 +108,7 @@ export default class AddProduct extends Component {
 
   postVariants(i){
     let variantArticleNr = document.getElementById('articleNrVar'+i).value
-    let productArticleNr = this.refs.articleNr.value;
+    let productArticleNr = this.state.productArticleNr
     let productOfName = this.refs.productName.value;
     let productName = document.getElementById('productNameVar'+i).value
     let price = document.getElementById('priceVar'+i).value
