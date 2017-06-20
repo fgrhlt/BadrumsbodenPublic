@@ -27,10 +27,16 @@ export default class AddProduct extends Component {
     let price = this.refs.price.value;
     let file = this.refs.bild.files[0]
 
+
+
+    if (this.state.variantElements.length == 0) {
+      this.state.hasVariants = false
+    }
+
     if (this.state.hasVariants) {
+      //Create random articleNr
       var x = Math.floor((Math.random() * 10000) + 1);
       articleNr = 'f'+x
-      this.setState({ productArticleNr: articleNr })
     }
 
     if(isNaN(price)) {
@@ -49,7 +55,7 @@ export default class AddProduct extends Component {
       })
 
       this.state.variantElements.forEach(function callback(currentValue, index, array) {
-        this.postVariants(index)
+        this.postVariants(index, articleNr)
       }.bind(this))
 
       axios.post('/image', filedata)
@@ -106,9 +112,8 @@ export default class AddProduct extends Component {
     }
   }
 
-  postVariants(i){
+  postVariants(i, productArticleNr){
     let variantArticleNr = document.getElementById('articleNrVar'+i).value
-    let productArticleNr = this.state.productArticleNr
     let productOfName = this.refs.productName.value;
     let productName = document.getElementById('productNameVar'+i).value
     let price = document.getElementById('priceVar'+i).value
@@ -127,7 +132,6 @@ export default class AddProduct extends Component {
       this.setState({
         variantElements: []
       })
-
     }.bind(this))
     .catch(function (error) {
       this.setState({
@@ -146,10 +150,7 @@ export default class AddProduct extends Component {
 
   renderVariant() {
     this.state.variantElements.push(this.productVariant(this.state.variantElements.length))
-
-    this.setState({
-      hasVariants: true
-    })
+    this.setState({ hasVariants: true })
   }
 
   productVariant(index){
@@ -204,7 +205,7 @@ export default class AddProduct extends Component {
               <section>
                 <div>
                   <p>Artikelnr.</p>
-                  <input type="text" ref="articleNr" />
+                  <input placeholder="Ifall varianter finns, lämna tomt" type="text" ref="articleNr" />
                 </div>
 
                 <div>
@@ -224,7 +225,7 @@ export default class AddProduct extends Component {
 
                 <div>
                   <p>Pris</p>
-                  <input type="text" ref="price"/>
+                  <input placeholder="Ifall varianter finns, lämna tomt" type="text" ref="price"/>
                 </div>
 
                 <div>

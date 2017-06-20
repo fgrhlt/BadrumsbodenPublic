@@ -14,6 +14,7 @@ export default class ProductPreview extends Component {
   render() {
     const { item } = this.props
     const { articleNr, supplier, price, productName, url } = item
+    let pricePlaceholder = price ? <span>{price }:-</span> : <span style={{fontStyle:'italic'}}>Välj variant</span>
 
     return (
       <div onClick={this.onClick.bind(this)}>
@@ -22,7 +23,7 @@ export default class ProductPreview extends Component {
         <span>{supplier}</span>
         <p>Art. {articleNr}</p>
         <div className="buy-btn">
-          <span>{price}:-</span>
+          {pricePlaceholder}
           <span>Mer info</span>
         </div>
       </div>
