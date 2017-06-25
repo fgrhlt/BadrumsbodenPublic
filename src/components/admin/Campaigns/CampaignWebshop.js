@@ -133,7 +133,7 @@ export default class CampaignWebshop extends Component {
         backgroundImage: 'url('+this.state.campaignItem.url+')'
       }
       return (
-        <div id="adminCampaign">
+        <div className="adminCampaign">
           <section className="campaignImg" style={campaignImg}>
             <div className="lostWrapper">
               <input

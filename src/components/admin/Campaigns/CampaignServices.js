@@ -32,8 +32,9 @@ export default class CampaignServices extends Component {
     let description = this.state.campaignItem.description
     let articleNr = this.state.campaignItem.articleNr
     let color = this.state.campaignItem.color
-    let file = this.refs.imgFile.files[0]
-
+    let file = this.refs.imgFile2.files[0]
+console.log('file', file);
+console.log('this.refs', this.refs);
     if(file) {
         //Image upload
         var filedata = new FormData();
@@ -73,7 +74,7 @@ export default class CampaignServices extends Component {
           }.bind(this))
         }.bind(this))
         //Reset placeholder inputtext
-        this.refs.fileHolder.value = ''
+        this.refs.fileHolder2.value = ''
       } else {
         let fileName = this.state.campaignItem.filename
         let urlName = this.state.campaignItem.url
@@ -105,7 +106,7 @@ export default class CampaignServices extends Component {
       let fileName = e.target.files[0].name
       console.log('222e.target.files[0]', e.target.files[0]);
 
-      this.refs.fileHolder.value = fileName
+      this.refs.fileHolder2.value = fileName
     }
 
     /* Updates state depending on where you write */
@@ -135,7 +136,7 @@ export default class CampaignServices extends Component {
         backgroundImage: 'url('+this.state.campaignItem.url+')'
       }
       return (
-        <div id="adminCampaign">
+        <div className="adminCampaign">
           <section className="campaignImg" style={campaignImg}>
             <div className="lostWrapper">
               <input
@@ -156,15 +157,15 @@ export default class CampaignServices extends Component {
 
           <section className="buttons">
             <div>
-              <input disabled="disabled" ref="fileHolder" id="fileHolder" className="fileHolder" />
+              <input disabled="disabled" ref="fileHolder2" id="fileHolder2" className="fileHolder" />
               <input
                 type="file"
-                ref="imgFile"
-                id="picUpload"
+                ref="imgFile2"
+                id="picUpload2"
                 className="picUpload"
                 onChange={this.findFileName.bind(this)}
                 />
-              <label htmlFor="picUpload">Välj bild</label>
+              <label htmlFor="picUpload2">Välj bild</label>
             </div>
 
             <div className="articleNrDiv">

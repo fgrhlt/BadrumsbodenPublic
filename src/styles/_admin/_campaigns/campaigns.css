@@ -1,6 +1,6 @@
 @import '../../global.css';
 
-#adminCampaign {
+.adminCampaign {
   lost-utility:clearfix;
   background-color: var(--lightGray);
   & .warning {
