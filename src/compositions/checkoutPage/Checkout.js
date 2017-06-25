@@ -145,7 +145,6 @@ class Checkout extends Component {
   }
 
   goToProduct(product) {
-    console.log('product', product);
     const { category, subcategory, variantOf, articleNr } = product
     let article = variantOf ? variantOf : articleNr
 

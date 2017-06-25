@@ -51,8 +51,21 @@ class Product extends Component {
   fetchVariants(articleNr) {
     axios.get('/products/variantOf/'+articleNr)
     .then(function (response) {
+      let responseData = response.data
+
+      responseData.sort((a, b) => {
+        if (a.articleNr < b.articleNr) {
+          return -1;
+        }
+        if (a.articleNr > b.articleNr) {
+          return 1;
+        }
+        // a must be equal to b
+        return 0;
+      })
+
       this.setState({
-        variantsArray: response.data,
+        variantsArray: responseData,
         showDropdown: true,
         showBuyBtn: false
       })
