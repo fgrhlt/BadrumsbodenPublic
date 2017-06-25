@@ -32,7 +32,7 @@
       z-index:2;
       text-transform: capitalize;
     }
-    & > div:nth-child(5) section {
+    & > div:nth-child(6) section {
       right:16.7%;
     }
     & > div:last-child section {

@@ -209,8 +209,8 @@ export default class AddProduct extends Component {
                 </div>
 
                 <div>
-                  <p>Leverantör</p>
-                  <input required type="text" ref="supplier"/>
+                  <p>Underkategori</p>
+                  <input placeholder="Leverantör, Inomhusavlopp etc..." type="text" ref="supplier"/>
                 </div>
 
                 <div>
@@ -219,8 +219,8 @@ export default class AddProduct extends Component {
                 </div>
 
                 <div>
-                  <p>Serie</p>
-                  <input required type="text" ref="series"/>
+                  <p>Typ av underkategori</p>
+                  <input placeholder="Serie, Brunnar etc..." type="text" ref="series"/>
                 </div>
 
                 <div>
