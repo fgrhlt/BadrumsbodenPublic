@@ -33,8 +33,7 @@ export default class CampaignServices extends Component {
     let articleNr = this.state.campaignItem.articleNr
     let color = this.state.campaignItem.color
     let file = this.refs.imgFile2.files[0]
-console.log('file', file);
-console.log('this.refs', this.refs);
+
     if(file) {
         //Image upload
         var filedata = new FormData();
@@ -104,8 +103,6 @@ console.log('this.refs', this.refs);
     /* Finds the filename of the uploaded file and shows it to the user */
     findFileName(e) {
       let fileName = e.target.files[0].name
-      console.log('222e.target.files[0]', e.target.files[0]);
-
       this.refs.fileHolder2.value = fileName
     }
 
